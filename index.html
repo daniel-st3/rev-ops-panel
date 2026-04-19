@@ -40,6 +40,7 @@
       --radius-md: 18px;
       --radius-sm: 14px;
       --max: 1380px;
+      --header-offset: 94px;
       --sans: "Plus Jakarta Sans", sans-serif;
       --serif: "Cormorant Garamond", serif;
       --mono: "IBM Plex Mono", monospace;
@@ -113,8 +114,8 @@
 
     .site-header-inner {
       display: grid;
-      grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr);
-      gap: 18px;
+      grid-template-columns: max-content minmax(0, 1fr) max-content;
+      gap: clamp(20px, 2.6vw, 40px);
       align-items: center;
       padding: 18px 0;
     }
@@ -134,20 +135,31 @@
       height: 42px;
       width: auto;
       object-fit: contain;
+      min-width: clamp(138px, 13vw, 178px);
     }
 
     .top-nav {
       display: flex;
-      gap: 8px;
-      justify-content: center;
+      gap: 4px;
+      justify-content: flex-start;
       flex-wrap: nowrap;
+      min-width: 0;
+      padding-left: clamp(28px, 4vw, 56px);
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .top-nav::-webkit-scrollbar {
+      display: none;
     }
 
     .top-nav button {
-      padding: 10px 14px;
+      flex: 0 0 auto;
+      padding: 10px 11px;
       border-radius: 999px;
       color: var(--ink-soft);
-      font-size: 0.88rem;
+      font-size: 0.81rem;
       font-weight: 700;
       white-space: nowrap;
       transition: 160ms ease;
@@ -164,6 +176,10 @@
       gap: 10px;
       justify-content: flex-end;
       justify-self: end;
+    }
+
+    .header-actions .ghost-button {
+      white-space: nowrap;
     }
 
     .button,
@@ -1065,7 +1081,7 @@
     @media (max-width: 768px) {
       .workspace-grid, .scoreboard { grid-template-columns: 1fr; gap: 24px; }
       .scenario-tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px; -webkit-overflow-scrolling: touch; }
-      .top-nav { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; justify-content: flex-start; margin-right: -24px; padding-right: 24px; }
+      .top-nav { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; justify-content: flex-start; padding-right: 12px; }
       .score-orb { margin: 0 auto; }
       .waterfall-summary { grid-template-columns: 1fr; gap: 8px; }
       .waterfall-summary .rule { display: none; }
@@ -1091,7 +1107,7 @@
     }
 
     .site-header-inner {
-      grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr);
+      grid-template-columns: max-content minmax(0, 1fr) max-content;
     }
 
     .hero,
@@ -3447,8 +3463,8 @@
 
     .dashboard-section {
       position: relative;
-      padding-top: 34px;
-      padding-bottom: 34px;
+      padding-top: 30px;
+      padding-bottom: 30px;
     }
 
     .dashboard-shell {
@@ -3463,34 +3479,40 @@
 
     .dashboard-stage {
       position: relative;
-      min-height: 780px;
+      height: calc(100dvh - var(--header-offset) - 26px);
+      min-height: 620px;
+      max-height: calc(100dvh - var(--header-offset) - 26px);
       overflow: hidden;
     }
 
     .dashboard-viewport {
       overflow: hidden;
-      min-height: 780px;
+      height: 100%;
     }
 
     .dashboard-track {
       display: flex;
       width: 600%;
-      min-height: 780px;
+      height: 100%;
       transform: translateX(0%);
     }
 
     .dashboard-slide {
       width: calc(100% / 6);
       flex: 0 0 calc(100% / 6);
-      padding: 72px 92px 96px;
+      height: 100%;
+      padding: 26px 88px 60px;
       color: rgba(255, 250, 240, 0.82);
+      overflow: hidden;
     }
 
     .dashboard-slide-inner {
       display: grid;
-      gap: 30px;
-      min-height: 100%;
-      align-content: center;
+      grid-template-rows: auto auto minmax(0, 1fr);
+      gap: 10px;
+      height: 100%;
+      min-height: 0;
+      align-content: stretch;
     }
 
     .dashboard-center {
@@ -3498,27 +3520,63 @@
       justify-items: center;
     }
 
+    .dashboard-kicker {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 246, 231, 0.48);
+    }
+
     .dashboard-slide h2 {
       margin: 0;
       color: #fffaf0;
       font-family: var(--serif);
-      font-size: clamp(3.3rem, 5.4vw, 5.2rem);
-      line-height: 0.92;
+      font-size: clamp(2rem, 3.25vw, 3rem);
+      line-height: 1.02;
       letter-spacing: -0.045em;
       text-wrap: balance;
+      max-width: 24ch;
+    }
+
+    .dashboard-slide:not([data-dashboard-slide="0"]) h2 {
+      max-width: 30ch;
+    }
+
+    .dashboard-slide-body {
+      display: grid;
+      align-content: start;
+      gap: 16px;
+      padding-top: 24px;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .dashboard-slide-body-thesis {
+      grid-template-rows: 1fr auto;
+      align-content: stretch;
+      width: 100%;
+    }
+
+    .dashboard-slide-body-model,
+    .dashboard-slide-body-system,
+    .dashboard-slide-body-metrics {
+      grid-template-rows: auto minmax(0, 1fr);
     }
 
     .dashboard-thesis-lines {
       display: grid;
+      align-content: center;
       gap: 12px;
+      min-height: 0;
     }
 
     .dashboard-thesis-lines p {
       margin: 0;
       color: rgba(255, 248, 236, 0.92);
       font-family: var(--serif);
-      font-size: clamp(2.1rem, 4vw, 3.2rem);
-      line-height: 0.98;
+      font-size: clamp(1.95rem, 2.8vw, 2.25rem);
+      line-height: 1.06;
     }
 
     .dashboard-slide-note,
@@ -3531,16 +3589,23 @@
       font-size: 0.82rem;
     }
 
+    .dashboard-slide-note {
+      justify-self: end;
+      align-self: end;
+      font-size: 0.75rem;
+    }
+
     .dashboard-split-list {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 26px;
+      gap: 16px;
+      min-height: 0;
     }
 
     .dashboard-list-col {
-      padding: 26px 28px;
+      padding: 16px 18px;
       border-radius: 24px;
-      background: rgba(255, 251, 245, 0.05);
+      background: rgba(255, 251, 245, 0.09);
       border: 1px solid rgba(255, 246, 231, 0.08);
     }
 
@@ -3558,7 +3623,7 @@
       padding: 0;
       list-style: none;
       display: grid;
-      gap: 14px;
+      gap: 8px;
     }
 
     .dashboard-list-col li {
@@ -3566,7 +3631,8 @@
       align-items: flex-start;
       gap: 12px;
       color: rgba(255, 248, 236, 0.9);
-      line-height: 1.55;
+      line-height: 1.38;
+      font-size: 0.8125rem;
     }
 
     .dot {
@@ -3582,7 +3648,7 @@
 
     .dashboard-weight-stack {
       display: grid;
-      gap: 14px;
+      gap: 8px;
     }
 
     .dashboard-weight-row {
@@ -3590,11 +3656,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 22px;
+      min-height: 36px;
+      padding: 8px 14px;
       border-radius: 999px;
       overflow: hidden;
       color: #fffaf0;
       font-weight: 700;
+      font-size: 0.84rem;
     }
 
     .dashboard-weight-row::before {
@@ -3627,11 +3695,12 @@
 
     .dashboard-score-table {
       display: grid;
-      gap: 8px;
-      padding: 22px 24px;
+      gap: 2px;
+      padding: 14px 18px;
       border-radius: 24px;
       background: rgba(255, 251, 245, 0.05);
       border: 1px solid rgba(255, 246, 231, 0.08);
+      min-height: 0;
     }
 
     .dashboard-table-head,
@@ -3653,9 +3722,10 @@
     }
 
     .dashboard-table-row {
-      padding: 10px 0;
+      padding: 5px 0;
       color: rgba(255, 248, 236, 0.9);
       border-bottom: 1px solid rgba(255, 246, 231, 0.08);
+      font-size: 0.8125rem;
     }
 
     .dashboard-table-row:last-child {
@@ -3664,23 +3734,25 @@
 
     .dashboard-waterfall {
       display: grid;
-      gap: 14px;
+      gap: 8px;
+      min-height: 0;
     }
 
     .dashboard-waterfall-row {
       display: grid;
-      grid-template-columns: 180px minmax(0, 1fr);
-      gap: 16px;
-      padding: 18px 20px;
-      border-radius: 22px;
+      grid-template-columns: 112px 172px minmax(0, 1fr);
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 18px;
       background: rgba(255, 251, 245, 0.05);
       border: 1px solid rgba(255, 246, 231, 0.08);
+      align-items: start;
     }
 
     .dashboard-waterfall-row span {
       color: rgba(255, 246, 231, 0.56);
       font-family: var(--mono);
-      font-size: 0.76rem;
+      font-size: 0.72rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
@@ -3688,24 +3760,36 @@
     .dashboard-waterfall-row strong {
       color: rgba(255, 248, 236, 0.92);
       font-weight: 600;
-      line-height: 1.55;
+      line-height: 1.35;
+      font-size: 0.82rem;
+    }
+
+    .dashboard-waterfall-row em {
+      color: rgba(255, 246, 231, 0.62);
+      font-style: normal;
+      line-height: 1.35;
+      font-size: 0.74rem;
     }
 
     .dashboard-system-diagram {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 240px minmax(0, 1fr);
-      gap: 28px;
+      grid-template-columns: minmax(0, 1fr) 120px minmax(0, 1fr);
+      gap: 16px;
       align-items: center;
+      min-height: 0;
     }
 
     .dashboard-system-box {
-      min-height: 320px;
-      padding: 28px;
-      border-radius: 24px;
+      min-height: 208px;
+      padding: 16px 18px;
+      border-radius: 22px;
       background: rgba(255, 251, 245, 0.05);
       border: 1px solid rgba(255, 246, 231, 0.08);
       box-shadow: 0 22px 44px rgba(0, 0, 0, 0.18);
       border-left: 3px solid transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
 
     .dashboard-salesforce-box { border-left-color: var(--green); }
@@ -3714,8 +3798,8 @@
     .dashboard-system-fields,
     .dashboard-use-case-list {
       display: grid;
-      gap: 14px;
-      margin-top: 22px;
+      gap: 8px;
+      margin-top: 14px;
     }
 
     .dashboard-system-field,
@@ -3723,6 +3807,7 @@
       opacity: 0;
       transform: translateY(14px);
       color: rgba(255, 248, 236, 0.92);
+      font-size: 0.84rem;
     }
 
     .dashboard-use-case-row {
@@ -3747,7 +3832,7 @@
 
     .dashboard-system-arrow {
       width: 100%;
-      max-width: 260px;
+      max-width: 220px;
       overflow: visible;
     }
 
@@ -3764,8 +3849,11 @@
     .dashboard-tool-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       justify-content: center;
+      align-items: center;
+      padding-top: 6px;
+      font-size: 0.76rem;
     }
 
     .dashboard-tool-row span {
@@ -3775,14 +3863,14 @@
     .dashboard-metric-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+      gap: 12px;
     }
 
     .dashboard-metric-card {
       display: grid;
-      gap: 12px;
-      padding: 24px;
-      border-radius: 22px;
+      gap: 6px;
+      padding: 14px 16px;
+      border-radius: 18px;
       background: rgba(255, 251, 245, 0.06);
       border: 1px solid rgba(255, 246, 231, 0.08);
     }
@@ -3797,8 +3885,8 @@
 
     .dashboard-metric-card strong {
       color: #fffaf0;
-      font-size: 1.55rem;
-      line-height: 1.15;
+      font-size: 1.04rem;
+      line-height: 1.25;
       letter-spacing: -0.03em;
     }
 
@@ -3806,34 +3894,38 @@
       margin: 0;
       color: #fffaf0;
       font-family: var(--serif);
-      font-size: clamp(2rem, 3.8vw, 3rem);
-      line-height: 0.98;
+      font-size: 1rem;
+      line-height: 1.5;
       font-style: italic;
+      padding-left: 14px;
+      border-left: 3px solid var(--green);
+      max-width: 58ch;
     }
 
     .dashboard-arrow {
       position: absolute;
       top: 50%;
-      z-index: 3;
-      width: 52px;
-      height: 52px;
+      z-index: 8;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: rgba(255, 251, 245, 0.08);
       border: 1px solid rgba(255, 246, 231, 0.12);
       color: #fffaf0;
-      font-size: 2rem;
+      font-size: 1.85rem;
       transform: translateY(-50%);
       backdrop-filter: blur(8px);
     }
 
-    .dashboard-arrow-left { left: 22px; }
-    .dashboard-arrow-right { right: 22px; }
+    .dashboard-arrow-left { left: 18px; }
+    .dashboard-arrow-right { right: 18px; }
 
     .dashboard-slide-counter {
       position: absolute;
-      right: 26px;
-      bottom: 24px;
-      z-index: 3;
+      right: 24px;
+      bottom: 18px;
+      z-index: 8;
+      font-size: 0.75rem;
     }
 
     .dashboard-progress {
@@ -3842,6 +3934,7 @@
       right: 0;
       bottom: 0;
       height: 3px;
+      z-index: 7;
       background: rgba(255, 246, 231, 0.08);
     }
 
@@ -3956,20 +4049,20 @@
     }
 
     @media (max-width: 1080px) {
+      .top-nav {
+        padding-left: clamp(18px, 2.5vw, 28px);
+      }
+
       .dashboard-slide {
-        padding: 68px 72px 92px;
+        padding: 24px 72px 56px;
+      }
+
+      .dashboard-waterfall-row {
+        grid-template-columns: 100px 148px minmax(0, 1fr);
       }
 
       .dashboard-system-diagram {
-        grid-template-columns: 1fr;
-      }
-
-      .dashboard-system-arrow-wrap {
-        order: 2;
-      }
-
-      .dashboard-marketo-box {
-        order: 3;
+        grid-template-columns: minmax(0, 1fr) 104px minmax(0, 1fr);
       }
     }
 
@@ -4003,19 +4096,50 @@
       }
 
       .dashboard-slide {
-        padding: 82px 52px 96px;
+        padding: 26px 34px 54px;
       }
 
-      .dashboard-stage,
+      .dashboard-stage {
+        height: auto;
+        min-height: 700px;
+        max-height: none;
+      }
+
       .dashboard-viewport,
       .dashboard-track {
-        min-height: 860px;
+        height: auto;
+        min-height: 700px;
+      }
+
+      .dashboard-slide {
+        height: auto;
+      }
+
+      .dashboard-system-diagram {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-system-arrow-wrap {
+        order: 2;
+      }
+
+      .dashboard-marketo-box {
+        order: 3;
+      }
+
+      .site-header-inner {
+        gap: 14px;
+      }
+
+      .top-nav {
+        padding-left: 0;
+        flex-wrap: nowrap;
       }
     }
 
     @media (max-width: 640px) {
       .dashboard-slide {
-        padding: 84px 26px 92px;
+        padding: 72px 26px 88px;
       }
 
       .dashboard-arrow {
@@ -4777,20 +4901,25 @@
             <div class="dashboard-track" id="dashboard-track">
               <article class="dashboard-slide is-active" data-dashboard-slide="0">
                 <div class="dashboard-slide-inner dashboard-center">
+                  <div class="dashboard-kicker">Slide 1</div>
                   <h2>Account scoring for Gladly should answer three questions.</h2>
-                  <div class="dashboard-thesis-lines">
-                    <p data-dashboard-stagger>Who is a good account.</p>
-                    <p data-dashboard-stagger>When should we reach out.</p>
-                    <p data-dashboard-stagger>Whether the data deserves trust.</p>
+                  <div class="dashboard-slide-body dashboard-slide-body-thesis">
+                    <div class="dashboard-thesis-lines">
+                      <p data-dashboard-stagger>Who is a good account.</p>
+                      <p data-dashboard-stagger>When should we reach out.</p>
+                      <p data-dashboard-stagger>Whether the data deserves trust.</p>
+                    </div>
+                    <div class="dashboard-slide-note">Fit. Timing. Confidence.</div>
                   </div>
-                  <div class="dashboard-slide-note">Fit. Timing. Confidence.</div>
                 </div>
               </article>
 
               <article class="dashboard-slide" data-dashboard-slide="1">
                 <div class="dashboard-slide-inner">
+                  <div class="dashboard-kicker">Slide 2</div>
                   <h2>A high-fit account is a B2C brand where service drives revenue.</h2>
-                  <div class="dashboard-split-list">
+                  <div class="dashboard-slide-body">
+                    <div class="dashboard-split-list">
                     <div class="dashboard-list-col">
                       <div class="dashboard-list-title">Positive signals</div>
                       <ul>
@@ -4812,98 +4941,111 @@
                       </ul>
                     </div>
                   </div>
+                  </div>
                 </div>
               </article>
 
               <article class="dashboard-slide" data-dashboard-slide="2">
                 <div class="dashboard-slide-inner">
+                  <div class="dashboard-kicker">Slide 3</div>
                   <h2>Fit carries the most weight. Timing decides sequencing.</h2>
-                  <div class="dashboard-weight-stack">
-                    <div class="dashboard-weight-row fit"><span>Fit</span><strong>65%</strong></div>
-                    <div class="dashboard-weight-row timing"><span>Timing</span><strong>25%</strong></div>
-                    <div class="dashboard-weight-row confidence"><span>Confidence</span><strong>Guardrail</strong></div>
-                  </div>
-                  <div class="dashboard-score-table">
-                    <div class="dashboard-table-head"><span>Signal</span><span>Points</span></div>
-                    <div class="dashboard-table-row"><span>Enterprise scale</span><strong>plus 35</strong></div>
-                    <div class="dashboard-table-row"><span>Retail DTC Travel</span><strong>plus 25</strong></div>
-                    <div class="dashboard-table-row"><span>Legacy helpdesk</span><strong>plus 20</strong></div>
-                    <div class="dashboard-table-row"><span>Commerce stack</span><strong>plus 15</strong></div>
-                    <div class="dashboard-table-row"><span>Outside ICP</span><strong>minus 15</strong></div>
-                    <div class="dashboard-table-row"><span>6sense decision-stage</span><strong>plus 30</strong></div>
-                    <div class="dashboard-table-row"><span>New VP or hiring surge</span><strong>plus 20</strong></div>
-                    <div class="dashboard-table-row"><span>Pricing plus webinar</span><strong>plus 10</strong></div>
+                  <div class="dashboard-slide-body dashboard-slide-body-model">
+                    <div class="dashboard-weight-stack">
+                      <div class="dashboard-weight-row fit"><span>Fit</span><strong>65%</strong></div>
+                      <div class="dashboard-weight-row timing"><span>Timing</span><strong>25%</strong></div>
+                      <div class="dashboard-weight-row confidence"><span>Confidence</span><strong>Guardrail</strong></div>
+                    </div>
+                    <div class="dashboard-score-table">
+                      <div class="dashboard-table-head"><span>Signal</span><span>Points</span></div>
+                      <div class="dashboard-table-row"><span>Enterprise scale</span><strong>plus 35</strong></div>
+                      <div class="dashboard-table-row"><span>Retail DTC Travel</span><strong>plus 25</strong></div>
+                      <div class="dashboard-table-row"><span>Legacy helpdesk</span><strong>plus 20</strong></div>
+                      <div class="dashboard-table-row"><span>Commerce stack</span><strong>plus 15</strong></div>
+                      <div class="dashboard-table-row"><span>Outside ICP</span><strong>minus 15</strong></div>
+                      <div class="dashboard-table-row"><span>6sense decision-stage</span><strong>plus 30</strong></div>
+                      <div class="dashboard-table-row"><span>New VP or hiring surge</span><strong>plus 20</strong></div>
+                      <div class="dashboard-table-row"><span>Pricing plus webinar</span><strong>plus 10</strong></div>
+                    </div>
                   </div>
                 </div>
               </article>
 
               <article class="dashboard-slide" data-dashboard-slide="3">
                 <div class="dashboard-slide-inner">
+                  <div class="dashboard-kicker">Slide 4</div>
                   <h2>No single vendor owns truth. The waterfall decides field by field.</h2>
-                  <div class="dashboard-waterfall">
-                    <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Firmographics</span><strong>ZoomInfo then Clearbit, most recent verified-at wins, delta over 20 percent routes to RevOps.</strong></div>
-                    <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Technographics</span><strong>BuiltWith then HG Insights, additive.</strong></div>
-                    <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Buying Stage</span><strong>6sense then Bombora, 6sense authoritative.</strong></div>
-                    <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Contact</span><strong>ZoomInfo then Apollo, SMTP verification before CRM write.</strong></div>
+                  <div class="dashboard-slide-body">
+                    <div class="dashboard-waterfall">
+                      <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Firmographics</span><strong>ZoomInfo then Clearbit</strong><em>most recent verified-at wins, delta over 20 percent routes to RevOps.</em></div>
+                      <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Technographics</span><strong>BuiltWith then HG Insights</strong><em>additive.</em></div>
+                      <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Buying Stage</span><strong>6sense then Bombora</strong><em>6sense authoritative.</em></div>
+                      <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Contact</span><strong>ZoomInfo then Apollo</strong><em>SMTP verification before CRM write.</em></div>
+                    </div>
                   </div>
                 </div>
               </article>
 
               <article class="dashboard-slide" data-dashboard-slide="4">
                 <div class="dashboard-slide-inner">
+                  <div class="dashboard-kicker">Slide 5</div>
                   <h2>Salesforce is the master. Marketo activates downstream.</h2>
-                  <div class="dashboard-system-diagram">
-                    <div class="dashboard-system-box dashboard-salesforce-box">
-                      <span class="section-label">Salesforce</span>
-                      <ul class="dashboard-system-fields">
-                        <li class="dashboard-system-field">Fit_Score__c</li>
-                        <li class="dashboard-system-field">Timing_Score__c</li>
-                        <li class="dashboard-system-field">Composite_Score__c</li>
-                        <li class="dashboard-system-field">Tier__c</li>
-                      </ul>
-                    </div>
-                    <div class="dashboard-system-arrow-wrap">
-                      <svg class="dashboard-system-arrow" viewBox="0 0 260 100" aria-hidden="true">
-                        <path id="dashboard-arrow-path" d="M20 50 H210" fill="none" stroke="rgba(20,170,60,0.9)" stroke-width="2.5" stroke-linecap="round"></path>
-                        <path d="M194 34 L226 50 L194 66" fill="none" stroke="rgba(20,170,60,0.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                      </svg>
-                      <div class="dashboard-system-arrow-label">read-only sync</div>
-                    </div>
-                    <div class="dashboard-system-box dashboard-marketo-box">
-                      <span class="section-label">Marketo</span>
-                      <div class="dashboard-use-case-list">
-                        <div class="dashboard-use-case-row"><i></i><span>Smart list segments</span></div>
-                        <div class="dashboard-use-case-row"><i></i><span>MQA alerts via Sales Insight</span></div>
-                        <div class="dashboard-use-case-row"><i></i><span>Tier D suppression</span></div>
+                  <div class="dashboard-slide-body dashboard-slide-body-system">
+                    <div class="dashboard-system-diagram">
+                      <div class="dashboard-system-box dashboard-salesforce-box">
+                        <span class="section-label">Salesforce</span>
+                        <ul class="dashboard-system-fields">
+                          <li class="dashboard-system-field">Fit_Score__c</li>
+                          <li class="dashboard-system-field">Timing_Score__c</li>
+                          <li class="dashboard-system-field">Composite_Score__c</li>
+                          <li class="dashboard-system-field">Tier__c</li>
+                        </ul>
+                      </div>
+                      <div class="dashboard-system-arrow-wrap">
+                        <svg class="dashboard-system-arrow" viewBox="0 0 260 100" aria-hidden="true">
+                          <path id="dashboard-arrow-path" d="M20 50 H210" fill="none" stroke="rgba(20,170,60,0.9)" stroke-width="2.5" stroke-linecap="round"></path>
+                          <path d="M194 34 L226 50 L194 66" fill="none" stroke="rgba(20,170,60,0.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        <div class="dashboard-system-arrow-label">read-only sync</div>
+                      </div>
+                      <div class="dashboard-system-box dashboard-marketo-box">
+                        <span class="section-label">Marketo</span>
+                        <div class="dashboard-use-case-list">
+                          <div class="dashboard-use-case-row"><i></i><span>Smart list segments</span></div>
+                          <div class="dashboard-use-case-row"><i></i><span>MQA alerts via Sales Insight</span></div>
+                          <div class="dashboard-use-case-row"><i></i><span>Tier D suppression</span></div>
+                        </div>
                       </div>
                     </div>
+                    <div class="dashboard-tool-row">n8n <span>•</span> Clay <span>•</span> LeanData <span>•</span> Chili Piper <span>•</span> Tableau</div>
                   </div>
-                  <div class="dashboard-tool-row">n8n <span>•</span> Clay <span>•</span> LeanData <span>•</span> Chili Piper <span>•</span> Tableau</div>
                 </div>
               </article>
 
               <article class="dashboard-slide" data-dashboard-slide="5">
                 <div class="dashboard-slide-inner">
+                  <div class="dashboard-kicker">Slide 6</div>
                   <h2>The model earns the right to exist by outperforming a holdout.</h2>
-                  <div class="dashboard-metric-grid">
-                    <article class="dashboard-metric-card">
-                      <span>Tier A MQA to Opp</span>
-                      <strong>30 to 50 percent</strong>
-                    </article>
-                    <article class="dashboard-metric-card">
-                      <span>Tier C conversion</span>
-                      <strong>under 10 percent</strong>
-                    </article>
-                    <article class="dashboard-metric-card">
-                      <span>Random holdout</span>
-                      <strong>5 to 10 percent of accounts</strong>
-                    </article>
-                    <article class="dashboard-metric-card">
-                      <span>Rollout</span>
-                      <strong>90-day rollout in three phases</strong>
-                    </article>
+                  <div class="dashboard-slide-body dashboard-slide-body-metrics">
+                    <div class="dashboard-metric-grid">
+                      <article class="dashboard-metric-card">
+                        <span>Tier A MQA to Opp</span>
+                        <strong>30 to 50 percent</strong>
+                      </article>
+                      <article class="dashboard-metric-card">
+                        <span>Tier C conversion</span>
+                        <strong>under 10 percent</strong>
+                      </article>
+                      <article class="dashboard-metric-card">
+                        <span>Random holdout</span>
+                        <strong>5 to 10 percent of accounts</strong>
+                      </article>
+                      <article class="dashboard-metric-card">
+                        <span>Rollout</span>
+                        <strong>90-day rollout in three phases</strong>
+                      </article>
+                    </div>
+                    <blockquote class="dashboard-quote">If Tier A does not outperform the holdout, the model is wrong. Not Sales.</blockquote>
                   </div>
-                  <blockquote class="dashboard-quote">If Tier A does not outperform the holdout, the model is wrong. Not Sales.</blockquote>
                 </div>
               </article>
             </div>
@@ -5153,6 +5295,7 @@
     const dashboardSlides = [...document.querySelectorAll(".dashboard-slide")];
     const dashboardStage = document.getElementById("dashboard-stage");
     const dashboardCounter = document.getElementById("dashboard-slide-counter");
+    const siteHeader = document.querySelector(".site-header");
 
     const SIGNAL_META = {
       enterprise: { label: "Enterprise scale", layer: "fit" },
@@ -5171,6 +5314,7 @@
     };
 
     window.addEventListener("load", () => {
+      syncHeaderOffset();
       document.body.style.overflow = "hidden";
       const bars = document.querySelectorAll(".splash-bar-fill");
       bars.forEach((bar, index) => {
@@ -5195,6 +5339,12 @@
 
     function clamp(value, min, max) {
       return Math.min(max, Math.max(min, value));
+    }
+
+    function syncHeaderOffset() {
+      if (!siteHeader) return;
+      const headerHeight = Math.ceil(siteHeader.getBoundingClientRect().height);
+      document.documentElement.style.setProperty("--header-offset", `${headerHeight}px`);
     }
 
     function getScenario(id) {
@@ -5789,11 +5939,13 @@
       });
 
       window.addEventListener("resize", () => {
+        syncHeaderOffset();
         const active = document.querySelector(".top-nav button.is-active") || navButtons[0];
         updateNavIndicator(active);
         buildFlowTimeline();
       });
 
+      syncHeaderOffset();
       setTimeout(() => updateNavIndicator(navButtons[0]), 100);
     }
 
@@ -6061,25 +6213,40 @@
     function animateDashboardSlide(index) {
       const slide = dashboardSlides[index];
       if (!slide) return;
-      const genericTargets = slide.querySelectorAll("[data-dashboard-stagger], h2, .dashboard-slide-note, .dashboard-list-col, .dashboard-weight-row, .dashboard-table-row, .dashboard-metric-card, .dashboard-quote");
-      gsap.set(genericTargets, { opacity: 0, y: 24 });
-      gsap.to(slide.querySelector("h2"), { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" });
+      const kicker = slide.querySelector(".dashboard-kicker");
+      const heading = slide.querySelector("h2");
+      gsap.killTweensOf(slide.querySelectorAll("*"));
+      gsap.set([kicker, heading], { opacity: 0, y: 18 });
+      gsap.to(kicker, { opacity: 1, y: 0, duration: 0.26, ease: "power2.out" });
+      gsap.to(heading, { opacity: 1, y: 0, duration: 0.42, ease: "power2.out", delay: 0.08 });
 
       if (index === 0) {
-        gsap.to(slide.querySelectorAll("[data-dashboard-stagger]"), { opacity: 1, y: 0, stagger: 0.15, duration: 0.36, ease: "power2.out", delay: 0.12 });
-        gsap.to(slide.querySelector(".dashboard-slide-note"), { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", delay: 0.28 });
+        const thesisLines = slide.querySelectorAll("[data-dashboard-stagger]");
+        const note = slide.querySelector(".dashboard-slide-note");
+        gsap.set([...thesisLines, note], { opacity: 0, y: 24 });
+        gsap.to(thesisLines, { opacity: 1, y: 0, stagger: 0.15, duration: 0.36, ease: "power2.out", delay: 0.18 });
+        gsap.to(note, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out", delay: 0.38 });
       } else if (index === 1) {
-        gsap.to(slide.querySelectorAll(".dashboard-list-col"), { opacity: 1, y: 0, stagger: 0.14, duration: 0.38, ease: "power2.out", delay: 0.12 });
+        const columns = slide.querySelectorAll(".dashboard-list-col");
+        gsap.set(columns, { opacity: 0, y: 24 });
+        gsap.to(columns, { opacity: 1, y: 0, stagger: 0.14, duration: 0.36, ease: "power2.out", delay: 0.18 });
       } else if (index === 2) {
-        gsap.to(slide.querySelectorAll(".dashboard-weight-row"), { opacity: 1, y: 0, stagger: 0.12, duration: 0.34, ease: "power2.out", delay: 0.12 });
-        gsap.to(slide.querySelectorAll(".dashboard-table-row"), { opacity: 1, y: 0, stagger: 0.05, duration: 0.24, ease: "power2.out", delay: 0.26 });
+        const weightRows = slide.querySelectorAll(".dashboard-weight-row");
+        const tableRows = slide.querySelectorAll(".dashboard-table-row");
+        gsap.set([...weightRows, ...tableRows], { opacity: 0, y: 22 });
+        gsap.to(weightRows, { opacity: 1, y: 0, stagger: 0.12, duration: 0.3, ease: "power2.out", delay: 0.18 });
+        gsap.to(tableRows, { opacity: 1, y: 0, stagger: 0.05, duration: 0.22, ease: "power2.out", delay: 0.34 });
       } else if (index === 3) {
-        gsap.fromTo(slide.querySelectorAll("[data-dashboard-stagger]"), { opacity: 0, x: -24, y: 0 }, { opacity: 1, x: 0, stagger: 0.12, duration: 0.34, ease: "power2.out", delay: 0.12 });
+        const rows = slide.querySelectorAll(".dashboard-waterfall-row");
+        gsap.fromTo(rows, { opacity: 0, x: -24, y: 0 }, { opacity: 1, x: 0, stagger: 0.12, duration: 0.32, ease: "power2.out", delay: 0.18 });
       } else if (index === 4) {
         animateDashboardSystem();
       } else if (index === 5) {
-        gsap.to(slide.querySelectorAll(".dashboard-metric-card"), { opacity: 1, y: 0, stagger: 0.12, duration: 0.34, ease: "power2.out", delay: 0.12 });
-        gsap.to(slide.querySelector(".dashboard-quote"), { opacity: 1, y: 0, duration: 0.34, ease: "power2.out", delay: 0.28 });
+        const cards = slide.querySelectorAll(".dashboard-metric-card");
+        const quote = slide.querySelector(".dashboard-quote");
+        gsap.set([...cards, quote], { opacity: 0, y: 22 });
+        gsap.to(cards, { opacity: 1, y: 0, stagger: 0.12, duration: 0.32, ease: "power2.out", delay: 0.18 });
+        gsap.to(quote, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", delay: 0.34 });
       }
     }
 
@@ -6116,6 +6283,7 @@
 
     function initDashboard() {
       if (!dashboardStage || !dashboardSlides.length) return;
+      syncHeaderOffset();
       document.getElementById("dashboard-prev").addEventListener("click", () => setDashboardSlide(dashboardIndex - 1));
       document.getElementById("dashboard-next").addEventListener("click", () => setDashboardSlide(dashboardIndex + 1));
 
@@ -6200,6 +6368,7 @@
 
     renderScenarioTabs();
     renderToggles();
+    syncHeaderOffset();
     initWeightControls();
     initButtons();
     initLogicCards();
