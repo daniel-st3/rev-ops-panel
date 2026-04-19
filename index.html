@@ -1366,34 +1366,186 @@
   </p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
 <script>
-  // Animate numbers on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-  document.querySelectorAll('section').forEach(s => observer.observe(s));
+/* ── SCROLL PROGRESS BAR ── */
+const progressBar = document.createElement('div');
+progressBar.style.cssText = 'position:fixed;top:56px;left:0;height:2px;background:var(--green);z-index:200;width:0%;transition:none;pointer-events:none;';
+document.body.appendChild(progressBar);
 
-  // Active nav link highlighting
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
+ScrollTrigger.create({
+  trigger: document.body,
+  start: 'top top',
+  end: 'bottom bottom',
+  onUpdate: self => { progressBar.style.width = (self.progress * 100) + '%'; }
+});
 
-  const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(link => link.style.color = '');
-        const id = entry.target.getAttribute('id');
-        const activeLink = document.querySelector(`.nav-links a[href="#${id}"]`);
-        if (activeLink) activeLink.style.color = 'var(--green)';
-      }
-    });
-  }, { threshold: 0.4 });
+/* ── NAV SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) gsap.to(window, { duration: 0.9, scrollTo: { y: target, offsetY: 64 }, ease: 'power3.inOut' });
+  });
+});
 
-  sections.forEach(s => navObserver.observe(s));
+/* ── ACTIVE NAV HIGHLIGHTING via ScrollTrigger ── */
+document.querySelectorAll('section[id]').forEach(section => {
+  ScrollTrigger.create({
+    trigger: section,
+    start: 'top 55%',
+    end: 'bottom 45%',
+    onEnter: () => setActive(section.id),
+    onEnterBack: () => setActive(section.id),
+  });
+});
+
+function setActive(id) {
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + id ? 'var(--green)' : '';
+  });
+}
+
+/* ── HERO ENTRANCE ── */
+const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+heroTl
+  .from('.hero-tag',  { opacity: 0, y: 20, duration: 0.7 })
+  .from('h1',         { opacity: 0, y: 40, duration: 0.8 }, '-=0.4')
+  .from('.hero-sub',  { opacity: 0, y: 24, duration: 0.7 }, '-=0.5')
+  .from('.hero-pills .pill', { opacity: 0, y: 16, duration: 0.5, stagger: 0.07 }, '-=0.4')
+  .from('.pillar',    { opacity: 0, y: 30, duration: 0.6, stagger: 0.12 }, '-=0.3')
+  .from('.scroll-hint', { opacity: 0, duration: 0.5 }, '-=0.1');
+
+/* ── SECTION HEADERS ── */
+gsap.utils.toArray('.section-header').forEach(el => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+    opacity: 0, x: -30, duration: 0.7, ease: 'power3.out'
+  });
+});
+
+/* ── GENERIC FADE-UP FOR PARAGRAPHS + CALLOUTS ── */
+gsap.utils.toArray('section > p, .callout, .divider, .ai-note, .icp-box').forEach(el => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' },
+    opacity: 0, y: 20, duration: 0.6, ease: 'power2.out'
+  });
+});
+
+/* ── ICP BOX CHILDREN ── */
+gsap.utils.toArray('.icp-box > div').forEach((el, i) => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' },
+    opacity: 0, y: 16, duration: 0.5, delay: i * 0.07, ease: 'power2.out'
+  });
+});
+
+/* ── WIN BADGES ── */
+gsap.from('.win-badge', {
+  scrollTrigger: { trigger: '.win-list', start: 'top 90%', toggleActions: 'play none none none' },
+  opacity: 0, scale: 0.85, duration: 0.4, stagger: 0.08, ease: 'back.out(1.5)'
+});
+
+/* ── SIGNAL ROWS ── */
+gsap.utils.toArray('.signal-row').forEach((el, i) => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' },
+    opacity: 0, x: -16, duration: 0.45, delay: i * 0.04, ease: 'power2.out'
+  });
+});
+
+/* ── TABLE ROWS ── */
+gsap.utils.toArray('tbody tr').forEach((el, i) => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 93%', toggleActions: 'play none none none' },
+    opacity: 0, x: 20, duration: 0.45, delay: i * 0.06, ease: 'power2.out'
+  });
+});
+
+/* ── GOVERNANCE RULES ── */
+gsap.from('.gov-rule', {
+  scrollTrigger: { trigger: '.gov-rules', start: 'top 85%', toggleActions: 'play none none none' },
+  opacity: 0, y: 30, duration: 0.55, stagger: 0.12, ease: 'power3.out'
+});
+
+/* ── SCORE COMPONENTS ── */
+gsap.from('.score-component', {
+  scrollTrigger: { trigger: '.score-visual', start: 'top 85%', toggleActions: 'play none none none' },
+  opacity: 0, scale: 0.9, y: 20, duration: 0.6, stagger: 0.12, ease: 'back.out(1.4)'
+});
+
+/* ── SCORE NUMBER COUNT-UP ── */
+gsap.utils.toArray('.score-number').forEach(el => {
+  const target = parseInt(el.textContent);
+  const obj = { val: 0 };
+  ScrollTrigger.create({
+    trigger: el,
+    start: 'top 85%',
+    once: true,
+    onEnter: () => gsap.to(obj, {
+      val: target, duration: 1.2, ease: 'power2.out',
+      onUpdate: () => { el.textContent = Math.round(obj.val) + '%'; }
+    })
+  });
+});
+
+/* ── TIER CARDS ── */
+gsap.from('.tier-card', {
+  scrollTrigger: { trigger: '.tiers', start: 'top 85%', toggleActions: 'play none none none' },
+  opacity: 0, y: 40, duration: 0.6, stagger: 0.1, ease: 'power3.out'
+});
+
+/* ── PIPELINE NODES ── */
+gsap.from('.pipe-node', {
+  scrollTrigger: { trigger: '.pipeline', start: 'top 85%', toggleActions: 'play none none none' },
+  opacity: 0, scale: 0.8, duration: 0.5, stagger: 0.12, ease: 'back.out(1.5)'
+});
+gsap.from('.pipe-arrow', {
+  scrollTrigger: { trigger: '.pipeline', start: 'top 85%', toggleActions: 'play none none none' },
+  opacity: 0, x: -10, duration: 0.3, stagger: 0.12, delay: 0.2, ease: 'power2.out'
+});
+
+/* ── ROLLOUT CARDS ── */
+gsap.from('.card', {
+  scrollTrigger: { trigger: '.cards', start: 'top 88%', toggleActions: 'play none none none' },
+  opacity: 0, y: 24, duration: 0.5, stagger: 0.1, ease: 'power3.out'
+});
+
+/* ── SFDC FIELDS ── */
+gsap.from('.field-item', {
+  scrollTrigger: { trigger: '.fields-list', start: 'top 88%', toggleActions: 'play none none none' },
+  opacity: 0, x: -12, duration: 0.4, stagger: 0.06, ease: 'power2.out'
+});
+
+/* ── METRIC BLOCKS ── */
+gsap.from('.metric-block', {
+  scrollTrigger: { trigger: '.metrics-grid', start: 'top 85%', toggleActions: 'play none none none' },
+  opacity: 0, y: 30, duration: 0.6, stagger: 0.15, ease: 'power3.out'
+});
+gsap.utils.toArray('.metric-item').forEach((el, i) => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' },
+    opacity: 0, x: 12, duration: 0.4, delay: i * 0.05, ease: 'power2.out'
+  });
+});
+
+/* ── TWO-COL CHILDREN ── */
+gsap.utils.toArray('.two-col > *').forEach((el, i) => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
+    opacity: 0, y: 20, duration: 0.55, delay: i * 0.1, ease: 'power2.out'
+  });
+});
+
+/* ── FOOTER ── */
+gsap.from('footer', {
+  scrollTrigger: { trigger: 'footer', start: 'top 95%', toggleActions: 'play none none none' },
+  opacity: 0, y: 16, duration: 0.5, ease: 'power2.out'
+});
 </script>
 </body>
 </html>
