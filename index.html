@@ -3070,6 +3070,971 @@
         flex-wrap: wrap;
       }
     }
+
+    /* Walkthrough, dashboard, and footer refinement */
+    .walkthrough-section {
+      padding-top: 34px;
+      padding-bottom: 36px;
+    }
+
+    .walkthrough-shell {
+      padding: 0;
+      border-radius: 0;
+      overflow: visible;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .walkthrough-stack {
+      height: calc(100vh - 96px);
+      min-height: 860px;
+      background: transparent;
+    }
+
+    .walk-hero {
+      padding: 52px 28px 72px;
+      background:
+        radial-gradient(circle at 50% 48%, rgba(255, 252, 246, 0.98) 0%, rgba(252, 249, 243, 0.96) 34%, rgba(250, 248, 242, 1) 100%);
+    }
+
+    .walk-hero::after {
+      background:
+        radial-gradient(circle at 50% 44%, rgba(16, 17, 15, 0.02), transparent 22%),
+        radial-gradient(circle at 50% 56%, rgba(255, 255, 255, 0.4), transparent 48%);
+    }
+
+    .walk-hero-inner {
+      gap: 16px;
+    }
+
+    .walk-hero-icon {
+      width: 56px;
+      height: 56px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: none;
+    }
+
+    .walk-hero-title,
+    .walk-hero-copy,
+    .walk-hero-cta {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .walk-hero-title {
+      font-size: clamp(4rem, 5.4vw, 5.2rem);
+      line-height: 0.92;
+    }
+
+    .walk-hero-copy {
+      max-width: 780px;
+      color: rgba(16, 17, 15, 0.58);
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    .walk-hero-scroll {
+      bottom: 18px;
+      height: 30px;
+    }
+
+    .walk-hero-scroll span {
+      width: 11px;
+      height: 11px;
+      border-right-color: rgba(16, 17, 15, 0.42);
+      border-bottom-color: rgba(16, 17, 15, 0.42);
+      animation-duration: 1.5s;
+    }
+
+    .walk-step {
+      padding: 54px 42px 34px;
+      opacity: 0.28;
+      transform: translateY(18px);
+    }
+
+    .walk-step[data-step-index="0"],
+    .walk-step[data-step-index="2"],
+    .walk-step[data-step-index="4"],
+    .walk-step[data-step-index="6"] {
+      background: #faf8f2;
+    }
+
+    .walk-step[data-step-index="1"],
+    .walk-step[data-step-index="3"],
+    .walk-step[data-step-index="5"] {
+      background: #f7f2ea;
+    }
+
+    .walk-step::before {
+      opacity: 1;
+    }
+
+    .walk-step-content {
+      width: min(100%, 1180px);
+      margin: 0 auto;
+      gap: 28px;
+    }
+
+    .walk-step-content h3 {
+      font-size: clamp(3.3rem, 5vw, 4.8rem);
+      line-height: 0.92;
+      margin-top: 0;
+    }
+
+    .walk-progress {
+      gap: 12px;
+    }
+
+    .walk-step-counter {
+      color: rgba(16, 17, 15, 0.4);
+    }
+
+    .walk-dot {
+      border-color: rgba(16, 17, 15, 0.18);
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .walk-controls {
+      padding-bottom: 12px;
+    }
+
+    .failure-statements {
+      gap: 62px;
+      padding: 30px 0 10px;
+    }
+
+    .failure-number {
+      font-size: clamp(5.8rem, 10vw, 7.5rem);
+      font-weight: 300;
+      color: rgba(16, 17, 15, 0.14);
+    }
+
+    .failure-word {
+      font-size: clamp(3.2rem, 5.2vw, 3.8rem);
+    }
+
+    .profile-card {
+      display: grid;
+      gap: 22px;
+      max-width: 900px;
+      padding: 34px 36px;
+      background: linear-gradient(180deg, #f7efea, #f6efe9);
+      border-radius: 26px;
+      border: 1px solid rgba(16, 17, 15, 0.06);
+      box-shadow: 0 28px 60px rgba(16, 17, 15, 0.08);
+    }
+
+    .profile-badge-row {
+      flex-wrap: nowrap;
+    }
+
+    .profile-fit-score {
+      padding-top: 18px;
+      border-top: 1px solid rgba(16, 17, 15, 0.1);
+    }
+
+    .profile-fit-orb {
+      display: inline-grid;
+      align-items: center;
+      justify-items: center;
+      grid-template-columns: auto;
+      position: relative;
+      width: 140px;
+      height: 140px;
+    }
+
+    .profile-fit-orb svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .profile-fit-number {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      justify-items: center;
+      gap: 2px;
+    }
+
+    .profile-fit-number strong {
+      font-size: 3.8rem;
+      line-height: 0.9;
+    }
+
+    .profile-fit-number small,
+    .profile-fit-number span {
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      font-size: 0.72rem;
+    }
+
+    .fit-builder {
+      gap: 28px;
+    }
+
+    .step-fit .fit-score-readout strong,
+    .step-timing .fit-score-readout strong {
+      display: block;
+      font-size: clamp(4.6rem, 7vw, 5rem);
+      line-height: 0.88;
+      letter-spacing: -0.06em;
+    }
+
+    .walk-fit-track {
+      background: rgba(83, 72, 55, 0.1);
+    }
+
+    .walk-fit-value {
+      color: var(--ink);
+    }
+
+    .timing-card {
+      border: 0;
+      border-radius: 12px;
+      background: rgba(255, 251, 245, 0.94);
+      box-shadow: 0 16px 36px rgba(48, 37, 20, 0.08);
+    }
+
+    .timing-footer {
+      align-items: end;
+    }
+
+    .confidence-demo {
+      grid-template-columns: minmax(280px, 0.38fr) minmax(0, 1fr);
+    }
+
+    .confidence-gauge-panel {
+      align-self: start;
+      gap: 16px;
+    }
+
+    .confidence-gauge {
+      height: 16px;
+      background: rgba(16, 17, 15, 0.08);
+    }
+
+    .confidence-gauge-meta {
+      display: block;
+      min-height: 34px;
+    }
+
+    .confidence-gauge-meta strong {
+      color: var(--green);
+      font-size: 1.45rem;
+      transition: color 220ms ease;
+    }
+
+    .confidence-row {
+      grid-template-columns: 188px 1fr;
+      background: rgba(248, 241, 232, 0.86);
+      border: 1px solid rgba(16, 17, 15, 0.05);
+      box-shadow: 0 14px 30px rgba(16, 17, 15, 0.05);
+    }
+
+    .confidence-row-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .confidence-warning-icon {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--amber);
+      box-shadow: 0 0 0 5px rgba(240, 166, 66, 0.12);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .conflict-row.is-alert .confidence-warning-icon {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .confidence-inline-callout {
+      grid-column: 2;
+      background: transparent;
+      padding: 0;
+    }
+
+    .conflict-row.is-alert .confidence-inline-callout {
+      max-height: 140px;
+      margin-top: 10px;
+    }
+
+    .system-diagram {
+      grid-template-columns: minmax(0, 1fr) 260px minmax(0, 1fr);
+      align-items: center;
+      min-height: 460px;
+    }
+
+    .system-box {
+      min-height: 320px;
+      border-radius: 24px;
+      border-left-width: 3px;
+    }
+
+    .system-field,
+    .use-case-row {
+      font-size: 0.98rem;
+    }
+
+    .holdout-demo {
+      gap: 30px;
+    }
+
+    .holdout-bars {
+      width: min(100%, 980px);
+      grid-template-columns: repeat(2, minmax(260px, 1fr));
+      justify-items: center;
+      align-items: end;
+      gap: 70px;
+      min-height: 460px;
+    }
+
+    .holdout-col {
+      display: grid;
+      justify-items: center;
+      align-self: end;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .holdout-bar {
+      display: flex;
+      justify-content: center;
+      width: min(33vw, 240px);
+      min-width: 180px;
+      height: 0;
+      border-radius: 26px 26px 0 0;
+      overflow: hidden;
+    }
+
+    .holdout-bar span {
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      font-family: var(--mono);
+      font-size: 1.5rem;
+      opacity: 1;
+    }
+
+    .holdout-axis-label {
+      font-size: 1rem;
+    }
+
+    .holdout-note {
+      border-left-color: var(--green);
+      font-size: 1.18rem;
+    }
+
+    .dashboard-section {
+      position: relative;
+      padding-top: 34px;
+      padding-bottom: 34px;
+    }
+
+    .dashboard-shell {
+      position: relative;
+      border-radius: 34px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 22%, rgba(60, 86, 82, 0.32), transparent 30%),
+        linear-gradient(180deg, #10211f 0%, #0c1716 100%);
+      box-shadow: 0 34px 90px rgba(7, 12, 12, 0.28);
+    }
+
+    .dashboard-stage {
+      position: relative;
+      min-height: 780px;
+      overflow: hidden;
+    }
+
+    .dashboard-viewport {
+      overflow: hidden;
+      min-height: 780px;
+    }
+
+    .dashboard-track {
+      display: flex;
+      width: 600%;
+      min-height: 780px;
+      transform: translateX(0%);
+    }
+
+    .dashboard-slide {
+      width: calc(100% / 6);
+      flex: 0 0 calc(100% / 6);
+      padding: 72px 92px 96px;
+      color: rgba(255, 250, 240, 0.82);
+    }
+
+    .dashboard-slide-inner {
+      display: grid;
+      gap: 30px;
+      min-height: 100%;
+      align-content: center;
+    }
+
+    .dashboard-center {
+      text-align: center;
+      justify-items: center;
+    }
+
+    .dashboard-slide h2 {
+      margin: 0;
+      color: #fffaf0;
+      font-family: var(--serif);
+      font-size: clamp(3.3rem, 5.4vw, 5.2rem);
+      line-height: 0.92;
+      letter-spacing: -0.045em;
+      text-wrap: balance;
+    }
+
+    .dashboard-thesis-lines {
+      display: grid;
+      gap: 12px;
+    }
+
+    .dashboard-thesis-lines p {
+      margin: 0;
+      color: rgba(255, 248, 236, 0.92);
+      font-family: var(--serif);
+      font-size: clamp(2.1rem, 4vw, 3.2rem);
+      line-height: 0.98;
+    }
+
+    .dashboard-slide-note,
+    .dashboard-tool-row,
+    .dashboard-slide-counter {
+      font-family: var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 246, 231, 0.62);
+      font-size: 0.82rem;
+    }
+
+    .dashboard-split-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px;
+    }
+
+    .dashboard-list-col {
+      padding: 26px 28px;
+      border-radius: 24px;
+      background: rgba(255, 251, 245, 0.05);
+      border: 1px solid rgba(255, 246, 231, 0.08);
+    }
+
+    .dashboard-list-title {
+      font-family: var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      color: rgba(255, 246, 231, 0.56);
+      margin-bottom: 16px;
+    }
+
+    .dashboard-list-col ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 14px;
+    }
+
+    .dashboard-list-col li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: rgba(255, 248, 236, 0.9);
+      line-height: 1.55;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex: 0 0 auto;
+      margin-top: 0.45em;
+    }
+
+    .dot.positive { background: var(--green); }
+    .dot.negative { background: var(--rose); }
+
+    .dashboard-weight-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .dashboard-weight-row {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 22px;
+      border-radius: 999px;
+      overflow: hidden;
+      color: #fffaf0;
+      font-weight: 700;
+    }
+
+    .dashboard-weight-row::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      opacity: 0.9;
+    }
+
+    .dashboard-weight-row > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .dashboard-weight-row.fit::before {
+      width: 65%;
+      background: linear-gradient(90deg, rgba(20, 170, 60, 0.84), rgba(20, 170, 60, 0.36));
+    }
+
+    .dashboard-weight-row.timing::before {
+      width: 25%;
+      background: linear-gradient(90deg, rgba(53, 103, 240, 0.84), rgba(53, 103, 240, 0.28));
+    }
+
+    .dashboard-weight-row.confidence::before {
+      width: 10%;
+      background: linear-gradient(90deg, rgba(240, 166, 66, 0.82), rgba(240, 166, 66, 0.2));
+    }
+
+    .dashboard-score-table {
+      display: grid;
+      gap: 8px;
+      padding: 22px 24px;
+      border-radius: 24px;
+      background: rgba(255, 251, 245, 0.05);
+      border: 1px solid rgba(255, 246, 231, 0.08);
+    }
+
+    .dashboard-table-head,
+    .dashboard-table-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .dashboard-table-head {
+      color: rgba(255, 246, 231, 0.56);
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 246, 231, 0.1);
+    }
+
+    .dashboard-table-row {
+      padding: 10px 0;
+      color: rgba(255, 248, 236, 0.9);
+      border-bottom: 1px solid rgba(255, 246, 231, 0.08);
+    }
+
+    .dashboard-table-row:last-child {
+      border-bottom: 0;
+    }
+
+    .dashboard-waterfall {
+      display: grid;
+      gap: 14px;
+    }
+
+    .dashboard-waterfall-row {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 16px;
+      padding: 18px 20px;
+      border-radius: 22px;
+      background: rgba(255, 251, 245, 0.05);
+      border: 1px solid rgba(255, 246, 231, 0.08);
+    }
+
+    .dashboard-waterfall-row span {
+      color: rgba(255, 246, 231, 0.56);
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .dashboard-waterfall-row strong {
+      color: rgba(255, 248, 236, 0.92);
+      font-weight: 600;
+      line-height: 1.55;
+    }
+
+    .dashboard-system-diagram {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 240px minmax(0, 1fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .dashboard-system-box {
+      min-height: 320px;
+      padding: 28px;
+      border-radius: 24px;
+      background: rgba(255, 251, 245, 0.05);
+      border: 1px solid rgba(255, 246, 231, 0.08);
+      box-shadow: 0 22px 44px rgba(0, 0, 0, 0.18);
+      border-left: 3px solid transparent;
+    }
+
+    .dashboard-salesforce-box { border-left-color: var(--green); }
+    .dashboard-marketo-box { border-left-color: var(--blue); }
+
+    .dashboard-system-fields,
+    .dashboard-use-case-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .dashboard-system-field,
+    .dashboard-use-case-row {
+      opacity: 0;
+      transform: translateY(14px);
+      color: rgba(255, 248, 236, 0.92);
+    }
+
+    .dashboard-use-case-row {
+      display: grid;
+      grid-template-columns: 10px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+
+    .dashboard-use-case-row i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(111, 155, 255, 0.9);
+    }
+
+    .dashboard-system-arrow-wrap {
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+    }
+
+    .dashboard-system-arrow {
+      width: 100%;
+      max-width: 260px;
+      overflow: visible;
+    }
+
+    .dashboard-system-arrow-label {
+      opacity: 0;
+      transform: translateY(8px);
+      font-family: var(--mono);
+      color: rgba(255, 246, 231, 0.56);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .dashboard-tool-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .dashboard-tool-row span {
+      color: rgba(255, 246, 231, 0.38);
+    }
+
+    .dashboard-metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .dashboard-metric-card {
+      display: grid;
+      gap: 12px;
+      padding: 24px;
+      border-radius: 22px;
+      background: rgba(255, 251, 245, 0.06);
+      border: 1px solid rgba(255, 246, 231, 0.08);
+    }
+
+    .dashboard-metric-card span {
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 246, 231, 0.56);
+    }
+
+    .dashboard-metric-card strong {
+      color: #fffaf0;
+      font-size: 1.55rem;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .dashboard-quote {
+      margin: 0;
+      color: #fffaf0;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      line-height: 0.98;
+      font-style: italic;
+    }
+
+    .dashboard-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 3;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(255, 251, 245, 0.08);
+      border: 1px solid rgba(255, 246, 231, 0.12);
+      color: #fffaf0;
+      font-size: 2rem;
+      transform: translateY(-50%);
+      backdrop-filter: blur(8px);
+    }
+
+    .dashboard-arrow-left { left: 22px; }
+    .dashboard-arrow-right { right: 22px; }
+
+    .dashboard-slide-counter {
+      position: absolute;
+      right: 26px;
+      bottom: 24px;
+      z-index: 3;
+    }
+
+    .dashboard-progress {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background: rgba(255, 246, 231, 0.08);
+    }
+
+    .dashboard-progress i {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(20, 170, 60, 0.95), rgba(111, 155, 255, 0.8));
+      transform-origin: left center;
+    }
+
+    .site-footer {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      margin-top: 42px;
+      padding: 0 0 24px;
+      background: linear-gradient(180deg, #10211f 0%, #0c1716 100%);
+      border-radius: 32px 32px 0 0;
+      overflow: hidden;
+    }
+
+    .site-footer-rule {
+      height: 1px;
+      background: rgba(255, 246, 231, 0.12);
+      width: min(calc(100% - 48px), calc(var(--max) - 48px));
+      margin: 0 auto;
+    }
+
+    .site-footer-grid {
+      width: min(calc(100% - 48px), calc(var(--max) - 48px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      padding: 48px 0;
+      color: rgba(255, 246, 231, 0.68);
+    }
+
+    .site-footer-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fffaf0;
+      font-family: var(--serif);
+      font-size: 1.2rem;
+    }
+
+    .site-footer-title img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .site-footer-meta,
+    .site-footer-nav button {
+      color: rgba(255, 246, 231, 0.62);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .site-footer-brand {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .site-footer-nav {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+      justify-items: start;
+    }
+
+    .site-footer-nav button {
+      padding: 0;
+      transition: color 160ms ease;
+    }
+
+    .site-footer-nav button:hover {
+      color: #fffaf0;
+    }
+
+    .site-footer-info {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+      justify-items: start;
+    }
+
+    .site-footer-info p {
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .site-footer-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 246, 231, 0.2);
+      color: rgba(255, 246, 231, 0.86);
+      text-decoration: none;
+      transition: 160ms ease;
+    }
+
+    .site-footer-link:hover {
+      border-color: rgba(255, 246, 231, 0.4);
+      background: rgba(255, 251, 245, 0.06);
+    }
+
+    @media (max-width: 1080px) {
+      .dashboard-slide {
+        padding: 68px 72px 92px;
+      }
+
+      .dashboard-system-diagram {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-system-arrow-wrap {
+        order: 2;
+      }
+
+      .dashboard-marketo-box {
+        order: 3;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .walkthrough-stack {
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+      }
+
+      .walk-hero,
+      .walk-step {
+        min-height: auto;
+      }
+
+      .walk-step {
+        opacity: 1;
+        transform: none;
+      }
+
+      .profile-badge-row {
+        flex-wrap: wrap;
+      }
+
+      .confidence-demo,
+      .system-diagram,
+      .dashboard-split-list,
+      .dashboard-metric-grid,
+      .site-footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-slide {
+        padding: 82px 52px 96px;
+      }
+
+      .dashboard-stage,
+      .dashboard-viewport,
+      .dashboard-track {
+        min-height: 860px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .dashboard-slide {
+        padding: 84px 26px 92px;
+      }
+
+      .dashboard-arrow {
+        width: 42px;
+        height: 42px;
+        font-size: 1.6rem;
+      }
+
+      .dashboard-arrow-left { left: 12px; }
+      .dashboard-arrow-right { right: 12px; }
+
+      .holdout-bar {
+        width: min(56vw, 220px);
+      }
+
+      .site-footer-grid {
+        width: min(calc(100% - 32px), calc(var(--max) - 32px));
+      }
+    }
     </style>
 </head>
 <body>
@@ -3099,6 +4064,7 @@
         <button data-target="architecture">Architecture</button>
         <button data-target="metrics">Validation</button>
         <button data-target="walkthrough">Walkthrough</button>
+        <button data-target="dashboard">Dashboard</button>
       <div id="nav-indicator"></div>
       </nav>
 
@@ -3512,7 +4478,7 @@
             <div class="walk-hero-inner">
               <img class="walk-hero-icon" src="assets/gladly-icon.png" alt="Gladly plus icon" />
               <h3 class="walk-hero-title">How the model thinks</h3>
-              <p class="walk-hero-copy">A step-by-step walk through fit, timing, confidence, and activation.</p>
+              <p class="walk-hero-copy">A step-by-step walkthrough of fit, timing, confidence, and activation. Touch everything.</p>
               <button class="button walk-hero-cta" type="button" id="begin-walkthrough">Begin walkthrough</button>
             </div>
             <div class="walk-hero-scroll" aria-hidden="true">
@@ -3554,7 +4520,7 @@
                 <h3>What a high-fit Gladly account looks like.</h3>
               </div>
               <div class="profile-card" id="profile-card">
-                <div class="profile-topline section-label">Company dossier</div>
+                <div class="profile-topline section-label">COMPANY DOSSIER</div>
                 <strong class="profile-line" data-profile-line>Harbor &amp; Pine Goods</strong>
                 <div class="profile-badge-row">
                   <span class="profile-badge badge-positive" data-profile-line>Retail DTC</span>
@@ -3563,9 +4529,17 @@
                   <span class="profile-badge badge-neutral" data-profile-line>Zendesk</span>
                 </div>
                 <div class="profile-fit-score">
-                  <span>Fit score</span>
-                  <strong id="walk-fit-count">0</strong>
-                  <small>out of 100</small>
+                  <div class="profile-fit-orb">
+                    <svg viewBox="0 0 120 120" aria-hidden="true">
+                      <circle class="profile-fit-track" cx="60" cy="60" r="48" fill="none" stroke="rgba(16,17,15,0.08)" stroke-width="6"></circle>
+                      <circle class="profile-fit-ring" id="walk-fit-ring" cx="60" cy="60" r="48" fill="none" stroke="var(--green)" stroke-width="6" stroke-linecap="round" stroke-dasharray="301.59" stroke-dashoffset="301.59"></circle>
+                    </svg>
+                    <div class="profile-fit-number">
+                      <span>Fit score</span>
+                      <strong id="walk-fit-count">0</strong>
+                      <small>out of 100</small>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="walk-controls">
@@ -3688,26 +4662,25 @@
                     <div class="confidence-gauge-fill" id="confidence-gauge-fill"></div>
                   </div>
                   <div class="confidence-gauge-meta">
-                    <span>High</span>
                     <strong id="confidence-demo-label">High</strong>
                   </div>
                 </div>
                 <div class="confidence-waterfall">
                   <div class="confidence-row conflict-row">
-                    <span>Firmographics</span>
+                    <span class="confidence-row-label"><i class="confidence-warning-icon" aria-hidden="true"></i>Firmographics</span>
                     <div>ZoomInfo <em>→</em> Clearbit</div>
                     <div class="confidence-inline-callout">ZoomInfo says 800 employees, Clearbit says 1,400. Delta is 43 percent. Routed to RevOps review.</div>
                   </div>
                   <div class="confidence-row">
-                    <span>Technographics</span>
+                    <span class="confidence-row-label">Technographics</span>
                     <div>BuiltWith <em>→</em> HG Insights</div>
                   </div>
                   <div class="confidence-row">
-                    <span>Buying Stage</span>
+                    <span class="confidence-row-label">Buying Stage</span>
                     <div>6sense <em>→</em> Bombora</div>
                   </div>
                   <div class="confidence-row">
-                    <span>Contact</span>
+                    <span class="confidence-row-label">Contact</span>
                     <div>ZoomInfo US <em>→</em> Apollo</div>
                   </div>
                 </div>
@@ -3775,12 +4748,12 @@
               <div class="holdout-demo">
                 <div class="holdout-bars">
                   <div class="holdout-col">
-                    <div class="holdout-bar tier-a-bar" id="tier-a-bar"><span id="tier-a-value">42%</span></div>
-                    <strong>Tier A accounts</strong>
+                    <div class="holdout-bar tier-a-bar" id="tier-a-bar"><span id="tier-a-value">0%</span></div>
+                    <strong class="holdout-axis-label">Tier A accounts</strong>
                   </div>
                   <div class="holdout-col">
-                    <div class="holdout-bar holdout-bar-fill" id="holdout-bar"><span id="holdout-value">18%</span></div>
-                    <strong>Holdout accounts</strong>
+                    <div class="holdout-bar holdout-bar-fill" id="holdout-bar"><span id="holdout-value">0%</span></div>
+                    <strong class="holdout-axis-label">Holdout accounts</strong>
                   </div>
                 </div>
                 <p class="holdout-note">If Tier A does not outperform the holdout, the model is wrong. Not Sales.</p>
@@ -3796,8 +4769,178 @@
       </div>
     </section>
 
-    <footer class="footer">
-      <span>Built as a playable prototype for the Gladly assessment, using the supplied handoff and your v3 blueprint as the default model.</span>
+    <section class="section dashboard-section" id="dashboard">
+      <div class="dashboard-shell reveal">
+        <div class="dashboard-stage" id="dashboard-stage">
+          <button class="dashboard-arrow dashboard-arrow-left" type="button" id="dashboard-prev" aria-label="Previous dashboard slide">‹</button>
+          <div class="dashboard-viewport">
+            <div class="dashboard-track" id="dashboard-track">
+              <article class="dashboard-slide is-active" data-dashboard-slide="0">
+                <div class="dashboard-slide-inner dashboard-center">
+                  <h2>Account scoring for Gladly should answer three questions.</h2>
+                  <div class="dashboard-thesis-lines">
+                    <p data-dashboard-stagger>Who is a good account.</p>
+                    <p data-dashboard-stagger>When should we reach out.</p>
+                    <p data-dashboard-stagger>Whether the data deserves trust.</p>
+                  </div>
+                  <div class="dashboard-slide-note">Fit. Timing. Confidence.</div>
+                </div>
+              </article>
+
+              <article class="dashboard-slide" data-dashboard-slide="1">
+                <div class="dashboard-slide-inner">
+                  <h2>A high-fit account is a B2C brand where service drives revenue.</h2>
+                  <div class="dashboard-split-list">
+                    <div class="dashboard-list-col">
+                      <div class="dashboard-list-title">Positive signals</div>
+                      <ul>
+                        <li><i class="dot positive"></i>B2C with high conversation volume</li>
+                        <li><i class="dot positive"></i>Retail DTC or Travel vertical</li>
+                        <li><i class="dot positive"></i>Shopify Plus or similar commerce stack</li>
+                        <li><i class="dot positive"></i>Legacy helpdesk like Zendesk or Gorgias</li>
+                        <li><i class="dot positive"></i>50M to 1B revenue</li>
+                        <li><i class="dot positive"></i>50 to 500 CX agents</li>
+                      </ul>
+                    </div>
+                    <div class="dashboard-list-col">
+                      <div class="dashboard-list-title">Disqualifiers</div>
+                      <ul>
+                        <li><i class="dot negative"></i>Non-target vertical</li>
+                        <li><i class="dot negative"></i>Micro-SMB under 50 employees</li>
+                        <li><i class="dot negative"></i>Service is a pure cost center</li>
+                        <li><i class="dot negative"></i>No omnichannel complexity</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="dashboard-slide" data-dashboard-slide="2">
+                <div class="dashboard-slide-inner">
+                  <h2>Fit carries the most weight. Timing decides sequencing.</h2>
+                  <div class="dashboard-weight-stack">
+                    <div class="dashboard-weight-row fit"><span>Fit</span><strong>65%</strong></div>
+                    <div class="dashboard-weight-row timing"><span>Timing</span><strong>25%</strong></div>
+                    <div class="dashboard-weight-row confidence"><span>Confidence</span><strong>Guardrail</strong></div>
+                  </div>
+                  <div class="dashboard-score-table">
+                    <div class="dashboard-table-head"><span>Signal</span><span>Points</span></div>
+                    <div class="dashboard-table-row"><span>Enterprise scale</span><strong>plus 35</strong></div>
+                    <div class="dashboard-table-row"><span>Retail DTC Travel</span><strong>plus 25</strong></div>
+                    <div class="dashboard-table-row"><span>Legacy helpdesk</span><strong>plus 20</strong></div>
+                    <div class="dashboard-table-row"><span>Commerce stack</span><strong>plus 15</strong></div>
+                    <div class="dashboard-table-row"><span>Outside ICP</span><strong>minus 15</strong></div>
+                    <div class="dashboard-table-row"><span>6sense decision-stage</span><strong>plus 30</strong></div>
+                    <div class="dashboard-table-row"><span>New VP or hiring surge</span><strong>plus 20</strong></div>
+                    <div class="dashboard-table-row"><span>Pricing plus webinar</span><strong>plus 10</strong></div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="dashboard-slide" data-dashboard-slide="3">
+                <div class="dashboard-slide-inner">
+                  <h2>No single vendor owns truth. The waterfall decides field by field.</h2>
+                  <div class="dashboard-waterfall">
+                    <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Firmographics</span><strong>ZoomInfo then Clearbit, most recent verified-at wins, delta over 20 percent routes to RevOps.</strong></div>
+                    <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Technographics</span><strong>BuiltWith then HG Insights, additive.</strong></div>
+                    <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Buying Stage</span><strong>6sense then Bombora, 6sense authoritative.</strong></div>
+                    <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Contact</span><strong>ZoomInfo then Apollo, SMTP verification before CRM write.</strong></div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="dashboard-slide" data-dashboard-slide="4">
+                <div class="dashboard-slide-inner">
+                  <h2>Salesforce is the master. Marketo activates downstream.</h2>
+                  <div class="dashboard-system-diagram">
+                    <div class="dashboard-system-box dashboard-salesforce-box">
+                      <span class="section-label">Salesforce</span>
+                      <ul class="dashboard-system-fields">
+                        <li class="dashboard-system-field">Fit_Score__c</li>
+                        <li class="dashboard-system-field">Timing_Score__c</li>
+                        <li class="dashboard-system-field">Composite_Score__c</li>
+                        <li class="dashboard-system-field">Tier__c</li>
+                      </ul>
+                    </div>
+                    <div class="dashboard-system-arrow-wrap">
+                      <svg class="dashboard-system-arrow" viewBox="0 0 260 100" aria-hidden="true">
+                        <path id="dashboard-arrow-path" d="M20 50 H210" fill="none" stroke="rgba(20,170,60,0.9)" stroke-width="2.5" stroke-linecap="round"></path>
+                        <path d="M194 34 L226 50 L194 66" fill="none" stroke="rgba(20,170,60,0.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                      <div class="dashboard-system-arrow-label">read-only sync</div>
+                    </div>
+                    <div class="dashboard-system-box dashboard-marketo-box">
+                      <span class="section-label">Marketo</span>
+                      <div class="dashboard-use-case-list">
+                        <div class="dashboard-use-case-row"><i></i><span>Smart list segments</span></div>
+                        <div class="dashboard-use-case-row"><i></i><span>MQA alerts via Sales Insight</span></div>
+                        <div class="dashboard-use-case-row"><i></i><span>Tier D suppression</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dashboard-tool-row">n8n <span>•</span> Clay <span>•</span> LeanData <span>•</span> Chili Piper <span>•</span> Tableau</div>
+                </div>
+              </article>
+
+              <article class="dashboard-slide" data-dashboard-slide="5">
+                <div class="dashboard-slide-inner">
+                  <h2>The model earns the right to exist by outperforming a holdout.</h2>
+                  <div class="dashboard-metric-grid">
+                    <article class="dashboard-metric-card">
+                      <span>Tier A MQA to Opp</span>
+                      <strong>30 to 50 percent</strong>
+                    </article>
+                    <article class="dashboard-metric-card">
+                      <span>Tier C conversion</span>
+                      <strong>under 10 percent</strong>
+                    </article>
+                    <article class="dashboard-metric-card">
+                      <span>Random holdout</span>
+                      <strong>5 to 10 percent of accounts</strong>
+                    </article>
+                    <article class="dashboard-metric-card">
+                      <span>Rollout</span>
+                      <strong>90-day rollout in three phases</strong>
+                    </article>
+                  </div>
+                  <blockquote class="dashboard-quote">If Tier A does not outperform the holdout, the model is wrong. Not Sales.</blockquote>
+                </div>
+              </article>
+            </div>
+          </div>
+          <button class="dashboard-arrow dashboard-arrow-right" type="button" id="dashboard-next" aria-label="Next dashboard slide">›</button>
+          <div class="dashboard-slide-counter" id="dashboard-slide-counter">1 of 6</div>
+          <div class="dashboard-progress"><i id="dashboard-progress-fill"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="site-footer-rule"></div>
+      <div class="site-footer-grid">
+        <div class="site-footer-brand">
+          <div class="site-footer-title">
+            <img src="assets/gladly-icon.png" alt="Gladly plus icon" />
+            <span>Account Scoring Blueprint</span>
+          </div>
+          <div class="site-footer-meta">Daniel Rodriguez</div>
+          <div class="site-footer-meta">Revenue Operations Analyst Assessment, April 2026</div>
+        </div>
+
+        <nav class="site-footer-nav" aria-label="Footer navigation">
+          <button data-target="prototype">Prototype</button>
+          <button data-target="logic">Logic</button>
+          <button data-target="architecture">Architecture</button>
+          <button data-target="metrics">Validation</button>
+          <button data-target="walkthrough">Walkthrough</button>
+          <button data-target="dashboard">Dashboard</button>
+        </nav>
+
+        <div class="site-footer-info">
+          <p>Built as a playable prototype for the Gladly assessment.</p>
+          <a class="site-footer-link" href="https://github.com/daniel-st3/rev-ops-panel" target="_blank" rel="noreferrer">View source on GitHub</a>
+        </div>
+      </div>
     </footer>
   </main>
 
@@ -3994,6 +5137,11 @@
     let loaderRunId = 0;
     let flowTimeline = null;
     let orbProgress = 0;
+    let walkFitRingProgress = 0;
+    let walkHeroPlayed = false;
+    let dashboardIndex = 0;
+    let dashboardProgressTween = null;
+    let dashboardAutoplayReady = false;
     const walkthroughPlayed = new Set();
     const walkthroughStack = document.getElementById("walkthrough-stack");
     const walkthroughSteps = [...document.querySelectorAll(".walk-step")];
@@ -4001,6 +5149,10 @@
     const navIndicator = document.getElementById("nav-indicator");
     const tierDetailShell = document.getElementById("tier-detail-shell");
     const tierDetailCard = document.getElementById("tier-detail-card");
+    const dashboardTrack = document.getElementById("dashboard-track");
+    const dashboardSlides = [...document.querySelectorAll(".dashboard-slide")];
+    const dashboardStage = document.getElementById("dashboard-stage");
+    const dashboardCounter = document.getElementById("dashboard-slide-counter");
 
     const SIGNAL_META = {
       enterprise: { label: "Enterprise scale", layer: "fit" },
@@ -4260,6 +5412,52 @@
       });
     }
 
+    function animateProfileFitRing(value) {
+      const circumference = 301.59;
+      gsap.to({ progress: walkFitRingProgress }, {
+        progress: value,
+        duration: 0.6,
+        ease: "power2.out",
+        onUpdate() {
+          const progress = this.targets()[0].progress;
+          document.getElementById("walk-fit-ring").style.strokeDashoffset = circumference - (progress / 100) * circumference;
+        },
+        onComplete() {
+          walkFitRingProgress = value;
+        }
+      });
+    }
+
+    function animateWalkHero() {
+      if (walkHeroPlayed) return;
+      walkHeroPlayed = true;
+      const icon = document.querySelector(".walk-hero-icon");
+      const tl = gsap.timeline();
+      tl.to(icon, {
+        opacity: 1,
+        y: 0,
+        duration: 0.36,
+        ease: "power2.out",
+        onComplete() {
+          icon.style.animation = "walk-breathe 3s ease-in-out infinite";
+        }
+      })
+        .to(".walk-hero-title", { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "-=0.08")
+        .to(".walk-hero-copy", { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, "-=0.12")
+        .to(".walk-hero-cta", { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, "-=0.1");
+    }
+
+    function animatePercentValue(element, value) {
+      gsap.to({ value: 0 }, {
+        value,
+        duration: 0.7,
+        ease: "power2.out",
+        onUpdate() {
+          element.textContent = `${Math.round(this.targets()[0].value)}%`;
+        }
+      });
+    }
+
     function pulsePrototype() {
       gsap.fromTo(
         "#prototype-workspace .panel, #prototype-workspace .side-panel, #prototype-workspace .detail-panel, #prototype-workspace .signal-card",
@@ -4429,6 +5627,11 @@
       if (liveFit) {
         liveFit.textContent = Math.round(demoFit);
       }
+      const profileFit = document.getElementById("walk-fit-count");
+      if (profileFit && walkthroughPlayed.has(1)) {
+        profileFit.textContent = Math.round(demoFit);
+        document.getElementById("walk-fit-ring").style.strokeDashoffset = 301.59 - (demoFit / 100) * 301.59;
+      }
     }
 
     function render() {
@@ -4571,7 +5774,7 @@
     }
 
     function initNavState() {
-      const sectionIds = ["prototype", "logic", "architecture", "metrics", "walkthrough"];
+      const sectionIds = ["prototype", "logic", "architecture", "metrics", "walkthrough", "dashboard"];
       sectionIds.forEach((id) => {
         ScrollTrigger.create({
           trigger: `#${id}`,
@@ -4705,21 +5908,28 @@
     function animateHoldoutBars(holdoutValue = 18, rerun = false) {
       const tierHeight = 42 * 5;
       const holdoutHeight = holdoutValue * 5;
-      document.getElementById("tier-a-value").textContent = "42%";
-      document.getElementById("holdout-value").textContent = `${holdoutValue}%`;
       const tl = gsap.timeline();
+      const tierLabel = document.getElementById("tier-a-value");
+      const holdoutLabel = document.getElementById("holdout-value");
 
       if (rerun) {
         tl.to(["#tier-a-bar", "#holdout-bar"], { height: 0, duration: 0.28, ease: "power2.inOut" })
-          .to(["#tier-a-value", "#holdout-value"], { opacity: 0, duration: 0.12 }, 0);
+          .add(() => {
+            tierLabel.textContent = "0%";
+            holdoutLabel.textContent = "0%";
+          }, 0);
       } else {
         gsap.set(["#tier-a-bar", "#holdout-bar"], { height: 0 });
-        gsap.set(["#tier-a-value", "#holdout-value"], { opacity: 0 });
+        tierLabel.textContent = "0%";
+        holdoutLabel.textContent = "0%";
       }
 
       tl.to("#tier-a-bar", { height: tierHeight, duration: 0.72, ease: "power3.out" })
         .to("#holdout-bar", { height: holdoutHeight, duration: 0.72, ease: "power3.out" }, "<0.08")
-        .to(["#tier-a-value", "#holdout-value"], { opacity: 1, duration: 0.22, ease: "power1.out" }, "-=0.16");
+        .add(() => {
+          animatePercentValue(tierLabel, 42);
+          animatePercentValue(holdoutLabel, holdoutValue);
+        }, "-=0.62");
     }
 
     function setWalkStepActive(index) {
@@ -4789,7 +5999,9 @@
         const lines = document.querySelectorAll("[data-profile-line]");
         gsap.set(lines, { opacity: 0, x: -18 });
         gsap.to(lines, { opacity: 1, x: 0, stagger: 0.16, duration: 0.48, ease: "power2.out" });
-        animateValue(document.getElementById("walk-fit-count"), computeFit(getScenario("harbor").state).score);
+        const fitValue = computeFit(getScenario("harbor").state).score;
+        animateValue(document.getElementById("walk-fit-count"), fitValue);
+        animateProfileFitRing(fitValue);
       }
 
       if (index === 2 && !walkthroughPlayed.has(index)) {
@@ -4810,12 +6022,14 @@
       if (index === 4) {
         document.querySelector(".conflict-row")?.classList.remove("is-alert");
         document.getElementById("confidence-demo-label").textContent = "High";
+        document.getElementById("confidence-demo-label").style.color = "var(--green)";
         animateConfidenceGauge(100, "high");
         gsap.fromTo(".confidence-row", { opacity: 0, x: -32 }, { opacity: 1, x: 0, stagger: 0.12, duration: 0.42, ease: "power2.out" });
         gsap.delayedCall(0.75, () => {
           document.querySelector(".conflict-row").classList.add("is-alert");
           document.getElementById("confidence-demo-label").textContent = "Medium";
-          animateConfidenceGauge(60, "medium");
+          document.getElementById("confidence-demo-label").style.color = "var(--amber)";
+          animateConfidenceGauge(55, "medium");
         });
       }
 
@@ -4830,8 +6044,123 @@
       walkthroughPlayed.add(index);
     }
 
+    function animateDashboardSystem() {
+      const path = document.getElementById("dashboard-arrow-path");
+      if (!path) return;
+      const length = path.getTotalLength();
+      gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+      gsap.set(".dashboard-system-arrow-label", { opacity: 0, y: 8 });
+      gsap.set(".dashboard-system-field, .dashboard-use-case-row", { opacity: 0, y: 14 });
+      const tl = gsap.timeline();
+      tl.to(".dashboard-system-field", { opacity: 1, y: 0, stagger: 0.15, duration: 0.3, ease: "power2.out" })
+        .to(path, { strokeDashoffset: 0, duration: 0.6, ease: "power2.out" }, "-=0.06")
+        .to(".dashboard-system-arrow-label", { opacity: 1, y: 0, duration: 0.24, ease: "power2.out" }, "-=0.08")
+        .to(".dashboard-use-case-row", { opacity: 1, y: 0, stagger: 0.14, duration: 0.3, ease: "power2.out" });
+    }
+
+    function animateDashboardSlide(index) {
+      const slide = dashboardSlides[index];
+      if (!slide) return;
+      const genericTargets = slide.querySelectorAll("[data-dashboard-stagger], h2, .dashboard-slide-note, .dashboard-list-col, .dashboard-weight-row, .dashboard-table-row, .dashboard-metric-card, .dashboard-quote");
+      gsap.set(genericTargets, { opacity: 0, y: 24 });
+      gsap.to(slide.querySelector("h2"), { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" });
+
+      if (index === 0) {
+        gsap.to(slide.querySelectorAll("[data-dashboard-stagger]"), { opacity: 1, y: 0, stagger: 0.15, duration: 0.36, ease: "power2.out", delay: 0.12 });
+        gsap.to(slide.querySelector(".dashboard-slide-note"), { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", delay: 0.28 });
+      } else if (index === 1) {
+        gsap.to(slide.querySelectorAll(".dashboard-list-col"), { opacity: 1, y: 0, stagger: 0.14, duration: 0.38, ease: "power2.out", delay: 0.12 });
+      } else if (index === 2) {
+        gsap.to(slide.querySelectorAll(".dashboard-weight-row"), { opacity: 1, y: 0, stagger: 0.12, duration: 0.34, ease: "power2.out", delay: 0.12 });
+        gsap.to(slide.querySelectorAll(".dashboard-table-row"), { opacity: 1, y: 0, stagger: 0.05, duration: 0.24, ease: "power2.out", delay: 0.26 });
+      } else if (index === 3) {
+        gsap.fromTo(slide.querySelectorAll("[data-dashboard-stagger]"), { opacity: 0, x: -24, y: 0 }, { opacity: 1, x: 0, stagger: 0.12, duration: 0.34, ease: "power2.out", delay: 0.12 });
+      } else if (index === 4) {
+        animateDashboardSystem();
+      } else if (index === 5) {
+        gsap.to(slide.querySelectorAll(".dashboard-metric-card"), { opacity: 1, y: 0, stagger: 0.12, duration: 0.34, ease: "power2.out", delay: 0.12 });
+        gsap.to(slide.querySelector(".dashboard-quote"), { opacity: 1, y: 0, duration: 0.34, ease: "power2.out", delay: 0.28 });
+      }
+    }
+
+    function restartDashboardProgress() {
+      if (!dashboardStage) return;
+      if (dashboardProgressTween) dashboardProgressTween.kill();
+      gsap.set("#dashboard-progress-fill", { scaleX: 0 });
+      if (!dashboardAutoplayReady) return;
+      dashboardProgressTween = gsap.to("#dashboard-progress-fill", {
+        scaleX: 1,
+        duration: 8,
+        ease: "none",
+        onComplete() {
+          setDashboardSlide(dashboardIndex + 1);
+        }
+      });
+    }
+
+    function setDashboardSlide(index, immediate = false) {
+      if (!dashboardTrack || !dashboardSlides.length) return;
+      dashboardIndex = (index + dashboardSlides.length) % dashboardSlides.length;
+      dashboardSlides.forEach((slide, slideIndex) => {
+        slide.classList.toggle("is-active", slideIndex === dashboardIndex);
+      });
+      dashboardCounter.textContent = `${dashboardIndex + 1} of ${dashboardSlides.length}`;
+      gsap.to(dashboardTrack, {
+        xPercent: -(dashboardIndex * (100 / dashboardSlides.length)),
+        duration: immediate ? 0 : 0.72,
+        ease: "power3.inOut"
+      });
+      animateDashboardSlide(dashboardIndex);
+      restartDashboardProgress();
+    }
+
+    function initDashboard() {
+      if (!dashboardStage || !dashboardSlides.length) return;
+      document.getElementById("dashboard-prev").addEventListener("click", () => setDashboardSlide(dashboardIndex - 1));
+      document.getElementById("dashboard-next").addEventListener("click", () => setDashboardSlide(dashboardIndex + 1));
+
+      dashboardStage.addEventListener("mouseenter", () => {
+        if (dashboardProgressTween) dashboardProgressTween.pause();
+      });
+
+      dashboardStage.addEventListener("mouseleave", () => {
+        if (dashboardProgressTween) dashboardProgressTween.resume();
+      });
+
+      ScrollTrigger.create({
+        trigger: "#dashboard",
+        start: "top 78%",
+        end: "bottom 22%",
+        onEnter() {
+          dashboardAutoplayReady = true;
+          restartDashboardProgress();
+        },
+        onEnterBack() {
+          dashboardAutoplayReady = true;
+          restartDashboardProgress();
+        },
+        onLeave() {
+          dashboardAutoplayReady = false;
+          if (dashboardProgressTween) dashboardProgressTween.pause();
+        },
+        onLeaveBack() {
+          dashboardAutoplayReady = false;
+          if (dashboardProgressTween) dashboardProgressTween.pause();
+        }
+      });
+
+      setDashboardSlide(0, true);
+    }
+
     function initWalkthrough() {
       if (!walkthroughStack) return;
+
+      ScrollTrigger.create({
+        trigger: "#walkthrough",
+        start: "top 78%",
+        once: true,
+        onEnter: () => animateWalkHero()
+      });
 
       document.querySelectorAll(".walk-step-dots").forEach((container) => {
         container.innerHTML = "";
@@ -4848,6 +6177,7 @@
         });
       });
 
+      const observerRoot = walkthroughStack.scrollHeight > walkthroughStack.clientHeight ? walkthroughStack : null;
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
@@ -4855,7 +6185,7 @@
           setWalkStepActive(index);
           playWalkthroughStep(index);
         });
-      }, { root: walkthroughStack, threshold: 0.6 });
+      }, { root: observerRoot, threshold: 0.6 });
 
       walkthroughSteps.forEach((step) => observer.observe(step));
       document.getElementById("begin-walkthrough").addEventListener("click", () => {
@@ -4879,6 +6209,7 @@
     initScrollScenes();
     initWalkthroughFitDrag();
     initWalkthrough();
+    initDashboard();
     syncToggleButtons();
     render();
     buildFlowTimeline();
