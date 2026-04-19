@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account Scoring Blueprint — Daniel Rodriguez × Gladly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #3CB549;
+      --green-light: #4ECB5A;
+      --green-dim: rgba(60,181,73,0.12);
+      --green-border: rgba(60,181,73,0.3);
+      --dark: #0D0D0D;
+      --surface: #141414;
+      --surface2: #1C1C1C;
+      --surface3: #252525;
+      --border: rgba(255,255,255,0.08);
+      --text: #F5F5F5;
+      --text-muted: #888;
+      --text-dim: #555;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 56px;
+      background: rgba(13,13,13,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--green);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0 1rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+
+    .nav-badge {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--green);
+      background: var(--green-dim);
+      border: 1px solid var(--green-border);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 2rem 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(60,181,73,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 80%, rgba(60,181,73,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--green);
+    }
+
+    .hero-tag::after {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--green);
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      max-width: 900px;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 span { color: var(--green); }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .pill {
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      background: var(--surface2);
+    }
+
+    .pill.accent {
+      border-color: var(--green-border);
+      color: var(--green);
+      background: var(--green-dim);
+    }
+
+    /* ── THREE PILLARS ── */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-bottom: 5rem;
+      max-width: 800px;
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--border);
+    }
+
+    .pillar {
+      background: var(--surface);
+      padding: 2rem 1.5rem;
+      text-align: left;
+      position: relative;
+    }
+
+    .pillar-num {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    .pillar-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar-label {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .pillar-label.green { color: var(--green); }
+
+    .pillar-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .scroll-hint {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    .scroll-hint svg { opacity: 0.4; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-num {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--green);
+      letter-spacing: 0.1em;
+      background: var(--green-dim);
+      border: 1px solid var(--green-border);
+      padding: 3px 10px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      color: var(--text-muted);
+      line-height: 1.75;
+      font-size: 0.95rem;
+    }
+
+    strong { color: var(--text); font-weight: 600; }
+
+    /* ── CARDS GRID ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .card {
+      background: var(--surface);
+      padding: 1.5rem;
+      transition: background 0.2s;
+    }
+
+    .card:hover { background: var(--surface2); }
+
+    /* ── ICP BOX ── */
+    .icp-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .icp-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+
+    .icp-value {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ── WIN LIST ── */
+    .win-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 1.5rem;
+    }
+
+    .win-badge {
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: var(--surface3);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    /* ── SIGNAL ROWS ── */
+    .signal-group {
+      margin-bottom: 2rem;
+    }
+
+    .signal-group-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .signal-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .signal-row:last-child { border-bottom: none; }
+
+    .signal-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+
+    .signal-dot.yellow { background: #F5C518; }
+    .signal-dot.orange { background: #FF7A45; }
+
+    .signal-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      flex: 1;
+    }
+
+    .signal-weight {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--green);
+    }
+
+    /* ── CALLOUT ── */
+    .callout {
+      background: var(--green-dim);
+      border: 1px solid var(--green-border);
+      border-left: 3px solid var(--green);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .callout p { color: var(--text); font-size: 0.9rem; }
+
+    /* ── TABLE ── */
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin: 1.5rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    thead tr {
+      background: var(--surface2);
+    }
+
+    thead th {
+      text-align: left;
+      padding: 0.85rem 1.25rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      font-weight: 500;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--surface2); }
+
+    tbody td {
+      padding: 0.85rem 1.25rem;
+      color: var(--text-muted);
+      vertical-align: top;
+    }
+
+    tbody td:first-child {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .tag-green {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--green);
+      background: var(--green-dim);
+      border: 1px solid var(--green-border);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* ── TIERS ── */
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 2.5rem;
+    }
+
+    .tier-card {
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s;
+      cursor: default;
+    }
+
+    .tier-card:hover { transform: translateY(-3px); }
+
+    .tier-card.a {
+      background: rgba(60,181,73,0.08);
+      border-color: rgba(60,181,73,0.4);
+    }
+
+    .tier-card.b {
+      background: rgba(245,197,24,0.06);
+      border-color: rgba(245,197,24,0.3);
+    }
+
+    .tier-card.c {
+      background: rgba(255,122,69,0.06);
+      border-color: rgba(255,122,69,0.25);
+    }
+
+    .tier-card.d {
+      background: var(--surface);
+      border-color: var(--border);
+    }
+
+    .tier-letter {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .tier-card.a .tier-letter { color: var(--green); }
+    .tier-card.b .tier-letter { color: #F5C518; }
+    .tier-card.c .tier-letter { color: #FF7A45; }
+    .tier-card.d .tier-letter { color: var(--text-dim); }
+
+    .tier-criteria {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+    }
+
+    .tier-motion {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    /* ── PIPELINE ── */
+    .pipeline {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+      margin: 2rem 0;
+    }
+
+    .pipe-node {
+      flex: 1;
+      min-width: 140px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .pipe-arrow {
+      display: flex;
+      align-items: center;
+      padding: 0 4px;
+      color: var(--green);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .pipe-tool {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .pipe-role {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+
+    .pipe-node.highlight {
+      border-color: var(--green-border);
+      background: var(--green-dim);
+    }
+
+    .pipe-node.highlight .pipe-tool { color: var(--green); }
+
+    /* ── METRICS ── */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .metric-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .metric-block-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+    }
+
+    .metric-item {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.87rem;
+      color: var(--text-muted);
+    }
+
+    .metric-item:last-child { border-bottom: none; }
+
+    .metric-item strong { color: var(--text); }
+
+    /* ── SCORE VISUAL ── */
+    .score-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin: 2rem 0;
+    }
+
+    .score-component {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .score-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .score-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--green);
+    }
+
+    .score-desc {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      margin-top: 0.25rem;
+    }
+
+    /* ── SFDC FIELDS ── */
+    .fields-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .field-item {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .field-item::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+
+    /* ── GOVERNANCE ── */
+    .gov-rules {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 1.5rem 0;
+    }
+
+    .gov-rule {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+
+    .gov-rule-num {
+      font-family: var(--mono);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--green);
+      opacity: 0.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .gov-rule p { font-size: 0.83rem; }
+
+    /* ── AI NOTE ── */
+    .ai-note {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .ai-note-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+    }
+
+    .ai-note p { font-size: 0.87rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    footer strong { color: var(--text-muted); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 2rem 0;
+    }
+
+    /* ── TWO COL ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+
+      .pillars { grid-template-columns: 1fr; }
+
+      .tiers { grid-template-columns: 1fr 1fr; }
+
+      .icp-box { grid-template-columns: 1fr; }
+
+      .score-visual { grid-template-columns: 1fr; }
+
+      .metrics-grid { grid-template-columns: 1fr; }
+
+      .two-col { grid-template-columns: 1fr; }
+
+      .gov-rules { grid-template-columns: 1fr; }
+
+      .fields-list { grid-template-columns: 1fr; }
+
+      .pipeline { min-width: 600px; }
+
+      h1 { letter-spacing: -0.03em; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">+</div>
+    Gladly RevOps
+  </div>
+  <ul class="nav-links">
+    <li><a href="#fit">Fit</a></li>
+    <li><a href="#timing">Timing</a></li>
+    <li><a href="#confidence">Confidence</a></li>
+    <li><a href="#tiers">Tiers</a></li>
+    <li><a href="#pipeline">Pipeline</a></li>
+    <li><a href="#measurement">Measurement</a></li>
+  </ul>
+  <span class="nav-badge">April 2026</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Revenue Operations Analyst — Cross-Functional Panel</div>
+  <h1>Account Scoring<br /><span>Blueprint</span></h1>
+  <p class="hero-sub">
+    A framework of Fit, Timing, and Confidence for Gladly's B2C account pipeline.
+    Three questions separate a useful scoring system from busywork.
+  </p>
+
+  <div class="hero-pills">
+    <span class="pill accent">Mid-Market + Enterprise</span>
+    <span class="pill">DTC / Retail / Travel</span>
+    <span class="pill">Salesforce + Marketo</span>
+    <span class="pill">n8n · Clay · Claude API</span>
+    <span class="pill">$400–1,250/mo composable stack</span>
+  </div>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-num">01 / PILLAR</div>
+      <div class="pillar-icon">🎯</div>
+      <div class="pillar-label green">Fit</div>
+      <div class="pillar-desc">Who to target — ICP profile, displacement opportunity, commerce stack signals</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02 / PILLAR</div>
+      <div class="pillar-icon">⚡</div>
+      <div class="pillar-label green">Timing</div>
+      <div class="pillar-desc">When to reach out — 3rd-party intent + 1st-party engagement, 45-day half-life</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03 / PILLAR</div>
+      <div class="pillar-icon">🔒</div>
+      <div class="pillar-label green">Confidence</div>
+      <div class="pillar-desc">How much to trust the data — waterfall enrichment, governance, audit logs</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M8 3v10M3 9l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Scroll to explore
+  </div>
+</div>
+
+<!-- ── 01 FIT ── -->
+<section id="fit">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Fit: Who to Target</h2>
+  </div>
+
+  <p style="margin-bottom: 2rem;">
+    Fit for Gladly is <strong>narrower than generic B2B scoring</strong> — and that's the most important design choice here.
+    Gladly wins when a B2C brand has enough conversation volume, channels, and commerce complexity that a unified
+    customer record changes revenue per contact.
+  </p>
+
+  <div class="icp-box">
+    <div>
+      <div class="icp-label">Geography</div>
+      <div class="icp-value">US-based B2C brands</div>
+    </div>
+    <div>
+      <div class="icp-label">Revenue Band</div>
+      <div class="icp-value">$50M – $1B ARR</div>
+    </div>
+    <div>
+      <div class="icp-label">CX Agent Count</div>
+      <div class="icp-value">50 – 500 agents</div>
+    </div>
+    <div>
+      <div class="icp-label">Verticals</div>
+      <div class="icp-value">DTC Apparel / Beauty / Home · Retail · Travel & Hospitality</div>
+    </div>
+    <div>
+      <div class="icp-label">Commerce Stack (ICP Proxy)</div>
+      <div class="icp-value">Shopify Plus · Klaviyo · Loop · Attentive</div>
+    </div>
+    <div>
+      <div class="icp-label">Displacement Target</div>
+      <div class="icp-value">Zendesk · Kustomer · Gorgias · Service Cloud</div>
+    </div>
+  </div>
+
+  <p style="margin-bottom: 1.5rem;">
+    This is the profile Gladly already wins at:
+  </p>
+
+  <div class="win-list">
+    <span class="win-badge">Crate &amp; Barrel</span>
+    <span class="win-badge">Rothy's</span>
+    <span class="win-badge">Breeze Airways</span>
+    <span class="win-badge">TUMI</span>
+    <span class="win-badge">Warby Parker</span>
+  </div>
+
+  <div class="divider" style="margin-top: 2rem;"></div>
+
+  <div class="two-col">
+    <div>
+      <h3>Hard ICP Signals</h3>
+      <div class="signal-group" style="margin-top: 1rem;">
+        <div class="signal-row">
+          <div class="signal-dot"></div>
+          <div class="signal-name">Industry + B2C flag</div>
+          <div class="signal-weight">High</div>
+        </div>
+        <div class="signal-row">
+          <div class="signal-dot"></div>
+          <div class="signal-name">Revenue band ($50M–$1B)</div>
+          <div class="signal-weight">High</div>
+        </div>
+        <div class="signal-row">
+          <div class="signal-dot"></div>
+          <div class="signal-name">CX agent headcount</div>
+          <div class="signal-weight">High</div>
+        </div>
+        <div class="signal-row">
+          <div class="signal-dot yellow"></div>
+          <div class="signal-name">Shopify Plus / Klaviyo presence</div>
+          <div class="signal-weight">Med</div>
+        </div>
+        <div class="signal-row">
+          <div class="signal-dot yellow"></div>
+          <div class="signal-name">Incumbent CX platform</div>
+          <div class="signal-weight">Med</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3>Hard Excludes</h3>
+      <div class="signal-group" style="margin-top: 1rem;">
+        <div class="signal-row">
+          <div class="signal-dot orange"></div>
+          <div class="signal-name">Current Gladly customers</div>
+        </div>
+        <div class="signal-row">
+          <div class="signal-dot orange"></div>
+          <div class="signal-name">Direct competitors</div>
+        </div>
+        <div class="signal-row">
+          <div class="signal-dot orange"></div>
+          <div class="signal-name">3-yr incumbent contract &lt; 12 mo ago</div>
+        </div>
+        <div class="signal-row">
+          <div class="signal-dot orange"></div>
+          <div class="signal-name">Pure B2B (no consumer touchpoint)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 02 TIMING ── -->
+<section id="timing">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Timing: When to Reach Out</h2>
+  </div>
+
+  <p style="margin-bottom: 1.5rem;">
+    Timing collapses third-party intent and first-party engagement into one layer,
+    <strong>weighted by recency (45-day half-life)</strong>. For a sales team making
+    coverage decisions this week, a 6sense Decision-stage surge and a VP visiting the
+    pricing page twice are functionally the same signal.
+  </p>
+
+  <div class="callout">
+    <p>
+      <strong>Hiring deserves its own call-out.</strong> A new VP or Head of CX in the last 90 days,
+      or 3+ CX agent postings in 30 days, is a reliable leading indicator that a stack review is coming.
+      Most models bury hiring inside engagement. For Gladly it's too strong to bury.
+    </p>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="signal-group">
+        <div class="signal-group-label">Third-Party Intent</div>
+        <div class="signal-row">
+          <div class="signal-dot"></div>
+          <div class="signal-name">6sense buying stage (Decision)</div>
+          <div class="signal-weight">Very High</div>
+        </div>
+        <div class="signal-row">
+          <div class="signal-dot"></div>
+          <div class="signal-name">Bombora surge — "Zendesk alternative"</div>
+          <div class="signal-weight">High</div>
+        </div>
+        <div class="signal-row">
+          <div class="signal-dot"></div>
+          <div class="signal-name">Bombora surge — "AI customer service"</div>
+          <div class="signal-weight">High</div>
+        </div>
+        <div class="signal-row">
+          <div class="signal-dot yellow"></div>
+          <div class="signal-name">G2 category + competitor comparison</div>
+          <div class="signal-weight">Med</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="signal-group">
+        <div class="signal-group-label">First-Party Engagement</div>
+        <div class="signal-row">
+          <div class="signal-dot"></div>
+          <div class="signal-name">Demo request</div>
+          <div class="signal-weight">Very High</div>
+        </div>
+        <div class="signal-row">
+          <div class="signal-dot"></div>
+          <div class="signal-name">Pricing page visit (VP+)</div>
+          <div class="signal-weight">High</div>
+        </div>
+        <div class="signal-row">
+          <div class="signal-dot yellow"></div>
+          <div class="signal-name">Multi-persona interest (3+ contacts/quarter)</div>
+          <div class="signal-weight">High</div>
+        </div>
+        <div class="signal-row">
+          <div class="signal-dot yellow"></div>
+          <div class="signal-name">Webinar attendance</div>
+          <div class="signal-weight">Med</div>
+        </div>
+      </div>
+      <div class="signal-group">
+        <div class="signal-group-label">Hiring Signals (Leading Indicator)</div>
+        <div class="signal-row">
+          <div class="signal-dot"></div>
+          <div class="signal-name">New VP / Head of CX (&lt; 90 days)</div>
+          <div class="signal-weight">Very High</div>
+        </div>
+        <div class="signal-row">
+          <div class="signal-dot"></div>
+          <div class="signal-name">3+ CX agent postings in 30 days</div>
+          <div class="signal-weight">High</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 03 CONFIDENCE ── -->
+<section id="confidence">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Confidence: How Much to Trust the Data</h2>
+  </div>
+
+  <p style="margin-bottom: 1.5rem;">
+    Every field that feeds Fit or Timing carries a confidence flag, because <strong>no single vendor
+    wins across every attribute</strong>. A Waterfall Enrichment strategy (Clay orchestrates this)
+    runs vendors in sequence — only spending credits on the next vendor when the prior one returns
+    nothing or a low-confidence match.
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Field</th>
+          <th>Primary Source</th>
+          <th>Fallback</th>
+          <th>Conflict Rule</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Firmographics</td>
+          <td><span class="tag-green">ZoomInfo</span></td>
+          <td>Clearbit / Breeze</td>
+          <td>Most recent <code>verified_at</code> wins. Delta &gt;20% → RevOps review queue</td>
+        </tr>
+        <tr>
+          <td>Technographics</td>
+          <td><span class="tag-green">BuiltWith</span></td>
+          <td>HG Insights</td>
+          <td>Additive (Shopify + Zendesk coexist). HG supplies incumbent contract dates</td>
+        </tr>
+        <tr>
+          <td>Buying Stage</td>
+          <td><span class="tag-green">6sense</span></td>
+          <td>Bombora direct</td>
+          <td>6sense authoritative for stage; Bombora is upstream feedstock</td>
+        </tr>
+        <tr>
+          <td>Contact (email/mobile)</td>
+          <td><span class="tag-green">ZoomInfo (US)</span> / Cognism (EU)</td>
+          <td>Apollo</td>
+          <td>Emails re-verified by SMTP before CRM write</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin: 2rem 0 1rem;">Three Governance Rules</h3>
+
+  <div class="gov-rules">
+    <div class="gov-rule">
+      <div class="gov-rule-num">01</div>
+      <h3>Delta Threshold</h3>
+      <p>If a new vendor value has a &gt;20% delta from the current CRM value, it routes to a RevOps manual review queue instead of silently overwriting.</p>
+    </div>
+    <div class="gov-rule">
+      <div class="gov-rule-num">02</div>
+      <h3>Rep Lock</h3>
+      <p>Rep-verified values are locked. A weekly refresh cannot overwrite a hand-corrected tag. Human signal beats machine signal.</p>
+    </div>
+    <div class="gov-rule">
+      <div class="gov-rule-num">03</div>
+      <h3>Audit Log</h3>
+      <p>Every write logs <code>{field, old, new, source, timestamp, confidence}</code> — defensible to Sales, Security, and Legal in the same room.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── 04 TIERS ── -->
+<section id="tiers">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Tiers A / B / C / D &amp; Where the Score Lives</h2>
+  </div>
+
+  <div class="score-visual">
+    <div class="score-component">
+      <div class="score-label">Fit Score</div>
+      <div class="score-number">40%</div>
+      <div class="score-desc">ICP match, firmographics, tech stack</div>
+    </div>
+    <div class="score-component">
+      <div class="score-label">Timing Score</div>
+      <div class="score-number">40%</div>
+      <div class="score-desc">Intent + engagement, 45-day decay</div>
+    </div>
+    <div class="score-component">
+      <div class="score-label">Confidence Flag</div>
+      <div class="score-number">20%</div>
+      <div class="score-desc">Data quality multiplier</div>
+    </div>
+  </div>
+
+  <div class="tiers">
+    <div class="tier-card a">
+      <div class="tier-letter">A</div>
+      <div class="tier-criteria">Score 85+, Fit 70+, high Confidence</div>
+      <div class="tier-motion">1:1 ABM · AE + SDR paired · &lt;5 min SLA via Chili Piper</div>
+    </div>
+    <div class="tier-card b">
+      <div class="tier-letter">B</div>
+      <div class="tier-criteria">65–84, strong on 2 of 3 dimensions</div>
+      <div class="tier-motion">1:few by sub-vertical · 30 min SLA · personalized cadence</div>
+    </div>
+    <div class="tier-card c">
+      <div class="tier-letter">C</div>
+      <div class="tier-criteria">45–64, Fit present but Timing cold</div>
+      <div class="tier-motion">Programmatic nurture · quarterly re-score</div>
+    </div>
+    <div class="tier-card d">
+      <div class="tier-letter">D</div>
+      <div class="tier-criteria">Below 45 or low Confidence on core fields</div>
+      <div class="tier-motion">Marketing nurture only · no outbound burn</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p>
+      <strong>The constraint that shapes the whole design:</strong> The native Marketo–Salesforce sync is
+      one-way for Accounts (SFDC → Marketo). Marketo reads account fields but only writes to Leads
+      and Contacts. Therefore <strong>the master score must live in Salesforce</strong>. Scoring is authored
+      in SFDC (reverse ETL from a warehouse, or a scoring engine writing directly). Marketo's job becomes
+      activation: reading Tier (A/B/C/D), firing smart campaigns, and routing alerts.
+    </p>
+  </div>
+
+  <h3 style="margin: 2rem 0 1rem;">SFDC Fields That Matter</h3>
+
+  <div class="fields-list">
+    <div class="field-item">Fit_Score__c</div>
+    <div class="field-item">Timing_Score__c</div>
+    <div class="field-item">Composite_Score__c</div>
+    <div class="field-item">Tier__c</div>
+    <div class="field-item">Confidence_Flag__c</div>
+    <div class="field-item">Score_Rationale__c</div>
+    <div class="field-item">Last_Scored_Date__c</div>
+    <div class="field-item">Scoring_Model_Version__c</div>
+  </div>
+
+  <p style="font-size: 0.83rem; color: var(--text-dim); margin-top: 0.75rem;">
+    Mirror all fields on the Lead object so scores survive Lead → Account conversion. Routing via LeanData + Chili Piper. Exec reporting via Tableau sliced by tier, source signal, and model version.
+  </p>
+</section>
+
+<!-- ── 05 PIPELINE ── -->
+<section id="pipeline">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2>The AI-Augmented Pipeline</h2>
+  </div>
+
+  <p style="margin-bottom: 1.5rem;">
+    V1 should <strong>not start with a $120K predictive orchestration contract</strong>. For a 1–2 person RevOps team,
+    a composable stack delivers most scoring value at a fraction of the cost and keeps the logic owned
+    internally rather than outsourced to a vendor's black box.
+  </p>
+
+  <div class="pipeline">
+    <div class="pipe-node">
+      <div class="pipe-tool">n8n</div>
+      <div class="pipe-role">Orchestrator</div>
+    </div>
+    <div class="pipe-arrow">▶</div>
+    <div class="pipe-node">
+      <div class="pipe-tool">Clay</div>
+      <div class="pipe-role">Waterfall enrichment</div>
+    </div>
+    <div class="pipe-arrow">▶</div>
+    <div class="pipe-node highlight">
+      <div class="pipe-tool">Claude API</div>
+      <div class="pipe-role">AI reasoning + rationale</div>
+    </div>
+    <div class="pipe-arrow">▶</div>
+    <div class="pipe-node">
+      <div class="pipe-tool">Census / Hightouch</div>
+      <div class="pipe-role">Reverse ETL to SFDC</div>
+    </div>
+    <div class="pipe-arrow">▶</div>
+    <div class="pipe-node">
+      <div class="pipe-tool">SFDC + Marketo</div>
+      <div class="pipe-role">Scoring + activation</div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 1.5rem;">
+    <p>
+      <strong>~$400–$1,250/month</strong> at 500 accounts/month vs. $10K+ for a 6sense-led stack.
+      6sense becomes a V3 conversation once we have closed-won data to train against.
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3>Why Claude API drives sales adoption</h3>
+  <p style="margin-top: 0.75rem;">
+    For each scored account, Claude generates <code>Score_Rationale__c</code> — a plain-text paragraph the AE
+    sees directly on the Account record. Example:
+  </p>
+
+  <div style="background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.25rem 0; font-size: 0.87rem; color: var(--text-muted); font-style: italic;">
+    "Tier A because 2,500 employees, Shopify Plus, currently on Zendesk, three CX roles posted in
+    30 days, and a new VP of CX started in June."
+  </div>
+
+  <p>
+    That paragraph is the single biggest difference between a scoring model reps fight and one they trust.
+    <strong>AI should augment human sellers, not replace them.</strong>
+  </p>
+
+  <div class="divider"></div>
+
+  <h3>Rollout Plan</h3>
+
+  <div class="cards" style="margin-top: 1.25rem;">
+    <div class="card">
+      <div class="icp-label">V1 · Days 0–30</div>
+      <p style="font-size: 0.85rem;">Firmographic Fit in SFDC with LeanData routing and manual Tier A workflow</p>
+    </div>
+    <div class="card">
+      <div class="icp-label">V2 · Days 31–60</div>
+      <p style="font-size: 0.85rem;">Add Timing layer, Marketo tier-based campaigns, and the MSI panel</p>
+    </div>
+    <div class="card">
+      <div class="icp-label">V3 · Days 61–90</div>
+      <p style="font-size: 0.85rem;">Claude rationale, Tableau dashboards, holdout test, and product signal events via Segment for self-serve motion</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── 06 MEASUREMENT ── -->
+<section id="measurement">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2>How We Know It's Working</h2>
+  </div>
+
+  <div class="metrics-grid">
+    <div class="metric-block">
+      <div class="metric-block-label">Weekly (Leading)</div>
+      <div class="metric-item"><strong>MQA → Opp conversion by tier</strong> — target Tier A: 30–50%, Tier C: &lt;10%</div>
+      <div class="metric-item"><strong>Speed to lead</strong> — time from MQA to first AE touch</div>
+      <div class="metric-item"><strong>Meeting set rate per MQA</strong> — by tier and source signal</div>
+    </div>
+    <div class="metric-block">
+      <div class="metric-block-label">Quarterly (Lagging)</div>
+      <div class="metric-item"><strong>Win rate by tier</strong> — does Tier A close materially better?</div>
+      <div class="metric-item"><strong>ACV by tier</strong> — are A-tier accounts larger deals?</div>
+      <div class="metric-item"><strong>Cycle length by tier</strong> — faster close for higher-fit accounts?</div>
+      <div class="metric-item"><strong>Pipeline velocity sliced by signal</strong> — which signals lift revenue vs. generate noise?</div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 2rem;">
+    <p>
+      <strong>The discipline most teams skip:</strong> A 5–10% random holdout routed ignoring the score.
+      If Tier A accounts don't convert meaningfully better than the holdout, the model is wrong — and that's
+      a RevOps problem, not a Sales problem.
+    </p>
+  </div>
+
+  <div class="ai-note">
+    <div class="ai-note-label">A note on how I used AI for this brief</div>
+    <p>
+      I worked the problem before opening any AI tool. Gladly's positioning, the assessment, and the job
+      description shaped the framework first. With the argument in shape, I ran <strong>Claude, ChatGPT,
+      Gemini, and Perplexity</strong> in parallel for three jobs: customer detail on Gladly's install base,
+      pressure-testing weightings, and current vendor pricing. Every output got cross-checked, and
+      judgment calls stay with me.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    <strong>Daniel Rodriguez</strong> · Account Scoring Blueprint · April 2026 ·
+    Prepared for Gladly RevOps Analyst / Cross-Functional Panel ·
+    <span style="color: var(--green);">gladly.ai</span>
+  </p>
+</footer>
+
+<script>
+  // Animate numbers on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section').forEach(s => observer.observe(s));
+
+  // Active nav link highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.style.color = '');
+        const id = entry.target.getAttribute('id');
+        const activeLink = document.querySelector(`.nav-links a[href="#${id}"]`);
+        if (activeLink) activeLink.style.color = 'var(--green)';
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => navObserver.observe(s));
+</script>
+</body>
+</html>
