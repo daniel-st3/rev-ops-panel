@@ -94,21 +94,36 @@
 
     .hero {
       position: relative;
-      padding: 28px 0 64px;
-      background:
-        radial-gradient(circle at 18% 28%, rgba(25, 179, 90, 0.16), transparent 22%),
-        radial-gradient(circle at 84% 18%, rgba(68, 120, 255, 0.14), transparent 18%),
-        linear-gradient(135deg, var(--hero) 0%, var(--hero-2) 100%);
-      color: #f3f7f6;
+      padding: 28px 0 50px;
       overflow: hidden;
     }
 
-    .hero::after {
-      content: "";
+    .hero-stage {
+      position: relative;
+      padding: 20px 26px 30px;
+      border-radius: 36px;
+      background:
+        radial-gradient(circle at top left, rgba(25, 179, 90, 0.08), transparent 30%),
+        radial-gradient(circle at 90% 12%, rgba(68, 120, 255, 0.08), transparent 22%),
+        linear-gradient(180deg, #ffffff 0%, #f9fbfa 54%, #f1f6f3 100%);
+      border: 1px solid rgba(193, 209, 204, 0.9);
+      box-shadow: 0 34px 72px rgba(15, 31, 29, 0.08);
+      overflow: hidden;
+    }
+
+    .hero-particles {
       position: absolute;
-      inset: auto 0 0 0;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.08);
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hero-particles span {
+      position: absolute;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(25, 179, 90, 0.22), rgba(25, 179, 90, 0));
+      animation: floatParticle linear infinite;
+      opacity: 0.75;
     }
 
     .hero-nav {
@@ -127,10 +142,34 @@
       min-width: 0;
     }
 
-    .brand img {
-      width: 168px;
-      height: auto;
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(180deg, #f7fcf8, #ebf5ef);
+      border: 1px solid rgba(193, 209, 204, 0.9);
+      box-shadow: 0 12px 24px rgba(15, 31, 29, 0.06);
+    }
+
+    .brand-mark img {
+      width: 24px;
+      height: 24px;
       object-fit: contain;
+    }
+
+    .brand-title {
+      display: grid;
+      gap: 2px;
+    }
+
+    .brand-title strong {
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      color: var(--ink);
     }
 
     .brand-meta {
@@ -143,13 +182,14 @@
       font-size: 0.9rem;
       font-weight: 700;
       letter-spacing: -0.02em;
+      color: var(--ink);
     }
 
     .brand-meta span {
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: rgba(243, 247, 246, 0.66);
+      color: var(--ink-muted);
     }
 
     .hero-links {
@@ -165,18 +205,19 @@
     .hero-link {
       padding: 10px 14px;
       border-radius: 999px;
-      color: rgba(243, 247, 246, 0.82);
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.11);
+      color: var(--ink-soft);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(193, 209, 204, 0.9);
       font-size: 0.8rem;
       font-weight: 600;
       letter-spacing: 0.02em;
       transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+      box-shadow: 0 10px 20px rgba(15, 31, 29, 0.04);
     }
 
     .hero-link:hover {
-      background: rgba(255, 255, 255, 0.14);
-      color: #ffffff;
+      background: #ffffff;
+      color: var(--ink);
       transform: translateY(-1px);
     }
 
@@ -202,7 +243,7 @@
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(243, 247, 246, 0.74);
+      color: var(--ink-muted);
     }
 
     .eyebrow::before {
@@ -221,6 +262,7 @@
       letter-spacing: -0.07em;
       max-width: 10ch;
       text-wrap: balance;
+      color: var(--ink);
     }
 
     .hero-copy p {
@@ -228,7 +270,7 @@
       max-width: 60ch;
       font-size: 1.02rem;
       line-height: 1.75;
-      color: rgba(243, 247, 246, 0.76);
+      color: var(--ink-soft);
     }
 
     .hero-highlights {
@@ -240,11 +282,12 @@
     .hero-highlight {
       padding: 12px 16px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.11);
-      color: rgba(243, 247, 246, 0.84);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(193, 209, 204, 0.88);
+      color: var(--ink-soft);
       font-size: 0.82rem;
       font-weight: 600;
+      box-shadow: 0 12px 20px rgba(15, 31, 29, 0.04);
     }
 
     .hero-actions {
@@ -273,26 +316,29 @@
     }
 
     .button-primary {
-      background: #ffffff;
-      color: var(--hero);
-      box-shadow: 0 18px 30px rgba(6, 14, 13, 0.2);
+      background: linear-gradient(135deg, var(--hero) 0%, var(--hero-2) 100%);
+      color: #ffffff;
+      box-shadow: 0 18px 30px rgba(6, 14, 13, 0.16);
     }
 
     .button-secondary {
-      background: rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--ink);
+      border: 1px solid rgba(193, 209, 204, 0.92);
     }
 
     .hero-preview {
       padding: 24px;
       border-radius: var(--radius-xl);
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 28px 46px rgba(5, 12, 11, 0.22);
+      background:
+        radial-gradient(circle at top left, rgba(25, 179, 90, 0.18), transparent 28%),
+        linear-gradient(145deg, #12322f 0%, #193f3b 100%);
+      border: 1px solid rgba(16, 41, 39, 0.22);
+      box-shadow: 0 28px 46px rgba(5, 12, 11, 0.16);
       display: grid;
       gap: 18px;
       min-height: 100%;
+      color: #f3f7f6;
     }
 
     .hero-preview-top {
@@ -457,6 +503,12 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 24px;
       align-items: stretch;
+    }
+
+    .results-panel {
+      position: sticky;
+      top: 20px;
+      align-self: start;
     }
 
     .panel {
@@ -1003,66 +1055,66 @@
       line-height: 1.55;
     }
 
-    .pipeline {
-      padding: 18px;
-      border-radius: 20px;
-      background:
-        linear-gradient(180deg, #fbfdfc 0%, #f4f8f6 100%);
-      border: 1px solid var(--line);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    .pipeline-studio {
+      padding: 34px 0 0;
+    }
+
+    .studio-flow {
+      position: relative;
       display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 18px;
-      overflow: hidden;
+      margin-bottom: 24px;
+      padding: 10px 0 2px;
     }
 
-    .pipeline-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .pipeline-head h4 {
-      margin: 0;
-      font-size: 1rem;
-      letter-spacing: -0.03em;
-    }
-
-    .pipeline-head p {
-      margin: 4px 0 0;
-      color: var(--ink-soft);
-      font-size: 0.88rem;
-      line-height: 1.55;
-    }
-
-    .pipeline-status {
-      display: inline-flex;
-      align-items: center;
+    .studio-node {
+      position: relative;
+      z-index: 1;
+      min-width: 0;
+      padding: 18px 16px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(193, 209, 204, 0.88);
+      box-shadow: var(--shadow-sm);
+      display: grid;
       gap: 8px;
-      font-size: 0.76rem;
+      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+    }
+
+    .studio-node.live {
+      transform: translateY(-3px);
+      border-color: rgba(25, 179, 90, 0.44);
+      box-shadow: 0 0 0 4px rgba(25, 179, 90, 0.08), var(--shadow-sm);
+    }
+
+    .studio-node span {
+      font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       font-weight: 700;
       color: var(--ink-muted);
     }
 
-    .pipeline-status::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 0 6px rgba(25, 179, 90, 0.12);
+    .studio-node strong {
+      font-size: 1rem;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
     }
 
-    .pipeline-track {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(6, minmax(110px, 1fr));
-      gap: 16px;
-      align-items: start;
-      min-width: 0;
+    .studio-node small {
+      font-size: 0.84rem;
+      line-height: 1.45;
+      color: var(--ink-soft);
+    }
+
+    .connector {
+      position: absolute;
+      top: 56px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(15, 31, 29, 0.08), rgba(15, 31, 29, 0.08));
+      overflow: hidden;
     }
 
     .connector {
@@ -1111,58 +1163,6 @@
       border-left: 8px solid rgba(68, 120, 255, 0.78);
     }
 
-    .node {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .node-visual {
-      min-height: 94px;
-      padding: 14px;
-      border-radius: 20px;
-      background: #ffffff;
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-sm);
-      display: grid;
-      align-content: center;
-      justify-items: center;
-      text-align: center;
-      gap: 8px;
-      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-    }
-
-    .node-visual.live {
-      border-color: rgba(25, 179, 90, 0.42);
-      box-shadow: 0 0 0 4px rgba(25, 179, 90, 0.08), var(--shadow-sm);
-      transform: translateY(-2px);
-    }
-
-    .node-kicker {
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-weight: 700;
-      color: var(--ink-muted);
-    }
-
-    .node-name {
-      font-size: 1rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 1.05;
-    }
-
-    .node-copy {
-      text-align: center;
-      color: var(--ink-soft);
-      font-size: 0.8rem;
-      line-height: 1.45;
-      min-height: 34px;
-    }
-
     .dashboard {
       padding: 38px 0 0;
     }
@@ -1171,10 +1171,11 @@
       border-radius: 32px;
       padding: 28px;
       background:
-        radial-gradient(circle at top left, rgba(25, 179, 90, 0.12), transparent 24%),
-        linear-gradient(180deg, var(--surface-dark) 0%, var(--surface-dark-2) 100%);
-      color: #eff5f3;
-      box-shadow: 0 36px 70px rgba(9, 17, 16, 0.18);
+        radial-gradient(circle at top left, rgba(25, 179, 90, 0.08), transparent 22%),
+        linear-gradient(180deg, #ffffff 0%, #f9fbfa 58%, #f0f5f2 100%);
+      color: var(--ink);
+      box-shadow: 0 36px 70px rgba(9, 17, 16, 0.08);
+      border: 1px solid rgba(193, 209, 204, 0.9);
     }
 
     .dashboard-head {
@@ -1195,14 +1196,14 @@
 
     .dashboard-head p {
       margin: 8px 0 0;
-      color: rgba(239, 245, 243, 0.72);
+      color: var(--ink-soft);
       line-height: 1.7;
       max-width: 62ch;
     }
 
     .dashboard-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.95fr 0.95fr;
+      grid-template-columns: 0.9fr 1.05fr 1fr;
       gap: 18px;
       align-items: stretch;
     }
@@ -1210,9 +1211,9 @@
     .dark-card {
       padding: 20px;
       border-radius: 22px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(193, 209, 204, 0.86);
+      box-shadow: var(--shadow-sm);
       display: grid;
       gap: 16px;
       min-width: 0;
@@ -1227,9 +1228,180 @@
 
     .dark-card p {
       margin: 0;
-      color: rgba(239, 245, 243, 0.72);
+      color: var(--ink-soft);
       font-size: 0.9rem;
       line-height: 1.6;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal.is-visible {
+      animation: revealUp 540ms ease both;
+    }
+
+    .source-slider-stack,
+    .studio-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .source-control {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
+      border-radius: 16px;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+    }
+
+    .source-control-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .source-control-head strong {
+      font-size: 0.92rem;
+      letter-spacing: -0.03em;
+    }
+
+    .source-control-head span {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .source-ledger,
+    .clay-rows,
+    .crm-fields,
+    .marketo-list,
+    .claude-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .ledger-row,
+    .clay-row,
+    .crm-field,
+    .marketo-row,
+    .claude-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      align-items: center;
+    }
+
+    .ledger-row small,
+    .clay-row small,
+    .crm-field small,
+    .marketo-row small,
+    .claude-row small {
+      display: block;
+      color: var(--ink-soft);
+      line-height: 1.45;
+      margin-top: 4px;
+      font-size: 0.8rem;
+    }
+
+    .mini-mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pill-mini {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .pill-mini.green {
+      background: var(--green-soft);
+      color: var(--green-deep);
+    }
+
+    .pill-mini.blue {
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+
+    .pill-mini.amber {
+      background: var(--amber-soft);
+      color: #a66f14;
+    }
+
+    .pill-mini.rose {
+      background: var(--rose-soft);
+      color: var(--rose);
+    }
+
+    .code-pane {
+      padding: 14px;
+      border-radius: 16px;
+      background: #102927;
+      color: rgba(239, 245, 243, 0.88);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.78rem;
+      line-height: 1.65;
+      overflow: auto;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .crm-window {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .crm-topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 16px;
+      background: linear-gradient(180deg, #edf2f8, #ffffff);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .crm-title strong {
+      display: block;
+      font-size: 0.96rem;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
+
+    .crm-title span {
+      display: block;
+      font-size: 0.76rem;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 5px;
+    }
+
+    .crm-body {
+      padding: 14px;
+      display: grid;
+      gap: 10px;
     }
 
     .impact-bars {
@@ -1246,7 +1418,7 @@
 
     .impact-label {
       font-size: 0.82rem;
-      color: rgba(239, 245, 243, 0.88);
+      color: var(--ink);
       line-height: 1.35;
       font-weight: 600;
     }
@@ -1255,7 +1427,7 @@
       position: relative;
       height: 12px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(15, 31, 29, 0.08);
       overflow: hidden;
     }
 
@@ -1288,83 +1460,7 @@
       font-weight: 800;
       font-variant-numeric: tabular-nums;
       letter-spacing: -0.03em;
-      color: #ffffff;
-    }
-
-    .sequence {
-      display: grid;
-      gap: 16px;
-    }
-
-    .sequence-rail {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      align-items: stretch;
-    }
-
-    .sequence-line {
-      position: absolute;
-      left: 12%;
-      right: 12%;
-      top: 46px;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.12);
-      z-index: 0;
-    }
-
-    .sequence-line::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(25, 179, 90, 0.9), transparent);
-      transform: translateX(-120%);
-      opacity: 0;
-    }
-
-    .sequence-line.is-live::after {
-      animation: syncFlow 1.2s linear;
-      opacity: 1;
-    }
-
-    .sequence-step {
-      position: relative;
-      z-index: 1;
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      min-height: 150px;
-      display: grid;
-      align-content: start;
-      gap: 10px;
-      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
-    }
-
-    .sequence-step.is-active {
-      transform: translateY(-3px);
-      border-color: rgba(25, 179, 90, 0.42);
-      background: rgba(25, 179, 90, 0.08);
-    }
-
-    .sequence-step span {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-weight: 700;
-      color: rgba(239, 245, 243, 0.56);
-    }
-
-    .sequence-step strong {
-      font-size: 1rem;
-      line-height: 1.35;
-      letter-spacing: -0.03em;
-    }
-
-    .sequence-step p {
-      font-size: 0.86rem;
-      line-height: 1.6;
+      color: var(--ink);
     }
 
     .dashboard-metrics {
@@ -1375,8 +1471,8 @@
     .dashboard-metric {
       padding: 16px;
       border-radius: 18px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
       display: grid;
       gap: 7px;
     }
@@ -1386,7 +1482,7 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       font-weight: 700;
-      color: rgba(239, 245, 243, 0.56);
+      color: var(--ink-muted);
     }
 
     .dashboard-metric strong {
@@ -1396,7 +1492,7 @@
     }
 
     .dashboard-metric small {
-      color: rgba(239, 245, 243, 0.66);
+      color: var(--ink-soft);
       line-height: 1.55;
       font-size: 0.84rem;
     }
@@ -1527,6 +1623,34 @@
       }
     }
 
+    @keyframes floatParticle {
+      0% {
+        transform: translate3d(0, 18px, 0) scale(0.92);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.7;
+      }
+      85% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translate3d(0, -28px, 0) scale(1.08);
+        opacity: 0;
+      }
+    }
+
+    @keyframes revealUp {
+      0% {
+        opacity: 0;
+        transform: translateY(26px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @media (max-width: 1180px) {
       .hero-grid,
       .workspace-grid,
@@ -1535,15 +1659,19 @@
         grid-template-columns: 1fr;
       }
 
+      .results-panel {
+        position: static;
+      }
+
       .hero-links {
         padding-left: 0;
         width: 100%;
         justify-content: flex-start;
       }
 
-      .pipeline-track {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        row-gap: 26px;
+      .studio-flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        row-gap: 14px;
       }
 
       .connector {
@@ -1574,8 +1702,9 @@
         display: none;
       }
 
-      .brand img {
-        width: 152px;
+      .brand-mark {
+        width: 40px;
+        height: 40px;
       }
 
       .hero-links {
@@ -1593,7 +1722,7 @@
       .metric-grid,
       .routing-grid,
       .preset-grid,
-      .sequence-rail {
+      .dashboard-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1615,97 +1744,98 @@
       .dashboard-wrap {
         padding: 18px;
       }
-
-      .pipeline-track {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .node-copy {
-        min-height: auto;
-      }
     }
   </style>
 </head>
 <body>
   <header class="hero" id="top">
     <div class="shell">
-      <div class="hero-nav">
-        <div class="brand">
-          <img src="./assets/gladly-wordmark.png" alt="Gladly" />
-          <div class="brand-meta">
-            <strong>Account Scoring Blueprint</strong>
-            <span>RevOps Prototype</span>
-          </div>
-        </div>
-        <nav class="hero-links" aria-label="Page sections">
-          <a class="hero-link" href="#prototype">Prototype</a>
-          <a class="hero-link" href="#dashboard">Dashboard</a>
-          <a class="hero-link" href="#footer">Footer</a>
-        </nav>
-      </div>
+      <div class="hero-stage">
+        <div class="hero-particles" id="heroParticles" aria-hidden="true"></div>
 
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow">Exact ICP Math + RevOps Pipeline Simulator</div>
-          <h1>Gladly Account Scoring Engine</h1>
-          <p>
-            Interactive ICP Calculator &amp; RevOps Pipeline Simulator. Tune the real fit and timing
-            signals, watch the composite score recalculate instantly, and see exactly how the account
-            moves from enrichment to Salesforce to Marketo activation.
-          </p>
-          <div class="hero-highlights">
-            <div class="hero-highlight">Fit uses the official point model</div>
-            <div class="hero-highlight">Timing saturates at 50 points</div>
-            <div class="hero-highlight">Salesforce master → Marketo downstream only</div>
+        <div class="hero-nav">
+          <div class="brand">
+            <div class="brand-mark">
+              <img src="./assets/gladly-icon.png" alt="Gladly icon" />
+            </div>
+            <div class="brand-title">
+              <strong>Gladly</strong>
+            </div>
+            <div class="brand-meta">
+              <strong>Account Scoring Blueprint</strong>
+              <span>RevOps Prototype</span>
+            </div>
           </div>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#prototype">Open the prototype</a>
-            <a class="button button-secondary" href="https://github.com/daniel-st3/rev-ops-panel.git" target="_blank" rel="noreferrer">View source</a>
-          </div>
+          <nav class="hero-links" aria-label="Page sections">
+            <a class="hero-link" href="#prototype">Prototype</a>
+            <a class="hero-link" href="#dashboard">Pipeline</a>
+            <a class="hero-link" href="#footer">Footer</a>
+          </nav>
         </div>
 
-        <div class="hero-preview">
-          <div class="hero-preview-top">
-            <div>
-              <h2>What this page does</h2>
-              <p>
-                One control plane for scoring, routing, and downstream activation. No disconnected demo
-                widgets. Every input updates the same engine.
-              </p>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">Exact ICP Math + RevOps Pipeline Simulator</div>
+            <h1>Gladly Account Scoring Engine</h1>
+            <p>
+              Interactive ICP Calculator &amp; RevOps Pipeline Simulator. Tune the real fit and timing
+              signals, watch the composite score recalculate instantly, and follow the full data path
+              from source enrichment into Clay, Claude, Salesforce, and Marketo.
+            </p>
+            <div class="hero-highlights">
+              <div class="hero-highlight">Score the account with the official fit + timing model</div>
+              <div class="hero-highlight">Keep the results visible while you move the controls</div>
+              <div class="hero-highlight">See the actual field flow into Salesforce and Marketo</div>
             </div>
-            <div class="hero-metric">
-              <span>Live tier</span>
-              <strong id="hero-tier">A</strong>
-            </div>
-          </div>
-
-          <div class="hero-math">
-            <div class="hero-math-card">
-              <span>Fit</span>
-              <strong id="hero-fit">95</strong>
-            </div>
-            <div class="hero-math-card">
-              <span>Timing</span>
-              <strong id="hero-timing">50</strong>
-            </div>
-            <div class="hero-math-card">
-              <span>Composite</span>
-              <strong id="hero-composite">145</strong>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#prototype">Open the prototype</a>
+              <a class="button button-secondary" href="#dashboard">Jump to the pipeline flow</a>
             </div>
           </div>
 
-          <div class="hero-rail">
-            <div class="rail-step" data-rail-step="0">
-              <span>1</span>
-              <strong>Enrich with sequence.</strong>
+          <div class="hero-preview">
+            <div class="hero-preview-top">
+              <div>
+                <h2>What this page does</h2>
+                <p>
+                  One control plane for scoring, routing, and downstream activation. No disconnected demo
+                  widgets. Every input updates the same engine.
+                </p>
+              </div>
+              <div class="hero-metric">
+                <span>Live tier</span>
+                <strong id="hero-tier">A</strong>
+              </div>
             </div>
-            <div class="rail-step" data-rail-step="1">
-              <span>2</span>
-              <strong>Write with discipline.</strong>
+
+            <div class="hero-math">
+              <div class="hero-math-card">
+                <span>Fit</span>
+                <strong id="hero-fit">95</strong>
+              </div>
+              <div class="hero-math-card">
+                <span>Timing</span>
+                <strong id="hero-timing">50</strong>
+              </div>
+              <div class="hero-math-card">
+                <span>Composite</span>
+                <strong id="hero-composite">145</strong>
+              </div>
             </div>
-            <div class="rail-step" data-rail-step="2">
-              <span>3</span>
-              <strong>Activate downstream.</strong>
+
+            <div class="hero-rail">
+              <div class="rail-step" data-rail-step="0">
+                <span>1</span>
+                <strong>Enrich with sequence.</strong>
+              </div>
+              <div class="rail-step" data-rail-step="1">
+                <span>2</span>
+                <strong>Write with discipline.</strong>
+              </div>
+              <div class="rail-step" data-rail-step="2">
+                <span>3</span>
+                <strong>Activate downstream.</strong>
+              </div>
             </div>
           </div>
         </div>
@@ -1728,7 +1858,7 @@
         </div>
 
         <div class="workspace-grid">
-          <section class="panel">
+          <section class="panel results-panel">
             <div class="panel-header">
               <div>
                 <h3>Scenario Inputs</h3>
@@ -1990,123 +2120,183 @@
               </div>
             </div>
 
-            <div class="pipeline">
-              <div class="pipeline-head">
-                <div>
-                  <h4>RevOps pipeline</h4>
-                  <p>Every change re-enriches, re-scores, writes to Salesforce, then syncs read-only into Marketo.</p>
-                </div>
-                <div class="pipeline-status">Live downstream simulation</div>
-              </div>
-
-              <div class="pipeline-track" id="pipelineTrack">
-                <div class="connector" data-connector="0"></div>
-                <div class="connector" data-connector="1"></div>
-                <div class="connector" data-connector="2"></div>
-                <div class="connector" data-connector="3"></div>
-                <div class="connector sync" data-connector="4"></div>
-
-                <div class="node">
-                  <div class="node-visual" data-node="0">
-                    <div class="node-kicker">Source</div>
-                    <div class="node-name">ZoomInfo</div>
-                  </div>
-                  <div class="node-copy">Firmographics and contact data enter the sequence.</div>
-                </div>
-                <div class="node">
-                  <div class="node-visual" data-node="1">
-                    <div class="node-kicker">Orchestrate</div>
-                    <div class="node-name">n8n</div>
-                  </div>
-                  <div class="node-copy">The flow triggers the enrichment and scoring jobs.</div>
-                </div>
-                <div class="node">
-                  <div class="node-visual" data-node="2">
-                    <div class="node-kicker">Enrich</div>
-                    <div class="node-name">Clay</div>
-                  </div>
-                  <div class="node-copy">Account context and web signals are normalized into one record.</div>
-                </div>
-                <div class="node">
-                  <div class="node-visual" data-node="3">
-                    <div class="node-kicker">Reason</div>
-                    <div class="node-name">Claude</div>
-                  </div>
-                  <div class="node-copy">Fit + Timing are calculated and routed to the correct motion.</div>
-                </div>
-                <div class="node">
-                  <div class="node-visual" data-node="4">
-                    <div class="node-kicker">Master record</div>
-                    <div class="node-name">Salesforce</div>
-                  </div>
-                  <div class="node-copy">The scored account is written with discipline into the CRM.</div>
-                </div>
-                <div class="node">
-                  <div class="node-visual" data-node="5">
-                    <div class="node-kicker">Activate</div>
-                    <div class="node-name">Marketo</div>
-                  </div>
-                  <div class="node-copy">Read-only sync powers alerting, nurture, and suppression.</div>
-                </div>
-              </div>
-            </div>
           </section>
         </div>
       </div>
     </section>
 
-    <section class="dashboard" id="dashboard">
+    <section class="dashboard pipeline-studio" id="dashboard">
       <div class="shell">
         <div class="dashboard-wrap">
           <div class="dashboard-head">
             <div>
-              <div class="section-kicker" style="color: rgba(239,245,243,0.62);">Professional Dashboard</div>
-              <h2>Everything below is fed by the same scoring mock.</h2>
+              <div class="section-kicker">Connected Pipeline Flow</div>
+              <h2>Move the scoring controls above. This entire flow updates with them.</h2>
               <p>
-                This section is not a separate deck. It is a live operating view showing signal impact,
-                routing cadence, and activation readiness from the exact state above.
+                Step by step: source coverage feeds Clay enrichment, Claude generates the scoring rationale,
+                Salesforce becomes the master record, and Marketo activates the tiered motion.
               </p>
             </div>
           </div>
 
+          <div class="studio-flow reveal" id="pipelineTrack">
+            <div class="connector" data-connector="0"></div>
+            <div class="connector" data-connector="1"></div>
+            <div class="connector" data-connector="2"></div>
+            <div class="connector sync" data-connector="3"></div>
+
+            <div class="studio-node" data-node="0">
+              <span>Step 1</span>
+              <strong>n8n</strong>
+              <small>Orchestrates the source pull and record handoff.</small>
+            </div>
+            <div class="studio-node" data-node="1">
+              <span>Step 2</span>
+              <strong>Clay</strong>
+              <small>Normalizes firmographics, intent, and first-party context.</small>
+            </div>
+            <div class="studio-node" data-node="2">
+              <span>Step 3</span>
+              <strong>Claude API</strong>
+              <small>Reasons over fit and timing to produce the routing logic.</small>
+            </div>
+            <div class="studio-node" data-node="3">
+              <span>Step 4</span>
+              <strong>Salesforce</strong>
+              <small>Stores the scored fields and the operating motion.</small>
+            </div>
+            <div class="studio-node" data-node="4">
+              <span>Step 5</span>
+              <strong>Marketo</strong>
+              <small>Consumes the synced fields for nurture, alerting, or suppression.</small>
+            </div>
+          </div>
+
           <div class="dashboard-grid">
-            <article class="dark-card">
+            <article class="dark-card reveal">
               <div>
-                <h3>Signal impact</h3>
-                <p>Each active slider drives one contribution bar. Negative ICP conditions subtract from the score.</p>
+                <h3>Source controls</h3>
+                <p>These sliders do not change the official score math. They change the amount of context flowing through the pipeline.</p>
               </div>
+              <div class="source-slider-stack">
+                <div class="source-control">
+                  <div class="source-control-head">
+                    <strong>ZoomInfo firmographics</strong>
+                    <span id="zoomInfoValue">82%</span>
+                  </div>
+                  <input class="slider" id="zoomInfoSlider" type="range" min="30" max="100" step="1" value="82" />
+                </div>
+                <div class="source-control">
+                  <div class="source-control-head">
+                    <strong>6sense intent depth</strong>
+                    <span id="intentDepthValue">78%</span>
+                  </div>
+                  <input class="slider" id="intentDepthSlider" type="range" min="0" max="100" step="1" value="78" />
+                </div>
+                <div class="source-control">
+                  <div class="source-control-head">
+                    <strong>First-party engagement depth</strong>
+                    <span id="engagementDepthValue">64%</span>
+                  </div>
+                  <input class="slider" id="engagementDepthSlider" type="range" min="0" max="100" step="1" value="64" />
+                </div>
+              </div>
+              <div class="source-ledger" id="sourceLedger"></div>
+            </article>
+
+            <article class="dark-card reveal">
+              <div>
+                <h3>Clay virtual enrichment</h3>
+                <p>See what gets assembled before the score is written anywhere downstream.</p>
+              </div>
+              <div class="clay-rows" id="clayRows"></div>
+              <div class="code-pane" id="clayPayload"></div>
               <div class="impact-bars" id="impactBars"></div>
             </article>
 
-            <article class="dark-card sequence">
-              <div>
-                <h3>Operating cadence</h3>
-                <p>The animation below follows the exact pipeline each time a signal changes.</p>
-              </div>
-              <div class="sequence-rail">
-                <div class="sequence-line" id="sequenceLine"></div>
-                <div class="sequence-step" data-sequence-step="0">
-                  <span>Enrich</span>
-                  <strong>Enrich with sequence.</strong>
-                  <p id="sequenceEnrich">Pull the latest account and engagement context into the model.</p>
+            <div class="studio-stack">
+              <article class="dark-card reveal">
+                <div>
+                  <h3>Claude scoring rationale</h3>
+                  <p>The reasoning layer explains which live signals are doing the work.</p>
                 </div>
-                <div class="sequence-step" data-sequence-step="1">
-                  <span>Write</span>
-                  <strong>Write with discipline.</strong>
-                  <p id="sequenceWrite">Push scored fields and routing into Salesforce as the master record.</p>
-                </div>
-                <div class="sequence-step" data-sequence-step="2">
-                  <span>Activate</span>
-                  <strong>Activate downstream.</strong>
-                  <p id="sequenceActivate">Sync read-only to Marketo for alerts, nurture, or suppression.</p>
-                </div>
-              </div>
-            </article>
+                <div class="claude-list" id="claudeList"></div>
+              </article>
 
-            <article class="dark-card">
+              <article class="dark-card reveal">
+                <div>
+                  <h3>Salesforce master record</h3>
+                  <p>A cleaner CRM-style snapshot of the scored account and its routing fields.</p>
+                </div>
+                <div class="crm-window">
+                  <div class="crm-topbar">
+                    <div class="crm-title">
+                      <strong id="sfdcAccountName">Harbor &amp; Pine Goods</strong>
+                      <span>Account • Gladly Scoring Console</span>
+                    </div>
+                    <div class="pill-mini blue">Master record</div>
+                  </div>
+                  <div class="crm-body">
+                    <div class="crm-fields">
+                      <div class="crm-field">
+                        <div><strong>Fit_Score__c</strong><small>Account fit score stored in Salesforce.</small></div>
+                        <div class="mini-mono" id="sfdcFit">95</div>
+                      </div>
+                      <div class="crm-field">
+                        <div><strong>Timing_Score__c</strong><small>Timing score with the 50-point saturation applied.</small></div>
+                        <div class="mini-mono" id="sfdcTiming">50</div>
+                      </div>
+                      <div class="crm-field">
+                        <div><strong>Composite_Score__c</strong><small>Final composite used for routing and activation.</small></div>
+                        <div class="mini-mono" id="sfdcComposite">145</div>
+                      </div>
+                      <div class="crm-field">
+                        <div><strong>Tier__c</strong><small>The live tier that determines the operating motion.</small></div>
+                        <div class="mini-mono" id="sfdcTier">Tier A</div>
+                      </div>
+                      <div class="crm-field">
+                        <div><strong>Routing__c</strong><small>Sales motion selected by the scoring model.</small></div>
+                        <div class="mini-mono" id="sfdcRouting">1:1 ABM</div>
+                      </div>
+                      <div class="crm-field">
+                        <div><strong>Sync_Health__c</strong><small>Derived from source coverage flowing through enrichment.</small></div>
+                        <div class="mini-mono" id="sfdcHealth">74%</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="dark-card reveal">
+                <div>
+                  <h3>Marketo activation</h3>
+                  <p>Read-only sync drives the right campaign, alert, or suppression state.</p>
+                </div>
+                <div class="marketo-list">
+                  <div class="marketo-row">
+                    <div><strong>Program</strong><small id="marketoProgramCopy">Named account acceleration is active.</small></div>
+                    <div class="pill-mini green" id="marketoProgramPill">Tier A</div>
+                  </div>
+                  <div class="marketo-row">
+                    <div><strong>Smart list</strong><small id="marketoListCopy">Current downstream segmentation state.</small></div>
+                    <div class="mini-mono" id="marketoList">Named Account Program</div>
+                  </div>
+                  <div class="marketo-row">
+                    <div><strong>Flow action</strong><small id="marketoActionCopy">The current operational next step.</small></div>
+                    <div class="mini-mono" id="marketoAction">MQA alert via Sales Insight</div>
+                  </div>
+                  <div class="marketo-row">
+                    <div><strong>Sync mode</strong><small>Salesforce is the master. Marketo only consumes synced fields.</small></div>
+                    <div class="pill-mini blue">Read-only sync</div>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <article class="dark-card reveal">
               <div>
-                <h3>Downstream view</h3>
-                <p>Live operational outputs for sales, RevOps, and marketing.</p>
+                <h3>Live downstream view</h3>
+                <p>Compact operating summary pulled from the same state as the score above.</p>
               </div>
               <div class="dashboard-metrics">
                 <div class="dashboard-metric">
@@ -2153,7 +2343,7 @@
       <nav class="footer-links" aria-label="Footer navigation">
         <a href="#top">Back to top</a>
         <a href="#prototype">Prototype workspace</a>
-        <a href="#dashboard">Live dashboard</a>
+        <a href="#dashboard">Pipeline flow</a>
       </nav>
 
       <div class="footer-right">
@@ -2244,7 +2434,10 @@
       helpdesk: 1,
       intent: 1,
       hiring: 1,
-      pricing: 1
+      pricing: 1,
+      zoomInfo: 82,
+      intentDepth: 78,
+      engagementDepth: 64
     };
 
     const scoreMeta = {
@@ -2346,11 +2539,32 @@
       dashboardRoutingCopy: document.getElementById("dashboardRoutingCopy"),
       dashboardAction: document.getElementById("dashboardAction"),
       dashboardActionCopy: document.getElementById("dashboardActionCopy"),
-      sequenceLine: document.getElementById("sequenceLine")
+      zoomInfoSlider: document.getElementById("zoomInfoSlider"),
+      intentDepthSlider: document.getElementById("intentDepthSlider"),
+      engagementDepthSlider: document.getElementById("engagementDepthSlider"),
+      zoomInfoValue: document.getElementById("zoomInfoValue"),
+      intentDepthValue: document.getElementById("intentDepthValue"),
+      engagementDepthValue: document.getElementById("engagementDepthValue"),
+      sourceLedger: document.getElementById("sourceLedger"),
+      clayRows: document.getElementById("clayRows"),
+      clayPayload: document.getElementById("clayPayload"),
+      claudeList: document.getElementById("claudeList"),
+      sfdcAccountName: document.getElementById("sfdcAccountName"),
+      sfdcFit: document.getElementById("sfdcFit"),
+      sfdcTiming: document.getElementById("sfdcTiming"),
+      sfdcComposite: document.getElementById("sfdcComposite"),
+      sfdcTier: document.getElementById("sfdcTier"),
+      sfdcRouting: document.getElementById("sfdcRouting"),
+      sfdcHealth: document.getElementById("sfdcHealth"),
+      marketoProgramCopy: document.getElementById("marketoProgramCopy"),
+      marketoProgramPill: document.getElementById("marketoProgramPill"),
+      marketoList: document.getElementById("marketoList"),
+      marketoListCopy: document.getElementById("marketoListCopy"),
+      marketoAction: document.getElementById("marketoAction"),
+      marketoActionCopy: document.getElementById("marketoActionCopy")
     };
 
     const railSteps = Array.from(document.querySelectorAll("[data-rail-step]"));
-    const sequenceSteps = Array.from(document.querySelectorAll("[data-sequence-step]"));
     const pipelineNodes = Array.from(document.querySelectorAll("[data-node]"));
     const pipelineConnectors = Array.from(document.querySelectorAll("[data-connector]"));
 
@@ -2583,6 +2797,121 @@
         .join("");
     }
 
+    function renderStudio(result) {
+      const dataHealth = Math.round((state.zoomInfo + state.intentDepth + state.engagementDepth) / 3);
+      const clayFieldCount = Math.round(12 + dataHealth / 6);
+      const matchedContacts = Math.round(6 + state.zoomInfo / 9);
+      const behaviorPackets = Math.round(2 + state.engagementDepth / 14);
+      const intentTopics = Math.round(1 + state.intentDepth / 18);
+
+      els.zoomInfoValue.textContent = `${state.zoomInfo}%`;
+      els.intentDepthValue.textContent = `${state.intentDepth}%`;
+      els.engagementDepthValue.textContent = `${state.engagementDepth}%`;
+
+      styleSlider(els.zoomInfoSlider, 100);
+      styleSlider(els.intentDepthSlider, 100);
+      styleSlider(els.engagementDepthSlider, 100);
+
+      els.sourceLedger.innerHTML = `
+        <div class="ledger-row">
+          <div><strong>ZoomInfo</strong><small>Firmographics and contact coverage available to Clay.</small></div>
+          <div class="pill-mini ${state.zoomInfo >= 70 ? "green" : state.zoomInfo >= 45 ? "amber" : "rose"}">${state.zoomInfo}% coverage</div>
+        </div>
+        <div class="ledger-row">
+          <div><strong>6sense</strong><small>Decision-stage depth and topic intensity flowing into timing.</small></div>
+          <div class="pill-mini ${state.intentDepth >= 65 ? "green" : state.intentDepth >= 35 ? "amber" : "rose"}">${intentTopics} live topics</div>
+        </div>
+        <div class="ledger-row">
+          <div><strong>First-party</strong><small>Pricing, webinar, and web engagement context for the record.</small></div>
+          <div class="pill-mini ${state.engagementDepth >= 60 ? "green" : state.engagementDepth >= 30 ? "amber" : "rose"}">${behaviorPackets} active packets</div>
+        </div>
+      `;
+
+      els.clayRows.innerHTML = `
+        <div class="clay-row">
+          <div><strong>Firmographics normalized</strong><small>${matchedContacts} matched contacts, company scale, and CRM-safe firmographic fields.</small></div>
+          <div class="mini-mono">${state.zoomInfo}%</div>
+        </div>
+        <div class="clay-row">
+          <div><strong>Intent resolved</strong><small>${intentTopics} decision-stage topics available for timing evaluation.</small></div>
+          <div class="mini-mono">${state.intentDepth}%</div>
+        </div>
+        <div class="clay-row">
+          <div><strong>Engagement appended</strong><small>${behaviorPackets} first-party packets connected to pricing and webinar behavior.</small></div>
+          <div class="mini-mono">${state.engagementDepth}%</div>
+        </div>
+        <div class="clay-row">
+          <div><strong>Enriched record output</strong><small>${clayFieldCount} downstream-safe fields ready for Claude and Salesforce.</small></div>
+          <div class="pill-mini blue">Ready</div>
+        </div>
+      `;
+
+      els.clayPayload.textContent = [
+        "{",
+        `  account: "${state.accountName}",`,
+        `  fit_score: ${result.fit},`,
+        `  timing_score: ${result.timing},`,
+        `  composite_score: ${result.composite},`,
+        `  tier: "Tier ${result.tier}",`,
+        `  enriched_fields: ${clayFieldCount},`,
+        `  sync_health: "${dataHealth}%"`,
+        "}"
+      ].join("\n");
+
+      els.claudeList.innerHTML = `
+        <div class="claude-row">
+          <div><strong>Fit reasoning</strong><small>${result.fitBreakdown.filter((item) => item.points !== 0).map((item) => `${item.label} ${formatPoints(item.points)}`).join(" · ") || "No fit signals active."}</small></div>
+          <div class="pill-mini green">${result.fit} fit</div>
+        </div>
+        <div class="claude-row">
+          <div><strong>Timing reasoning</strong><small>${result.timingBreakdown.filter((item) => item.points !== 0).map((item) => `${item.label} ${formatPoints(item.points)}`).join(" · ") || "No timing signals active."}</small></div>
+          <div class="pill-mini amber">${result.timing} timing</div>
+        </div>
+        <div class="claude-row">
+          <div><strong>Routing decision</strong><small>${result.rationale}</small></div>
+          <div class="pill-mini blue">Tier ${result.tier}</div>
+        </div>
+      `;
+
+      els.sfdcAccountName.textContent = state.accountName;
+      els.sfdcFit.textContent = result.fit;
+      els.sfdcTiming.textContent = result.timing;
+      els.sfdcComposite.textContent = result.composite;
+      els.sfdcTier.textContent = `Tier ${result.tier}`;
+      els.sfdcRouting.textContent = result.motion;
+      els.sfdcHealth.textContent = `${dataHealth}%`;
+
+      let program = "Suppression";
+      let listName = "Tier D suppression";
+      let actionCopy = "High-cost activation stays off until the score improves.";
+      let pillClass = "rose";
+
+      if (result.tier === "A") {
+        program = "Tier A";
+        listName = "Named Account Program";
+        actionCopy = "MQA alert and fast AE/SDR handoff are active.";
+        pillClass = "green";
+      } else if (result.tier === "B") {
+        program = "Tier B";
+        listName = "Sub-vertical smart list";
+        actionCopy = "Targeted nurture and 30-minute SDR pickup are active.";
+        pillClass = "blue";
+      } else if (result.tier === "C") {
+        program = "Tier C";
+        listName = "Low-touch nurture stream";
+        actionCopy = "Automated nurture is active without a sales SLA.";
+        pillClass = "amber";
+      }
+
+      els.marketoProgramCopy.textContent = `${program} activation reflects the current composite score.`;
+      els.marketoProgramPill.textContent = program;
+      els.marketoProgramPill.className = `pill-mini ${pillClass}`;
+      els.marketoList.textContent = listName;
+      els.marketoListCopy.textContent = `Current segmentation is driven by Tier ${result.tier}.`;
+      els.marketoAction.textContent = result.action;
+      els.marketoActionCopy.textContent = actionCopy;
+    }
+
     function animateNumber(element, target) {
       const start = currentAnimatedScore;
       const diff = target - start;
@@ -2655,11 +2984,12 @@
       els.dashboardActionCopy.textContent = result.rationale;
 
       renderImpactBars(result);
+      renderStudio(result);
     }
 
     function triggerMotion() {
       pipelineConnectors.forEach((connector, index) => {
-        if (index < 4) {
+        if (!connector.classList.contains("sync") || index < pipelineConnectors.length) {
           connector.classList.remove("pulse");
           void connector.offsetWidth;
           setTimeout(() => connector.classList.add("pulse"), index * 90);
@@ -2668,14 +2998,12 @@
       });
 
       pipelineNodes.forEach((node) => node.classList.remove("live"));
-      [0, 1, 2, 3, 4, 5].forEach((index) => {
-        setTimeout(() => pipelineNodes[index]?.classList.add("live"), index * 120);
-        setTimeout(() => pipelineNodes[index]?.classList.remove("live"), 1300 + index * 120);
+      pipelineNodes.forEach((node, index) => {
+        setTimeout(() => node.classList.add("live"), index * 120);
+        setTimeout(() => node.classList.remove("live"), 1300 + index * 120);
       });
 
       railSteps.forEach((step) => step.classList.remove("is-live"));
-      sequenceSteps.forEach((step) => step.classList.remove("is-active"));
-      els.sequenceLine.classList.remove("is-live");
 
       clearTimeout(motionTimer);
 
@@ -2684,14 +3012,8 @@
         setTimeout(() => step.classList.remove("is-live"), 1000 + index * 180);
       });
 
-      els.sequenceLine.classList.add("is-live");
-      sequenceSteps.forEach((step, index) => {
-        setTimeout(() => step.classList.add("is-active"), index * 180);
-      });
-
       motionTimer = setTimeout(() => {
-        sequenceSteps.forEach((step) => step.classList.remove("is-active"));
-        els.sequenceLine.classList.remove("is-live");
+        pipelineNodes.forEach((node) => node.classList.remove("live"));
       }, 1800);
     }
 
@@ -2718,13 +3040,25 @@
           triggerMotion();
         });
       });
+
+      [
+        ["zoomInfoSlider", "zoomInfo"],
+        ["intentDepthSlider", "intentDepth"],
+        ["engagementDepthSlider", "engagementDepth"]
+      ].forEach(([id, key]) => {
+        els[id].addEventListener("input", (event) => {
+          state[key] = Number(event.target.value);
+          render();
+          triggerMotion();
+        });
+      });
     }
 
     function positionConnectors() {
       const track = document.getElementById("pipelineTrack");
       if (!track || window.innerWidth <= 1180) return;
 
-      const nodes = Array.from(track.querySelectorAll(".node"));
+      const nodes = Array.from(track.querySelectorAll("[data-node]"));
       const connectors = Array.from(track.querySelectorAll(".connector"));
       const trackRect = track.getBoundingClientRect();
 
@@ -2742,10 +3076,38 @@
       });
     }
 
+    function initHeroParticles() {
+      const holder = document.getElementById("heroParticles");
+      if (!holder) return;
+      const particles = Array.from({ length: 18 }, (_, index) => {
+        const size = 6 + (index % 5) * 4;
+        const left = 5 + ((index * 11) % 90);
+        const top = 8 + ((index * 13) % 72);
+        const duration = 8 + (index % 4) * 2;
+        const delay = (index % 6) * 0.8;
+        return `<span style="width:${size}px;height:${size}px;left:${left}%;top:${top}%;animation-duration:${duration}s;animation-delay:${delay}s;"></span>`;
+      });
+      holder.innerHTML = particles.join("");
+    }
+
+    function initReveal() {
+      const items = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        });
+      }, { threshold: 0.14 });
+      items.forEach((item) => observer.observe(item));
+    }
+
     renderPresets();
     syncControls();
     render();
     bindControls();
+    initHeroParticles();
+    initReveal();
     triggerMotion();
     positionConnectors();
     window.addEventListener("resize", positionConnectors);
