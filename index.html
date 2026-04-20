@@ -5331,6 +5331,535 @@
         border-radius: 18px 18px 0 0;
       }
     }
+
+    /* Performance-first redesign */
+    #splash-screen {
+      display: none !important;
+    }
+
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .panel {
+      display: grid;
+      gap: 16px;
+    }
+
+    .prototype-bottom-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .proto-card {
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(249, 246, 240, 0.98), rgba(244, 240, 232, 0.92));
+      border: 1px solid rgba(16, 17, 15, 0.06);
+      min-width: 0;
+    }
+
+    .proto-card > strong {
+      font-size: 1.1rem;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+    }
+
+    .proto-card p {
+      margin: 0;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      font-size: 0.88rem;
+    }
+
+    .proto-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .proto-stat {
+      display: grid;
+      gap: 4px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(16, 17, 15, 0.05);
+    }
+
+    .proto-stat span {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .proto-stat strong {
+      font-size: 0.95rem;
+      line-height: 1.1;
+    }
+
+    .proto-pipeline {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .proto-stage {
+      position: relative;
+      display: grid;
+      gap: 6px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(16, 17, 15, 0.05);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .proto-stage span,
+    .journey-stage span,
+    .command-pipeline-node span,
+    .command-tier-row span,
+    .journey-summary-stat span,
+    .journey-index,
+    .command-validation span,
+    .command-layer-row span:first-child,
+    .command-pill {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .proto-stage strong,
+    .journey-stage strong,
+    .command-pipeline-node strong,
+    .command-tier-row strong {
+      font-size: 0.88rem;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
+
+    .proto-stage.is-active,
+    .journey-stage.is-active,
+    .command-pipeline-node.is-active {
+      transform: translateY(-2px);
+      border-color: rgba(20, 170, 60, 0.26);
+      background: linear-gradient(180deg, rgba(20, 170, 60, 0.14), rgba(255, 255, 255, 0.82));
+      box-shadow: 0 12px 24px rgba(20, 170, 60, 0.08);
+    }
+
+    .journey-section,
+    .command-section {
+      padding-top: 26px;
+    }
+
+    .journey-shell {
+      display: grid;
+      gap: 18px;
+    }
+
+    .journey-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .journey-copy,
+    .journey-summary-card,
+    .journey-card,
+    .command-card {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(16, 17, 15, 0.06);
+      min-width: 0;
+    }
+
+    .journey-copy {
+      display: grid;
+      gap: 10px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,243,235,0.92));
+    }
+
+    .journey-copy h3 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+    }
+
+    .journey-copy p,
+    .journey-card p,
+    .command-card p {
+      margin: 0;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      font-size: 0.92rem;
+    }
+
+    .journey-summary-card {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+      background: linear-gradient(180deg, rgba(17, 29, 28, 0.96), rgba(12, 19, 19, 0.98));
+      color: rgba(255, 250, 240, 0.9);
+    }
+
+    .journey-summary-card .section-label {
+      color: rgba(255, 246, 231, 0.54);
+    }
+
+    .journey-summary-card > strong {
+      font-size: 1.22rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .journey-summary-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .journey-summary-stat {
+      display: grid;
+      gap: 5px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255, 251, 245, 0.08);
+      border: 1px solid rgba(255, 246, 231, 0.08);
+    }
+
+    .journey-summary-stat span {
+      color: rgba(255, 246, 231, 0.52);
+    }
+
+    .journey-summary-stat strong {
+      font-size: 1.1rem;
+      line-height: 1;
+      color: #fffaf0;
+    }
+
+    .journey-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .journey-card {
+      display: grid;
+      gap: 10px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(246,242,234,0.92));
+    }
+
+    .journey-index {
+      color: var(--ink-faint);
+    }
+
+    .journey-card h3,
+    .command-card > strong {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .journey-meter,
+    .command-layer-track {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(16, 17, 15, 0.08);
+      overflow: hidden;
+    }
+
+    .journey-meter i,
+    .command-layer-track i {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #72cb87, var(--green));
+      transition: width 220ms ease;
+    }
+
+    .journey-meter.timing i,
+    .command-layer-track.timing i {
+      background: linear-gradient(90deg, #ffd079, var(--amber));
+    }
+
+    .journey-meter.confidence i,
+    .command-layer-track.confidence i {
+      background: linear-gradient(90deg, #7ca5ff, var(--blue));
+    }
+
+    .journey-route-pill {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(16, 17, 15, 0.06);
+      font-size: 0.82rem;
+      line-height: 1.2;
+    }
+
+    .journey-stage-strip {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      padding: 16px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(244,240,232,0.92));
+      border: 1px solid rgba(16, 17, 15, 0.06);
+    }
+
+    .journey-stage {
+      display: grid;
+      gap: 6px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(16, 17, 15, 0.05);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .command-shell {
+      display: grid;
+      gap: 16px;
+      padding: 18px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, #0f1b1a 0%, #0b1212 100%);
+      box-shadow: 0 24px 64px rgba(6, 10, 10, 0.24);
+      color: rgba(255, 250, 240, 0.92);
+    }
+
+    .command-topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .command-tabs,
+    .command-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .command-tab,
+    .command-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 246, 231, 0.12);
+      background: rgba(255, 251, 245, 0.06);
+      color: rgba(255, 246, 231, 0.66);
+      transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+    }
+
+    .command-tab.is-active,
+    .command-tab:hover {
+      background: rgba(255, 251, 245, 0.14);
+      color: #fffaf0;
+      border-color: rgba(255, 246, 231, 0.18);
+    }
+
+    .command-view {
+      display: none;
+    }
+
+    .command-view.is-active {
+      display: block;
+    }
+
+    .command-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .command-card {
+      display: grid;
+      gap: 12px;
+      background: rgba(255, 251, 245, 0.06);
+      border-color: rgba(255, 246, 231, 0.08);
+    }
+
+    .command-card .section-label {
+      color: rgba(255, 246, 231, 0.5);
+    }
+
+    .command-score-card {
+      align-content: start;
+    }
+
+    .command-score-value {
+      font-size: clamp(3rem, 6vw, 4.5rem);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      color: #fffaf0;
+    }
+
+    .command-layer-stack,
+    .command-validation {
+      display: grid;
+      gap: 10px;
+    }
+
+    .command-layer-row {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr) 42px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .command-layer-row strong {
+      text-align: right;
+      font-size: 0.92rem;
+      color: #fffaf0;
+    }
+
+    .command-chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .command-chip-group .signal-chip {
+      background: rgba(255,255,255,0.08);
+      color: #fffaf0;
+      border: 1px solid transparent;
+    }
+
+    .command-chip-group .signal-chip.fit {
+      background: rgba(20, 170, 60, 0.18);
+      border-color: rgba(20, 170, 60, 0.22);
+    }
+
+    .command-chip-group .signal-chip.timing {
+      background: rgba(240, 166, 66, 0.18);
+      border-color: rgba(240, 166, 66, 0.22);
+    }
+
+    .command-chip-group .signal-chip.confidence {
+      background: rgba(53, 103, 240, 0.18);
+      border-color: rgba(53, 103, 240, 0.22);
+    }
+
+    .command-card-wide {
+      grid-column: 1 / -1;
+    }
+
+    .command-pipeline {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .command-pipeline-node {
+      display: grid;
+      gap: 6px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(255, 251, 245, 0.06);
+      border: 1px solid rgba(255, 246, 231, 0.08);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .command-tier-ladder {
+      display: grid;
+      gap: 10px;
+    }
+
+    .command-tier-row {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 251, 245, 0.06);
+      border: 1px solid rgba(255, 246, 231, 0.08);
+      transition: background 160ms ease, border-color 160ms ease;
+    }
+
+    .command-tier-row.is-active {
+      background: rgba(20, 170, 60, 0.16);
+      border-color: rgba(20, 170, 60, 0.24);
+    }
+
+    .command-validation {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .command-validation div {
+      display: grid;
+      gap: 4px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255, 251, 245, 0.06);
+      border: 1px solid rgba(255, 246, 231, 0.08);
+    }
+
+    .command-validation strong {
+      color: #fffaf0;
+      font-size: 1rem;
+      line-height: 1.05;
+    }
+
+    @media (max-width: 1080px) {
+      .journey-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .command-pipeline {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 920px) {
+      .prototype-bottom-grid,
+      .journey-hero,
+      .journey-grid,
+      .command-grid,
+      .command-validation {
+        grid-template-columns: 1fr;
+      }
+
+      .proto-pipeline,
+      .journey-stage-strip,
+      .command-pipeline {
+        grid-template-columns: 1fr;
+      }
+
+      .command-tier-row,
+      .command-layer-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .proto-stats,
+      .journey-summary-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .command-shell {
+        padding: 14px;
+      }
+    }
     </style>
 </head>
 <body>
@@ -5540,6 +6069,39 @@
                   <p id="ae-rationale">Tier A: Harbor &amp; Pine is the kind of B2C account Gladly should pursue immediately because fit is strong, timing is live, and the confidence layer supports routing rather than undermining it.</p>
                 </div>
               </div>
+            </div>
+
+            <div class="prototype-bottom-grid">
+              <article class="proto-card">
+                <div class="section-label">Decision board</div>
+                <strong id="prototype-decision-title">High-conviction account with immediate outbound motion.</strong>
+                <p id="prototype-decision-copy">The scenario is clear enough to write, route, and activate without a governance hold.</p>
+                <div class="proto-stats">
+                  <div class="proto-stat">
+                    <span>Composite</span>
+                    <strong id="prototype-decision-score">97</strong>
+                  </div>
+                  <div class="proto-stat">
+                    <span>Confidence</span>
+                    <strong id="prototype-decision-confidence">High</strong>
+                  </div>
+                  <div class="proto-stat">
+                    <span>Motion</span>
+                    <strong id="prototype-decision-tier">Tier A</strong>
+                  </div>
+                </div>
+              </article>
+
+              <article class="proto-card">
+                <div class="section-label">Live pipeline</div>
+                <div class="proto-pipeline" id="proto-pipeline">
+                  <div class="proto-stage" data-pipeline-stage="source"><span>Source</span><strong>Signals loaded</strong></div>
+                  <div class="proto-stage" data-pipeline-stage="score"><span>Score</span><strong>Composite built</strong></div>
+                  <div class="proto-stage" data-pipeline-stage="trust"><span>Trust</span><strong>Write path checked</strong></div>
+                  <div class="proto-stage" data-pipeline-stage="route"><span>Route</span><strong>Tier assigned</strong></div>
+                  <div class="proto-stage" data-pipeline-stage="activate"><span>Activate</span><strong>Motion ready</strong></div>
+                </div>
+              </article>
             </div>
           </div>
 
@@ -5823,474 +6385,194 @@
       </div>
     </section>
 
-    <section class="section walkthrough-section" id="walkthrough">
-      <div class="section-heading reveal">
+    <section class="section journey-section" id="walkthrough">
+      <div class="section-heading">
         <div>
-          <div class="eyebrow">Walkthrough</div>
-          <h2>A step-by-step demo that people can scroll, click, drag, and pressure test.</h2>
+          <div class="eyebrow">Pipeline walkthrough</div>
+          <h2>One scenario moves through four scoring decisions and one downstream motion.</h2>
         </div>
         <p>
-          The walkthrough keeps the logic interactive instead of turning the prototype back into a document.
+          This view stays tied to the live prototype above, so the current scenario drives the story instead of a separate scroll toy.
         </p>
       </div>
 
-      <div class="walkthrough-shell reveal">
-        <div class="walkthrough-stack" id="walkthrough-stack">
-          <section class="walk-hero" id="walkthrough-hero">
-            <div class="walk-hero-inner">
-              <img class="walk-hero-icon" src="assets/gladly-icon.png" alt="Gladly plus icon" />
-              <h3 class="walk-hero-title">How the model thinks</h3>
-              <p class="walk-hero-copy">A step-by-step walkthrough of fit, timing, confidence, and activation. Touch everything.</p>
-              <button class="button walk-hero-cta" type="button" id="begin-walkthrough">Begin walkthrough</button>
+      <div class="journey-shell">
+        <div class="journey-hero">
+          <div class="journey-copy">
+            <div class="section-label">Current walkthrough state</div>
+            <h3>How the current account is being interpreted right now.</h3>
+            <p id="journey-rationale">Strong fit, live timing, and clean confidence combine into an active outbound-ready account.</p>
+          </div>
+          <div class="journey-summary-card">
+            <span class="section-label">Scenario</span>
+            <strong id="journey-scenario-name">Harbor &amp; Pine Goods</strong>
+            <div class="journey-summary-stats">
+              <div class="journey-summary-stat">
+                <span>Composite</span>
+                <strong id="journey-score">97</strong>
+              </div>
+              <div class="journey-summary-stat">
+                <span>Tier</span>
+                <strong id="journey-tier">Tier A</strong>
+              </div>
+              <div class="journey-summary-stat">
+                <span>Confidence</span>
+                <strong id="journey-confidence">High</strong>
+              </div>
             </div>
-            <div class="walk-hero-scroll" aria-hidden="true">
-              <span></span>
-            </div>
-          </section>
+          </div>
+        </div>
 
-          <section class="walk-step step-failure" data-step-index="0">
-            <div class="walk-step-content">
-              <div class="walk-progress">
-                <div class="walk-step-counter"><span class="walk-step-count">1 of 7</span></div>
-                <div class="walk-step-dots"></div>
-              </div>
-              <div>
-                <div class="section-label">Step 1</div>
-                <h3>Why account scoring fails.</h3>
-                <p>Most scoring models collapse because they mix up who is a good account with when to reach out and whether the data is trustworthy.</p>
-              </div>
-              <div class="failure-statements">
-                <div class="failure-statement"><span class="failure-number">1</span><span class="failure-word">Who</span></div>
-                <div class="failure-statement"><span class="failure-number">2</span><span class="failure-word">When</span></div>
-                <div class="failure-statement"><span class="failure-number">3</span><span class="failure-word">Whether</span></div>
-              </div>
-              <div class="walk-controls">
-                <button class="ghost-button walk-nav" data-walk-dir="-1" disabled>Back</button>
-                <button class="button walk-nav" data-walk-dir="1">Next</button>
-              </div>
-            </div>
-          </section>
+        <div class="journey-grid">
+          <article class="journey-card">
+            <span class="journey-index">01</span>
+            <h3>Fit</h3>
+            <p id="journey-fit-copy">The account looks like Gladly’s ICP, so the model keeps it in the priority set.</p>
+            <div class="journey-meter"><i id="journey-fit-bar"></i></div>
+            <strong id="journey-fit-stat">95 / 100</strong>
+          </article>
 
-          <section class="walk-step step-profile" data-step-index="1">
-            <div class="walk-step-content">
-              <div class="walk-progress">
-                <div class="walk-step-counter"><span class="walk-step-count">2 of 7</span></div>
-                <div class="walk-step-dots"></div>
-              </div>
-              <div>
-                <div class="section-label">Step 2</div>
-                <h3>What a high-fit Gladly account looks like.</h3>
-              </div>
-              <div class="profile-card" id="profile-card">
-                <div class="profile-topline section-label">COMPANY DOSSIER</div>
-                <strong class="profile-line" data-profile-line>Harbor &amp; Pine Goods</strong>
-                <div class="profile-badge-row">
-                  <span class="profile-badge badge-positive" data-profile-line>Retail DTC</span>
-                  <span class="profile-badge badge-positive" data-profile-line>Enterprise</span>
-                  <span class="profile-badge badge-positive" data-profile-line>Shopify Plus</span>
-                  <span class="profile-badge badge-neutral" data-profile-line>Zendesk</span>
-                </div>
-                <div class="profile-fit-score">
-                  <div class="profile-fit-orb">
-                    <svg viewBox="0 0 120 120" aria-hidden="true">
-                      <circle class="profile-fit-track" cx="60" cy="60" r="48" fill="none" stroke="rgba(16,17,15,0.08)" stroke-width="6"></circle>
-                      <circle class="profile-fit-ring" id="walk-fit-ring" cx="60" cy="60" r="48" fill="none" stroke="var(--green)" stroke-width="6" stroke-linecap="round" stroke-dasharray="301.59" stroke-dashoffset="301.59"></circle>
-                    </svg>
-                    <div class="profile-fit-number">
-                      <span>Fit score</span>
-                      <strong id="walk-fit-count">0</strong>
-                      <small>out of 100</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="walk-controls">
-                <button class="ghost-button walk-nav" data-walk-dir="-1">Back</button>
-                <button class="button walk-nav" data-walk-dir="1">Next</button>
-              </div>
-            </div>
-          </section>
+          <article class="journey-card">
+            <span class="journey-index">02</span>
+            <h3>Timing</h3>
+            <p id="journey-timing-copy">The signal mix is strong enough to justify immediate rep attention.</p>
+            <div class="journey-meter timing"><i id="journey-timing-bar"></i></div>
+            <strong id="journey-timing-stat">50 / 50</strong>
+          </article>
 
-          <section class="walk-step step-fit" data-step-index="2">
-            <div class="walk-step-content">
-              <div class="walk-progress">
-                <div class="walk-step-counter"><span class="walk-step-count">3 of 7</span></div>
-                <div class="walk-step-dots"></div>
-              </div>
-              <div>
-                <div class="section-label">Step 3</div>
-                <h3>Fit decides who.</h3>
-              </div>
-              <div class="fit-builder">
-                <div class="fit-score-readout">
-                  <span>Live fit score</span>
-                  <strong id="walk-fit-live">95</strong>
-                </div>
-                <div class="fit-bars">
-                  <div class="walk-fit-row positive" data-walk-weight="enterprise">
-                    <span class="walk-fit-label">Enterprise scale</span>
-                    <div class="walk-fit-track"><div class="walk-fit-fill"></div></div>
-                    <strong class="walk-fit-value" id="walk-label-enterprise">35</strong>
-                  </div>
-                  <div class="walk-fit-row positive" data-walk-weight="vertical">
-                    <span class="walk-fit-label">Retail DTC Travel</span>
-                    <div class="walk-fit-track"><div class="walk-fit-fill"></div></div>
-                    <strong class="walk-fit-value" id="walk-label-vertical">25</strong>
-                  </div>
-                  <div class="walk-fit-row positive" data-walk-weight="legacy">
-                    <span class="walk-fit-label">Legacy helpdesk</span>
-                    <div class="walk-fit-track"><div class="walk-fit-fill"></div></div>
-                    <strong class="walk-fit-value" id="walk-label-legacy">20</strong>
-                  </div>
-                  <div class="walk-fit-row positive" data-walk-weight="commerce">
-                    <span class="walk-fit-label">Commerce stack</span>
-                    <div class="walk-fit-track"><div class="walk-fit-fill"></div></div>
-                    <strong class="walk-fit-value" id="walk-label-commerce">15</strong>
-                  </div>
-                  <div class="walk-fit-row negative" data-walk-weight="outsideIcp">
-                    <span class="walk-fit-label">Outside ICP</span>
-                    <div class="walk-fit-track"><div class="walk-fit-fill"></div></div>
-                    <strong class="walk-fit-value" id="walk-label-outsideIcp">-15</strong>
-                  </div>
-                </div>
-              </div>
-              <div class="walk-controls">
-                <button class="ghost-button walk-nav" data-walk-dir="-1">Back</button>
-                <button class="button walk-nav" data-walk-dir="1">Next</button>
-              </div>
-            </div>
-          </section>
+          <article class="journey-card">
+            <span class="journey-index">03</span>
+            <h3>Confidence</h3>
+            <p id="journey-confidence-copy">The write path is currently safe, so routing does not have to stop at governance.</p>
+            <div class="journey-meter confidence"><i id="journey-confidence-bar"></i></div>
+            <strong id="journey-confidence-stat">High / 96</strong>
+          </article>
 
-          <section class="walk-step step-timing" data-step-index="3">
-            <div class="walk-step-content">
-              <div class="walk-progress">
-                <div class="walk-step-counter"><span class="walk-step-count">4 of 7</span></div>
-                <div class="walk-step-dots"></div>
-              </div>
-              <div>
-                <div class="section-label">Step 4</div>
-                <h3>Timing decides when.</h3>
-              </div>
-              <div class="timing-demo">
-                <div class="timing-line">
-                  <div class="timing-marker timing-above timing-large" id="marker-intent">
-                    <div class="timing-stem"></div>
-                    <div class="timing-card"><span>Decision Stage</span></div>
-                  </div>
-                  <div class="timing-marker timing-below timing-medium">
-                    <div class="timing-stem"></div>
-                    <div class="timing-card"><span>VP of CX hired 45 days ago</span></div>
-                  </div>
-                  <div class="timing-marker timing-above timing-small">
-                    <div class="timing-stem"></div>
-                    <div class="timing-card"><span>Pricing page visited twice this week</span></div>
-                  </div>
-                </div>
-                <div class="timing-footer">
-                  <div class="fit-score-readout">
-                    <span>Timing score</span>
-                    <strong id="walk-timing-score">50</strong>
-                  </div>
-                  <label class="walk-switch">
-                    <span>Remove intent signal</span>
-                    <span class="walk-switch-ui">
-                      <input type="checkbox" id="timing-intent-toggle" checked />
-                      <span class="walk-switch-track"><i></i></span>
-                    </span>
-                  </label>
-                </div>
-              </div>
-              <div class="walk-controls">
-                <button class="ghost-button walk-nav" data-walk-dir="-1">Back</button>
-                <button class="button walk-nav" data-walk-dir="1">Next</button>
-              </div>
-            </div>
-          </section>
+          <article class="journey-card">
+            <span class="journey-index">04</span>
+            <h3>Route</h3>
+            <p id="journey-route-copy">The account earns high-touch outbound because the operating model has enough conviction.</p>
+            <strong class="journey-route-pill" id="journey-route-pill">1:1 ABM with AE + SDR pairing</strong>
+          </article>
+        </div>
 
-          <section class="walk-step step-confidence" data-step-index="4">
-            <div class="walk-step-content">
-              <div class="walk-progress">
-                <div class="walk-step-counter"><span class="walk-step-count">5 of 7</span></div>
-                <div class="walk-step-dots"></div>
-              </div>
-              <div>
-                <div class="section-label">Step 5</div>
-                <h3>Confidence decides whether to trust the score.</h3>
-              </div>
-              <div class="confidence-demo" id="confidence-demo">
-                <div class="confidence-gauge-panel">
-                  <div class="section-label">Confidence level</div>
-                  <div class="confidence-gauge">
-                    <div class="confidence-gauge-fill" id="confidence-gauge-fill"></div>
-                  </div>
-                  <div class="confidence-gauge-meta">
-                    <strong id="confidence-demo-label">High</strong>
-                  </div>
-                </div>
-                <div class="confidence-waterfall">
-                  <div class="confidence-row conflict-row">
-                    <span class="confidence-row-label"><i class="confidence-warning-icon" aria-hidden="true"></i>Firmographics</span>
-                    <div>ZoomInfo <em>→</em> Clearbit</div>
-                    <div class="confidence-inline-callout">ZoomInfo says 800 employees, Clearbit says 1,400. Delta is 43 percent. Routed to RevOps review.</div>
-                  </div>
-                  <div class="confidence-row">
-                    <span class="confidence-row-label">Technographics</span>
-                    <div>BuiltWith <em>→</em> HG Insights</div>
-                  </div>
-                  <div class="confidence-row">
-                    <span class="confidence-row-label">Buying Stage</span>
-                    <div>6sense <em>→</em> Bombora</div>
-                  </div>
-                  <div class="confidence-row">
-                    <span class="confidence-row-label">Contact</span>
-                    <div>ZoomInfo US <em>→</em> Apollo</div>
-                  </div>
-                </div>
-              </div>
-              <div class="walk-controls">
-                <button class="ghost-button walk-nav" data-walk-dir="-1">Back</button>
-                <button class="button walk-nav" data-walk-dir="1">Next</button>
-              </div>
-            </div>
-          </section>
-
-          <section class="walk-step step-system" data-step-index="5">
-            <div class="walk-step-content">
-              <div class="walk-progress">
-                <div class="walk-step-counter"><span class="walk-step-count">6 of 7</span></div>
-                <div class="walk-step-dots"></div>
-              </div>
-              <div>
-                <div class="section-label">Step 6</div>
-                <h3>Where everything lives.</h3>
-              </div>
-              <div class="system-diagram">
-                <div class="system-box salesforce-box">
-                  <span class="section-label">Salesforce</span>
-                  <ul class="system-fields">
-                    <li class="system-field">Fit_Score__c</li>
-                    <li class="system-field">Timing_Score__c</li>
-                    <li class="system-field">Composite_Score__c</li>
-                    <li class="system-field">Tier__c</li>
-                  </ul>
-                </div>
-                <div class="system-arrow-wrap">
-                  <svg class="system-arrow-svg" viewBox="0 0 240 120" aria-hidden="true">
-                    <path id="system-arrow-path" d="M18 60 H198" fill="none" stroke="rgba(16,17,15,0.2)" stroke-width="2.5" stroke-linecap="round"></path>
-                    <path d="M184 45 L214 60 L184 75" fill="none" stroke="rgba(16,17,15,0.2)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                  <div class="system-arrow-label">read-only sync</div>
-                </div>
-                <div class="system-box marketo-box">
-                  <span class="section-label">Marketo</span>
-                  <div class="use-case-list">
-                    <div class="use-case-row"><i></i><span>Smart list segments</span></div>
-                    <div class="use-case-row"><i></i><span>MQA alerts via Sales Insight</span></div>
-                    <div class="use-case-row"><i></i><span>Tier D suppression</span></div>
-                  </div>
-                </div>
-              </div>
-              <div class="walk-controls">
-                <button class="ghost-button walk-nav" data-walk-dir="-1">Back</button>
-                <button class="button walk-nav" data-walk-dir="1">Next</button>
-              </div>
-            </div>
-          </section>
-
-          <section class="walk-step step-holdout" data-step-index="6">
-            <div class="walk-step-content">
-              <div class="walk-progress">
-                <div class="walk-step-counter"><span class="walk-step-count">7 of 7</span></div>
-                <div class="walk-step-dots"></div>
-              </div>
-              <div>
-                <div class="section-label">Step 7</div>
-                <h3>A model earns the right to exist by outperforming a holdout.</h3>
-              </div>
-              <div class="holdout-demo">
-                <div class="holdout-bars">
-                  <div class="holdout-col">
-                    <div class="holdout-bar tier-a-bar" id="tier-a-bar"><span id="tier-a-value">0%</span></div>
-                    <strong class="holdout-axis-label">Tier A accounts</strong>
-                  </div>
-                  <div class="holdout-col">
-                    <div class="holdout-bar holdout-bar-fill" id="holdout-bar"><span id="holdout-value">0%</span></div>
-                    <strong class="holdout-axis-label">Holdout accounts</strong>
-                  </div>
-                </div>
-                <p class="holdout-note">If Tier A does not outperform the holdout, the model is wrong. Not Sales.</p>
-                <button class="button" type="button" id="run-holdout-sim">Run holdout simulation</button>
-              </div>
-              <div class="walk-controls">
-                <button class="ghost-button walk-nav" data-walk-dir="-1">Back</button>
-                <button class="button walk-nav" data-walk-dir="1" disabled>Next</button>
-              </div>
-            </div>
-          </section>
+        <div class="journey-stage-strip" id="journey-stage-strip">
+          <div class="journey-stage" data-dashboard-stage="source"><span>Source</span><strong>Field inputs</strong></div>
+          <div class="journey-stage" data-dashboard-stage="score"><span>Score</span><strong>Composite logic</strong></div>
+          <div class="journey-stage" data-dashboard-stage="trust"><span>Trust</span><strong>Governance gate</strong></div>
+          <div class="journey-stage" data-dashboard-stage="route"><span>Route</span><strong>Tier motion</strong></div>
+          <div class="journey-stage" data-dashboard-stage="activate"><span>Activate</span><strong>Sales + Marketo</strong></div>
         </div>
       </div>
     </section>
 
-    <section class="section dashboard-section" id="dashboard">
-      <div class="dashboard-shell reveal">
-        <div class="dashboard-stage" id="dashboard-stage">
-          <button class="dashboard-arrow dashboard-arrow-left" type="button" id="dashboard-prev" aria-label="Previous dashboard slide">‹</button>
-          <div class="dashboard-viewport">
-            <div class="dashboard-track" id="dashboard-track">
-              <article class="dashboard-slide is-active" data-dashboard-slide="0">
-                <div class="dashboard-slide-inner dashboard-center">
-                  <div class="dashboard-kicker">Slide 1</div>
-                  <h2>Account scoring for Gladly should answer three questions.</h2>
-                  <div class="dashboard-slide-body dashboard-slide-body-thesis">
-                    <div class="dashboard-thesis-lines">
-                      <p data-dashboard-stagger>Who is a good account.</p>
-                      <p data-dashboard-stagger>When should we reach out.</p>
-                      <p data-dashboard-stagger>Whether the data deserves trust.</p>
-                    </div>
-                    <div class="dashboard-slide-note">Fit. Timing. Confidence.</div>
-                  </div>
-                </div>
-              </article>
+    <section class="section command-section" id="dashboard">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">Scoring control room</div>
+          <h2>Dynamic dashboard driven by the active mock, not a slide carousel.</h2>
+        </div>
+        <p>
+          Switch the scenario or tune the model above and this control room updates instantly without autoplay, trapped scroll, or deck transitions.
+        </p>
+      </div>
 
-              <article class="dashboard-slide" data-dashboard-slide="1">
-                <div class="dashboard-slide-inner">
-                  <div class="dashboard-kicker">Slide 2</div>
-                  <h2>A high-fit account is a B2C brand where service drives revenue.</h2>
-                  <div class="dashboard-slide-body">
-                    <div class="dashboard-split-list">
-                    <div class="dashboard-list-col">
-                      <div class="dashboard-list-title">Positive signals</div>
-                      <ul>
-                        <li><i class="dot positive"></i>B2C with high conversation volume</li>
-                        <li><i class="dot positive"></i>Retail DTC or Travel vertical</li>
-                        <li><i class="dot positive"></i>Shopify Plus or similar commerce stack</li>
-                        <li><i class="dot positive"></i>Legacy helpdesk like Zendesk or Gorgias</li>
-                        <li><i class="dot positive"></i>50M to 1B revenue</li>
-                        <li><i class="dot positive"></i>50 to 500 CX agents</li>
-                      </ul>
-                    </div>
-                    <div class="dashboard-list-col">
-                      <div class="dashboard-list-title">Disqualifiers</div>
-                      <ul>
-                        <li><i class="dot negative"></i>Non-target vertical</li>
-                        <li><i class="dot negative"></i>Micro-SMB under 50 employees</li>
-                        <li><i class="dot negative"></i>Service is a pure cost center</li>
-                        <li><i class="dot negative"></i>No omnichannel complexity</li>
-                      </ul>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="dashboard-slide" data-dashboard-slide="2">
-                <div class="dashboard-slide-inner">
-                  <div class="dashboard-kicker">Slide 3</div>
-                  <h2>Fit carries the most weight. Timing decides sequencing.</h2>
-                  <div class="dashboard-slide-body dashboard-slide-body-model">
-                    <div class="dashboard-weight-stack">
-                      <div class="dashboard-weight-row fit"><span>Fit</span><strong>65%</strong></div>
-                      <div class="dashboard-weight-row timing"><span>Timing</span><strong>25%</strong></div>
-                      <div class="dashboard-weight-row confidence"><span>Confidence</span><strong>Guardrail</strong></div>
-                    </div>
-                    <div class="dashboard-score-table">
-                      <div class="dashboard-table-head"><span>Signal</span><span>Points</span></div>
-                      <div class="dashboard-table-row"><span>Enterprise scale</span><strong>plus 35</strong></div>
-                      <div class="dashboard-table-row"><span>Retail DTC Travel</span><strong>plus 25</strong></div>
-                      <div class="dashboard-table-row"><span>Legacy helpdesk</span><strong>plus 20</strong></div>
-                      <div class="dashboard-table-row"><span>Commerce stack</span><strong>plus 15</strong></div>
-                      <div class="dashboard-table-row"><span>Outside ICP</span><strong>minus 15</strong></div>
-                      <div class="dashboard-table-row"><span>6sense decision-stage</span><strong>plus 30</strong></div>
-                      <div class="dashboard-table-row"><span>New VP or hiring surge</span><strong>plus 20</strong></div>
-                      <div class="dashboard-table-row"><span>Pricing plus webinar</span><strong>plus 10</strong></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="dashboard-slide" data-dashboard-slide="3">
-                <div class="dashboard-slide-inner">
-                  <div class="dashboard-kicker">Slide 4</div>
-                  <h2>No single vendor owns truth. The waterfall decides field by field.</h2>
-                  <div class="dashboard-slide-body">
-                    <div class="dashboard-waterfall">
-                      <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Firmographics</span><strong>ZoomInfo then Clearbit</strong><em>most recent verified-at wins, delta over 20 percent routes to RevOps.</em></div>
-                      <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Technographics</span><strong>BuiltWith then HG Insights</strong><em>additive.</em></div>
-                      <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Buying Stage</span><strong>6sense then Bombora</strong><em>6sense authoritative.</em></div>
-                      <div class="dashboard-waterfall-row" data-dashboard-stagger><span>Contact</span><strong>ZoomInfo then Apollo</strong><em>SMTP verification before CRM write.</em></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="dashboard-slide" data-dashboard-slide="4">
-                <div class="dashboard-slide-inner">
-                  <div class="dashboard-kicker">Slide 5</div>
-                  <h2>Salesforce is the master. Marketo activates downstream.</h2>
-                  <div class="dashboard-slide-body dashboard-slide-body-system">
-                    <div class="dashboard-system-diagram">
-                      <div class="dashboard-system-box dashboard-salesforce-box">
-                        <span class="section-label">Salesforce</span>
-                        <ul class="dashboard-system-fields">
-                          <li class="dashboard-system-field">Fit_Score__c</li>
-                          <li class="dashboard-system-field">Timing_Score__c</li>
-                          <li class="dashboard-system-field">Composite_Score__c</li>
-                          <li class="dashboard-system-field">Tier__c</li>
-                        </ul>
-                      </div>
-                      <div class="dashboard-system-arrow-wrap">
-                        <svg class="dashboard-system-arrow" viewBox="0 0 260 100" aria-hidden="true">
-                          <path id="dashboard-arrow-path" d="M20 50 H210" fill="none" stroke="rgba(20,170,60,0.9)" stroke-width="2.5" stroke-linecap="round"></path>
-                          <path d="M194 34 L226 50 L194 66" fill="none" stroke="rgba(20,170,60,0.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                        <div class="dashboard-system-arrow-label">read-only sync</div>
-                      </div>
-                      <div class="dashboard-system-box dashboard-marketo-box">
-                        <span class="section-label">Marketo</span>
-                        <div class="dashboard-use-case-list">
-                          <div class="dashboard-use-case-row"><i></i><span>Smart list segments</span></div>
-                          <div class="dashboard-use-case-row"><i></i><span>MQA alerts via Sales Insight</span></div>
-                          <div class="dashboard-use-case-row"><i></i><span>Tier D suppression</span></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="dashboard-tool-row">n8n <span>•</span> Clay <span>•</span> LeanData <span>•</span> Chili Piper <span>•</span> Tableau</div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="dashboard-slide" data-dashboard-slide="5">
-                <div class="dashboard-slide-inner">
-                  <div class="dashboard-kicker">Slide 6</div>
-                  <h2>The model earns the right to exist by outperforming a holdout.</h2>
-                  <div class="dashboard-slide-body dashboard-slide-body-metrics">
-                    <div class="dashboard-metric-grid">
-                      <article class="dashboard-metric-card">
-                        <span>Tier A MQA to Opp</span>
-                        <strong>30 to 50 percent</strong>
-                      </article>
-                      <article class="dashboard-metric-card">
-                        <span>Tier C conversion</span>
-                        <strong>under 10 percent</strong>
-                      </article>
-                      <article class="dashboard-metric-card">
-                        <span>Random holdout</span>
-                        <strong>5 to 10 percent of accounts</strong>
-                      </article>
-                      <article class="dashboard-metric-card">
-                        <span>Rollout</span>
-                        <strong>90-day rollout in three phases</strong>
-                      </article>
-                    </div>
-                    <blockquote class="dashboard-quote">If Tier A does not outperform the holdout, the model is wrong. Not Sales.</blockquote>
-                  </div>
-                </div>
-              </article>
-            </div>
+      <div class="command-shell">
+        <div class="command-topbar">
+          <div class="command-tabs">
+            <button class="command-tab is-active" type="button" data-command-view="overview">Overview</button>
+            <button class="command-tab" type="button" data-command-view="pipeline">Pipeline</button>
+            <button class="command-tab" type="button" data-command-view="activation">Activation</button>
           </div>
-          <button class="dashboard-arrow dashboard-arrow-right" type="button" id="dashboard-next" aria-label="Next dashboard slide">›</button>
-          <div class="dashboard-slide-counter" id="dashboard-slide-counter">1 of 6</div>
-          <div class="dashboard-progress"><i id="dashboard-progress-fill"></i></div>
+          <div class="command-pills">
+            <span class="command-pill" id="command-scenario-pill">Harbor &amp; Pine</span>
+            <span class="status-pill a" id="command-tier-pill">Tier A</span>
+          </div>
+        </div>
+
+        <div class="command-view is-active" data-command-panel="overview">
+          <div class="command-grid">
+            <article class="command-card command-score-card">
+              <div class="section-label">Live score</div>
+              <strong class="command-score-value" id="command-score-value">97</strong>
+              <p id="command-score-copy">Strong fit, strong timing, and high confidence create a clear outbound-ready account.</p>
+            </article>
+
+            <article class="command-card">
+              <div class="section-label">Layer mix</div>
+              <div class="command-layer-stack">
+                <div class="command-layer-row"><span>Fit</span><div class="command-layer-track"><i id="command-fit-bar"></i></div><strong id="command-fit-value">95</strong></div>
+                <div class="command-layer-row"><span>Timing</span><div class="command-layer-track timing"><i id="command-timing-value-bar"></i></div><strong id="command-timing-value">50</strong></div>
+                <div class="command-layer-row"><span>Confidence</span><div class="command-layer-track confidence"><i id="command-confidence-value-bar"></i></div><strong id="command-confidence-value">96</strong></div>
+              </div>
+            </article>
+
+            <article class="command-card">
+              <div class="section-label">Why it moves</div>
+              <p class="command-long-copy" id="command-rationale">The correct motion is high-touch because the model sees strong fit, live timing pressure, and a trusted write path.</p>
+            </article>
+
+            <article class="command-card">
+              <div class="section-label">Active signals</div>
+              <div class="command-chip-group" id="command-signal-chips"></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="command-view" data-command-panel="pipeline">
+          <div class="command-grid command-grid-pipeline">
+            <article class="command-card command-card-wide">
+              <div class="section-label">Live pipeline state</div>
+              <div class="command-pipeline" id="command-pipeline">
+                <div class="command-pipeline-node" data-dashboard-stage="source"><span>Source</span><strong>Vendor inputs</strong></div>
+                <div class="command-pipeline-node" data-dashboard-stage="score"><span>Score</span><strong>Fit + timing logic</strong></div>
+                <div class="command-pipeline-node" data-dashboard-stage="trust"><span>Trust</span><strong>Confidence gate</strong></div>
+                <div class="command-pipeline-node" data-dashboard-stage="route"><span>Route</span><strong>Tier and motion</strong></div>
+                <div class="command-pipeline-node" data-dashboard-stage="activate"><span>Activate</span><strong>Salesforce and Marketo</strong></div>
+              </div>
+            </article>
+
+            <article class="command-card">
+              <div class="section-label">Write path</div>
+              <strong id="command-write-title">Clear for Salesforce write</strong>
+              <p id="command-write-copy">The account can write downstream because confidence is currently strong enough to trust the core fields.</p>
+            </article>
+
+            <article class="command-card">
+              <div class="section-label">Downstream action</div>
+              <strong id="command-activation-title">1:1 ABM with AE + SDR pairing</strong>
+              <p id="command-activation-copy">Activation is immediate because the model has enough conviction to justify speed and rep attention.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="command-view" data-command-panel="activation">
+          <div class="command-grid command-grid-activation">
+            <article class="command-card command-card-wide">
+              <div class="section-label">Tier ladder</div>
+              <div class="command-tier-ladder">
+                <div class="command-tier-row" data-command-tier-row="Tier A"><span>Tier A</span><strong>1:1 ABM with AE and SDR paired</strong></div>
+                <div class="command-tier-row" data-command-tier-row="Tier B"><span>Tier B</span><strong>1:few SDR cadence by sub-vertical</strong></div>
+                <div class="command-tier-row" data-command-tier-row="Tier C"><span>Tier C</span><strong>Marketo automated nurture only</strong></div>
+                <div class="command-tier-row" data-command-tier-row="Tier D"><span>Tier D</span><strong>Suppressed from outbound</strong></div>
+              </div>
+            </article>
+
+            <article class="command-card">
+              <div class="section-label">Current motion</div>
+              <strong id="command-motion-title">1:1 ABM with AE + SDR pairing</strong>
+              <p id="command-motion-copy">Sub-5-minute SLA via Chili Piper with immediate high-touch coverage.</p>
+            </article>
+
+            <article class="command-card">
+              <div class="section-label">Validation frame</div>
+              <div class="command-validation">
+                <div><span>Tier A MQA to Opp</span><strong>30-50%</strong></div>
+                <div><span>Holdout</span><strong>5-10%</strong></div>
+                <div><span>Rollout</span><strong>90 days</strong></div>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -6553,21 +6835,8 @@
 
     window.addEventListener("load", () => {
       syncHeaderOffset();
-      document.body.style.overflow = "hidden";
-      const bars = document.querySelectorAll(".splash-bar-fill");
-      bars.forEach((bar, index) => {
-        setTimeout(() => {
-          bar.style.width = "100%";
-        }, index * 140);
-      });
-      setTimeout(() => {
-        const splash = document.getElementById("splash-screen");
-        splash.style.opacity = "0";
-        setTimeout(() => {
-          splash.style.display = "none";
-          document.body.style.overflow = "";
-        }, 320);
-      }, 980);
+      const splash = document.getElementById("splash-screen");
+      if (splash) splash.style.display = "none";
     });
 
     window.addEventListener("scroll", () => {
@@ -6862,38 +7131,8 @@
     }
 
     function runLoader(title, copy, applyChange) {
-      loaderRunId += 1;
-      const currentRun = loaderRunId;
-      const overlay = document.getElementById("workspace-loader");
-      const bars = [...overlay.querySelectorAll(".loader-bar i")];
-      document.getElementById("loader-title").textContent = title;
-      document.getElementById("loader-copy").textContent = copy;
-      overlay.classList.add("is-visible");
-
-      gsap.killTweensOf(".loader-orb");
-      gsap.killTweensOf(bars);
-      gsap.set(bars, { xPercent: -130 });
-      gsap.set(".loader-orb", { rotation: 0 });
-
-      const tl = gsap.timeline({
-        defaults: { ease: "power2.inOut" },
-        onComplete() {
-          if (currentRun !== loaderRunId) return;
-          overlay.classList.remove("is-visible");
-          gsap.set(".loader-orb", { rotation: 0 });
-        }
-      });
-
-      tl.to(".loader-orb", { rotation: 360, duration: 0.85, ease: "none" }, 0);
-      bars.forEach((bar, index) => {
-        tl.to(bar, { xPercent: 260, duration: 0.42 }, index * 0.08);
-      });
-      tl.add(() => {
-        if (currentRun !== loaderRunId) return;
-        applyChange();
-        pulsePrototype();
-      }, 0.34);
-      tl.to({}, { duration: 0.22 });
+      applyChange();
+      pulsePrototype();
     }
 
     function updateNavIndicator(activeBtn) {
@@ -6990,6 +7229,100 @@
       });
     }
 
+    function renderSignalChipList(containerId, state) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = "";
+      getSignalChips(state).forEach((signal) => {
+        const chip = document.createElement("span");
+        chip.className = `signal-chip ${signal.layer}`;
+        chip.textContent = signal.label;
+        container.appendChild(chip);
+      });
+    }
+
+    function derivePipelineStage(result) {
+      if (result.tier === "Review hold") return "trust";
+      if (result.tier === "Excluded") return "route";
+      if (result.tier === "Tier A" || result.tier === "Tier B") return "activate";
+      if (result.tier === "Tier C") return "route";
+      return "score";
+    }
+
+    function syncPipelineElements(selector, stage) {
+      document.querySelectorAll(selector).forEach((node) => {
+        const nodeStage = node.dataset.pipelineStage || node.dataset.dashboardStage;
+        node.classList.toggle("is-active", nodeStage === stage);
+      });
+    }
+
+    function renderJourney(result, scenario) {
+      const stage = derivePipelineStage(result);
+      const fitBar = document.getElementById("journey-fit-bar");
+      const timingBar = document.getElementById("journey-timing-bar");
+      const confidenceBar = document.getElementById("journey-confidence-bar");
+
+      document.getElementById("journey-scenario-name").textContent = scenario.name;
+      document.getElementById("journey-rationale").textContent = getImpactNote(scenario, result);
+      document.getElementById("journey-score").textContent = result.composite;
+      document.getElementById("journey-tier").textContent = result.tier;
+      document.getElementById("journey-confidence").textContent = result.confidence.level;
+      document.getElementById("journey-fit-stat").textContent = `${result.fit.score} / 100`;
+      document.getElementById("journey-timing-stat").textContent = `${result.timing.score} / 50`;
+      document.getElementById("journey-confidence-stat").textContent = `${result.confidence.level} / ${result.confidence.score}`;
+      document.getElementById("journey-fit-copy").textContent = result.fit.reasons[0] || "Fit is neutral.";
+      document.getElementById("journey-timing-copy").textContent = result.timing.reasons[0] || "Timing is neutral.";
+      document.getElementById("journey-confidence-copy").textContent = result.confidence.reasons[0] || "Confidence is neutral.";
+      document.getElementById("journey-route-copy").textContent = result.motionCopy;
+      document.getElementById("journey-route-pill").textContent = result.motionTitle;
+
+      if (fitBar) fitBar.style.width = `${result.fit.score}%`;
+      if (timingBar) timingBar.style.width = `${(result.timing.score / 50) * 100}%`;
+      if (confidenceBar) confidenceBar.style.width = `${result.confidence.score}%`;
+
+      syncPipelineElements(".journey-stage", stage);
+    }
+
+    function renderCommand(result, scenario) {
+      const stage = derivePipelineStage(result);
+      document.getElementById("command-scenario-pill").textContent = scenario.short;
+      const tierPill = document.getElementById("command-tier-pill");
+      tierPill.className = `status-pill ${result.tierClass}`;
+      tierPill.textContent = result.tier;
+
+      document.getElementById("command-score-value").textContent = result.composite;
+      document.getElementById("command-score-copy").textContent = getImpactNote(scenario, result);
+      document.getElementById("command-fit-bar").style.width = `${result.fit.score}%`;
+      document.getElementById("command-timing-value-bar").style.width = `${(result.timing.score / 50) * 100}%`;
+      document.getElementById("command-confidence-value-bar").style.width = `${result.confidence.score}%`;
+      document.getElementById("command-fit-value").textContent = result.fit.score;
+      document.getElementById("command-timing-value").textContent = result.timing.score;
+      document.getElementById("command-confidence-value").textContent = result.confidence.score;
+      document.getElementById("command-rationale").textContent = buildRationale(scenario, result);
+      renderSignalChipList("command-signal-chips", currentState);
+
+      if (result.tier === "Review hold") {
+        document.getElementById("command-write-title").textContent = "Paused for RevOps review";
+      } else if (result.tier === "Excluded") {
+        document.getElementById("command-write-title").textContent = "Suppressed before downstream write";
+      } else {
+        document.getElementById("command-write-title").textContent = "Clear for Salesforce write";
+      }
+
+      document.getElementById("command-write-copy").textContent = result.governanceCopy;
+      document.getElementById("command-activation-title").textContent = result.motionTitle;
+      document.getElementById("command-activation-copy").textContent = result.motionCopy;
+      document.getElementById("command-motion-title").textContent = result.motionTitle;
+      document.getElementById("command-motion-copy").textContent = result.motionCopy;
+
+      document.querySelectorAll("[data-command-tier-row]").forEach((row) => {
+        row.classList.toggle("is-active", row.dataset.commandTierRow === result.tier);
+      });
+
+      syncPipelineElements(".command-pipeline-node", stage);
+      syncPipelineElements(".proto-stage", stage);
+    }
+
     function getImpactNote(scenario, result) {
       return buildRationale(scenario, result).split(". ")[0].trim().replace(/\.$/, "") + ".";
     }
@@ -7069,12 +7402,19 @@
       });
 
       renderSignalChips(currentState);
+      renderJourney(result, scenario);
+      renderCommand(result, scenario);
 
       document.getElementById("live-impact-score").textContent = result.composite;
       const liveTier = document.getElementById("live-impact-tier");
       liveTier.className = `status-pill ${result.tierClass}`;
       liveTier.textContent = result.tier;
       document.getElementById("live-impact-note").textContent = getImpactNote(scenario, result);
+      document.getElementById("prototype-decision-title").textContent = result.motionTitle;
+      document.getElementById("prototype-decision-copy").textContent = result.governanceCopy;
+      document.getElementById("prototype-decision-score").textContent = result.composite;
+      document.getElementById("prototype-decision-confidence").textContent = result.confidence.level;
+      document.getElementById("prototype-decision-tier").textContent = result.tier;
 
       document.querySelectorAll("[data-weight]").forEach((input) => {
         const key = input.dataset.weight;
@@ -7083,8 +7423,6 @@
         const label = document.getElementById(`${key}-value`);
         if (label) label.textContent = weights[key];
       });
-
-      syncWalkFitBars();
     }
 
     function initWeightControls() {
@@ -7109,11 +7447,7 @@
         button.addEventListener("click", () => {
           const target = document.getElementById(button.dataset.target);
           if (!target) return;
-          gsap.to(window, {
-            duration: 0.9,
-            ease: "power3.inOut",
-            scrollTo: { y: target, offsetY: 92 }
-          });
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
 
@@ -7133,16 +7467,6 @@
           syncToggleButtons();
           renderScenarioTabs();
           render();
-        });
-      });
-
-      document.querySelectorAll(".walk-nav").forEach((button) => {
-        button.addEventListener("click", () => {
-          const currentStep = button.closest(".walk-step");
-          const currentIndex = Number(currentStep.dataset.stepIndex);
-          const direction = Number(button.dataset.walkDir);
-          const nextIndex = clamp(currentIndex + direction, 0, walkthroughSteps.length - 1);
-          walkthroughSteps[nextIndex].scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
     }
@@ -7173,17 +7497,21 @@
 
     function initNavState() {
       const sectionIds = ["prototype", "logic", "architecture", "metrics", "walkthrough", "dashboard"];
+      const observer = new IntersectionObserver((entries) => {
+        const activeEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!activeEntry) return;
+        const active = document.querySelector(`.top-nav button[data-target="${activeEntry.target.id}"]`);
+        if (active) updateNavIndicator(active);
+      }, {
+        threshold: [0.25, 0.45, 0.65],
+        rootMargin: "-18% 0px -38% 0px"
+      });
+
       sectionIds.forEach((id) => {
-        ScrollTrigger.create({
-          trigger: `#${id}`,
-          start: "top center",
-          end: "bottom center",
-          onToggle(self) {
-            if (!self.isActive) return;
-            const active = document.querySelector(`.top-nav button[data-target="${id}"]`);
-            if (active) updateNavIndicator(active);
-          }
-        });
+        const section = document.getElementById(id);
+        if (section) observer.observe(section);
       });
 
       window.addEventListener("resize", () => {
@@ -7195,6 +7523,20 @@
 
       syncHeaderOffset();
       setTimeout(() => updateNavIndicator(navButtons[0]), 100);
+    }
+
+    function initCommandTabs() {
+      const tabs = [...document.querySelectorAll(".command-tab")];
+      const panels = [...document.querySelectorAll("[data-command-panel]")];
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const view = tab.dataset.commandView;
+          tabs.forEach((item) => item.classList.toggle("is-active", item === tab));
+          panels.forEach((panel) => {
+            panel.classList.toggle("is-active", panel.dataset.commandPanel === view);
+          });
+        });
+      });
     }
 
     function initReveal() {
@@ -7675,13 +8017,8 @@
     initLogicCards();
     initTierTable();
     initNavState();
-    initReveal();
-    initScrollScenes();
     initHeroMotion();
-    initArchitectureHeadline();
-    initWalkthroughFitDrag();
-    initWalkthrough();
-    initDashboard();
+    initCommandTabs();
     syncToggleButtons();
     render();
     buildFlowTimeline();
