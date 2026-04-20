@@ -2457,17 +2457,14 @@
     }
 
     .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(32px);
-      transition:
-        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-      transition-delay: var(--delay, 0ms);
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
 
     .animate-on-scroll.is-visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
 
     @keyframes pulseDot {
@@ -3295,15 +3292,841 @@
     }
 
     .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(32px);
+      opacity: 1;
+      transform: none;
       transition: none;
-      will-change: transform, opacity;
+      will-change: auto;
     }
 
     .animate-on-scroll.is-visible {
-      opacity: inherit;
+      opacity: 1;
       transform: none;
+    }
+
+    /* V6 design and motion overrides */
+    .section-transition {
+      display: none !important;
+    }
+
+    .connector {
+      display: none !important;
+    }
+
+    .hero,
+    .section.dark,
+    .section.light {
+      overflow: visible;
+    }
+
+    .hero,
+    .section.dark:not(#summary) {
+      padding-bottom: 80px;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 48px), 50% 100%, 0 calc(100% - 48px));
+      z-index: 1;
+      margin-bottom: -48px;
+    }
+
+    .section.light {
+      clip-path: polygon(0 0, 50% 48px, 100% 0, 100% 100%, 0 100%);
+      padding-top: 80px;
+      margin-top: -48px;
+      z-index: 0;
+    }
+
+    .hero::after,
+    .section.dark:not(#summary)::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 22px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
+      transform: translateX(-50%);
+      animation: flowPulse 2s ease-in-out infinite;
+      z-index: 3;
+    }
+
+    .section.light::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 18px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
+      transform: translateX(-50%);
+      animation: flowPulse 2s ease-in-out infinite;
+      z-index: 3;
+    }
+
+    @keyframes flowPulse {
+      0%, 100% {
+        transform: translateX(-50%) translateY(-4px) scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translateX(-50%) translateY(4px) scale(1.3);
+        opacity: 1;
+      }
+    }
+
+    .section-inner {
+      padding: 88px 0;
+    }
+
+    .section.light .section-inner {
+      padding-top: 28px;
+    }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
+    .card-light,
+    .card-dark,
+    .setup-panel,
+    .control-card,
+    .ui-card,
+    .clearbit-card,
+    .table-shell,
+    .prompt-panel,
+    .response-panel,
+    .salesforce-shell,
+    .history-shell,
+    .marketo-card,
+    .summary-shell,
+    .setup-strip {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), 0 8px 32px rgba(0, 0, 0, 0.07);
+      border: 1px solid rgba(0, 0, 0, 0.07);
+    }
+
+    .section.dark .control-card,
+    .section.dark .ui-card,
+    .section.dark .clearbit-card,
+    .section.dark .table-shell,
+    .section.dark .summary-shell,
+    .section.dark .setup-strip,
+    .prompt-panel {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .data-card,
+    .sense-panel,
+    .stat-card,
+    .history-card,
+    .response-stack .response-card,
+    .summary-stat,
+    .meta-table,
+    .json-panel,
+    .mini-stat,
+    .flow-step-card {
+      border-radius: 14px;
+    }
+
+    .smart-pill,
+    .score-mini-card,
+    .report-table-row,
+    .report-filter-item,
+    .report-flow-node,
+    .report-pill-status,
+    .stage-pill,
+    .status-pill,
+    .mock-badge,
+    .tool-badge {
+      border-radius: 999px;
+    }
+
+    .stat-card,
+    .data-card {
+      border-radius: 10px;
+    }
+
+    .zoominfo-ui {
+      background: linear-gradient(145deg, #0f3030 0%, #0a2020 100%) !important;
+    }
+
+    .sense-ui {
+      background: linear-gradient(145deg, #1a1a2e 0%, #0d1117 100%) !important;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .sense-ui .ui-card-head strong,
+    .sense-ui .ui-card-copy,
+    .sense-ui .sense-panel p,
+    .sense-ui .sense-panel .value-large,
+    .sense-ui .sense-panel .data-label {
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .sense-ui .sense-panel {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .sense-ui .event-pill.placeholder {
+      border-color: rgba(255, 255, 255, 0.22);
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .zoominfo-card,
+    .clearbit-card {
+      background: linear-gradient(145deg, #0f3030 0%, #0a2020 100%);
+    }
+
+    .sf-body {
+      background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
+      border-color: rgba(0, 0, 0, 0.07);
+    }
+
+    .marketo-card {
+      background: linear-gradient(180deg, #ffffff 0%, #fafaf8 100%);
+      border: 1px solid rgba(0, 0, 0, 0.07);
+    }
+
+    .data-card.glow,
+    .smart-pill.active,
+    .flow-step-card.active,
+    .report-routing-card {
+      box-shadow: inset 0 0 0 1px rgba(34, 197, 94, 0.2), 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .brand-blueprint {
+      max-width: 170px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-links {
+      gap: 18px;
+    }
+
+    .nav-link {
+      min-height: auto;
+      padding: 0 0 8px;
+      border: none;
+      background: transparent;
+      border-radius: 0;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 150ms ease, border-color 150ms ease;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-link:hover,
+    .nav-link.is-active {
+      background: transparent;
+      color: #ffffff;
+      border-color: #22c55e;
+    }
+
+    .header-score-grid .score-quadrant:last-child {
+      align-content: center;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .header-score-grid .score-quadrant:last-child .score-value {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 20px;
+    }
+
+    .hero-copy p,
+    .section-subheading,
+    .flow-step-copy,
+    .routing-note,
+    .summary-stat .text,
+    .footer-meta,
+    .footer-note {
+      will-change: auto !important;
+    }
+
+    .pipeline-pill,
+    .pipeline-arrow {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+
+    .floating-score {
+      opacity: 1;
+      transform: rotate(-1.5deg);
+      animation: none;
+    }
+
+    .split-layout {
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .fit-ui-stack,
+    .marketo-right-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .clearbit-card,
+    .history-shell,
+    .summary-stats,
+    .json-panel {
+      margin-top: 16px;
+    }
+
+    .control-card,
+    .ui-card,
+    .prompt-panel,
+    .response-panel,
+    .table-shell,
+    .summary-shell {
+      padding: 24px;
+    }
+
+    .setup-panel,
+    .marketo-card,
+    .history-shell {
+      padding: 24px;
+    }
+
+    .slider-row {
+      min-height: 56px;
+      padding: 9px 0 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .section.light .slider-row {
+      border-bottom-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .slider-row + .slider-row {
+      border-top: none;
+    }
+
+    .slider-line {
+      margin-bottom: 6px;
+    }
+
+    .track-labels {
+      font-size: 8px;
+      margin-top: 5px;
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    .section.light .track-labels {
+      color: rgba(0, 0, 0, 0.2);
+    }
+
+    .slider-input:hover::-webkit-slider-thumb,
+    .slider-input:hover::-moz-range-thumb {
+      transform: scale(1.15);
+    }
+
+    .slider-input:active::-webkit-slider-thumb,
+    .slider-input:active::-moz-range-thumb {
+      transform: scale(1.05);
+    }
+
+    .zoominfo-card {
+      grid-template-columns: 48px minmax(0, 1fr);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .zoom-side {
+      width: 48px;
+      min-width: 48px;
+      border-radius: 14px 0 0 14px;
+    }
+
+    .zoom-word {
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+      white-space: nowrap;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+      user-select: none;
+    }
+
+    .clay-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .clay-left,
+    .clay-right {
+      display: grid;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .clay-control-card {
+      display: grid;
+      gap: 16px;
+    }
+
+    .clay-controls {
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin-bottom: 0;
+    }
+
+    .clay-right .table-shell {
+      max-height: 560px;
+    }
+
+    .clay-right .table-wrap {
+      max-height: 450px;
+      overflow: auto;
+    }
+
+    .claude-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .response-panel.thinking .claude-output-content {
+      filter: blur(3px);
+      pointer-events: none;
+      transition: filter 0.15s;
+    }
+
+    .claude-output-content {
+      transition: filter 0.2s;
+    }
+
+    .thinking-wrap {
+      display: none !important;
+    }
+
+    .salesforce-shell-wrap {
+      display: grid;
+      gap: 6px;
+    }
+
+    .salesforce-shell-badge {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 4px;
+    }
+
+    .salesforce-shell > .mock-badge {
+      display: none !important;
+    }
+
+    .marketo-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .marketo-smart {
+      grid-column: 1;
+    }
+
+    .marketo-right-stack {
+      grid-column: 2;
+      display: grid;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .table-head,
+    .ui-card-head,
+    .mock-head {
+      margin-bottom: 12px;
+    }
+
+    .ui-card-head {
+      align-items: flex-start;
+    }
+
+    .mock-head-badges {
+      flex-shrink: 0;
+    }
+
+    .summary-shell.report-shell {
+      display: grid;
+      gap: 24px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .report-top-strip,
+    .report-live-row,
+    .report-score-breakdown,
+    .report-meta-line,
+    .report-routing-card,
+    .report-flow-timeline,
+    .report-filter-item,
+    .report-table-head,
+    .report-table-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .report-top-strip {
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 4px;
+    }
+
+    .report-live-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #22c55e;
+      font-weight: 700;
+    }
+
+    .report-live-time {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.42);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .report-live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.65);
+      animation: pulseDot 1.8s ease infinite;
+    }
+
+    .report-block {
+      padding-bottom: 24px;
+      margin-bottom: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .report-block:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .report-identity {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+    }
+
+    .report-block-label {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.42);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .report-account-name {
+      font-size: 24px;
+      line-height: 1.1;
+      color: #ffffff;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .report-meta-line {
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .report-meta-line:last-child {
+      border-bottom: none;
+    }
+
+    .report-meta-line strong {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .report-score-breakdown {
+      justify-content: flex-end;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .score-mini-card,
+    .score-composite-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 16px;
+      min-width: 112px;
+    }
+
+    .score-mini-card span,
+    .score-composite-card span {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.42);
+      margin-bottom: 8px;
+    }
+
+    .score-mini-card strong {
+      font-size: 28px;
+      line-height: 1;
+      color: #ffffff;
+      font-weight: 800;
+    }
+
+    .score-arrow {
+      font-size: 24px;
+      color: rgba(255, 255, 255, 0.38);
+      font-weight: 700;
+    }
+
+    .score-composite-card strong {
+      font-size: 40px;
+      line-height: 1;
+      color: #ffffff;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .report-signal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .report-signal-col h3 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .signal-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .signal-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .signal-row.inactive {
+      color: rgba(255, 255, 255, 0.35);
+      text-decoration: line-through;
+    }
+
+    .signal-row strong {
+      color: #22c55e;
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    .signal-row.inactive strong {
+      color: rgba(255, 255, 255, 0.28);
+    }
+
+    .signal-total {
+      margin-top: 12px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.58);
+    }
+
+    .signal-total strong,
+    .signal-total span {
+      color: #ffffff;
+    }
+
+    .report-routing-card {
+      padding: 20px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      background: rgba(34, 197, 94, 0.04);
+      border: 1px solid rgba(34, 197, 94, 0.16);
+      border-radius: 14px;
+    }
+
+    .routing-summary-copy strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 18px;
+      color: #ffffff;
+    }
+
+    .routing-summary-copy p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.66);
+    }
+
+    .report-table {
+      display: grid;
+      gap: 8px;
+    }
+
+    .report-table-head,
+    .report-table-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr auto;
+      gap: 16px;
+      padding: 12px 16px;
+      border-radius: 10px;
+    }
+
+    .report-table-head {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.42);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .report-table-row:nth-child(odd) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .report-table-row span,
+    .report-table-row strong {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .report-pill-status {
+      min-height: 24px;
+      padding: 0 10px;
+      background: rgba(34, 197, 94, 0.16);
+      color: #d3ffe1;
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .report-flow-timeline {
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .report-flow-node {
+      min-height: 34px;
+      padding: 0 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .report-flow-node.active {
+      background: rgba(34, 197, 94, 0.12);
+      border-color: rgba(34, 197, 94, 0.2);
+      color: #ffffff;
+    }
+
+    .report-flow-arrow {
+      color: rgba(255, 255, 255, 0.26);
+      font-size: 14px;
+    }
+
+    .report-filter-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .report-filter-item {
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .report-filter-item .status {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .report-filter-item .indicator {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .report-filter-item.match .indicator {
+      color: #22c55e;
+    }
+
+    .report-filter-item.miss .indicator {
+      color: #ef4444;
+    }
+
+    .summary-actions {
+      justify-content: center;
+      gap: 12px;
+      margin-top: 0;
+    }
+
+    .summary-actions .ghost-btn {
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .animate-on-scroll {
+      will-change: auto;
+    }
+
+    .add-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .button-ripple {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 70%);
+      transform: translate(-50%, -50%) scale(0);
+      animation: rippleOut 500ms ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes rippleOut {
+      to {
+        transform: translate(-50%, -50%) scale(12);
+        opacity: 0;
+      }
     }
 
     @media (max-width: 1180px) {
@@ -3342,6 +4165,18 @@
         grid-template-columns: 1fr;
         min-height: auto;
         padding-top: 56px;
+      }
+
+      .hero-copy {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .hero-pills,
+      .hero-ctas,
+      .hero-pipeline {
+        width: 100%;
+        max-width: 100%;
       }
 
       .floating-score {
@@ -3417,6 +4252,61 @@
 
       .footer-row {
         align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .brand-blueprint,
+      .brand-divider {
+        display: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .split-layout,
+      .clay-grid,
+      .claude-grid,
+      .marketo-grid,
+      .report-identity,
+      .report-signal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .marketo-right-stack,
+      .marketo-smart {
+        grid-column: auto;
+      }
+
+      .section-inner {
+        padding: 56px 0;
+      }
+
+      .section.light {
+        padding-top: 56px;
+      }
+
+      .hero,
+      .section.dark:not(#summary) {
+        padding-bottom: 56px;
+      }
+
+      .report-score-breakdown {
+        justify-content: flex-start;
+      }
+
+      .feature-row {
+        flex-wrap: wrap;
+      }
+
+      .cta-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .cta-row .action-btn,
+      .cta-row .ghost-btn {
+        width: 100%;
+        justify-content: center;
       }
     }
   </style>
@@ -3503,19 +4393,19 @@
             <span>Gladly Account</span>
             <span>Scoring Engine</span>
           </h1>
-          <p class="animate-on-scroll" style="--delay: 120ms;">
+          <p class="hero-subtext animate-on-scroll" style="--delay: 120ms;">
             Gladly scores inbound accounts using a two-part model - Fit from ZoomInfo and Clearbit, Timing from 6sense and first-party signals. Clay normalizes the record, Claude reasons over it, Salesforce stores it, and Marketo fires the right motion. Every slider on this page feeds the same engine.
           </p>
-          <div class="feature-row animate-on-scroll" style="--delay: 180ms;">
+          <div class="feature-row hero-pills animate-on-scroll" style="--delay: 180ms;">
             <div class="feature-pill">Fit + Timing model</div>
             <div class="feature-pill">Clay + Claude pipeline</div>
             <div class="feature-pill">SFDC + Marketo activation</div>
           </div>
-          <div class="cta-row animate-on-scroll" style="--delay: 240ms;">
+          <div class="cta-row hero-ctas animate-on-scroll" style="--delay: 240ms;">
             <a class="action-btn" href="#setup">Begin walkthrough</a>
             <a class="ghost-btn" href="#summary">Jump to summary</a>
           </div>
-          <div class="pipeline-flow animate-on-scroll" style="--delay: 300ms;">
+          <div class="pipeline-flow hero-pipeline animate-on-scroll" style="--delay: 300ms;">
             <div class="pipeline-pill" style="--delay: 340ms;">ZoomInfo / Clearbit</div>
             <div class="pipeline-arrow" style="--delay: 460ms;">→</div>
             <div class="pipeline-pill" style="--delay: 580ms;">6sense / FP</div>
@@ -3528,7 +4418,7 @@
           </div>
         </div>
 
-        <div class="floating-score animate-on-scroll" style="--delay: 220ms;" id="heroScoreCard">
+        <div class="floating-score hero-score-card animate-on-scroll" style="--delay: 220ms;" id="heroScoreCard">
           <div class="score-top">
             <span>Live score preview</span>
             <div class="pulse-mini"></div>
@@ -3560,10 +4450,6 @@
             <span class="mini-node" data-mini-node="4"></span>
           </div>
         </div>
-      </div>
-      <div class="section-transition transition-to-light">
-        <div class="transition-line"></div>
-        <div class="transition-dot"></div>
       </div>
     </section>
 
@@ -3648,8 +4534,8 @@
           </div>
         </div>
 
-        <div class="split-layout">
-          <div class="control-card animate-on-scroll" style="--delay: 60ms;">
+        <div class="split-layout fit-layout">
+          <div class="control-card fit-controls animate-on-scroll" style="--delay: 60ms;">
             <div class="control-stack">
               <div class="slider-row">
                 <div class="slider-line">
@@ -3718,11 +4604,22 @@
                   <div class="track-labels"><span>Absent</span><span>Present</span></div>
                 </div>
               </div>
+
+              <div class="slider-row">
+                <div class="slider-line">
+                  <div class="slider-name">ZoomInfo coverage</div>
+                  <div class="slider-meta" id="coverageMeta">82%</div>
+                </div>
+                <div class="slider-track-wrap">
+                  <input class="slider-input" id="coverageSlider" type="range" min="30" max="100" step="1" value="82" />
+                  <div class="track-labels"><span>30%</span><span>100%</span></div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="animate-on-scroll" style="--delay: 120ms;">
-            <div class="ui-card">
+          <div class="fit-ui-stack animate-on-scroll" style="--delay: 120ms;">
+            <div class="ui-card zoominfo-ui">
               <div class="ui-card-head">
                 <strong>ZoomInfo record</strong>
                 <div class="mock-head-badges">
@@ -3784,23 +4681,9 @@
                   <span class="label">Conflicts</span>
                 </div>
               </div>
-              <div style="margin-top: 18px;">
-                <div class="slider-line">
-                  <div class="slider-name">ZoomInfo coverage</div>
-                  <div class="slider-meta" id="coverageMeta">82%</div>
-                </div>
-                <div class="slider-track-wrap">
-                  <input class="slider-input" id="coverageSlider" type="range" min="30" max="100" step="1" value="82" />
-                  <div class="track-labels"><span>30%</span><span>100%</span></div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="section-transition transition-to-dark">
-        <div class="transition-line"></div>
-        <div class="transition-dot"></div>
       </div>
     </section>
 
@@ -3920,15 +4803,17 @@
             </div>
           </div>
 
-          <div class="ui-card animate-on-scroll" style="--delay: 120ms;">
+          <div class="ui-card sense-ui animate-on-scroll" style="--delay: 120ms;">
             <div class="ui-card-head">
-              <strong>6sense account dashboard</strong>
+              <div>
+                <strong>6sense account dashboard</strong>
+                <p class="ui-card-copy">Intent, engagement, and first-party pressure in one view.</p>
+              </div>
               <div class="mock-head-badges">
                 <div class="stage-pill" id="senseStage">Decision</div>
                 <div class="mock-badge inline">Mock UI</div>
               </div>
             </div>
-            <p class="ui-card-copy">Intent, engagement, and first-party pressure in one view.</p>
 
             <div class="sense-grid">
               <div class="sense-panel">
@@ -3956,10 +4841,6 @@
           </div>
         </div>
       </div>
-      <div class="section-transition transition-to-light">
-        <div class="transition-line"></div>
-        <div class="transition-dot"></div>
-      </div>
     </section>
 
     <div class="connector">
@@ -3983,117 +4864,121 @@
           </div>
         </div>
 
-        <div class="clay-controls animate-on-scroll" style="--delay: 60ms;">
-          <div class="slider-row">
-            <div class="slider-line">
-              <div class="slider-name">
-                <span>ZoomInfo data points</span>
-                <button class="info-icon" type="button" aria-label="ZoomInfo data points info">
-                  i
-                  <span class="tooltip">Controls how many firmographic fields Clay is normalizing from ZoomInfo.</span>
-                </button>
+        <div class="clay-grid">
+          <div class="clay-left animate-on-scroll" style="--delay: 60ms;">
+            <div class="control-card clay-control-card">
+              <div class="clay-controls">
+                <div class="slider-row">
+                  <div class="slider-line">
+                    <div class="slider-name">
+                      <span>ZoomInfo data points</span>
+                      <button class="info-icon" type="button" aria-label="ZoomInfo data points info">
+                        i
+                        <span class="tooltip">Controls how many firmographic fields Clay is normalizing from ZoomInfo.</span>
+                      </button>
+                    </div>
+                    <div class="slider-meta" id="zoomPointsMeta">16</div>
+                  </div>
+                  <div class="slider-track-wrap">
+                    <input class="slider-input" id="zoomPointsSlider" type="range" min="5" max="25" step="1" value="16" />
+                    <div class="track-labels"><span>5</span><span>25</span></div>
+                  </div>
+                </div>
+
+                <div class="slider-row">
+                  <div class="slider-line">
+                    <div class="slider-name">
+                      <span>6sense topics</span>
+                      <button class="info-icon" type="button" aria-label="6sense topics info">
+                        i
+                        <span class="tooltip">Controls how many intent topics are available inside the enrichment layer.</span>
+                      </button>
+                    </div>
+                    <div class="slider-meta" id="topicsMeta">6</div>
+                  </div>
+                  <div class="slider-track-wrap">
+                    <input class="slider-input" id="topicsSlider" type="range" min="1" max="10" step="1" value="6" />
+                    <div class="track-labels"><span>1</span><span>10</span></div>
+                  </div>
+                </div>
+
+                <div class="slider-row">
+                  <div class="slider-line">
+                    <div class="slider-name">
+                      <span>First-party packets</span>
+                      <button class="info-icon" type="button" aria-label="First party packets info">
+                        i
+                        <span class="tooltip">Controls how many first-party event packets are available for the final enriched object.</span>
+                      </button>
+                    </div>
+                    <div class="slider-meta" id="packetsMeta">8</div>
+                  </div>
+                  <div class="slider-track-wrap">
+                    <input class="slider-input" id="packetsSlider" type="range" min="1" max="15" step="1" value="8" />
+                    <div class="track-labels"><span>1</span><span>15</span></div>
+                  </div>
+                </div>
               </div>
-              <div class="slider-meta" id="zoomPointsMeta">16</div>
-            </div>
-            <div class="slider-track-wrap">
-              <input class="slider-input" id="zoomPointsSlider" type="range" min="5" max="25" step="1" value="16" />
-              <div class="track-labels"><span>5</span><span>25</span></div>
-            </div>
-          </div>
 
-          <div class="slider-row">
-            <div class="slider-line">
-              <div class="slider-name">
-                <span>6sense topics</span>
-                <button class="info-icon" type="button" aria-label="6sense topics info">
-                  i
-                  <span class="tooltip">Controls how many intent topics are available inside the enrichment layer.</span>
-                </button>
+              <div class="action-row">
+                <button class="add-btn" id="addZoom" type="button">Add data point - ZoomInfo</button>
+                <button class="add-btn" id="addSense" type="button">Add data point - 6sense</button>
+                <button class="add-btn" id="addFirstParty" type="button">Add data point - First-Party</button>
               </div>
-              <div class="slider-meta" id="topicsMeta">6</div>
-            </div>
-            <div class="slider-track-wrap">
-              <input class="slider-input" id="topicsSlider" type="range" min="1" max="10" step="1" value="6" />
-              <div class="track-labels"><span>1</span><span>10</span></div>
             </div>
           </div>
 
-          <div class="slider-row">
-            <div class="slider-line">
-              <div class="slider-name">
-                <span>First-party packets</span>
-                <button class="info-icon" type="button" aria-label="First party packets info">
-                  i
-                  <span class="tooltip">Controls how many first-party event packets are available for the final enriched object.</span>
-                </button>
+          <div class="clay-right animate-on-scroll" style="--delay: 120ms;">
+            <div class="table-shell">
+              <div class="mini-card-head table-head">
+                <strong>Clay enrichment table</strong>
+                <div class="mock-head-badges">
+                  <div class="mock-badge inline">Mock UI</div>
+                </div>
               </div>
-              <div class="slider-meta" id="packetsMeta">8</div>
+              <div class="table-wrap">
+                <table class="clay-table">
+                  <thead>
+                    <tr>
+                      <th>Field</th>
+                      <th>ZoomInfo</th>
+                      <th>Clearbit</th>
+                      <th>6sense</th>
+                      <th>First-Party</th>
+                      <th>Final Value</th>
+                    </tr>
+                  </thead>
+                  <tbody id="clayBody"></tbody>
+                </table>
+              </div>
             </div>
-            <div class="slider-track-wrap">
-              <input class="slider-input" id="packetsSlider" type="range" min="1" max="15" step="1" value="8" />
-              <div class="track-labels"><span>1</span><span>15</span></div>
+
+            <div class="summary-stats">
+              <div class="summary-stat">
+                <span class="number" id="enrichedCount">30</span>
+                <span class="text">fields enriched</span>
+              </div>
+              <div class="summary-stat">
+                <span class="number" id="conflictCount">1</span>
+                <span class="text">conflicts resolved</span>
+              </div>
+              <div class="summary-stat">
+                <span class="number" id="safeCount">26</span>
+                <span class="text">downstream-safe fields ready for Claude</span>
+              </div>
+            </div>
+
+            <div class="json-panel" id="jsonPanel">
+              <div class="json-head">
+                <strong>JSON preview</strong>
+                <button class="toggle-btn" id="jsonToggle" type="button">Expand</button>
+              </div>
+              <div class="json-body">
+                <div class="code-wrap" id="jsonCode"></div>
+              </div>
             </div>
           </div>
         </div>
-
-        <div class="action-row animate-on-scroll" style="--delay: 120ms;">
-          <button class="add-btn" id="addZoom" type="button">Add data point - ZoomInfo</button>
-          <button class="add-btn" id="addSense" type="button">Add data point - 6sense</button>
-          <button class="add-btn" id="addFirstParty" type="button">Add data point - First-Party</button>
-        </div>
-
-        <div class="table-shell animate-on-scroll" style="--delay: 180ms;">
-          <div class="mini-card-head table-head">
-            <strong>Clay enrichment table</strong>
-            <div class="mock-head-badges">
-              <div class="mock-badge inline">Mock UI</div>
-            </div>
-          </div>
-          <div class="table-wrap">
-            <table class="clay-table">
-              <thead>
-                <tr>
-                  <th>Field</th>
-                  <th>ZoomInfo</th>
-                  <th>Clearbit</th>
-                  <th>6sense</th>
-                  <th>First-Party</th>
-                  <th>Final Value</th>
-                </tr>
-              </thead>
-              <tbody id="clayBody"></tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="summary-stats animate-on-scroll" style="--delay: 240ms;">
-          <div class="summary-stat">
-            <span class="number" id="enrichedCount">30</span>
-            <span class="text">fields enriched</span>
-          </div>
-          <div class="summary-stat">
-            <span class="number" id="conflictCount">1</span>
-            <span class="text">conflicts resolved</span>
-          </div>
-          <div class="summary-stat">
-            <span class="number" id="safeCount">26</span>
-            <span class="text">downstream-safe fields ready for Claude</span>
-          </div>
-        </div>
-
-        <div class="json-panel animate-on-scroll" style="--delay: 300ms;" id="jsonPanel">
-          <div class="json-head">
-            <strong>JSON preview</strong>
-            <button class="toggle-btn" id="jsonToggle" type="button">Expand</button>
-          </div>
-          <div class="json-body">
-            <div class="code-wrap" id="jsonCode"></div>
-          </div>
-        </div>
-      </div>
-      <div class="section-transition transition-to-dark">
-        <div class="transition-line"></div>
-        <div class="transition-dot"></div>
       </div>
     </section>
 
@@ -4135,22 +5020,15 @@
               <strong>Claude output</strong>
               <div class="status-pill">Live response</div>
             </div>
-            <div class="thinking-wrap">
-              <div class="thinking-bar"></div>
-              <div class="thinking-bar" style="width:88%;"></div>
-              <div class="thinking-bar" style="width:74%;"></div>
-            </div>
-            <div class="response-stack">
-              <div class="response-card" id="fitReasoningCard"></div>
-              <div class="response-card" id="timingReasoningCard"></div>
-              <div class="response-card routing-card" id="routingCard"></div>
+            <div class="claude-output-content">
+              <div class="response-stack">
+                <div class="response-card" id="fitReasoningCard"></div>
+                <div class="response-card" id="timingReasoningCard"></div>
+                <div class="response-card routing-card" id="routingCard"></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="section-transition transition-to-light">
-        <div class="transition-line"></div>
-        <div class="transition-dot"></div>
       </div>
     </section>
 
@@ -4175,8 +5053,11 @@
           </div>
         </div>
 
-        <div class="salesforce-shell animate-on-scroll" style="--delay: 60ms;">
-          <div class="mock-badge">Mock UI</div>
+        <div class="salesforce-shell-wrap animate-on-scroll" style="--delay: 60ms;">
+          <div class="salesforce-shell-badge">
+            <div class="mock-badge inline">Mock UI</div>
+          </div>
+        <div class="salesforce-shell">
           <div class="sf-header">
             <div>
               <h3 id="sfAccountName">Harbor &amp; Pine Goods</h3>
@@ -4229,6 +5110,7 @@
             </div>
           </div>
         </div>
+        </div>
 
         <div class="history-shell animate-on-scroll" style="--delay: 120ms;">
           <div class="card-head" style="margin-bottom:0;">
@@ -4278,10 +5160,6 @@
           </div>
         </div>
       </div>
-      <div class="section-transition transition-to-dark">
-        <div class="transition-line"></div>
-        <div class="transition-dot"></div>
-      </div>
     </section>
 
     <div class="connector">
@@ -4306,7 +5184,7 @@
         </div>
 
         <div class="marketo-grid">
-          <div class="marketo-card animate-on-scroll" style="--delay: 60ms;">
+          <div class="marketo-card marketo-smart animate-on-scroll" style="--delay: 60ms;">
             <div class="card-head mock-head">
               <strong>Smart List</strong>
               <div class="mock-head-badges">
@@ -4316,7 +5194,8 @@
             <div class="smart-list" id="smartList"></div>
           </div>
 
-          <div class="marketo-card animate-on-scroll" style="--delay: 120ms;">
+          <div class="marketo-right-stack animate-on-scroll" style="--delay: 120ms;">
+          <div class="marketo-card marketo-flow">
             <div class="card-head mock-head">
               <strong>Flow Steps</strong>
               <div class="mock-head-badges">
@@ -4333,7 +5212,7 @@
             <div class="suppression" id="suppressionBanner">Account suppressed — no active Marketo motion.</div>
           </div>
 
-          <div class="marketo-card animate-on-scroll" style="--delay: 180ms;">
+          <div class="marketo-card marketo-performance">
             <div class="card-head mock-head">
               <strong>Program performance</strong>
               <div class="mock-head-badges">
@@ -4364,11 +5243,8 @@
               </div>
             </div>
           </div>
+          </div>
         </div>
-      </div>
-      <div class="section-transition transition-to-light">
-        <div class="transition-line"></div>
-        <div class="transition-dot"></div>
       </div>
     </section>
 
@@ -4379,42 +5255,97 @@
     <section class="section dark" id="summary">
       <div class="section-inner">
         <div class="section-head animate-on-scroll">
-          <p class="step-label">Live downstream state</p>
+          <p class="step-label">Output</p>
           <div class="head-row">
             <div class="head-copy">
-              <h2>Live downstream state.</h2>
-              <p class="section-subheading">Every control above feeds this. This feeds Salesforce and Marketo.</p>
+              <h2>Your scoring result.</h2>
+              <p class="section-subheading">Based on your current signal configuration, here is the complete account scoring output as it would be written to Salesforce and consumed by Marketo.</p>
             </div>
           </div>
         </div>
 
-        <div class="summary-shell animate-on-scroll" style="--delay: 60ms;">
-          <div class="summary-grid">
-            <div class="summary-cell">
-              <div class="label">Composite Score</div>
-              <div class="value" id="summaryComposite">145</div>
+        <div class="summary-shell report-shell animate-on-scroll" style="--delay: 60ms;">
+          <div class="report-top-strip">
+            <div class="report-live-row">
+              <span class="report-live-dot"></span>
+              <span class="report-live-label">Live Output</span>
+              <span class="report-live-time">Generated just now</span>
             </div>
-            <div class="summary-cell">
-              <div class="label">Tier</div>
-              <div class="value" id="summaryTier">Tier A</div>
+            <div class="tier-pill tier-a" id="summaryTierBadge">Tier A</div>
+          </div>
+
+          <div class="report-block report-identity">
+            <div class="report-identity-main">
+              <div class="report-block-label">Account identity</div>
+              <div class="report-account-name" id="reportAccountName">Harbor &amp; Pine Goods</div>
+              <div class="report-meta-line"><span>Account owner</span><strong id="reportOwner">AE + SDR paired</strong></div>
+              <div class="report-meta-line"><span>RevOps lane</span><strong id="reportLane">Named account motion</strong></div>
             </div>
-            <div class="summary-cell">
-              <div class="label">Sales Motion</div>
-              <div class="value" id="summaryMotion">1:1 ABM with AE and SDR paired</div>
-            </div>
-            <div class="summary-cell">
-              <div class="label">SLA</div>
-              <div class="value" id="summarySla">Sub-5-minute SLA via Chili Piper</div>
-            </div>
-            <div class="summary-cell">
-              <div class="label">Marketo Action</div>
-              <div class="value" id="summaryAction">Named Account program and MQA alert via Sales Insight</div>
-            </div>
-            <div class="summary-cell">
-              <div class="label">Salesforce Fields</div>
-              <div class="value">Fit_Score__c · Timing_Score__c · Composite_Score__c · Tier__c</div>
+            <div class="report-score-breakdown">
+              <div class="score-mini-card">
+                <span>Fit</span>
+                <strong id="summaryFit">95</strong>
+              </div>
+              <div class="score-mini-card">
+                <span>Timing</span>
+                <strong id="summaryTiming">50</strong>
+              </div>
+              <div class="score-arrow">→</div>
+              <div class="score-composite-card">
+                <span>Composite</span>
+                <strong id="summaryComposite">145</strong>
+                <div class="tier-pill tier-a" id="summaryTier">Tier A</div>
+              </div>
             </div>
           </div>
+
+          <div class="report-block report-signals">
+            <div class="report-block-label">What drove the score</div>
+            <div class="report-signal-grid">
+              <div class="report-signal-col">
+                <h3>Fit signals</h3>
+                <div class="signal-list" id="summaryFitSignals"></div>
+                <div class="signal-total">Fit total: <strong id="summaryFitTotal">95</strong></div>
+              </div>
+              <div class="report-signal-col">
+                <h3>Timing signals</h3>
+                <div class="signal-list" id="summaryTimingSignals"></div>
+                <div class="signal-total">Timing total: <strong id="summaryTimingTotal">50</strong> <span id="summaryTimingRawNote">(capped from 60 raw)</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="report-block report-routing">
+            <div class="report-block-label">Routing decision</div>
+            <div class="report-routing-card">
+              <div class="tier-pill tier-a" id="summaryRoutingTier">Tier A</div>
+              <div class="routing-summary-copy">
+                <strong id="summaryMotion">1:1 ABM with AE and SDR paired</strong>
+                <p id="summaryAction">Named Account program and MQA alert via Sales Insight</p>
+                <p id="summarySla">Sub-5-minute SLA via Chili Piper</p>
+                <p id="summaryChili">Chili Piper acceleration is active for Tier A routing.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="report-block report-salesforce">
+            <div class="report-block-label">Fields written to Salesforce</div>
+            <div class="report-table">
+              <div class="report-table-head">
+                <span>API Name</span>
+                <span>Value</span>
+                <span>Status</span>
+              </div>
+              <div class="report-table-body" id="summarySalesforceRows"></div>
+            </div>
+          </div>
+
+          <div class="report-block report-marketo">
+            <div class="report-block-label">Marketo activation state</div>
+            <div class="report-flow-timeline" id="summaryFlowTimeline"></div>
+            <div class="report-filter-list" id="summaryFilterList"></div>
+          </div>
+
           <div class="summary-actions">
             <button class="action-btn" id="resetButton" type="button">Reset to defaults</button>
             <button class="ghost-btn" type="button">
@@ -4732,11 +5663,27 @@
       perfMembersBar: document.getElementById("perfMembersBar"),
       perfEmailsBar: document.getElementById("perfEmailsBar"),
       perfAlertsBar: document.getElementById("perfAlertsBar"),
+      reportAccountName: document.getElementById("reportAccountName"),
+      reportOwner: document.getElementById("reportOwner"),
+      reportLane: document.getElementById("reportLane"),
+      summaryFit: document.getElementById("summaryFit"),
+      summaryTiming: document.getElementById("summaryTiming"),
       summaryComposite: document.getElementById("summaryComposite"),
       summaryTier: document.getElementById("summaryTier"),
+      summaryTierBadge: document.getElementById("summaryTierBadge"),
+      summaryRoutingTier: document.getElementById("summaryRoutingTier"),
       summaryMotion: document.getElementById("summaryMotion"),
       summarySla: document.getElementById("summarySla"),
       summaryAction: document.getElementById("summaryAction"),
+      summaryChili: document.getElementById("summaryChili"),
+      summaryFitSignals: document.getElementById("summaryFitSignals"),
+      summaryTimingSignals: document.getElementById("summaryTimingSignals"),
+      summaryFitTotal: document.getElementById("summaryFitTotal"),
+      summaryTimingTotal: document.getElementById("summaryTimingTotal"),
+      summaryTimingRawNote: document.getElementById("summaryTimingRawNote"),
+      summarySalesforceRows: document.getElementById("summarySalesforceRows"),
+      summaryFlowTimeline: document.getElementById("summaryFlowTimeline"),
+      summaryFilterList: document.getElementById("summaryFilterList"),
       resetButton: document.getElementById("resetButton"),
       addZoom: document.getElementById("addZoom"),
       addSense: document.getElementById("addSense"),
@@ -4865,45 +5812,60 @@
       setTimeout(() => el.classList.remove("pulse"), 220);
     }
 
-    function animateNumber(el, target, suffix = "", duration = 600) {
+    function flashMeta(el) {
+      if (!window.gsap) return;
+      gsap.fromTo(el, { color: "#22c55e" }, { color: "#ffffff", duration: 0.18, yoyo: true, repeat: 1, ease: "power1.out", overwrite: true });
+    }
+
+    function createRipple(button, event) {
+      const rect = button.getBoundingClientRect();
+      const ripple = document.createElement("span");
+      ripple.className = "button-ripple";
+      ripple.style.left = `${event.clientX - rect.left}px`;
+      ripple.style.top = `${event.clientY - rect.top}px`;
+      button.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 500);
+    }
+
+    function playPresetButton(button) {
+      if (!window.gsap) return;
+      gsap.to(button, {
+        scale: 0.93,
+        duration: 0.1,
+        ease: "power2.in",
+        onComplete: () => {
+          gsap.to(button, { scale: 1, duration: 0.25, ease: "back.out(3)" });
+        }
+      });
+    }
+
+    function animateCounter(el, from, to, duration = 350, suffix = "") {
+      const start = performance.now();
+      if (el._counterFrame) cancelAnimationFrame(el._counterFrame);
+
+      function update(time) {
+        const progress = Math.min((time - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const next = Math.round(from + ((to - from) * eased));
+        el.textContent = `${next}${suffix}`;
+        el.dataset.current = `${next}`;
+        if (progress < 1) {
+          el._counterFrame = requestAnimationFrame(update);
+        }
+      }
+
+      el._counterFrame = requestAnimationFrame(update);
+    }
+
+    function animateNumber(el, target, suffix = "", duration = 350) {
       const current = Number(el.dataset.current || 0);
       if (current === target) {
         el.textContent = `${target}${suffix}`;
         el.dataset.current = `${target}`;
         return;
       }
-
-      if (window.gsap) {
-        const counter = { value: current };
-        gsap.to(counter, {
-          value: target,
-          duration: duration / 1000,
-          ease: "power1.out",
-          snap: { value: 1 },
-          overwrite: true,
-          onStart: () => pulseValue(el),
-          onUpdate: () => {
-            const next = Math.round(counter.value);
-            el.textContent = `${next}${suffix}`;
-            el.dataset.current = `${next}`;
-          }
-        });
-        return;
-      }
-
-      const start = current;
-      const end = target;
-      const started = performance.now();
-
-      function frame(now) {
-        const progress = Math.min((now - started) / duration, 1);
-        const next = Math.round(start + ((end - start) * progress));
-        el.textContent = `${next}${suffix}`;
-        el.dataset.current = `${next}`;
-        if (progress < 1) requestAnimationFrame(frame);
-      }
-
-      requestAnimationFrame(frame);
+      pulseValue(el);
+      animateCounter(el, current, target, duration, suffix);
     }
 
     function highlightField(el) {
@@ -4914,6 +5876,15 @@
     }
 
     function flashSF(el) {
+      if (window.gsap) {
+        gsap.fromTo(el, { backgroundColor: "rgba(0,112,210,0.18)" }, {
+          backgroundColor: "rgba(0,112,210,0)",
+          duration: 0.8,
+          ease: "power1.out",
+          overwrite: true
+        });
+        return;
+      }
       el.classList.remove("flash");
       void el.offsetWidth;
       el.classList.add("flash");
@@ -4922,6 +5893,15 @@
 
     function makePlaceholder(value) {
       return value && value !== "" ? value : '<span class="placeholder">—</span>';
+    }
+
+    function setMetaText(el, next) {
+      if (el.textContent !== next) {
+        el.textContent = next;
+        flashMeta(el);
+      } else {
+        el.textContent = next;
+      }
     }
 
     function getFitContext(discrete) {
@@ -5037,7 +6017,10 @@
       `).join("");
 
       els.presetGrid.querySelectorAll("[data-preset]").forEach((btn) => {
-        btn.addEventListener("click", () => animateToPreset(btn.dataset.preset));
+        btn.addEventListener("click", (event) => {
+          playPresetButton(btn);
+          animateToPreset(btn.dataset.preset);
+        });
       });
     }
 
@@ -5072,12 +6055,10 @@
       const preset = presets[key];
       if (!preset) return;
 
-      if (resetAnimation) cancelAnimationFrame(resetAnimation);
-
-      const startValues = { ...state.sliders };
       const targetValues = { ...preset.values };
-      const started = performance.now();
-      const duration = 400;
+      if (resetAnimation && window.gsap) {
+        resetAnimation.kill();
+      }
 
       state.activePreset = key;
       state.accountName = preset.accountName;
@@ -5086,32 +6067,28 @@
       state.extraRows = [];
       els.scenarioDescription.textContent = preset.description;
       renderPresets();
-      syncInputs();
 
-      function step(now) {
-        const progress = Math.min((now - started) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-
-        Object.keys(targetValues).forEach((name) => {
-          state.sliders[name] = startValues[name] + ((targetValues[name] - startValues[name]) * eased);
+      if (window.gsap) {
+        resetAnimation = gsap.timeline({
+          defaults: { ease: "power2.inOut", duration: 0.6 },
+          onUpdate: () => {
+            syncInputs();
+            renderAll(false);
+          },
+          onComplete: () => {
+            Object.assign(state.sliders, targetValues);
+            syncInputs();
+            renderAll(true);
+          }
         });
 
-        state.accountName = preset.accountName;
-        state.owner = preset.owner;
-        state.lane = preset.lane;
-        syncInputs();
-        renderAll(false);
-
-        if (progress < 1) {
-          resetAnimation = requestAnimationFrame(step);
-        } else {
-          Object.assign(state.sliders, targetValues);
-          syncInputs();
-          renderAll(true);
-        }
+        resetAnimation.to(state.sliders, { ...targetValues }, 0);
+        return;
       }
 
-      resetAnimation = requestAnimationFrame(step);
+      Object.assign(state.sliders, targetValues);
+      syncInputs();
+      renderAll(true);
     }
 
     function applyTierClass(el, tier, prefix = "tier-pill") {
@@ -5125,7 +6102,11 @@
 
       if (els.stickyTier.textContent !== scores.tier) {
         els.stickyTier.textContent = scores.tier;
-        pulseValue(els.stickyTier);
+        if (window.gsap) {
+          gsap.fromTo(els.stickyTier, { scale: 1.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" });
+        } else {
+          pulseValue(els.stickyTier);
+        }
       }
 
       els.stickyTier.className = `score-value bright ${getTierClass(scores.tier)}`;
@@ -5149,11 +6130,11 @@
     }
 
     function renderFit(discrete) {
-      els.scaleMeta.textContent = `${fitMeta.scale.labels[discrete.scale]} · ${fitMeta.scale.points[discrete.scale] >= 0 ? "+" : ""}${fitMeta.scale.points[discrete.scale]}`;
-      els.industryMeta.textContent = `${fitMeta.industry.labels[discrete.industry]} · ${fitMeta.industry.points[discrete.industry] >= 0 ? "+" : ""}${fitMeta.industry.points[discrete.industry]}`;
-      els.commerceMeta.textContent = `${fitMeta.commerce.labels[discrete.commerce]} · ${fitMeta.commerce.points[discrete.commerce] >= 0 ? "+" : ""}${fitMeta.commerce.points[discrete.commerce]}`;
-      els.helpdeskMeta.textContent = `${fitMeta.helpdesk.labels[discrete.helpdesk]} · ${fitMeta.helpdesk.points[discrete.helpdesk] >= 0 ? "+" : ""}${fitMeta.helpdesk.points[discrete.helpdesk]}`;
-      els.coverageMeta.textContent = `${discrete.coverage}%`;
+      setMetaText(els.scaleMeta, `${fitMeta.scale.labels[discrete.scale]} · ${fitMeta.scale.points[discrete.scale] >= 0 ? "+" : ""}${fitMeta.scale.points[discrete.scale]} pts`);
+      setMetaText(els.industryMeta, `${fitMeta.industry.labels[discrete.industry]} · ${fitMeta.industry.points[discrete.industry] >= 0 ? "+" : ""}${fitMeta.industry.points[discrete.industry]} pts`);
+      setMetaText(els.commerceMeta, `${fitMeta.commerce.labels[discrete.commerce]} · ${fitMeta.commerce.points[discrete.commerce] >= 0 ? "+" : ""}${fitMeta.commerce.points[discrete.commerce]} pts`);
+      setMetaText(els.helpdeskMeta, `${fitMeta.helpdesk.labels[discrete.helpdesk]} · ${fitMeta.helpdesk.points[discrete.helpdesk] >= 0 ? "+" : ""}${fitMeta.helpdesk.points[discrete.helpdesk]} pts`);
+      setMetaText(els.coverageMeta, `${discrete.coverage}%`);
 
       const fitContext = getFitContext(discrete);
       els.zoomSidebarCopy.innerHTML = `${discrete.coverage >= 70 ? "Primary source" : "Partial source"}<br />${discrete.coverage >= 70 ? "Coverage healthy" : discrete.coverage >= 50 ? "Coverage mixed" : "Coverage weak"}`;
@@ -5195,11 +6176,11 @@
     }
 
     function renderTiming(discrete, scores) {
-      els.intentMeta.textContent = `${timingMeta.intent.labels[discrete.intent]} · ${timingMeta.intent.points[discrete.intent] >= 0 ? "+" : ""}${timingMeta.intent.points[discrete.intent]}`;
-      els.hiringMeta.textContent = `${timingMeta.hiring.labels[discrete.hiring]} · ${timingMeta.hiring.points[discrete.hiring] >= 0 ? "+" : ""}${timingMeta.hiring.points[discrete.hiring]}`;
-      els.pricingMeta.textContent = `${timingMeta.pricing.labels[discrete.pricing]} · ${timingMeta.pricing.points[discrete.pricing] >= 0 ? "+" : ""}${timingMeta.pricing.points[discrete.pricing]}`;
-      els.intentDepthMeta.textContent = `${discrete.intentDepth}%`;
-      els.firstPartyMeta.textContent = `${discrete.firstPartyDepth}%`;
+      setMetaText(els.intentMeta, `${timingMeta.intent.labels[discrete.intent]} · ${timingMeta.intent.points[discrete.intent] >= 0 ? "+" : ""}${timingMeta.intent.points[discrete.intent]} pts`);
+      setMetaText(els.hiringMeta, `${timingMeta.hiring.labels[discrete.hiring]} · ${timingMeta.hiring.points[discrete.hiring] >= 0 ? "+" : ""}${timingMeta.hiring.points[discrete.hiring]} pts`);
+      setMetaText(els.pricingMeta, `${timingMeta.pricing.labels[discrete.pricing]} · ${timingMeta.pricing.points[discrete.pricing] >= 0 ? "+" : ""}${timingMeta.pricing.points[discrete.pricing]} pts`);
+      setMetaText(els.intentDepthMeta, `${discrete.intentDepth}%`);
+      setMetaText(els.firstPartyMeta, `${discrete.firstPartyDepth}%`);
 
       const pct = Math.min((scores.rawTiming / 60) * 100, 100);
       els.timingCapFill.style.width = `${pct}%`;
@@ -5238,15 +6219,15 @@
 
     function renderClay(discrete, scores) {
       const stats = getEnrichmentStats(discrete);
-      els.zoomPointsMeta.textContent = `${discrete.zoomPoints}`;
-      els.topicsMeta.textContent = `${discrete.topics}`;
-      els.packetsMeta.textContent = `${discrete.packets}`;
+      setMetaText(els.zoomPointsMeta, `${discrete.zoomPoints}`);
+      setMetaText(els.topicsMeta, `${discrete.topics}`);
+      setMetaText(els.packetsMeta, `${discrete.packets}`);
 
       const rows = getClayRows(discrete, scores);
       els.clayBody.innerHTML = rows.map((row) => {
         const isFlash = row.__flash ? " flash" : "";
         return `
-          <tr>
+          <tr data-row-id="${row.id || row.field}">
             <td class="field-col">${row.field}</td>
             <td class="data-cell ${row.zoom !== "—" ? "present" : ""}">${row.zoom !== "—" ? row.zoom : '<span class="placeholder">—</span>'}</td>
             <td class="data-cell ${row.clearbit !== "—" ? "present" : ""}">${row.clearbit !== "—" ? row.clearbit : '<span class="placeholder">—</span>'}</td>
@@ -5319,7 +6300,7 @@
 
       clearTimeout(claudeTimer);
       els.responsePanel.classList.add("thinking");
-      claudeTimer = setTimeout(updateOutput, 300);
+      claudeTimer = setTimeout(updateOutput, 280);
     }
 
     function renderSalesforce(discrete, scores) {
@@ -5381,6 +6362,7 @@
       renderSmartList(scores);
 
       const tier = scores.tier;
+      const previousTier = previousRender?.scores?.tier;
       const stepStates = {
         A: [
           { active: true, title: "Send Alert → AE + SDR", copy: "Immediate alert for the named account pair." },
@@ -5412,6 +6394,13 @@
         const item = stepStates[index];
         el.className = `flow-step-card ${item.active ? "active" : "inactive"}`;
         el.innerHTML = flowCardMarkup(index + 1, item.active, item.title, item.copy);
+        if (window.gsap && previousTier && previousTier !== tier && item.active) {
+          gsap.from(el, { x: -8, duration: 0.3, ease: "power2.out" });
+          const stepNumber = el.querySelector(".step-circle");
+          if (stepNumber) {
+            gsap.to(stepNumber, { backgroundColor: "#22C55E", color: "#000", duration: 0.25 });
+          }
+        }
       });
 
       els.suppressionBanner.classList.toggle("visible", tier === "D");
@@ -5432,11 +6421,92 @@
     }
 
     function renderSummary(scores) {
-      els.summaryComposite.textContent = `${scores.composite}`;
-      els.summaryTier.textContent = `Tier ${scores.tier}`;
+      animateNumber(els.summaryFit, scores.fit);
+      animateNumber(els.summaryTiming, scores.timing);
+      animateNumber(els.summaryComposite, scores.composite);
+
+      els.reportAccountName.textContent = state.accountName;
+      els.reportOwner.textContent = state.owner;
+      els.reportLane.textContent = state.lane;
+
+      [els.summaryTier, els.summaryTierBadge, els.summaryRoutingTier].forEach((el) => {
+        el.textContent = `Tier ${scores.tier}`;
+        applyTierClass(el, scores.tier, "tier-pill");
+      });
+
+      els.summaryFitTotal.textContent = `${scores.fit}`;
+      els.summaryTimingTotal.textContent = `${scores.timing}`;
+      els.summaryTimingRawNote.textContent = `(capped from ${scores.rawTiming} raw)`;
       els.summaryMotion.textContent = scores.motion;
-      els.summarySla.textContent = scores.sla;
       els.summaryAction.textContent = scores.action;
+      els.summarySla.textContent = scores.sla;
+      els.summaryChili.textContent = scores.tier === "A"
+        ? "Chili Piper acceleration is active for Tier A routing."
+        : "Chili Piper acceleration is inactive outside Tier A.";
+
+      const allFitSignals = [
+        { label: "Enterprise scale", points: fitMeta.scale.points[getDiscrete().scale], active: fitMeta.scale.points[getDiscrete().scale] !== 0 },
+        { label: fitMeta.industry.labels[getDiscrete().industry], points: fitMeta.industry.points[getDiscrete().industry], active: fitMeta.industry.points[getDiscrete().industry] !== 0 },
+        { label: "Commerce stack", points: fitMeta.commerce.points[getDiscrete().commerce], active: fitMeta.commerce.points[getDiscrete().commerce] !== 0 },
+        { label: "Legacy helpdesk", points: fitMeta.helpdesk.points[getDiscrete().helpdesk], active: fitMeta.helpdesk.points[getDiscrete().helpdesk] !== 0 }
+      ];
+
+      const allTimingSignals = [
+        { label: "6sense decision-stage surge", points: timingMeta.intent.points[getDiscrete().intent], active: timingMeta.intent.points[getDiscrete().intent] !== 0 },
+        { label: "New VP or hiring surge", points: timingMeta.hiring.points[getDiscrete().hiring], active: timingMeta.hiring.points[getDiscrete().hiring] !== 0 },
+        { label: "Pricing plus webinar", points: timingMeta.pricing.points[getDiscrete().pricing], active: timingMeta.pricing.points[getDiscrete().pricing] !== 0 }
+      ];
+
+      const signalMarkup = (signals) => signals.map((signal) => `
+        <div class="signal-row ${signal.active ? "active" : "inactive"}">
+          <span>${signal.label}</span>
+          <strong>${signal.active ? `${signal.points >= 0 ? "+" : ""}${signal.points} pts` : "inactive"}</strong>
+        </div>
+      `).join("");
+
+      els.summaryFitSignals.innerHTML = signalMarkup(allFitSignals);
+      els.summaryTimingSignals.innerHTML = signalMarkup(allTimingSignals);
+
+      const stats = getEnrichmentStats(getDiscrete());
+      const sfRows = [
+        ["Fit_Score__c", `${scores.fit}`],
+        ["Timing_Score__c", `${scores.timing}`],
+        ["Composite_Score__c", `${scores.composite}`],
+        ["Tier__c", `Tier ${scores.tier}`],
+        ["Routing__c", scores.motion],
+        ["Sync_Health__c", `${stats.syncHealth}%`]
+      ];
+      els.summarySalesforceRows.innerHTML = sfRows.map(([name, value]) => `
+        <div class="report-table-row">
+          <span>${name}</span>
+          <strong>${value}</strong>
+          <span class="report-pill-status">Synced</span>
+        </div>
+      `).join("");
+
+      const stepStates = {
+        A: [true, true, true, true],
+        B: [false, true, true, true],
+        C: [false, false, true, true],
+        D: [false, false, false, false]
+      }[scores.tier];
+
+      els.summaryFlowTimeline.innerHTML = stepStates.map((active, index) => `
+        <span class="report-flow-node ${active ? "active" : ""}">Step ${index + 1}</span>${index < stepStates.length - 1 ? '<span class="report-flow-arrow">→</span>' : ''}
+      `).join("");
+
+      const filters = [
+        { label: "Tier__c is Tier A", match: scores.tier === "A" },
+        { label: "Composite_Score__c greater than 130", match: scores.composite >= 130 },
+        { label: "Routing__c is 1:1 ABM with AE and SDR paired", match: scores.motion === "1:1 ABM with AE and SDR paired" }
+      ];
+
+      els.summaryFilterList.innerHTML = filters.map((filter) => `
+        <div class="report-filter-item ${filter.match ? "match" : "miss"}">
+          <span class="status">${filter.label}</span>
+          <span class="indicator">${filter.match ? "✓ Match" : "✕ Miss"}</span>
+        </div>
+      `).join("");
     }
 
     function renderMetaLabels(discrete) {
@@ -5475,12 +6545,19 @@
       });
     }
 
-    function addExtraRow(source) {
+    function addExtraRow(source, event) {
+      if (event?.currentTarget) {
+        createRipple(event.currentTarget, event);
+      }
       const catalog = extraRowCatalog[source];
       const index = state.extraRows.filter((row) => row.source === source).length % catalog.length;
       const row = { ...catalog[index], source, __flash: true, id: `${source}-${Date.now()}` };
       state.extraRows.push(row);
       renderAll(true);
+      const rowEl = els.clayBody.querySelector(`[data-row-id="${row.id}"]`);
+      if (rowEl && window.gsap) {
+        gsap.from(rowEl, { height: 0, opacity: 0, duration: 0.35, ease: "power2.out" });
+      }
       setTimeout(() => {
         row.__flash = false;
         renderClay(getDiscrete(), computeScores(getDiscrete()));
@@ -5549,119 +6626,121 @@
         animateToPreset("harbor");
       });
 
-      els.addZoom.addEventListener("click", () => addExtraRow("zoom"));
-      els.addSense.addEventListener("click", () => addExtraRow("sense"));
-      els.addFirstParty.addEventListener("click", () => addExtraRow("firstparty"));
+      els.addZoom.addEventListener("click", (event) => addExtraRow("zoom", event));
+      els.addSense.addEventListener("click", (event) => addExtraRow("sense", event));
+      els.addFirstParty.addEventListener("click", (event) => addExtraRow("firstparty", event));
+    }
+
+    function setActivePipelineDot(index) {
+      if (!window.gsap) return;
+      const dots = els.progressNodes.map((node) => node.querySelector(".progress-dot"));
+      if (!dots.length) return;
+      gsap.to(dots, {
+        scale: 1,
+        backgroundColor: "rgba(34,197,94,0.3)",
+        boxShadow: "none",
+        duration: 0.25,
+        overwrite: true
+      });
+      if (dots[index]) {
+        gsap.to(dots[index], {
+          scale: 1.3,
+          backgroundColor: "#22C55E",
+          boxShadow: "0 0 10px rgba(34,197,94,0.6)",
+          duration: 0.35,
+          ease: "back.out(2)",
+          overwrite: true
+        });
+      }
     }
 
     function initGsap() {
       if (!window.gsap || !window.ScrollTrigger) return;
 
       gsap.registerPlugin(ScrollTrigger);
+      ScrollTrigger.defaults({ once: true });
 
-      const heroChildren = document.querySelectorAll(".hero-copy > *");
-      gsap.fromTo(heroChildren, {
-        opacity: 0,
-        y: 24
-      }, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: "power3.out",
-        delay: 0.2
-      });
+      const runHeroIntro = () => {
+        const tl = gsap.timeline({ delay: 0.15 });
+        tl.from(".hero-eyebrow", { y: 16, opacity: 0, duration: 0.5, ease: "power2.out", onComplete: () => gsap.set(".hero-eyebrow", { clearProps: "all" }) })
+          .from(".hero-title", { y: 28, opacity: 0, duration: 0.7, ease: "power3.out", onComplete: () => gsap.set(".hero-title", { clearProps: "all" }) }, "-=0.3")
+          .from(".hero-subtext", { y: 20, opacity: 0, duration: 0.5, ease: "power2.out", onComplete: () => gsap.set(".hero-subtext", { clearProps: "all" }) }, "-=0.4")
+          .from(".hero-pills", { y: 16, opacity: 0, duration: 0.45, ease: "power2.out", onComplete: () => gsap.set(".hero-pills", { clearProps: "all" }) }, "-=0.35")
+          .from(".hero-ctas", { y: 16, opacity: 0, duration: 0.45, ease: "power2.out", onComplete: () => gsap.set(".hero-ctas", { clearProps: "all" }) }, "-=0.3")
+          .from(".hero-pipeline", { y: 12, opacity: 0, duration: 0.4, ease: "power2.out", onComplete: () => gsap.set(".hero-pipeline", { clearProps: "all" }) }, "-=0.25")
+          .from(".hero-score-card", { y: 32, scale: 0.94, opacity: 0, rotation: -1.5, duration: 0.85, ease: "back.out(1.4)", onComplete: () => gsap.set(".hero-score-card", { clearProps: "all" }) }, "-=0.5");
+      };
 
-      gsap.fromTo(els.heroScoreCard, {
-        opacity: 0,
-        scale: 0.94,
-        rotation: -3
-      }, {
-        opacity: 1,
-        scale: 1,
-        rotation: -1.5,
-        duration: 0.9,
-        ease: "back.out(1.4)",
-        delay: 0.6
-      });
-
-      gsap.fromTo(els.heroMiniNodes, {
-        opacity: 0.35,
-        scale: 0.6
-      }, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.4,
-        stagger: 0.08,
-        ease: "power2.out",
-        delay: 1
-      });
-
-      document.querySelectorAll(".section-head").forEach((el) => {
-        gsap.fromTo(el, {
-          opacity: 0,
-          y: 40
-        }, {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            toggleActions: "play none none none"
-          }
-        });
-      });
+      if (document.readyState === "loading") {
+        window.addEventListener("DOMContentLoaded", runHeroIntro, { once: true });
+      } else {
+        runHeroIntro();
+      }
 
       document.querySelectorAll(".section").forEach((section) => {
-        const cards = [...section.querySelectorAll(".animate-on-scroll")].filter((el) => !el.classList.contains("section-head"));
-        if (!cards.length) return;
+        const eyebrow = section.querySelector(".step-label");
+        const heading = section.querySelector(".head-copy h2");
+        const subtext = section.querySelector(".section-subheading");
+        const toolBadge = section.querySelector(".tool-badge");
 
-        gsap.fromTo(cards, {
-          opacity: 0,
-          y: 28
-        }, {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.08,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-            toggleActions: "play none none none"
+        if (eyebrow && heading && subtext) {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: section,
+              start: "top 82%",
+              once: true
+            }
+          });
+
+          tl.from(eyebrow, {
+            y: 20, opacity: 0, duration: 0.45, ease: "power2.out",
+            onComplete: () => gsap.set(eyebrow, { clearProps: "all" })
+          })
+            .from(heading, {
+              y: 32, opacity: 0, duration: 0.6, ease: "power3.out",
+              onComplete: () => gsap.set(heading, { clearProps: "all" })
+            }, "-=0.25")
+            .from(subtext, {
+              y: 20, opacity: 0, duration: 0.45, ease: "power2.out",
+              onComplete: () => gsap.set(subtext, { clearProps: "all" })
+            }, "-=0.3");
+
+          if (toolBadge) {
+            tl.from(toolBadge, {
+              scale: 0.8, opacity: 0, duration: 0.35, ease: "back.out(2)",
+              onComplete: () => gsap.set(toolBadge, { clearProps: "all" })
+            }, "-=0.2");
           }
-        });
+        }
+
+        const cardsContainer = section.querySelector(".split-layout, .clay-grid, .claude-grid, .salesforce-shell-wrap, .history-shell, .marketo-grid, .report-shell, .setup-grid");
+        if (cardsContainer) {
+          const cards = [...cardsContainer.children].filter((child) => !child.classList.contains("section-head"));
+          if (cards.length) {
+            gsap.from(cards, {
+              y: 24,
+              opacity: 0,
+              duration: 0.55,
+              stagger: { amount: 0.2 },
+              ease: "power2.out",
+              scrollTrigger: { trigger: cardsContainer, start: "top 83%", once: true },
+              onComplete: () => gsap.set(cards, { clearProps: "all" })
+            });
+          }
+        }
       });
 
       document.querySelectorAll(".control-stack, .clay-controls").forEach((container) => {
         const rows = container.querySelectorAll(".slider-row");
         if (!rows.length) return;
-
-        gsap.fromTo(rows, {
+        gsap.from(rows, {
+          y: 16,
           opacity: 0,
-          x: -16
-        }, {
-          opacity: 1,
-          x: 0,
           duration: 0.5,
           stagger: 0.05,
           ease: "power2.out",
-          scrollTrigger: {
-            trigger: container,
-            start: "top 82%",
-            toggleActions: "play none none none"
-          }
-        });
-      });
-
-      document.querySelectorAll(".transition-dot").forEach((dot) => {
-        gsap.to(dot, {
-          y: 40,
-          duration: 1.6,
-          ease: "none",
-          repeat: -1
+          scrollTrigger: { trigger: container, start: "top 82%", once: true },
+          onComplete: () => gsap.set(rows, { clearProps: "all" })
         });
       });
     }
@@ -5698,8 +6777,7 @@
         node.classList.toggle("is-complete", activeIndex !== -1 && groupIndex < activeIndex);
 
         if (isActive && activeGroup !== activeSectionGroup && window.gsap) {
-          const dot = node.querySelector(".progress-dot");
-          gsap.fromTo(dot, { scale: 1 }, { scale: 1.4, duration: 0.3, ease: "back.out(2)", yoyo: true, repeat: 1 });
+          setActivePipelineDot(index);
         }
       });
 
