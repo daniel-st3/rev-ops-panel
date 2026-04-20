@@ -33,16 +33,16 @@
       --green-soft: rgba(34, 197, 94, 0.12);
       --blue: #1589ee;
       --blue-soft: rgba(21, 137, 238, 0.12);
-      --gray-blue: #6d89a7;
-      --gray-blue-soft: rgba(109, 137, 167, 0.14);
-      --orange: #f59e0b;
-      --orange-soft: rgba(245, 158, 11, 0.14);
-      --purple: #8b5cf6;
-      --purple-soft: rgba(139, 92, 246, 0.14);
-      --copper: #b87333;
-      --copper-soft: rgba(184, 115, 51, 0.14);
-      --marketo: #5b2769;
-      --marketo-soft: rgba(91, 39, 105, 0.14);
+      --gray-blue: #ff6b2b;
+      --gray-blue-soft: rgba(255, 107, 43, 0.14);
+      --orange: #ff6b2b;
+      --orange-soft: rgba(255, 107, 43, 0.14);
+      --purple: #7c3aed;
+      --purple-soft: rgba(124, 58, 237, 0.14);
+      --copper: #c9a96e;
+      --copper-soft: rgba(201, 169, 110, 0.14);
+      --marketo: #5c4ee5;
+      --marketo-soft: rgba(92, 78, 229, 0.14);
       --rose: #d85e69;
       --rose-soft: rgba(216, 94, 105, 0.14);
       --shadow-lg: 0 34px 70px rgba(16, 33, 31, 0.08);
@@ -129,15 +129,15 @@
     }
 
     .brand img {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
       object-fit: contain;
     }
 
     .brand strong {
-      font-size: 1.7rem;
-      line-height: 0.9;
-      letter-spacing: -0.06em;
+      font-size: 1.4rem;
+      line-height: 1;
+      letter-spacing: -0.05em;
       color: #ffffff;
       font-weight: 800;
     }
@@ -156,6 +156,8 @@
 
     .nav-links {
       display: flex;
+      margin-left: auto;
+      padding-left: 18px;
       gap: 10px;
       flex-wrap: wrap;
       justify-content: flex-end;
@@ -192,14 +194,15 @@
       width: min(calc(100% - 28px), var(--shell));
       height: 100%;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      display: flex;
+      gap: 10px;
       gap: 10px;
       align-items: center;
     }
 
     .score-chip {
       min-width: 0;
+      flex: 1 1 0;
       display: inline-flex;
       align-items: center;
       justify-content: space-between;
@@ -212,6 +215,10 @@
       font-size: 0.78rem;
       line-height: 1;
       font-weight: 700;
+    }
+
+    .score-chip.mobile-hide {
+      display: inline-flex;
     }
 
     .score-chip span {
@@ -228,10 +235,27 @@
       white-space: nowrap;
     }
 
-    .score-chip.tier-a { background: rgba(34, 197, 94, 0.16); }
-    .score-chip.tier-b { background: rgba(21, 137, 238, 0.16); }
-    .score-chip.tier-c { background: rgba(245, 158, 11, 0.16); }
-    .score-chip.tier-d { background: rgba(216, 94, 105, 0.16); }
+    .score-chip.distinct {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .score-chip.tier-a {
+      background: rgba(34, 197, 94, 0.16);
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.24), 0 0 18px rgba(34, 197, 94, 0.14);
+    }
+    .score-chip.tier-b {
+      background: rgba(245, 158, 11, 0.16);
+      box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.22);
+    }
+    .score-chip.tier-c {
+      background: rgba(234, 179, 8, 0.18);
+      box-shadow: 0 0 0 1px rgba(234, 179, 8, 0.22);
+    }
+    .score-chip.tier-d {
+      background: rgba(216, 94, 105, 0.18);
+      box-shadow: 0 0 0 1px rgba(216, 94, 105, 0.22);
+    }
 
     main {
       padding-top: calc(var(--nav-h) + var(--bar-h));
@@ -240,7 +264,7 @@
     .hero {
       position: relative;
       min-height: min(86vh, 860px);
-      padding: 82px 0 88px;
+      padding: 72px 0 74px;
       background:
         radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.08), transparent 22%),
         radial-gradient(circle at 82% 22%, rgba(34, 197, 94, 0.12), transparent 18%),
@@ -268,7 +292,7 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.88fr);
       gap: 34px;
       align-items: end;
     }
@@ -301,10 +325,10 @@
 
     .hero-copy h1 {
       margin: 0;
-      font-size: clamp(3rem, 7vw, 6rem);
+      font-size: clamp(36px, 5vw, 60px);
       line-height: 0.9;
       letter-spacing: -0.08em;
-      max-width: 8.8ch;
+      max-width: 9.5ch;
     }
 
     .hero-copy p {
@@ -369,8 +393,9 @@
 
     .hero-film {
       display: grid;
-      gap: 14px;
+      gap: 16px;
       align-content: end;
+      position: relative;
     }
 
     .hero-film-label {
@@ -381,57 +406,211 @@
       font-weight: 700;
     }
 
-    .hero-film-strip {
-      padding: 18px;
-      border-radius: 26px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 26px 46px rgba(0, 0, 0, 0.18);
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
+    .hero-flow {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      flex-wrap: wrap;
+      max-width: 420px;
     }
 
-    .film-card {
-      min-height: 138px;
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.05);
+    .flow-node {
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      display: grid;
-      align-content: space-between;
-      gap: 12px;
+      color: #ffffff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
     }
 
-    .film-card span {
+    .flow-arrow {
+      color: rgba(255, 255, 255, 0.52);
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+
+    .hero-preview-card {
+      justify-self: end;
+      width: min(280px, 100%);
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(10, 31, 31, 0.76);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 26px 44px rgba(0, 0, 0, 0.24);
+      transform: rotate(-2deg);
+      display: grid;
+      gap: 12px;
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-preview-copy {
+      display: grid;
+      gap: 8px;
+    }
+
+    .hero-preview-copy strong {
+      font-size: 1.9rem;
+      letter-spacing: -0.06em;
+      line-height: 0.92;
+    }
+
+    .hero-preview-copy span {
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .hero-preview-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .hero-preview-head span {
       font-size: 0.72rem;
-      letter-spacing: 0.12em;
       text-transform: uppercase;
+      letter-spacing: 0.12em;
       color: rgba(255, 255, 255, 0.56);
       font-weight: 700;
     }
 
-    .film-card strong {
-      display: block;
-      font-size: 1rem;
-      line-height: 1.18;
-      letter-spacing: -0.04em;
+    .pulse-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+      animation: heroPulse 2s ease infinite;
     }
 
-    .film-card small {
-      display: block;
-      color: rgba(255, 255, 255, 0.68);
-      font-size: 0.82rem;
-      line-height: 1.5;
+    .hero-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .hero-preview-stat {
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: grid;
+      gap: 6px;
+    }
+
+    .hero-preview-stat strong {
+      font-size: 1.16rem;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .hero-preview-stat span {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.56);
+      font-weight: 700;
+    }
+
+    .hero-preview-tier {
+      display: inline-flex;
+      width: fit-content;
+      min-height: 30px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.16);
+      color: #ffffff;
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.2), 0 0 14px rgba(34, 197, 94, 0.14);
+      align-items: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .hero-preview-tier.tier-a {
+      background: rgba(34, 197, 94, 0.16);
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.2), 0 0 14px rgba(34, 197, 94, 0.14);
+    }
+
+    .hero-preview-tier.tier-b {
+      background: rgba(245, 158, 11, 0.18);
+      box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.2);
+    }
+
+    .hero-preview-tier.tier-c {
+      background: rgba(234, 179, 8, 0.18);
+      box-shadow: 0 0 0 1px rgba(234, 179, 8, 0.2);
+    }
+
+    .hero-preview-tier.tier-d {
+      background: rgba(216, 94, 105, 0.18);
+      box-shadow: 0 0 0 1px rgba(216, 94, 105, 0.2);
     }
 
     .journey {
-      padding: 110px 0 40px;
+      padding: 84px 0 36px;
     }
 
     .section {
-      padding: 0 0 120px;
+      position: relative;
+      padding: 28px 0 80px;
       scroll-margin-top: calc(var(--nav-h) + var(--bar-h) + 18px);
+    }
+
+    .section:not(:last-of-type)::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -56px;
+      width: 1px;
+      height: 56px;
+      transform: translateX(-50%);
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(34, 197, 94, 0.34) 0 6px,
+        transparent 6px 12px
+      );
+    }
+
+    .section:not(:last-of-type)::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -56px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      background: var(--green);
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.12);
+      animation: flowDot 2s linear infinite;
+      z-index: 2;
+    }
+
+    .section.light {
+      background: #f8faf8;
+    }
+
+    .section.dark {
+      background: linear-gradient(180deg, #0d2b2b 0%, #102f2f 100%);
+      color: #ffffff;
+    }
+
+    .section.dark .section-label,
+    .section.dark .section-head p,
+    .section.dark .section-why {
+      color: rgba(239, 245, 243, 0.68);
+    }
+
+    .section.dark .section-head h2 {
+      color: #ffffff;
     }
 
     .section-head {
@@ -463,11 +642,11 @@
       letter-spacing: -0.06em;
     }
 
-    .section-head p {
-      margin: 0;
-      max-width: 64ch;
+    .section-why {
+      font-size: 0.98rem;
+      line-height: 1.65;
       color: var(--ink-soft);
-      line-height: 1.7;
+      font-style: italic;
     }
 
     .tool-badges {
@@ -490,9 +669,9 @@
 
     .badge-zoominfo { background: var(--gray-blue-soft); color: var(--gray-blue); }
     .badge-clearbit { background: rgba(148, 163, 184, 0.15); color: #64748b; }
-    .badge-6sense { background: var(--orange-soft); color: #b96d00; }
+    .badge-6sense { background: var(--orange-soft); color: var(--orange); }
     .badge-clay { background: var(--purple-soft); color: var(--purple); }
-    .badge-claude { background: var(--copper-soft); color: #9a5f28; }
+    .badge-claude { background: var(--copper-soft); color: var(--copper); }
     .badge-salesforce { background: var(--blue-soft); color: var(--blue); }
     .badge-marketo { background: var(--marketo-soft); color: var(--marketo); }
 
@@ -611,7 +790,7 @@
 
     .controls-panel,
     .mock-panel {
-      padding: 18px;
+      padding: 16px;
       display: grid;
       gap: 12px;
     }
@@ -624,17 +803,17 @@
 
     .slider-stack {
       display: grid;
-      gap: 12px;
+      gap: 10px;
     }
 
     .slider-row {
-      min-height: 60px;
-      padding: 10px 12px;
+      min-height: 56px;
+      padding: 8px 10px;
       border-radius: 16px;
       background: var(--surface-alt);
       border: 1px solid var(--line);
       display: grid;
-      gap: 8px;
+      gap: 6px;
     }
 
     .slider-head {
@@ -645,27 +824,31 @@
     }
 
     .slider-head strong {
-      font-size: 0.92rem;
+      font-size: 14px;
       letter-spacing: -0.03em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .slider-meta {
-      font-size: 0.8rem;
+      font-size: 13px;
       font-weight: 700;
-      color: var(--ink-muted);
+      color: var(--green-deep);
       white-space: nowrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
 
     .slider-track-wrap {
       display: grid;
-      gap: 6px;
+      gap: 4px;
     }
 
     .slider {
       appearance: none;
       -webkit-appearance: none;
       width: 100%;
-      height: 8px;
+      height: 4px;
       border-radius: 999px;
       background: linear-gradient(90deg, #d7e2de 0%, #d7e2de 100%);
       outline: none;
@@ -674,21 +857,21 @@
     .slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
-      background: #ffffff;
-      border: 2px solid var(--green);
+      background: var(--green);
+      border: 2px solid #ffffff;
       box-shadow: 0 8px 18px rgba(16, 33, 31, 0.16);
       cursor: pointer;
     }
 
     .slider::-moz-range-thumb {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
-      background: #ffffff;
-      border: 2px solid var(--green);
+      background: var(--green);
+      border: 2px solid #ffffff;
       box-shadow: 0 8px 18px rgba(16, 33, 31, 0.16);
       cursor: pointer;
     }
@@ -697,8 +880,36 @@
       display: flex;
       justify-content: space-between;
       gap: 12px;
-      font-size: 0.74rem;
+      font-size: 0.68rem;
       color: var(--ink-muted);
+    }
+
+    .slider-tip {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #edf4fb;
+      color: var(--blue);
+      border: 1px solid rgba(21, 137, 238, 0.22);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      font-weight: 800;
+      cursor: help;
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .slider-tip .tooltip {
+      left: 20px;
+      top: 50%;
+    }
+
+    .label-with-tip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .mock-ui {
@@ -1101,6 +1312,12 @@
       gap: 10px;
     }
 
+    .json-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 320ms ease;
+    }
+
     .json-head {
       display: flex;
       justify-content: space-between;
@@ -1109,7 +1326,7 @@
     }
 
     .code-block {
-      display: none;
+      display: block;
       padding: 16px;
       border-radius: 16px;
       background: #102927;
@@ -1120,8 +1337,36 @@
       overflow: auto;
     }
 
-    .json-toggle.is-open .code-block {
-      display: block;
+    .json-toggle.is-open .json-body {
+      max-height: 420px;
+    }
+
+    .final-flash {
+      animation: finalValueFlash 620ms ease;
+    }
+
+    .bridge-arrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: -18px;
+      margin-bottom: 18px;
+      color: var(--green);
+      opacity: 0.76;
+      font-size: 0.92rem;
+      gap: 10px;
+    }
+
+    .bridge-arrow::before,
+    .bridge-arrow::after {
+      content: "";
+      width: 90px;
+      height: 1px;
+      background: repeating-linear-gradient(
+        to right,
+        rgba(34, 197, 94, 0.42) 0 8px,
+        transparent 8px 14px
+      );
     }
 
     .added-row {
@@ -1182,6 +1427,19 @@
 
     .response-card.is-thinking {
       animation: thinkPulse 1s ease;
+    }
+
+    .thinking-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .thinking-bar {
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(201, 169, 110, 0.18), rgba(201, 169, 110, 0.34), rgba(201, 169, 110, 0.18));
+      background-size: 200% 100%;
+      animation: shimmer 0.7s linear infinite;
     }
 
     .reason-list {
@@ -1266,8 +1524,7 @@
     }
 
     .sf-field.flash {
-      background: rgba(21, 137, 238, 0.08);
-      box-shadow: inset 0 0 0 1px rgba(21, 137, 238, 0.2);
+      animation: fieldFlash 0.4s ease;
     }
 
     .sf-field-label {
@@ -1361,16 +1618,19 @@
       padding-top: 12px;
     }
 
-    .custom-row {
-      padding: 12px 14px;
-      border-radius: 14px;
-      background: var(--surface-alt);
-      border: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
-      font-size: 0.86rem;
+    .custom-meta-table {
+      width: 100%;
+      min-width: 0;
+      border-collapse: collapse;
+    }
+
+    .custom-meta-table th,
+    .custom-meta-table td {
+      padding: 10px 12px;
+      font-size: 0.8rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
     }
 
     .marketo-grid {
@@ -1417,6 +1677,31 @@
     .filter-pill.inactive,
     .flow-step.inactive {
       opacity: 0.5;
+    }
+
+    .filter-pill.inactive {
+      text-decoration: line-through;
+      text-decoration-thickness: 1px;
+    }
+
+    .flow-step.active {
+      border-left: 4px solid var(--green);
+    }
+
+    .suppression-banner {
+      display: none;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(216, 94, 105, 0.12);
+      border: 1px solid rgba(216, 94, 105, 0.26);
+      color: #b7424f;
+      font-size: 0.86rem;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .suppression-banner.is-visible {
+      display: block;
     }
 
     .flow-step .step-id {
@@ -1626,6 +1911,15 @@
       }
     }
 
+    @keyframes heroPulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.42);
+      }
+      50% {
+        box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+      }
+    }
+
     @keyframes rowShimmer {
       0% {
         background: rgba(34, 197, 94, 0.18);
@@ -1643,6 +1937,11 @@
       50% {
         box-shadow: 0 0 0 8px rgba(184, 115, 51, 0.08);
       }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
     }
 
     @keyframes sectionRise {
@@ -1667,6 +1966,33 @@
       }
     }
 
+    @keyframes flowDot {
+      0% { transform: translate(-50%, 0); opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { transform: translate(-50%, 46px); opacity: 0; }
+    }
+
+    @keyframes fieldFlash {
+      0% {
+        background: rgba(0, 112, 210, 0.3);
+        box-shadow: inset 0 0 0 1px rgba(0, 112, 210, 0.24);
+      }
+      100% {
+        background: transparent;
+        box-shadow: none;
+      }
+    }
+
+    @keyframes finalValueFlash {
+      0% {
+        background: rgba(34, 197, 94, 0.22);
+      }
+      100% {
+        background: transparent;
+      }
+    }
+
     @media (max-width: 1040px) {
       .hero-grid,
       .step-layout,
@@ -1682,8 +2008,7 @@
 
       .clay-controls,
       .summary-grid,
-      .delta-stats,
-      .score-ribbon-inner {
+      .delta-stats {
         grid-template-columns: 1fr 1fr;
       }
 
@@ -1711,30 +2036,38 @@
       }
 
       .score-ribbon {
-        height: auto;
+        height: 44px;
         padding: 6px 0;
       }
 
       .score-ribbon-inner {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        display: flex;
         gap: 8px;
       }
 
+      .score-chip.mobile-hide {
+        display: none;
+      }
+
+      .score-chip {
+        flex: 1 1 0;
+      }
+
       main {
-        padding-top: calc(var(--nav-h) + 66px);
+        padding-top: calc(var(--nav-h) + 56px);
       }
 
       .hero {
         min-height: auto;
-        padding: 64px 0 72px;
+        padding: 58px 0 62px;
       }
 
       .hero-copy h1 {
-        font-size: clamp(2.3rem, 12vw, 4rem);
+        font-size: clamp(36px, 10vw, 40px);
         max-width: 100%;
       }
 
-      .hero-film-strip,
+      .hero-flow,
       .setup-grid,
       .data-grid,
       .intent-grid,
@@ -1751,7 +2084,7 @@
       }
 
       .section {
-        padding-bottom: 92px;
+        padding-bottom: 74px;
       }
 
       .history-item {
@@ -1765,6 +2098,19 @@
       .summary-actions .button,
       .summary-actions .text-button {
         width: 100%;
+      }
+
+      .hero-preview-card {
+        display: none;
+      }
+
+      .section:not(:last-of-type)::after,
+      .section:not(:last-of-type)::before {
+        display: none;
+      }
+
+      .score-chip.mobile-hide {
+        display: none;
       }
     }
   </style>
@@ -1792,9 +2138,9 @@
 
   <div class="score-ribbon" aria-live="polite">
     <div class="score-ribbon-inner">
-      <div class="score-chip"><span>Fit</span><strong id="stickyFit">95</strong></div>
-      <div class="score-chip"><span>Timing</span><strong id="stickyTiming">50</strong></div>
-      <div class="score-chip"><span>Composite</span><strong id="stickyComposite">145</strong></div>
+      <div class="score-chip mobile-hide"><span>Fit</span><strong id="stickyFit">95</strong></div>
+      <div class="score-chip mobile-hide"><span>Timing</span><strong id="stickyTiming">50</strong></div>
+      <div class="score-chip distinct"><span>Composite</span><strong id="stickyComposite">145</strong></div>
       <div class="score-chip tier-a" id="stickyTierChip"><span>Tier</span><strong id="stickyTier">A</strong></div>
     </div>
   </div>
@@ -1824,35 +2170,37 @@
 
         <div class="hero-film">
           <div class="hero-film-label">Pipeline overview</div>
-          <div class="hero-film-strip">
-            <article class="film-card">
-              <span>Step 1</span>
-              <div>
-                <strong>ZoomInfo + Clearbit</strong>
-                <small>Fit signals establish ICP quality and source confidence.</small>
+          <div class="hero-flow">
+            <div class="flow-node">ZoomInfo / Clearbit</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">6sense / FP</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">Clay</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">Claude</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node">SFDC / Marketo</div>
+          </div>
+          <div class="hero-preview-card" id="heroPreviewCard">
+            <div class="hero-preview-head">
+              <span>Live score preview</span>
+              <div class="pulse-dot"></div>
+            </div>
+            <div class="hero-preview-copy">
+              <strong id="heroComposite">145</strong>
+              <span>Composite updates in lockstep with every signal across the pipeline.</span>
+            </div>
+            <div class="hero-preview-grid">
+              <div class="hero-preview-stat">
+                <span>Fit</span>
+                <strong id="heroFit">95</strong>
               </div>
-            </article>
-            <article class="film-card">
-              <span>Step 2</span>
-              <div>
-                <strong>6sense + First-Party</strong>
-                <small>Timing signals show whether the account is actually moving.</small>
+              <div class="hero-preview-stat">
+                <span>Timing</span>
+                <strong id="heroTiming">50</strong>
               </div>
-            </article>
-            <article class="film-card">
-              <span>Step 3</span>
-              <div>
-                <strong>Clay + Claude</strong>
-                <small>Enrichment and reasoning convert signals into a decision.</small>
-              </div>
-            </article>
-            <article class="film-card">
-              <span>Step 4</span>
-              <div>
-                <strong>Salesforce + Marketo</strong>
-                <small>Scoring writes to the CRM and activates the downstream motion.</small>
-              </div>
-            </article>
+            </div>
+            <div class="hero-preview-tier" id="heroTier">Tier A</div>
           </div>
         </div>
       </div>
@@ -1860,7 +2208,7 @@
 
     <div class="journey">
       <div class="shell">
-        <section class="section reveal" id="setup">
+        <section class="section reveal light" id="setup">
           <div class="section-head">
             <div class="section-label">Account setup</div>
             <div class="section-title-row">
@@ -1901,16 +2249,13 @@
           </div>
         </section>
 
-        <section class="section reveal" id="fit-signals">
+        <section class="section reveal dark" id="fit-signals">
           <div class="section-head">
             <div class="section-label">Step 1 — Fit Signals</div>
             <div class="section-title-row">
               <div>
                 <h2>Source fit from ZoomInfo and Clearbit.</h2>
-                <p>
-                  The fit model scores who the account is. Scale, vertical, commerce stack, and incumbent
-                  pain all flow from the source record into a confident ICP read.
-                </p>
+                <div class="section-why">No single vendor owns the truth - the waterfall decides field by field.</div>
               </div>
               <div class="tool-badges">
                 <div class="tool-badge badge-zoominfo">ZoomInfo</div>
@@ -1924,7 +2269,7 @@
               <div class="slider-stack">
                 <div class="slider-row" data-stagger>
                   <div class="slider-head">
-                    <strong>Scale</strong>
+                    <strong class="label-with-tip">Scale <span class="slider-tip">i<span class="tooltip">Enterprise scale is worth +35 when the account has real operational complexity.</span></span></strong>
                     <div class="slider-meta" id="scaleMeta">Enterprise · +35</div>
                   </div>
                   <div class="slider-track-wrap">
@@ -1935,7 +2280,7 @@
 
                 <div class="slider-row" data-stagger>
                   <div class="slider-head">
-                    <strong>Industry</strong>
+                    <strong class="label-with-tip">Industry <span class="slider-tip">i<span class="tooltip">Retail, DTC, and Travel are in-ICP. Outside ICP applies the -15 penalty.</span></span></strong>
                     <div class="slider-meta" id="industryMeta">Retail / DTC / Travel · +25</div>
                   </div>
                   <div class="slider-track-wrap">
@@ -1946,7 +2291,7 @@
 
                 <div class="slider-row" data-stagger>
                   <div class="slider-head">
-                    <strong>Commerce Stack</strong>
+                    <strong class="label-with-tip">Commerce Stack <span class="slider-tip">i<span class="tooltip">Shopify Plus and Klaviyo indicate a commerce-led CX environment worth +15.</span></span></strong>
                     <div class="slider-meta" id="commerceMeta">Present · +15</div>
                   </div>
                   <div class="slider-track-wrap">
@@ -1957,7 +2302,7 @@
 
                 <div class="slider-row" data-stagger>
                   <div class="slider-head">
-                    <strong>Legacy Helpdesk</strong>
+                    <strong class="label-with-tip">Legacy Helpdesk <span class="slider-tip">i<span class="tooltip">Zendesk or Gorgias signal incumbent pain and add +20 to fit.</span></span></strong>
                     <div class="slider-meta" id="helpdeskMeta">Present · +20</div>
                   </div>
                   <div class="slider-track-wrap">
@@ -2043,16 +2388,13 @@
           </div>
         </section>
 
-        <section class="section reveal" id="timing-signals">
+        <section class="section reveal light" id="timing-signals">
           <div class="section-head">
             <div class="section-label">Step 2 — Timing Signals</div>
             <div class="section-title-row">
               <div>
                 <h2>When the account is actually in motion.</h2>
-                <p>
-                  Timing uses 6sense intent plus first-party behavior. The raw score can exceed 50, but the
-                  model deliberately caps the timing contribution before it reaches the composite score.
-                </p>
+                <div class="section-why">The model earns the right to act only when the account is in motion.</div>
               </div>
               <div class="tool-badges">
                 <div class="tool-badge badge-6sense">6sense</div>
@@ -2065,7 +2407,7 @@
               <div class="slider-stack">
                 <div class="slider-row" data-stagger>
                   <div class="slider-head">
-                    <strong>6sense decision-stage surge</strong>
+                    <strong class="label-with-tip">6sense decision-stage surge <span class="slider-tip">i<span class="tooltip">The highest-value timing signal. Active decision-stage intent contributes +30.</span></span></strong>
                     <div class="slider-meta" id="intentMeta">Active · +30</div>
                   </div>
                   <div class="slider-track-wrap">
@@ -2076,7 +2418,7 @@
 
                 <div class="slider-row" data-stagger>
                   <div class="slider-head">
-                    <strong>New VP / hiring surge</strong>
+                    <strong class="label-with-tip">New VP / hiring surge <span class="slider-tip">i<span class="tooltip">Leadership change or a hiring spike contributes +20 timing points.</span></span></strong>
                     <div class="slider-meta" id="hiringMeta">Active · +20</div>
                   </div>
                   <div class="slider-track-wrap">
@@ -2087,7 +2429,7 @@
 
                 <div class="slider-row" data-stagger>
                   <div class="slider-head">
-                    <strong>Pricing + webinar</strong>
+                    <strong class="label-with-tip">Pricing + webinar <span class="slider-tip">i<span class="tooltip">First-party engagement adds +10 when pricing interest and webinar activity align.</span></span></strong>
                     <div class="slider-meta" id="pricingMeta">Active · +10</div>
                   </div>
                   <div class="slider-track-wrap">
@@ -2098,7 +2440,7 @@
 
                 <div class="slider-row" data-stagger>
                   <div class="slider-head">
-                    <strong>6sense intent depth</strong>
+                    <strong class="label-with-tip">6sense intent depth <span class="slider-tip">i<span class="tooltip">Intent depth controls topic density and the visual strength of the 6sense dashboard.</span></span></strong>
                     <div class="slider-meta" id="intentDepthMeta">76%</div>
                   </div>
                   <div class="slider-track-wrap">
@@ -2109,7 +2451,7 @@
 
                 <div class="slider-row" data-stagger>
                   <div class="slider-head">
-                    <strong>First-party engagement</strong>
+                    <strong class="label-with-tip">First-party engagement <span class="slider-tip">i<span class="tooltip">This slider reveals site and webinar activity across the first-party event stack.</span></span></strong>
                     <div class="slider-meta" id="firstPartyMeta">58%</div>
                   </div>
                   <div class="slider-track-wrap">
@@ -2171,16 +2513,13 @@
           </div>
         </section>
 
-        <section class="section reveal" id="clay">
+        <section class="section reveal dark" id="clay">
           <div class="section-head">
             <div class="section-label">Step 3 — Clay</div>
             <div class="section-title-row">
               <div>
                 <h2>Clay enrichment resolves the record before scoring.</h2>
-                <p>
-                  Source coverage, topics, and first-party packets accumulate into a downstream-safe account
-                  object. New source data can be appended live to the enrichment table.
-                </p>
+                <div class="section-why">Raw signals are noisy. Clay normalizes them into a downstream-safe record.</div>
               </div>
               <div class="tool-badges">
                 <div class="tool-badge badge-clay">Clay</div>
@@ -2192,7 +2531,7 @@
             <div class="clay-controls">
               <div class="slider-row" data-stagger>
                 <div class="slider-head">
-                  <strong>ZoomInfo data points</strong>
+                  <strong class="label-with-tip">ZoomInfo data points <span class="slider-tip">i<span class="tooltip">Controls how many firmographic rows Clay can normalize before the handoff.</span></span></strong>
                   <div class="slider-meta" id="zoomPointsMeta">16</div>
                 </div>
                 <div class="slider-track-wrap">
@@ -2202,7 +2541,7 @@
               </div>
               <div class="slider-row" data-stagger>
                 <div class="slider-head">
-                  <strong>6sense topics</strong>
+                  <strong class="label-with-tip">6sense topics <span class="slider-tip">i<span class="tooltip">Controls the number of active intent topics arriving from 6sense into Clay.</span></span></strong>
                   <div class="slider-meta" id="sixsenseTopicsMeta">6</div>
                 </div>
                 <div class="slider-track-wrap">
@@ -2212,7 +2551,7 @@
               </div>
               <div class="slider-row" data-stagger>
                 <div class="slider-head">
-                  <strong>First-party packets</strong>
+                  <strong class="label-with-tip">First-party packets <span class="slider-tip">i<span class="tooltip">Controls how many pricing, webinar, and site events are available for enrichment.</span></span></strong>
                   <div class="slider-meta" id="firstPartyPacketsMeta">8</div>
                 </div>
                 <div class="slider-track-wrap">
@@ -2255,21 +2594,22 @@
                 <strong>JSON preview</strong>
                 <button class="text-button" id="jsonToggleButton">Expand</button>
               </div>
-              <pre class="code-block" id="jsonPreview"></pre>
+              <div class="json-body">
+                <pre class="code-block" id="jsonPreview"></pre>
+              </div>
             </div>
           </div>
         </section>
 
-        <section class="section reveal" id="claude">
+        <div class="bridge-arrow" aria-hidden="true">normalized record</div>
+
+        <section class="section reveal light" id="claude">
           <div class="section-head">
             <div class="section-label">Step 4 — Claude</div>
             <div class="section-title-row">
               <div>
                 <h2>Claude turns enriched variables into a scoring rationale.</h2>
-                <p>
-                  The prompt reflects the live account state, and the response recomputes fit, timing, tier,
-                  and routing every time a signal changes.
-                </p>
+                <div class="section-why">The enriched record becomes a prompt. The response becomes the routing decision.</div>
               </div>
               <div class="tool-badges">
                 <div class="tool-badge badge-claude">Anthropic</div>
@@ -2292,6 +2632,11 @@
                 <div class="tool-badge badge-claude">Live response</div>
               </div>
               <div class="response-card" id="claudeResponse">
+                <div class="thinking-stack" id="claudeThinking" hidden>
+                  <div class="thinking-bar"></div>
+                  <div class="thinking-bar" style="width:88%;"></div>
+                  <div class="thinking-bar" style="width:72%;"></div>
+                </div>
                 <div class="reason-list" id="fitReasoning"></div>
                 <div class="reason-list" id="timingReasoning"></div>
                 <div class="reason-item">
@@ -2303,16 +2648,13 @@
           </div>
         </section>
 
-        <section class="section reveal" id="salesforce">
+        <section class="section reveal dark" id="salesforce">
           <div class="section-head">
             <div class="section-label">Step 5 — Salesforce</div>
             <div class="section-title-row">
               <div>
                 <h2>Salesforce remains the master record for scoring.</h2>
-                <p>
-                  Fit, timing, composite, tier, routing, and sync health are written into the Lightning record,
-                  with a visible custom fields panel and a recent scoring history.
-                </p>
+                <div class="section-why">Every score lives in Salesforce. Marketo only reads what SFDC writes.</div>
               </div>
               <div class="tool-badges">
                 <div class="tool-badge badge-salesforce">Salesforce</div>
@@ -2407,28 +2749,37 @@
               </div>
               <div class="custom-panel" id="customFieldsPanel">
                 <div class="custom-grid">
-                  <div class="custom-row"><strong>Fit_Score__c</strong><span>Number</span></div>
-                  <div class="custom-row"><strong>Timing_Score__c</strong><span>Number</span></div>
-                  <div class="custom-row"><strong>Composite_Score__c</strong><span>Number</span></div>
-                  <div class="custom-row"><strong>Tier__c</strong><span>Text</span></div>
-                  <div class="custom-row"><strong>Routing__c</strong><span>Text</span></div>
-                  <div class="custom-row"><strong>Sync_Health__c</strong><span>Percent</span></div>
+                  <table class="custom-meta-table">
+                    <thead>
+                      <tr>
+                        <th>API Name</th>
+                        <th>Data Type</th>
+                        <th>Description</th>
+                        <th>Last Modified</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Fit_Score__c</td><td>Number(3,0)</td><td>ICP fit score from scoring engine</td><td>Today</td></tr>
+                      <tr><td>Timing_Score__c</td><td>Number(2,0)</td><td>Live timing score capped at 50</td><td>Today</td></tr>
+                      <tr><td>Composite_Score__c</td><td>Number(3,0)</td><td>Total score written for routing and tiering</td><td>Today</td></tr>
+                      <tr><td>Tier__c</td><td>Text(16)</td><td>Tier band that drives downstream motion</td><td>Today</td></tr>
+                      <tr><td>Routing__c</td><td>Text(255)</td><td>Sales motion selected from the score output</td><td>Today</td></tr>
+                      <tr><td>Sync_Health__c</td><td>Percent(3,0)</td><td>Upstream source health before Marketo activation</td><td>Today</td></tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="section reveal" id="marketo">
+        <section class="section reveal light" id="marketo">
           <div class="section-head">
             <div class="section-label">Step 6 — Marketo</div>
             <div class="section-title-row">
               <div>
                 <h2>Marketo activates the downstream motion.</h2>
-                <p>
-                  The synced Salesforce fields drive Smart List filters, flow steps, and program performance.
-                  The active flow responds immediately when the current tier changes.
-                </p>
+                <div class="section-why">The right motion fires automatically. No manual routing, no missed MQAs.</div>
               </div>
               <div class="tool-badges">
                 <div class="tool-badge badge-marketo">Marketo</div>
@@ -2450,6 +2801,7 @@
             <div class="marketo-panel" data-stagger>
               <div class="mock-tag">Mock UI</div>
               <strong>Flow Steps</strong>
+              <div class="suppression-banner" id="suppressionBanner">Account suppressed - no active Marketo motion.</div>
               <div class="flow-stack">
                 <div class="flow-step" id="flowAlert">
                   <div class="step-id">Step 1</div>
@@ -2495,7 +2847,7 @@
           </div>
         </section>
 
-        <section class="section reveal" id="summary">
+        <section class="section reveal dark" id="summary">
           <div class="section-head">
             <div class="section-label">Live downstream summary</div>
             <div class="section-title-row">
@@ -2551,7 +2903,7 @@
         </div>
         <div class="footer-copy">
           <span>Daniel Rodriguez</span>
-          <span>Revenue Operations Analyst Assessment, April 2026</span>
+          <span>Revenue Operations Analyst Assessment, April 2025</span>
         </div>
       </div>
 
@@ -2667,25 +3019,25 @@
 
     const clayExtraOptions = {
       zoom: [
-        "Revenue band",
-        "Agent seat estimate",
-        "Regional footprint",
-        "Support org size",
-        "Funding signal"
+        { field: "HQ Country", zoom: "United States", clearbit: "United States", final: "United States" },
+        { field: "Founded", zoom: "2014", clearbit: "2013", final: "2014" },
+        { field: "Revenue Band", zoom: "$180M - $240M", clearbit: "$200M", final: "$200M" },
+        { field: "Support Org Size", zoom: "186 agents", clearbit: "181 agents", final: "186 agents" },
+        { field: "Regional Footprint", zoom: "US + Canada + UK", clearbit: "North America + UK", final: "US + Canada + UK" }
       ],
       sixsense: [
-        "Intent topic cluster",
-        "Competitive research",
-        "Keyword heat map",
-        "Topic velocity",
-        "Decision committee breadth"
+        { field: "Intent Topic", sixsense: "enterprise support software", final: "enterprise support software" },
+        { field: "Competitive Research", sixsense: "Zendesk alternatives", final: "Zendesk alternatives" },
+        { field: "Keyword Heat", sixsense: "helpdesk migration", final: "helpdesk migration" },
+        { field: "Topic Velocity", sixsense: "32% WoW surge", final: "32% WoW surge" },
+        { field: "Committee Breadth", sixsense: "3 personas engaged", final: "3 personas engaged" }
       ],
       firstparty: [
-        "Webinar follow-up packet",
-        "Pricing revisit packet",
-        "Demo request packet",
-        "Email engagement packet",
-        "Content binge packet"
+        { field: "Behavior Packet", firstparty: "Careers page visit", final: "Careers page visit" },
+        { field: "Pricing Packet", firstparty: "ROI calculator used", final: "ROI calculator used" },
+        { field: "Demo Packet", firstparty: "Demo requested", final: "Demo requested" },
+        { field: "Email Packet", firstparty: "Email CTA clicked", final: "Email CTA clicked" },
+        { field: "Content Packet", firstparty: "Webinar Q&A engaged", final: "Webinar Q&A engaged" }
       ]
     };
 
@@ -2712,7 +3064,13 @@
       }
     };
 
+    let claudeTimer = null;
+
     const els = {
+      heroFit: document.getElementById("heroFit"),
+      heroTiming: document.getElementById("heroTiming"),
+      heroComposite: document.getElementById("heroComposite"),
+      heroTier: document.getElementById("heroTier"),
       presetStrip: document.getElementById("presetStrip"),
       accountName: document.getElementById("accountName"),
       accountOwner: document.getElementById("accountOwner"),
@@ -2795,6 +3153,7 @@
       routingDecision: document.getElementById("routingDecision"),
       routingReason: document.getElementById("routingReason"),
       claudeResponse: document.getElementById("claudeResponse"),
+      claudeThinking: document.getElementById("claudeThinking"),
       sfAccountName: document.getElementById("sfAccountName"),
       sfFit: document.getElementById("sfFit"),
       sfTiming: document.getElementById("sfTiming"),
@@ -2812,6 +3171,7 @@
       flowBehavior: document.getElementById("flowBehavior"),
       flowMoment: document.getElementById("flowMoment"),
       interestingMoment: document.getElementById("interestingMoment"),
+      suppressionBanner: document.getElementById("suppressionBanner"),
       perfMembers: document.getElementById("perfMembers"),
       perfEmails: document.getElementById("perfEmails"),
       perfAlerts: document.getElementById("perfAlerts"),
@@ -2834,6 +3194,38 @@
       const value = Number(element.value);
       const pct = (value / max) * 100;
       element.style.background = `linear-gradient(90deg, rgba(34, 197, 94, 0.9) 0%, rgba(34, 197, 94, 0.9) ${pct}%, #d7e2de ${pct}%, #d7e2de 100%)`;
+    }
+
+    function animateNumber(element, target, duration = 280) {
+      const start = Number(element.dataset.current || element.textContent.replace(/[^\d.-]/g, "")) || 0;
+      const startTime = performance.now();
+
+      function frame(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(start + ((target - start) * eased));
+        element.textContent = `${value}`;
+        element.dataset.current = `${value}`;
+        if (progress < 1) requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    function getEnrichmentStats(result) {
+      const extraCount = state.extraRows.zoom + state.extraRows.sixsense + state.extraRows.firstparty;
+      const enriched = state.zoomPoints + state.sixsenseTopics + state.firstPartyPackets + extraCount;
+      const conflicts = (state.zoomCoverage < 50 ? 2 : 1) + (state.industry === 0 ? 1 : 0);
+      const safe = Math.max(8, enriched - conflicts - 3);
+      const syncHealth = Math.round((state.zoomCoverage + state.intentDepth + state.firstPartyDepth) / 3);
+
+      return {
+        extraCount,
+        enriched,
+        conflicts,
+        safe,
+        syncHealth
+      };
     }
 
     function scoreState() {
@@ -3011,6 +3403,14 @@
       els.stickyTierChip.className = `score-chip ${result.tierClass}`;
     }
 
+    function renderHeroPreview(result) {
+      els.heroFit.textContent = result.fit;
+      els.heroTiming.textContent = result.timing;
+      els.heroComposite.textContent = result.composite;
+      els.heroTier.textContent = `Tier ${result.tier}`;
+      els.heroTier.className = `hero-preview-tier ${result.tierClass}`;
+    }
+
     function flashFields() {
       ["field-fit", "field-timing", "field-composite", "field-tier", "field-routing", "field-sync"].forEach((id, index) => {
         const el = document.getElementById(id);
@@ -3042,7 +3442,7 @@
       els.zoomCompany.textContent = state.accountName;
       els.zoomSidebarStatus.textContent = state.zoomCoverage >= 70 ? "Primary source" : state.zoomCoverage >= 45 ? "Partial coverage" : "Coverage at risk";
       els.zoomCoverageCopy.textContent = state.zoomCoverage >= 70 ? "Coverage healthy" : state.zoomCoverage >= 45 ? "Coverage mixed" : "Coverage weak";
-      els.zoomEmployeeValue.textContent = employeeMap[result.fit >= 95 ? 2 : state.scale ? 1 : 0];
+      els.zoomEmployeeValue.textContent = state.scale ? employeeMap[2] : employeeMap[1];
       els.zoomIndustryValue.textContent = industryValue;
       els.zoomTechValue.textContent = techValue;
       els.zoomHelpdeskValue.textContent = helpdeskValue;
@@ -3193,14 +3593,14 @@
       const extras = [];
       Object.entries(state.extraRows).forEach(([source, count]) => {
         for (let i = 0; i < count; i += 1) {
-          const label = clayExtraOptions[source][i % clayExtraOptions[source].length];
+          const row = clayExtraOptions[source][i % clayExtraOptions[source].length];
           extras.push({
-            field: label,
-            zoom: source === "zoom" ? "present" : "—",
-            clearbit: source === "zoom" ? "fallback" : "—",
-            sixsense: source === "sixsense" ? "present" : "—",
-            firstparty: source === "firstparty" ? "present" : "—",
-            final: "Merged into enriched object",
+            field: row.field,
+            zoom: row.zoom || "—",
+            clearbit: row.clearbit || "—",
+            sixsense: row.sixsense || "—",
+            firstparty: row.firstparty || "—",
+            final: row.final,
             added: true
           });
         }
@@ -3218,6 +3618,7 @@
 
     function renderClay(result) {
       const rows = clayRows(result);
+      const stats = getEnrichmentStats(result);
       els.clayTableBody.innerHTML = rows.map((row) => `
         <tr class="${row.added ? "added-row" : ""}">
           <td><strong>${row.field}</strong></td>
@@ -3225,19 +3626,14 @@
           <td class="${cellClass(row.clearbit, row.field, "clearbit")}">${row.clearbit}</td>
           <td class="${cellClass(row.sixsense, row.field, "sixsense")}">${row.sixsense}</td>
           <td class="${cellClass(row.firstparty, row.field, "firstparty")}">${row.firstparty}</td>
-          <td>${row.final}</td>
+          <td class="${row.added ? "final-flash" : ""}">${row.final}</td>
         </tr>
       `).join("");
 
-      const conflicts = (state.zoomCoverage < 50 ? 2 : 1) + (state.industry === 0 ? 1 : 0);
-      const enriched = rows.length + Math.round((state.zoomPoints + state.sixsenseTopics + state.firstPartyPackets) / 3);
-      const safe = Math.max(8, enriched - conflicts - 3);
+      els.enrichedFieldsLabel.textContent = `${stats.enriched} fields enriched`;
+      els.resolvedConflictsLabel.textContent = `${stats.conflicts} conflicts resolved`;
+      els.downstreamSafeLabel.textContent = `${stats.safe} downstream-safe fields ready for Claude`;
 
-      els.enrichedFieldsLabel.textContent = `${enriched} fields enriched`;
-      els.resolvedConflictsLabel.textContent = `${conflicts} conflicts resolved`;
-      els.downstreamSafeLabel.textContent = `${safe} downstream-safe fields ready for Claude`;
-
-      const syncHealth = Math.round((state.zoomCoverage + state.intentDepth + state.firstPartyDepth) / 3);
       els.jsonPreview.textContent = [
         "{",
         `  "account": "${state.accountName}",`,
@@ -3245,13 +3641,15 @@
         `  "timing_score": ${result.timing},`,
         `  "composite_score": ${result.composite},`,
         `  "tier": "Tier ${result.tier}",`,
-        `  "enriched_fields": ${enriched},`,
-        `  "sync_health": "${syncHealth}%"`,
+        `  "enriched_fields": ${stats.enriched},`,
+        `  "extra_rows": ${stats.extraCount},`,
+        `  "sync_health": "${stats.syncHealth}%"`,
         "}"
       ].join("\n");
     }
 
     function renderClaude(result) {
+      const stats = getEnrichmentStats(result);
       const prompt = [
         "POST /v1/messages",
         "{",
@@ -3261,36 +3659,45 @@
         `    "account_name": "${state.accountName}",`,
         `    "fit_signals": { "scale": ${scoreMeta.scale.points[state.scale]}, "industry": ${scoreMeta.industry.points[state.industry]}, "commerce_stack": ${scoreMeta.commerce.points[state.commerce]}, "legacy_helpdesk": ${scoreMeta.helpdesk.points[state.helpdesk]} },`,
         `    "timing_signals": { "intent": ${scoreMeta.intent.points[state.intent]}, "hiring": ${scoreMeta.hiring.points[state.hiring]}, "pricing_webinar": ${scoreMeta.pricing.points[state.pricing]} },`,
-        `    "enriched_fields_count": ${clayRows(result).length},`,
-        `    "sync_health": "${Math.round((state.zoomCoverage + state.intentDepth + state.firstPartyDepth) / 3)}%"`,
+        `    "enriched_fields_count": ${stats.enriched},`,
+        `    "sync_health": "${stats.syncHealth}%"`,
         "  }",
         "}"
       ].join("\n");
       els.promptPreview.textContent = prompt;
 
-      els.fitReasoning.innerHTML = `
-        <div class="reason-item">
-          <strong>Fit reasoning</strong>
-          <small>${result.fitBreakdown.filter((item) => item.value !== 0).map((item) => `${item.label} ${formatPoints(item.value)}`).join(" · ") || "No fit signals active."}</small>
-        </div>
-      `;
-      els.timingReasoning.innerHTML = `
-        <div class="reason-item">
-          <strong>Timing reasoning</strong>
-          <small>${result.timingBreakdown.filter((item) => item.value !== 0).map((item) => `${item.label} ${formatPoints(item.value)}`).join(" · ") || "No timing signals active."} ${result.rawTiming > result.timing ? `Timing capped at ${result.timing}.` : ""}</small>
-        </div>
-      `;
-      els.routingDecision.textContent = `Tier ${result.tier} · ${result.motion}`;
-      els.routingReason.textContent = result.rationale;
-
-      els.claudeResponse.classList.remove("is-thinking");
-      void els.claudeResponse.offsetWidth;
+      if (claudeTimer) clearTimeout(claudeTimer);
+      els.claudeThinking.hidden = false;
+      els.fitReasoning.hidden = true;
+      els.timingReasoning.hidden = true;
+      els.routingDecision.parentElement.hidden = true;
       els.claudeResponse.classList.add("is-thinking");
-      setTimeout(() => els.claudeResponse.classList.remove("is-thinking"), 1000);
+
+      claudeTimer = setTimeout(() => {
+        els.fitReasoning.innerHTML = `
+          <div class="reason-item">
+            <strong>Fit reasoning</strong>
+            <small>${result.fitBreakdown.filter((item) => item.value !== 0).map((item) => `${item.label} ${formatPoints(item.value)}`).join(" · ") || "No fit signals active."}</small>
+          </div>
+        `;
+        els.timingReasoning.innerHTML = `
+          <div class="reason-item">
+            <strong>Timing reasoning</strong>
+            <small>${result.timingBreakdown.filter((item) => item.value !== 0).map((item) => `${item.label} ${formatPoints(item.value)}`).join(" · ") || "No timing signals active."} ${result.rawTiming > result.timing ? `Timing capped at ${result.timing}.` : ""}</small>
+          </div>
+        `;
+        els.routingDecision.textContent = `Tier ${result.tier} · ${result.motion}`;
+        els.routingReason.textContent = result.rationale;
+        els.claudeThinking.hidden = true;
+        els.fitReasoning.hidden = false;
+        els.timingReasoning.hidden = false;
+        els.routingDecision.parentElement.hidden = false;
+        els.claudeResponse.classList.remove("is-thinking");
+      }, 300);
     }
 
     function renderSalesforce(result) {
-      const syncHealth = Math.round((state.zoomCoverage + state.intentDepth + state.firstPartyDepth) / 3);
+      const { syncHealth } = getEnrichmentStats(result);
       els.sfAccountName.textContent = state.accountName;
       els.sfFit.textContent = result.fit;
       els.sfTiming.textContent = result.timing;
@@ -3303,11 +3710,13 @@
 
     function renderMarketo(result) {
       const isA = result.tier === "A";
-      const isNonSuppressed = result.tier !== "D";
+      const isB = result.tier === "B";
+      const isC = result.tier === "C";
+      const isD = result.tier === "D";
 
-      els.filterTier.textContent = `Tier__c is Tier ${result.tier}`;
-      els.filterComposite.textContent = `Composite_Score__c ${result.composite >= 130 ? "greater than 130" : `is ${result.composite}`}`;
-      els.filterRouting.textContent = `Routing__c is ${result.motion}`;
+      els.filterTier.textContent = "Tier__c is Tier A";
+      els.filterComposite.textContent = "Composite_Score__c greater than 130";
+      els.filterRouting.textContent = "Routing__c is 1:1 ABM";
 
       [
         [els.filterTier, isA],
@@ -3318,28 +3727,61 @@
         el.classList.toggle("inactive", !active);
       });
 
+      const flowStates = {
+        alert: isA,
+        program: isA || isB,
+        behavior: !isD,
+        moment: !isD
+      };
+
       [
-        [els.flowAlert, isA],
-        [els.flowProgram, isA],
-        [els.flowBehavior, isNonSuppressed],
-        [els.flowMoment, isA]
+        [els.flowAlert, flowStates.alert],
+        [els.flowProgram, flowStates.program],
+        [els.flowBehavior, flowStates.behavior],
+        [els.flowMoment, flowStates.moment]
       ].forEach(([el, active]) => {
         el.classList.toggle("active", active);
         el.classList.toggle("inactive", !active);
       });
 
-      els.interestingMoment.textContent = `Interesting Moment → MQA triggered - Tier ${result.tier} composite ${result.composite}`;
+      els.flowAlert.querySelector("strong").textContent = "Send Alert → AE + SDR";
+      els.flowProgram.querySelector("strong").textContent = isB
+        ? "Add to Program → Scaled SDR Sequence"
+        : "Add to Program → Named Account Program";
+      els.flowBehavior.querySelector("strong").textContent = "Change Score → +10 behavior";
+      els.interestingMoment.textContent = isA
+        ? `Interesting Moment → MQA triggered - Tier A composite ${result.composite}`
+        : isB
+          ? `Interesting Moment → Tier B composite ${result.composite}`
+          : isC
+            ? "Interesting Moment → Nurture triggered"
+            : "Interesting Moment → No active motion";
 
-      const members = Math.max(10, Math.round((state.zoomPoints * 1.7) + (result.composite / 6)));
-      const emails = Math.max(4, Math.round((state.firstPartyPackets * 1.4) + (result.tier === "A" ? 12 : result.tier === "B" ? 8 : 3)));
-      const alerts = result.tier === "A" ? Math.max(6, Math.round(result.composite / 12)) : result.tier === "B" ? 4 : result.tier === "C" ? 2 : 0;
+      els.flowAlert.querySelector("small").textContent = "Only active when Tier A is live.";
+      els.flowProgram.querySelector("small").textContent = isB
+        ? "Triggered when the account qualifies for the scaled SDR motion."
+        : "Triggered when the routing motion is 1:1 ABM.";
+      els.flowBehavior.querySelector("small").textContent = "Behavior score change remains active for all non-suppressed tiers.";
+      els.flowMoment.querySelector("small").textContent = isC
+        ? "Logs the nurture handoff when the account falls below sales-ready."
+        : "Uses the current tier and composite value.";
 
-      els.perfMembers.textContent = `${members}`;
-      els.perfEmails.textContent = `${emails}`;
-      els.perfAlerts.textContent = `${alerts}`;
-      els.barMembers.style.width = `${Math.min(100, members)}%`;
-      els.barEmails.style.width = `${Math.min(100, emails * 3)}%`;
-      els.barAlerts.style.width = `${Math.min(100, alerts * 7)}%`;
+      els.suppressionBanner.classList.toggle("is-visible", isD);
+
+      const perfMap = {
+        A: { members: 47, emails: 23, alerts: 12 },
+        B: { members: 29, emails: 16, alerts: 4 },
+        C: { members: 14, emails: 8, alerts: 1 },
+        D: { members: 0, emails: 0, alerts: 0 }
+      };
+
+      const performance = perfMap[result.tier];
+      animateNumber(els.perfMembers, performance.members);
+      animateNumber(els.perfEmails, performance.emails);
+      animateNumber(els.perfAlerts, performance.alerts);
+      els.barMembers.style.width = `${Math.min(100, performance.members * 2)}%`;
+      els.barEmails.style.width = `${Math.min(100, performance.emails * 4)}%`;
+      els.barAlerts.style.width = `${Math.min(100, performance.alerts * 8)}%`;
     }
 
     function renderSummary(result) {
@@ -3355,6 +3797,7 @@
       updateHeaderMeta();
       els.scenarioDescription.textContent = scenarioDescriptionForPreset(state.activePreset);
       renderSticky(result);
+      renderHeroPreview(result);
       renderZoomInfo(result);
       renderTiming(result);
       renderClay(result);
@@ -3438,12 +3881,12 @@
 
     function initParticles() {
       const holder = document.getElementById("heroParticles");
-      const items = Array.from({ length: 28 }, (_, index) => {
-        const size = 4 + (index % 4) * 3;
+      const items = Array.from({ length: 60 }, (_, index) => {
+        const size = index % 7 === 0 ? 4 : index % 3 === 0 ? 3 : 1 + (index % 2);
         const left = 4 + ((index * 9) % 92);
-        const top = 10 + ((index * 11) % 70);
-        const duration = 8 + (index % 5) * 2;
-        const delay = (index % 6) * 0.7;
+        const top = 8 + ((index * 13) % 78);
+        const duration = 8 + (index % 6) * 1.7;
+        const delay = (index % 8) * 0.45;
         return `<span style="width:${size}px;height:${size}px;left:${left}%;top:${top}%;animation-duration:${duration}s;animation-delay:${delay}s;"></span>`;
       });
       holder.innerHTML = items.join("");
