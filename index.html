@@ -2673,6 +2673,752 @@
         flex: 1 1 0;
       }
     }
+
+    /* V5 structural overrides */
+    :root {
+      --nav-h: 64px;
+      --score-h: 0px;
+      --shell-max: 1280px;
+    }
+
+    .app-shell {
+      padding-top: var(--nav-h);
+    }
+
+    .score-bar,
+    .connector {
+      display: none !important;
+    }
+
+    .site-nav {
+      height: var(--nav-h);
+      background: rgba(13, 43, 43, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .nav-inner,
+    .section-inner,
+    .footer-inner {
+      width: min(calc(100% - 48px), var(--shell-max));
+    }
+
+    .nav-inner {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: center;
+      height: 100%;
+    }
+
+    .brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      white-space: nowrap;
+    }
+
+    .brand-lockup img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .brand-wordmark {
+      font-size: 16px;
+      line-height: 1;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-divider {
+      width: 1px;
+      height: 18px;
+      background: rgba(255, 255, 255, 0.15);
+      flex: 0 0 auto;
+    }
+
+    .brand-blueprint {
+      font-size: 12px;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.5);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: nowrap;
+      min-width: 0;
+    }
+
+    .nav-link {
+      min-height: 34px;
+      padding: 6px 14px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      border-radius: 999px;
+      transition: background 150ms ease, color 150ms ease, border-color 150ms ease, transform 150ms ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.is-active {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .header-score-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(82px, auto));
+      align-items: stretch;
+      justify-content: end;
+      height: 100%;
+    }
+
+    .header-score-grid .score-quadrant {
+      padding: 10px 14px 8px;
+      min-width: 0;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      display: grid;
+      align-content: center;
+      justify-items: start;
+    }
+
+    .header-score-grid .score-label {
+      margin-bottom: 3px;
+    }
+
+    .header-score-grid .score-value {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+
+    .pipeline-progress {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 72px;
+      height: 280px;
+      display: grid;
+      align-items: space-between;
+      justify-items: center;
+      z-index: 85;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms ease;
+    }
+
+    .pipeline-progress.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .progress-line {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 1px;
+      height: 280px;
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .progress-node {
+      position: absolute;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .progress-node:nth-child(2) { top: 0; }
+    .progress-node:nth-child(3) { top: 56px; }
+    .progress-node:nth-child(4) { top: 112px; }
+    .progress-node:nth-child(5) { top: 168px; }
+    .progress-node:nth-child(6) { top: 224px; }
+    .progress-node:nth-child(7) { top: 280px; }
+
+    .progress-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      background: transparent;
+      transition: background 150ms ease, border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+    }
+
+    .progress-node.is-complete .progress-dot {
+      background: rgba(34, 197, 94, 0.4);
+      border-color: rgba(34, 197, 94, 0.45);
+    }
+
+    .progress-node.is-active .progress-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--green);
+      border-color: var(--green);
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+      transform: scale(1.15);
+    }
+
+    .progress-tooltip {
+      position: absolute;
+      right: calc(100% + 12px);
+      top: 50%;
+      transform: translateX(8px) translateY(-50%);
+      opacity: 0;
+      white-space: nowrap;
+      font-size: 11px;
+      line-height: 1;
+      color: #ffffff;
+      background: rgba(13, 43, 43, 0.9);
+      padding: 4px 8px;
+      border-radius: 6px;
+      pointer-events: none;
+      transition: transform 150ms ease, opacity 150ms ease;
+    }
+
+    .progress-node:hover .progress-tooltip {
+      opacity: 1;
+      transform: translateX(0) translateY(-50%);
+    }
+
+    .pipeline-progress.on-light .progress-line {
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    .pipeline-progress.on-light .progress-dot {
+      border-color: rgba(0, 0, 0, 0.22);
+    }
+
+    .section {
+      scroll-margin-top: calc(var(--nav-h) + 20px);
+    }
+
+    .section-inner {
+      padding: 64px 0 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-head {
+      margin-bottom: 32px;
+    }
+
+    .head-row {
+      align-items: flex-start;
+    }
+
+    .head-copy {
+      width: 100%;
+      max-width: 880px;
+    }
+
+    .head-copy h2 {
+      max-width: 18ch;
+      font-size: clamp(28px, 3.1vw, 40px);
+    }
+
+    .subhead-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .subhead-row .section-subheading {
+      margin: 0;
+      flex: 1 1 420px;
+    }
+
+    .tool-badges {
+      gap: 10px;
+      justify-content: flex-end;
+      flex: 0 0 auto;
+    }
+
+    .tool-badge {
+      padding: 4px 12px;
+      min-height: 28px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #ffffff;
+      border: none;
+    }
+
+    .badge-zoom { background: #1a3a5c; }
+    .badge-clearbit { background: #1a4a6b; }
+    .badge-sense { background: #c84b0e; }
+    .badge-clay { background: #5b21b6; }
+    .badge-claude { background: #8b5e3c; }
+    .badge-salesforce { background: #0070d2; }
+    .badge-marketo { background: #4a3f9e; }
+
+    .hero {
+      min-height: calc(100vh - var(--nav-h));
+    }
+
+    .hero-inner {
+      width: min(calc(100% - 48px), var(--shell-max));
+      min-height: calc(100vh - var(--nav-h));
+      padding: 52px 0 0;
+      display: grid;
+      grid-template-columns: minmax(0, 0.55fr) minmax(360px, 0.45fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .hero-eyebrow {
+      margin-bottom: 20px;
+    }
+
+    .hero-copy p {
+      margin: 0 0 24px;
+      max-width: 460px;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .feature-row {
+      margin-top: 0;
+      margin-bottom: 28px;
+    }
+
+    .cta-row {
+      margin-top: 0;
+      margin-bottom: 32px;
+    }
+
+    .pipeline-flow {
+      margin-top: 0;
+    }
+
+    .floating-score {
+      padding: 32px;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 0;
+      animation: none;
+      opacity: 1;
+      transform: rotate(-1.5deg);
+      border-radius: 24px;
+    }
+
+    .floating-subcopy {
+      margin-top: 4px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.48);
+    }
+
+    .floating-score .mini-stat-row {
+      margin-top: 20px;
+    }
+
+    .hero-card-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.12);
+      margin: 18px 0 14px;
+    }
+
+    .hero-card-note {
+      margin: 0;
+      font-size: 11px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.48);
+      font-style: italic;
+    }
+
+    .hero-mini-pipeline {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 18px;
+    }
+
+    .mini-node {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.08);
+      transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .mini-node.is-live {
+      background: var(--green);
+      border-color: var(--green);
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.45);
+    }
+
+    .mini-link {
+      flex: 1 1 0;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .section-transition {
+      position: relative;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .transition-to-light {
+      background: linear-gradient(to bottom, #0d2b2b 0%, #f6f9f6 100%);
+    }
+
+    .transition-to-dark {
+      background: linear-gradient(to bottom, #f6f9f6 0%, #0d2b2b 100%);
+    }
+
+    .transition-line {
+      position: absolute;
+      left: 50%;
+      top: 20px;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 40px;
+      border-left: 1px dashed rgba(34, 197, 94, 0.4);
+    }
+
+    .transition-dot {
+      position: absolute;
+      left: 50%;
+      top: 20px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      transform: translateX(-50%);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.12);
+    }
+
+    .ui-card-head,
+    .mock-head,
+    .table-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .ui-card-head strong,
+    .mock-head strong,
+    .table-head strong {
+      font-size: 16px;
+      line-height: 1.3;
+      color: inherit;
+    }
+
+    .mock-head-badges {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: nowrap;
+      margin-left: auto;
+    }
+
+    .mock-badge.inline {
+      position: static;
+      top: auto;
+      right: auto;
+      background: rgba(0, 0, 0, 0.06);
+      color: rgba(0, 0, 0, 0.62);
+    }
+
+    .section.dark .mock-badge.inline {
+      background: rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .ui-card-copy {
+      margin: 0 0 16px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(0, 0, 0, 0.52);
+    }
+
+    .section.dark .ui-card-copy {
+      color: rgba(255, 255, 255, 0.58);
+    }
+
+    .salesforce-shell {
+      margin-top: 0;
+      position: relative;
+    }
+
+    .salesforce-shell > .mock-badge {
+      top: -12px;
+      right: 16px;
+      z-index: 8;
+    }
+
+    .clearbit-card,
+    .marketo-card,
+    .table-shell,
+    .history-shell {
+      position: relative;
+    }
+
+    .zoom-word {
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+      white-space: nowrap;
+      display: inline-block;
+      letter-spacing: 0.12em;
+    }
+
+    .prompt-panel,
+    .response-panel,
+    .salesforce-shell,
+    .history-shell,
+    .marketo-card {
+      margin-top: 0;
+    }
+
+    .history-shell .meta-toggle {
+      background: #ffffff;
+      color: var(--ink);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .footer {
+      background: #081818;
+      border-top: none;
+    }
+
+    .footer-inner {
+      padding: 48px 0;
+      display: block;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.07);
+      margin: 24px 0;
+    }
+
+    .footer-brand-line {
+      margin-bottom: 0;
+    }
+
+    .footer-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.5);
+      font-family: var(--sans);
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    .footer-meta,
+    .footer-note {
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .footer-note {
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .github-link {
+      min-height: auto;
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 13px;
+      font-weight: 500;
+      gap: 8px;
+    }
+
+    .github-link:hover {
+      transform: none;
+      background: transparent;
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .github-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: none;
+      will-change: transform, opacity;
+    }
+
+    .animate-on-scroll.is-visible {
+      opacity: inherit;
+      transform: none;
+    }
+
+    @media (max-width: 1180px) {
+      .nav-inner {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 14px;
+      }
+
+      .nav-links {
+        gap: 6px;
+      }
+
+      .nav-link {
+        padding-inline: 10px;
+        font-size: 12px;
+      }
+
+      .header-score-grid {
+        grid-template-columns: repeat(4, minmax(72px, auto));
+      }
+
+      .section-inner,
+      .nav-inner,
+      .footer-inner,
+      .hero-inner {
+        width: min(calc(100% - 40px), var(--shell-max));
+      }
+    }
+
+    @media (max-width: 980px) {
+      .pipeline-progress {
+        display: none;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 56px;
+      }
+
+      .floating-score {
+        max-width: 520px;
+        width: 100%;
+      }
+
+      .subhead-row {
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 767px) {
+      :root {
+        --nav-h: 64px;
+      }
+
+      .nav-inner,
+      .hero-inner,
+      .section-inner,
+      .footer-inner {
+        width: min(calc(100% - 28px), var(--shell-max));
+      }
+
+      .nav-inner {
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .brand-blueprint,
+      .brand-divider {
+        display: none;
+      }
+
+      .header-score-grid {
+        grid-template-columns: repeat(2, minmax(76px, auto));
+      }
+
+      .header-score-grid .score-quadrant.hide-mobile {
+        display: none;
+      }
+
+      .hero-inner {
+        padding-top: 44px;
+      }
+
+      .hero-title {
+        font-size: clamp(36px, 11vw, 44px);
+      }
+
+      .floating-score {
+        display: none;
+      }
+
+      .feature-row,
+      .cta-row {
+        width: 100%;
+      }
+
+      .cta-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .cta-row .action-btn,
+      .cta-row .ghost-btn {
+        width: 100%;
+      }
+
+      .footer-row {
+        align-items: flex-start;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2680,31 +3426,22 @@
     <div class="nav-inner">
       <a class="brand-lockup" href="#top" aria-label="Gladly Account Scoring Blueprint">
         <img src="./assets/gladly-icon.png" alt="" aria-hidden="true" />
-        <div class="brand-stack">
-          <strong>Gladly</strong>
-          <span>Account Scoring Blueprint</span>
-        </div>
+        <strong class="brand-wordmark">Gladly</strong>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-blueprint">Account Scoring Blueprint</span>
       </a>
-      <nav class="nav-links" aria-label="Section navigation">
-        <a class="nav-link" href="#setup">Setup</a>
-        <a class="nav-link" href="#fit">Fit</a>
-        <a class="nav-link" href="#timing">Timing</a>
-        <a class="nav-link" href="#clay">Clay</a>
-        <a class="nav-link" href="#claude">Claude</a>
-        <a class="nav-link" href="#salesforce">Salesforce</a>
-        <a class="nav-link" href="#marketo">Marketo</a>
-        <a class="nav-link" href="#summary">Summary</a>
-      </nav>
-    </div>
-  </header>
 
-  <div class="score-bar" aria-live="polite">
-    <div class="score-bar-inner">
-      <div class="score-brand">
-        <img src="./assets/gladly-icon.png" alt="" aria-hidden="true" />
-        <span>Gladly</span>
-      </div>
-      <div class="score-grid">
+      <nav class="nav-links" aria-label="Section navigation">
+        <a class="nav-link" data-nav-link href="#setup">Setup</a>
+        <a class="nav-link" data-nav-link href="#fit">Fit</a>
+        <a class="nav-link" data-nav-link href="#timing">Timing</a>
+        <a class="nav-link" data-nav-link href="#clay">Clay</a>
+        <a class="nav-link" data-nav-link href="#claude">Claude</a>
+        <a class="nav-link" data-nav-link href="#salesforce">Salesforce</a>
+        <a class="nav-link" data-nav-link href="#marketo">Marketo</a>
+      </nav>
+
+      <div class="header-score-grid" aria-live="polite">
         <div class="score-quadrant hide-mobile">
           <div class="score-label">Fit</div>
           <div class="score-value" id="stickyFit">95</div>
@@ -2723,7 +3460,35 @@
         </div>
       </div>
     </div>
-  </div>
+  </header>
+
+  <aside class="pipeline-progress" id="pipelineProgress" aria-label="Pipeline progress">
+    <div class="progress-line" aria-hidden="true"></div>
+    <a class="progress-node" data-progress-node data-progress-group="setup" href="#setup">
+      <span class="progress-dot"></span>
+      <span class="progress-tooltip">Setup</span>
+    </a>
+    <a class="progress-node" data-progress-node data-progress-group="fit" href="#fit">
+      <span class="progress-dot"></span>
+      <span class="progress-tooltip">Fit Signals</span>
+    </a>
+    <a class="progress-node" data-progress-node data-progress-group="timing" href="#timing">
+      <span class="progress-dot"></span>
+      <span class="progress-tooltip">Timing</span>
+    </a>
+    <a class="progress-node" data-progress-node data-progress-group="clay" href="#clay">
+      <span class="progress-dot"></span>
+      <span class="progress-tooltip">Clay</span>
+    </a>
+    <a class="progress-node" data-progress-node data-progress-group="claude" href="#claude">
+      <span class="progress-dot"></span>
+      <span class="progress-tooltip">Claude</span>
+    </a>
+    <a class="progress-node" data-progress-node data-progress-group="activate" href="#salesforce">
+      <span class="progress-dot"></span>
+      <span class="progress-tooltip">SFDC / Marketo</span>
+    </a>
+  </aside>
 
   <div class="app-shell" id="top">
     <section class="hero">
@@ -2739,13 +3504,12 @@
             <span>Scoring Engine</span>
           </h1>
           <p class="animate-on-scroll" style="--delay: 120ms;">
-            Interactive ICP calculator and RevOps pipeline simulator. Every slider feeds the same scoring
-            engine and updates the same downstream state.
+            Gladly scores inbound accounts using a two-part model - Fit from ZoomInfo and Clearbit, Timing from 6sense and first-party signals. Clay normalizes the record, Claude reasons over it, Salesforce stores it, and Marketo fires the right motion. Every slider on this page feeds the same engine.
           </p>
           <div class="feature-row animate-on-scroll" style="--delay: 180ms;">
-            <div class="feature-pill">Sticky live score ribbon</div>
-            <div class="feature-pill">One shared scoring engine</div>
-            <div class="feature-pill">Reactive mock pipeline</div>
+            <div class="feature-pill">Fit + Timing model</div>
+            <div class="feature-pill">Clay + Claude pipeline</div>
+            <div class="feature-pill">SFDC + Marketo activation</div>
           </div>
           <div class="cta-row animate-on-scroll" style="--delay: 240ms;">
             <a class="action-btn" href="#setup">Begin walkthrough</a>
@@ -2770,9 +3534,7 @@
             <div class="pulse-mini"></div>
           </div>
           <div class="composite-big" id="heroComposite">145</div>
-          <p>
-            Composite updates in lockstep with every signal across the pipeline.
-          </p>
+          <div class="floating-subcopy">Fit + Timing composite</div>
           <div class="mini-stat-row">
             <div class="mini-stat">
               <span>Fit</span>
@@ -2784,7 +3546,24 @@
             </div>
           </div>
           <div class="tier-pill tier-a" id="heroTier">Tier A</div>
+          <div class="hero-card-divider"></div>
+          <p class="hero-card-note">Changes live as you move the controls below.</p>
+          <div class="hero-mini-pipeline" id="heroMiniPipeline" aria-hidden="true">
+            <span class="mini-node" data-mini-node="0"></span>
+            <span class="mini-link"></span>
+            <span class="mini-node" data-mini-node="1"></span>
+            <span class="mini-link"></span>
+            <span class="mini-node" data-mini-node="2"></span>
+            <span class="mini-link"></span>
+            <span class="mini-node" data-mini-node="3"></span>
+            <span class="mini-link"></span>
+            <span class="mini-node" data-mini-node="4"></span>
+          </div>
         </div>
+      </div>
+      <div class="section-transition transition-to-light">
+        <div class="transition-line"></div>
+        <div class="transition-dot"></div>
       </div>
     </section>
 
@@ -2841,6 +3620,10 @@
           <p id="scenarioDescription">Harbor &amp; Pine Goods is a Tier A retail brand with enterprise scale, a modern commerce stack, legacy helpdesk pain, and full timing pressure.</p>
         </div>
       </div>
+      <div class="section-transition transition-to-dark">
+        <div class="transition-line"></div>
+        <div class="transition-dot"></div>
+      </div>
     </section>
 
     <div class="connector">
@@ -2854,11 +3637,13 @@
           <div class="head-row">
             <div class="head-copy">
               <h2>Fit decides who belongs.</h2>
-              <p class="section-subheading">No single vendor owns the truth - the waterfall decides field by field.</p>
-            </div>
-            <div class="tool-badges">
-              <div class="tool-badge badge-zoom">ZoomInfo</div>
-              <div class="tool-badge badge-clearbit">Clearbit</div>
+              <div class="subhead-row">
+                <p class="section-subheading">No single vendor owns the truth - the waterfall decides field by field.</p>
+                <div class="tool-badges">
+                  <div class="tool-badge badge-zoom">ZoomInfo</div>
+                  <div class="tool-badge badge-clearbit">Clearbit</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -2938,7 +3723,12 @@
 
           <div class="animate-on-scroll" style="--delay: 120ms;">
             <div class="ui-card">
-              <div class="mock-badge">Mock UI</div>
+              <div class="ui-card-head">
+                <strong>ZoomInfo record</strong>
+                <div class="mock-head-badges">
+                  <div class="mock-badge inline">Mock UI</div>
+                </div>
+              </div>
               <div class="zoominfo-card">
                 <div class="zoom-side">
                   <div class="zoom-word">ZoomInfo</div>
@@ -2973,10 +3763,12 @@
             </div>
 
             <div class="clearbit-card card-dark animate-on-scroll" style="--delay: 180ms;">
-              <div class="mock-badge">Mock UI</div>
-              <div class="card-head">
+              <div class="card-head mock-head">
                 <strong>Clearbit delta</strong>
-                <div class="status-pill" id="clearbitStatus">High confidence</div>
+                <div class="mock-head-badges">
+                  <div class="status-pill" id="clearbitStatus">High confidence</div>
+                  <div class="mock-badge inline">Mock UI</div>
+                </div>
               </div>
               <div class="stats-row">
                 <div class="stat-card">
@@ -3006,6 +3798,10 @@
           </div>
         </div>
       </div>
+      <div class="section-transition transition-to-dark">
+        <div class="transition-line"></div>
+        <div class="transition-dot"></div>
+      </div>
     </section>
 
     <div class="connector">
@@ -3019,10 +3815,12 @@
           <div class="head-row">
             <div class="head-copy">
               <h2>Timing decides when to act.</h2>
-              <p class="section-subheading">The model earns the right to act only when the account is in motion.</p>
-            </div>
-            <div class="tool-badges">
-              <div class="tool-badge badge-sense">6sense</div>
+              <div class="subhead-row">
+                <p class="section-subheading">The model earns the right to act only when the account is in motion.</p>
+                <div class="tool-badges">
+                  <div class="tool-badge badge-sense">6sense</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -3123,14 +3921,14 @@
           </div>
 
           <div class="ui-card animate-on-scroll" style="--delay: 120ms;">
-            <div class="mock-badge">Mock UI</div>
-            <div class="sense-top">
-              <div>
-                <strong style="display:block; font-size:16px; color:var(--ink);">6sense account dashboard</strong>
-                <p style="margin:8px 0 0; font-size:14px; line-height:1.6; color:rgba(0,0,0,0.52);">Intent, engagement, and first-party pressure in one view.</p>
+            <div class="ui-card-head">
+              <strong>6sense account dashboard</strong>
+              <div class="mock-head-badges">
+                <div class="stage-pill" id="senseStage">Decision</div>
+                <div class="mock-badge inline">Mock UI</div>
               </div>
-              <div class="stage-pill" id="senseStage">Decision</div>
             </div>
+            <p class="ui-card-copy">Intent, engagement, and first-party pressure in one view.</p>
 
             <div class="sense-grid">
               <div class="sense-panel">
@@ -3158,6 +3956,10 @@
           </div>
         </div>
       </div>
+      <div class="section-transition transition-to-light">
+        <div class="transition-line"></div>
+        <div class="transition-dot"></div>
+      </div>
     </section>
 
     <div class="connector">
@@ -3171,10 +3973,12 @@
           <div class="head-row">
             <div class="head-copy">
               <h2>Clay normalizes the record before Claude sees it.</h2>
-              <p class="section-subheading">Raw signals are noisy. Clay normalizes them into a downstream-safe record.</p>
-            </div>
-            <div class="tool-badges">
-              <div class="tool-badge badge-clay">Clay</div>
+              <div class="subhead-row">
+                <p class="section-subheading">Raw signals are noisy. Clay normalizes them into a downstream-safe record.</p>
+                <div class="tool-badges">
+                  <div class="tool-badge badge-clay">Clay</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -3239,7 +4043,12 @@
         </div>
 
         <div class="table-shell animate-on-scroll" style="--delay: 180ms;">
-          <div class="mock-badge">Mock UI</div>
+          <div class="mini-card-head table-head">
+            <strong>Clay enrichment table</strong>
+            <div class="mock-head-badges">
+              <div class="mock-badge inline">Mock UI</div>
+            </div>
+          </div>
           <div class="table-wrap">
             <table class="clay-table">
               <thead>
@@ -3282,6 +4091,10 @@
           </div>
         </div>
       </div>
+      <div class="section-transition transition-to-dark">
+        <div class="transition-line"></div>
+        <div class="transition-dot"></div>
+      </div>
     </section>
 
     <div class="connector">
@@ -3298,10 +4111,12 @@
           <div class="head-row">
             <div class="head-copy">
               <h2>Claude turns the record into a routing decision.</h2>
-              <p class="section-subheading">The enriched record becomes a prompt. The response becomes the routing decision.</p>
-            </div>
-            <div class="tool-badges">
-              <div class="tool-badge badge-claude">Anthropic</div>
+              <div class="subhead-row">
+                <p class="section-subheading">The enriched record becomes a prompt. The response becomes the routing decision.</p>
+                <div class="tool-badges">
+                  <div class="tool-badge badge-claude">Anthropic</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -3333,6 +4148,10 @@
           </div>
         </div>
       </div>
+      <div class="section-transition transition-to-light">
+        <div class="transition-line"></div>
+        <div class="transition-dot"></div>
+      </div>
     </section>
 
     <div class="connector">
@@ -3346,10 +4165,12 @@
           <div class="head-row">
             <div class="head-copy">
               <h2>Salesforce remains the master record.</h2>
-              <p class="section-subheading">Every score lives in Salesforce. Marketo only reads what SFDC writes.</p>
-            </div>
-            <div class="tool-badges">
-              <div class="tool-badge badge-salesforce">Salesforce</div>
+              <div class="subhead-row">
+                <p class="section-subheading">Every score lives in Salesforce. Marketo only reads what SFDC writes.</p>
+                <div class="tool-badges">
+                  <div class="tool-badge badge-salesforce">Salesforce</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -3457,6 +4278,10 @@
           </div>
         </div>
       </div>
+      <div class="section-transition transition-to-dark">
+        <div class="transition-line"></div>
+        <div class="transition-dot"></div>
+      </div>
     </section>
 
     <div class="connector">
@@ -3470,24 +4295,34 @@
           <div class="head-row">
             <div class="head-copy">
               <h2>Marketo activates the right motion.</h2>
-              <p class="section-subheading">The right motion fires automatically. No manual routing, no missed MQAs.</p>
-            </div>
-            <div class="tool-badges">
-              <div class="tool-badge badge-marketo">Marketo</div>
+              <div class="subhead-row">
+                <p class="section-subheading">The right motion fires automatically. No manual routing, no missed MQAs.</p>
+                <div class="tool-badges">
+                  <div class="tool-badge badge-marketo">Marketo</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="marketo-grid">
           <div class="marketo-card animate-on-scroll" style="--delay: 60ms;">
-            <div class="mock-badge">Mock UI</div>
-            <strong style="display:block; font-size:16px; color:var(--ink);">Smart List</strong>
+            <div class="card-head mock-head">
+              <strong>Smart List</strong>
+              <div class="mock-head-badges">
+                <div class="mock-badge inline">Mock UI</div>
+              </div>
+            </div>
             <div class="smart-list" id="smartList"></div>
           </div>
 
           <div class="marketo-card animate-on-scroll" style="--delay: 120ms;">
-            <div class="mock-badge">Mock UI</div>
-            <strong style="display:block; font-size:16px; color:var(--ink);">Flow Steps</strong>
+            <div class="card-head mock-head">
+              <strong>Flow Steps</strong>
+              <div class="mock-head-badges">
+                <div class="mock-badge inline">Mock UI</div>
+              </div>
+            </div>
             <div class="flow-stack">
               <div class="flow-line"></div>
               <div class="flow-step-card" id="flow1"></div>
@@ -3499,8 +4334,12 @@
           </div>
 
           <div class="marketo-card animate-on-scroll" style="--delay: 180ms;">
-            <div class="mock-badge">Mock UI</div>
-            <strong style="display:block; font-size:16px; color:var(--ink);">Program performance</strong>
+            <div class="card-head mock-head">
+              <strong>Program performance</strong>
+              <div class="mock-head-badges">
+                <div class="mock-badge inline">Mock UI</div>
+              </div>
+            </div>
             <div class="metrics-grid">
               <div class="metric-row">
                 <div class="top">
@@ -3526,6 +4365,10 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="section-transition transition-to-light">
+        <div class="transition-line"></div>
+        <div class="transition-dot"></div>
       </div>
     </section>
 
@@ -3590,34 +4433,39 @@
 
   <footer class="footer">
     <div class="footer-inner">
-      <div>
+      <div class="footer-row footer-top">
         <div class="footer-brand-line">
           <img src="./assets/gladly-icon.png" alt="" aria-hidden="true" />
           <strong>Account Scoring Blueprint</strong>
         </div>
-        <div class="footer-copy">
-          <span>Daniel Rodriguez</span>
-          <span>Revenue Operations Analyst Assessment, April 2025</span>
-        </div>
+        <nav class="footer-links" aria-label="Footer links">
+          <a href="#setup">Setup</a>
+          <a href="#fit">Fit</a>
+          <a href="#timing">Timing</a>
+          <a href="#clay">Clay</a>
+          <a href="#salesforce">Salesforce</a>
+          <a href="#marketo">Marketo</a>
+        </nav>
       </div>
 
-      <nav class="footer-links" aria-label="Footer links">
-        <a href="#setup">Setup</a>
-        <a href="#fit">Fit</a>
-        <a href="#timing">Timing</a>
-        <a href="#clay">Clay</a>
-        <a href="#claude">Claude</a>
-        <a href="#salesforce">Salesforce</a>
-        <a href="#marketo">Marketo</a>
-        <a href="#summary">Summary</a>
-      </nav>
+      <div class="footer-divider"></div>
 
-      <div class="footer-note">
-        <div>Built as a playable prototype for the Gladly assessment.</div>
-        <a class="github-link" href="https://github.com/daniel-st3/rev-ops-panel.git" target="_blank" rel="noreferrer">View source on GitHub</a>
+      <div class="footer-row footer-bottom">
+        <div class="footer-meta">Daniel Rodriguez · Revenue Operations Analyst Assessment, April 2025</div>
+        <div class="footer-note">Built as a playable prototype for the Gladly assessment.</div>
+        <a class="github-link" href="https://github.com/daniel-st3/rev-ops-panel.git" target="_blank" rel="noreferrer">
+          View source on GitHub
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M7 17L17 7"></path>
+            <path d="M9 7h8v8"></path>
+          </svg>
+        </a>
       </div>
     </div>
   </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <script>
     const presets = {
@@ -3787,10 +4635,12 @@
       stickyTiming: document.getElementById("stickyTiming"),
       stickyComposite: document.getElementById("stickyComposite"),
       stickyTier: document.getElementById("stickyTier"),
+      heroScoreCard: document.getElementById("heroScoreCard"),
       heroFit: document.getElementById("heroFit"),
       heroTiming: document.getElementById("heroTiming"),
       heroComposite: document.getElementById("heroComposite"),
       heroTier: document.getElementById("heroTier"),
+      pipelineProgress: document.getElementById("pipelineProgress"),
       heroCanvas: document.getElementById("heroCanvas"),
       scaleSlider: document.getElementById("scaleSlider"),
       industrySlider: document.getElementById("industrySlider"),
@@ -3893,10 +4743,15 @@
       addFirstParty: document.getElementById("addFirstParty")
     };
 
+    els.navLinks = [...document.querySelectorAll("[data-nav-link]")];
+    els.progressNodes = [...document.querySelectorAll("[data-progress-node]")];
+    els.heroMiniNodes = [...document.querySelectorAll("[data-mini-node]")];
+
     let previousRender = null;
     let claudeTimer = null;
     let resetAnimation = null;
     let particleFrame = null;
+    let activeSectionGroup = "";
 
     function roundDiscrete(value, max) {
       const rounded = Math.round(Number(value));
@@ -3999,6 +4854,11 @@
     }
 
     function pulseValue(el) {
+      if (window.gsap) {
+        gsap.fromTo(el, { scale: 1.12 }, { scale: 1, duration: 0.2, ease: "power2.out", overwrite: true });
+        return;
+      }
+
       el.classList.remove("pulse");
       void el.offsetWidth;
       el.classList.add("pulse");
@@ -4007,6 +4867,30 @@
 
     function animateNumber(el, target, suffix = "", duration = 600) {
       const current = Number(el.dataset.current || 0);
+      if (current === target) {
+        el.textContent = `${target}${suffix}`;
+        el.dataset.current = `${target}`;
+        return;
+      }
+
+      if (window.gsap) {
+        const counter = { value: current };
+        gsap.to(counter, {
+          value: target,
+          duration: duration / 1000,
+          ease: "power1.out",
+          snap: { value: 1 },
+          overwrite: true,
+          onStart: () => pulseValue(el),
+          onUpdate: () => {
+            const next = Math.round(counter.value);
+            el.textContent = `${next}${suffix}`;
+            el.dataset.current = `${next}`;
+          }
+        });
+        return;
+      }
+
       const start = current;
       const end = target;
       const started = performance.now();
@@ -4216,7 +5100,7 @@
         state.owner = preset.owner;
         state.lane = preset.lane;
         syncInputs();
-        renderAll(true);
+        renderAll(false);
 
         if (progress < 1) {
           resetAnimation = requestAnimationFrame(step);
@@ -4235,29 +5119,29 @@
     }
 
     function renderSticky(scores) {
-      const map = [
-        [els.stickyFit, `${scores.fit}`],
-        [els.stickyTiming, `${scores.timing}`],
-        [els.stickyComposite, `${scores.composite}`],
-        [els.stickyTier, scores.tier]
-      ];
+      animateNumber(els.stickyFit, scores.fit, "", 400);
+      animateNumber(els.stickyTiming, scores.timing, "", 400);
+      animateNumber(els.stickyComposite, scores.composite, "", 400);
 
-      map.forEach(([el, text]) => {
-        if (el.textContent !== text) {
-          el.textContent = text;
-          pulseValue(el);
-        }
-      });
+      if (els.stickyTier.textContent !== scores.tier) {
+        els.stickyTier.textContent = scores.tier;
+        pulseValue(els.stickyTier);
+      }
 
       els.stickyTier.className = `score-value bright ${getTierClass(scores.tier)}`;
     }
 
     function renderHero(scores) {
-      els.heroFit.textContent = scores.fit;
-      els.heroTiming.textContent = scores.timing;
-      els.heroComposite.textContent = scores.composite;
+      animateNumber(els.heroFit, scores.fit, "", 420);
+      animateNumber(els.heroTiming, scores.timing, "", 420);
+      animateNumber(els.heroComposite, scores.composite, "", 420);
       els.heroTier.textContent = `Tier ${scores.tier}`;
       applyTierClass(els.heroTier, scores.tier, "tier-pill");
+
+      const liveNodes = scores.tier === "A" ? 5 : scores.tier === "B" ? 4 : scores.tier === "C" ? 3 : 2;
+      els.heroMiniNodes.forEach((node, index) => {
+        node.classList.toggle("is-live", index < liveNodes);
+      });
     }
 
     function renderSetup() {
@@ -4560,7 +5444,7 @@
       els.clearbitStatus.textContent = coverage;
     }
 
-    function renderAll(fromInteraction = false) {
+    function renderAll(triggerThinking = false) {
       const discrete = getDiscrete();
       const scores = computeScores(discrete);
       const fitContext = getFitContext(discrete);
@@ -4572,7 +5456,7 @@
       renderFit(discrete);
       renderTiming(discrete, scores);
       renderClay(discrete, scores);
-      renderClaude(discrete, scores, !fromInteraction && previousRender === null);
+      renderClaude(discrete, scores, !triggerThinking);
       renderSalesforce(discrete, scores);
       renderMarketo(scores);
       renderSummary(scores);
@@ -4670,26 +5554,186 @@
       els.addFirstParty.addEventListener("click", () => addExtraRow("firstparty"));
     }
 
-    function initReveal() {
-      const animated = document.querySelectorAll(".animate-on-scroll");
-      animated.forEach((el, index) => {
-        if (!el.style.getPropertyValue("--delay")) {
-          el.style.setProperty("--delay", `${(index % 6) * 60}ms`);
+    function initGsap() {
+      if (!window.gsap || !window.ScrollTrigger) return;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const heroChildren = document.querySelectorAll(".hero-copy > *");
+      gsap.fromTo(heroChildren, {
+        opacity: 0,
+        y: 24
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: "power3.out",
+        delay: 0.2
+      });
+
+      gsap.fromTo(els.heroScoreCard, {
+        opacity: 0,
+        scale: 0.94,
+        rotation: -3
+      }, {
+        opacity: 1,
+        scale: 1,
+        rotation: -1.5,
+        duration: 0.9,
+        ease: "back.out(1.4)",
+        delay: 0.6
+      });
+
+      gsap.fromTo(els.heroMiniNodes, {
+        opacity: 0.35,
+        scale: 0.6
+      }, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.4,
+        stagger: 0.08,
+        ease: "power2.out",
+        delay: 1
+      });
+
+      document.querySelectorAll(".section-head").forEach((el) => {
+        gsap.fromTo(el, {
+          opacity: 0,
+          y: 40
+        }, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        });
+      });
+
+      document.querySelectorAll(".section").forEach((section) => {
+        const cards = [...section.querySelectorAll(".animate-on-scroll")].filter((el) => !el.classList.contains("section-head"));
+        if (!cards.length) return;
+
+        gsap.fromTo(cards, {
+          opacity: 0,
+          y: 28
+        }, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            toggleActions: "play none none none"
+          }
+        });
+      });
+
+      document.querySelectorAll(".control-stack, .clay-controls").forEach((container) => {
+        const rows = container.querySelectorAll(".slider-row");
+        if (!rows.length) return;
+
+        gsap.fromTo(rows, {
+          opacity: 0,
+          x: -16
+        }, {
+          opacity: 1,
+          x: 0,
+          duration: 0.5,
+          stagger: 0.05,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: container,
+            start: "top 82%",
+            toggleActions: "play none none none"
+          }
+        });
+      });
+
+      document.querySelectorAll(".transition-dot").forEach((dot) => {
+        gsap.to(dot, {
+          y: 40,
+          duration: 1.6,
+          ease: "none",
+          repeat: -1
+        });
+      });
+    }
+
+    function updateActiveChrome(sectionId) {
+      const navLinks = {
+        setup: "setup",
+        fit: "fit",
+        timing: "timing",
+        clay: "clay",
+        claude: "claude",
+        salesforce: "salesforce",
+        marketo: "marketo"
+      };
+
+      els.navLinks.forEach((link) => {
+        const target = link.getAttribute("href").replace("#", "");
+        link.classList.toggle("is-active", target === navLinks[sectionId]);
+      });
+
+      const groupOrder = ["setup", "fit", "timing", "clay", "claude", "activate"];
+      const activeGroup = sectionId === "salesforce" || sectionId === "marketo" ? "activate" : navLinks[sectionId] || "";
+      const activeIndex = groupOrder.indexOf(activeGroup);
+
+      els.pipelineProgress.classList.toggle("is-visible", activeIndex !== -1);
+      const activeSectionEl = document.getElementById(sectionId);
+      els.pipelineProgress.classList.toggle("on-light", !!activeSectionEl && activeSectionEl.classList.contains("light"));
+
+      els.progressNodes.forEach((node, index) => {
+        const group = node.dataset.progressGroup;
+        const groupIndex = groupOrder.indexOf(group);
+        const isActive = group === activeGroup;
+        node.classList.toggle("is-active", isActive);
+        node.classList.toggle("is-complete", activeIndex !== -1 && groupIndex < activeIndex);
+
+        if (isActive && activeGroup !== activeSectionGroup && window.gsap) {
+          const dot = node.querySelector(".progress-dot");
+          gsap.fromTo(dot, { scale: 1 }, { scale: 1.4, duration: 0.3, ease: "back.out(2)", yoyo: true, repeat: 1 });
         }
       });
 
+      activeSectionGroup = activeGroup;
+    }
+
+    function initSectionTracking() {
+      const sections = ["setup", "fit", "timing", "clay", "claude", "salesforce", "marketo", "summary"];
+      const visibleSections = new Map();
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+          visibleSections.set(entry.target.id, entry.intersectionRatio);
+        });
+
+        let nextActive = "";
+        let bestRatio = 0;
+        sections.forEach((id) => {
+          const ratio = visibleSections.get(id) || 0;
+          if (ratio >= 0.3 && ratio > bestRatio) {
+            bestRatio = ratio;
+            nextActive = id;
           }
         });
+
+        updateActiveChrome(nextActive);
       }, {
-        threshold: 0.16,
-        rootMargin: "0px 0px -8% 0px"
+        threshold: [0, 0.3, 0.55, 0.8]
       });
 
-      animated.forEach((el) => observer.observe(el));
+      sections.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
     }
 
     function initParticles() {
@@ -4787,9 +5831,10 @@
       renderPresets();
       syncInputs();
       initBindings();
-      initReveal();
-      initParticles();
       renderAll(false);
+      initParticles();
+      initGsap();
+      initSectionTracking();
     }
 
     boot();
