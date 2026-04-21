@@ -5097,6 +5097,256 @@
         justify-content: center;
       }
     }
+
+    .section,
+    .handoff-scene,
+    .pipeline-complete-scene {
+      scroll-margin-top: 56px;
+    }
+
+    .section.light .section-subheading,
+    .setup-strip p,
+    .section.light .ui-card-copy,
+    .sense-panel p {
+      color: #374151;
+    }
+
+    .track-labels {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 9px;
+    }
+
+    .section.light .track-labels {
+      color: rgba(17, 24, 39, 0.7);
+    }
+
+    .hero-card-note {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .flow-summary-row,
+    .flow-summary-row strong,
+    .flow-summary-card .mini-card-head strong,
+    .flow-source {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .code-wrap .json-key,
+    .prompt-body .json-key {
+      color: #7ecfb3;
+    }
+
+    .code-wrap .json-string,
+    .prompt-body .json-string {
+      color: #c8f7c5;
+    }
+
+    .code-wrap .json-number,
+    .prompt-body .json-number {
+      color: #a8e6cf;
+    }
+
+    .cap-note {
+      color: #facc15;
+      font-weight: 600;
+    }
+
+    .routing-note,
+    .routing-summary-copy p,
+    #summaryAction,
+    #summarySla,
+    #summaryChili {
+      color: #374151;
+    }
+
+    .setup-strip {
+      margin-top: 16px;
+    }
+
+    .clearbit-card {
+      margin-top: 16px !important;
+    }
+
+    .fit-ui-stack {
+      gap: 16px;
+    }
+
+    #salesforce .section-inner {
+      padding-bottom: 12px;
+    }
+
+    #marketo .section-inner {
+      padding-top: 48px;
+    }
+
+    .handoff-scene {
+      min-height: auto;
+      padding: 40px 0 48px;
+    }
+
+    .handoff-inner {
+      gap: 24px;
+    }
+
+    .handoff-stream {
+      padding: 10px 0;
+    }
+
+    .handoff-marketo-logo-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: #5c4dff;
+      box-shadow: 0 8px 24px rgba(92, 77, 255, 0.22);
+    }
+
+    .handoff-logo-marketo {
+      filter: brightness(0) invert(1);
+      height: 36px;
+    }
+
+    .handoff-marketo .handoff-sublabel,
+    .handoff-marketo .handoff-label {
+      color: #ffffff;
+    }
+
+    .handoff-status-badge {
+      font-weight: 800;
+    }
+
+    .pipeline-complete-scene {
+      min-height: auto;
+      padding: 56px 0;
+    }
+
+    .clay-grid {
+      grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+    }
+
+    .clay-right .table-shell {
+      max-height: none;
+    }
+
+    .clay-right .table-wrap {
+      width: 100%;
+      max-height: none;
+      overflow-x: auto;
+      overflow-y: visible;
+    }
+
+    .clay-table {
+      min-width: 640px;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    .clay-table th,
+    .clay-table td {
+      padding: 8px 12px;
+      font-size: 0.8125rem;
+    }
+
+    .clay-table thead tr {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .clay-table th {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+    }
+
+    .clay-table tbody tr:nth-child(odd) {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .clay-table th:nth-child(1),
+    .clay-table td:nth-child(1) { width: 18%; }
+    .clay-table th:nth-child(2),
+    .clay-table td:nth-child(2) { width: 18%; }
+    .clay-table th:nth-child(3),
+    .clay-table td:nth-child(3) { width: 15%; }
+    .clay-table th:nth-child(4),
+    .clay-table td:nth-child(4) { width: 12%; }
+    .clay-table th:nth-child(5),
+    .clay-table td:nth-child(5) { width: 15%; }
+    .clay-table th:nth-child(6),
+    .clay-table td:nth-child(6) { width: 22%; }
+
+    .data-cell.final {
+      color: #ffffff;
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    .summary-stats {
+      margin-top: 0;
+    }
+
+    .summary-stat .text {
+      font-size: 11px;
+    }
+
+    .smart-list {
+      margin-top: 0;
+    }
+
+    .summary-actions {
+      justify-content: center;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+
+      #summary,
+      #summary * {
+        visibility: visible !important;
+      }
+
+      #summary {
+        position: absolute;
+        inset: 0 auto auto 0;
+        width: 100%;
+        padding: 24px 0;
+        background: #ffffff !important;
+        color: #111827 !important;
+      }
+
+      #summary .summary-shell {
+        background: #ffffff !important;
+        border: 1px solid rgba(0, 0, 0, 0.08) !important;
+        box-shadow: none !important;
+      }
+
+      #summary .score-label-sm,
+      #summary .report-block-label,
+      #summary .step-label,
+      #summary .section-subheading {
+        color: rgba(17, 24, 39, 0.6) !important;
+      }
+
+      #summary .score-number-lg,
+      #summary .score-number-xl,
+      #summary .report-account-name,
+      #summary strong,
+      #summary span,
+      #summary p,
+      #summary h2,
+      #summary h3 {
+        color: #111827 !important;
+      }
+
+      .site-nav,
+      .pipeline-progress,
+      .footer,
+      .copy-toast {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -5741,6 +5991,29 @@
                 </div>
               </div>
             </div>
+            <div class="summary-stats">
+              <div class="summary-stat">
+                <span class="number" id="enrichedCount">30</span>
+                <span class="text">fields enriched</span>
+              </div>
+              <div class="summary-stat">
+                <span class="number" id="conflictCount">1</span>
+                <span class="text">conflicts resolved</span>
+              </div>
+              <div class="summary-stat">
+                <span class="number" id="safeCount">26</span>
+                <span class="text">downstream-safe fields ready for Claude</span>
+              </div>
+            </div>
+            <div class="json-panel" id="jsonPanel">
+              <div class="json-head">
+                <strong>JSON preview</strong>
+                <button class="toggle-btn" id="jsonToggle" type="button">Expand</button>
+              </div>
+              <div class="json-body">
+                <div class="code-wrap" id="jsonCode"></div>
+              </div>
+            </div>
           </div>
 
           <div class="clay-right animate-on-scroll" style="--delay: 120ms;">
@@ -5765,31 +6038,6 @@
                   </thead>
                   <tbody id="clayBody"></tbody>
                 </table>
-              </div>
-            </div>
-
-            <div class="summary-stats">
-              <div class="summary-stat">
-                <span class="number" id="enrichedCount">30</span>
-                <span class="text">fields enriched</span>
-              </div>
-              <div class="summary-stat">
-                <span class="number" id="conflictCount">1</span>
-                <span class="text">conflicts resolved</span>
-              </div>
-              <div class="summary-stat">
-                <span class="number" id="safeCount">26</span>
-                <span class="text">downstream-safe fields ready for Claude</span>
-              </div>
-            </div>
-
-            <div class="json-panel" id="jsonPanel">
-              <div class="json-head">
-                <strong>JSON preview</strong>
-                <button class="toggle-btn" id="jsonToggle" type="button">Expand</button>
-              </div>
-              <div class="json-body">
-                <div class="code-wrap" id="jsonCode"></div>
               </div>
             </div>
           </div>
@@ -5939,23 +6187,7 @@
             <button class="meta-toggle" id="metaToggle" type="button">Toggle custom fields</button>
           </div>
 
-          <div class="history-row">
-            <div class="history-card">
-              <span class="meta-label">Apr 15, 2026</span>
-              <strong>Score 138 · Tier A</strong>
-              <p>Raised after 6sense surge.</p>
-            </div>
-            <div class="history-card">
-              <span class="meta-label">Apr 05, 2026</span>
-              <strong>Score 112 · Tier B</strong>
-              <p>Commerce stack confirmed.</p>
-            </div>
-            <div class="history-card">
-              <span class="meta-label">Mar 28, 2026</span>
-              <strong>Score 84 · Tier C</strong>
-              <p>Baseline ICP evaluation.</p>
-            </div>
-          </div>
+          <div class="history-row" id="sfHistoryRows"></div>
 
           <div class="meta-shell" id="metaShell">
             <div class="meta-body">
@@ -6013,7 +6245,9 @@
           <div class="stream-badge">READ-ONLY SYNC</div>
         </div>
         <div class="handoff-node handoff-marketo">
-          <img class="handoff-logo handoff-logo-marketo" src="./assets/marketo-logo.webp" alt="Marketo logo" />
+          <div class="handoff-marketo-logo-pill">
+            <img class="handoff-logo handoff-logo-marketo" src="./assets/marketo-logo.webp" alt="Marketo logo" />
+          </div>
           <span class="handoff-label">Marketo</span>
           <span class="handoff-sublabel">Activation triggered</span>
           <span class="handoff-status-badge" id="handoffMarketoStatus">MQA Alert Fired</span>
@@ -6212,7 +6446,7 @@
 
           <div class="summary-actions">
             <button class="action-btn" id="resetButton" type="button">Reset to defaults</button>
-            <button class="ghost-btn" type="button">
+            <button class="ghost-btn" id="exportPdf" type="button">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M12 3v12"></path>
                 <path d="M7 10l5 5 5-5"></path>
@@ -6324,10 +6558,10 @@
           helpdesk: 0,
           intent: 0,
           hiring: 0,
-          pricing: 0,
+          pricing: 1,
           coverage: 68,
-          intentDepth: 22,
-          firstPartyDepth: 18,
+          intentDepth: 42,
+          firstPartyDepth: 48,
           zoomPoints: 11,
           topics: 2,
           packets: 3
@@ -6522,6 +6756,7 @@
       sfFieldTier: document.getElementById("sfFieldTier"),
       sfFieldRouting: document.getElementById("sfFieldRouting"),
       sfFieldSync: document.getElementById("sfFieldSync"),
+      sfHistoryRows: document.getElementById("sfHistoryRows"),
       metaToggle: document.getElementById("metaToggle"),
       metaShell: document.getElementById("metaShell"),
       smartList: document.getElementById("smartList"),
@@ -6559,6 +6794,7 @@
       summaryFlowTimeline: document.getElementById("summaryFlowTimeline"),
       summaryFilterList: document.getElementById("summaryFilterList"),
       resetButton: document.getElementById("resetButton"),
+      exportPdf: document.getElementById("exportPdf"),
       addZoom: document.getElementById("addZoom"),
       addSense: document.getElementById("addSense"),
       addFirstParty: document.getElementById("addFirstParty")
@@ -6570,6 +6806,7 @@
 
     let previousRender = null;
     let claudeTimer = null;
+    let copiedTimer = null;
     let resetAnimation = null;
     let particleFrame = null;
     let activeSectionGroup = "";
@@ -6617,7 +6854,7 @@
       const composite = fit + timing;
 
       let tier = "D";
-      let motion = "No active motion, suppression list";
+      let motion = "Marketo nurture only";
       let sla = "No SLA";
       let action = "Suppressed from all outbound";
 
@@ -6628,12 +6865,12 @@
         action = "Named Account program and MQA alert via Sales Insight";
       } else if (composite >= 90) {
         tier = "B";
-        motion = "Scaled SDR motion";
+        motion = "Scaled SDR pod";
         sla = "24h SLA";
         action = "Scaled SDR sequence and targeted nurture";
       } else if (composite >= 50) {
         tier = "C";
-        motion = "Nurture-only, Marketo sequence";
+        motion = "Marketo nurture only";
         sla = "No SLA";
         action = "Automated nurture sequence only";
       }
@@ -6711,6 +6948,34 @@
           gsap.to(button, { scale: 1, duration: 0.25, ease: "back.out(3)" });
         }
       });
+    }
+
+    async function copyText(text) {
+      if (navigator.clipboard?.writeText) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (error) {
+          // Fall back below.
+        }
+      }
+
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "absolute";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.select();
+      textarea.setSelectionRange(0, textarea.value.length);
+      let success = false;
+      try {
+        success = document.execCommand("copy");
+      } catch (error) {
+        success = false;
+      }
+      textarea.remove();
+      return success;
     }
 
     function animateCounter(el, from, to, duration = 350, suffix = "") {
@@ -6840,18 +7105,17 @@
         "ticket deflection",
         "CSAT analytics"
       ];
-      const count = Math.max(1, Math.min(discrete.topics, Math.max(1, Math.round(discrete.intentDepth / 12))));
+      const count = Math.min(Math.max(2, 2 + Math.floor(discrete.intentDepth / 25)), 6);
       const topics = allTopics.slice(0, count);
       const stage = discrete.intent ? "Decision" : discrete.hiring || discrete.firstPartyDepth > 45 ? "Consideration" : "Awareness";
-      const engagement = Math.round((discrete.intentDepth * 0.45) + (discrete.firstPartyDepth * 0.55));
+      const engagement = Math.round(20 + (discrete.firstPartyDepth / 100) * 60);
       return { topics, stage, engagement };
     }
 
     function getEnrichmentStats(discrete) {
-      const extra = state.extraRows.length;
-      const enriched = discrete.zoomPoints + discrete.topics + discrete.packets + extra;
-      const conflicts = (discrete.coverage < 50 ? 2 : 1) + (discrete.industry === 0 ? 1 : 0);
-      const safe = Math.max(0, enriched - conflicts - 3);
+      const enriched = discrete.zoomPoints + discrete.topics + discrete.packets;
+      const conflicts = Math.max(1, Math.round(enriched / 10));
+      const safe = Math.max(0, enriched - 4);
       const syncHealth = ((discrete.coverage + discrete.intentDepth + discrete.firstPartyDepth) / 3).toFixed(2);
       return {
         enriched,
@@ -7053,7 +7317,7 @@
 
       const fitContext = getFitContext(discrete);
       els.zoomSourceLabel.textContent = discrete.coverage >= 70 ? "Primary source" : "Partial source";
-      els.zoomCoverageHealth.textContent = discrete.coverage >= 70 ? "Coverage healthy" : discrete.coverage >= 50 ? "Coverage mixed" : "Coverage weak";
+      els.zoomCoverageHealth.textContent = `${discrete.coverage}% coverage ${discrete.coverage >= 70 ? "healthy" : discrete.coverage >= 50 ? "mixed" : "weak"}`;
       els.zoomCompany.textContent = state.accountName;
 
       const fieldMap = {
@@ -7168,6 +7432,7 @@
         composite_score: scores.composite,
         tier: `Tier ${scores.tier}`,
         enriched_fields: stats.enriched,
+        downstream_safe_fields: stats.safe,
         sync_health: `${stats.syncHealth}%`
       });
     }
@@ -7254,6 +7519,32 @@
           flashSF(fieldWrapper);
         }
       });
+
+      const historyEntries = [
+        {
+          label: "Live now",
+          title: `Score ${scores.composite} · Tier ${scores.tier}`,
+          note: `${scores.motion} is active from the current signal mix.`
+        },
+        {
+          label: "Prior run",
+          title: `Score ${Math.max(0, scores.composite - 18)} · Tier ${scores.composite - 18 >= 130 ? "A" : scores.composite - 18 >= 90 ? "B" : scores.composite - 18 >= 50 ? "C" : "D"}`,
+          note: "Earlier sync before the latest upstream pressure was applied."
+        },
+        {
+          label: "Baseline",
+          title: `Score ${Math.max(0, scores.fit)} · Tier ${scores.fit >= 130 ? "A" : scores.fit >= 90 ? "B" : scores.fit >= 50 ? "C" : "D"}`,
+          note: "Initial ICP-only view before timing signals accelerated the account."
+        }
+      ];
+
+      els.sfHistoryRows.innerHTML = historyEntries.map((entry) => `
+        <div class="history-card">
+          <span class="meta-label">${entry.label}</span>
+          <strong>${entry.title}</strong>
+          <p>${entry.note}</p>
+        </div>
+      `).join("");
     }
 
     function renderSmartList(scores) {
@@ -7517,10 +7808,12 @@
 
       els.ownerSelect.addEventListener("change", (event) => {
         state.owner = event.target.value;
+        renderAll(false);
       });
 
       els.laneSelect.addEventListener("change", (event) => {
         state.lane = event.target.value;
+        renderAll(false);
       });
 
       bindSlider("scaleSlider", "scale");
@@ -7550,7 +7843,13 @@
 
       els.copyPrompt.addEventListener("click", async () => {
         try {
-          await navigator.clipboard.writeText(els.promptCode.textContent.replace(/\s+/g, " ").trim());
+          const copied = await copyText(els.promptCode.textContent.replace(/\s+/g, " ").trim());
+          if (!copied) throw new Error("copy-failed");
+          clearTimeout(copiedTimer);
+          els.copyPrompt.textContent = "Copied!";
+          copiedTimer = setTimeout(() => {
+            els.copyPrompt.textContent = "Copy prompt";
+          }, 2000);
           if (window.gsap) {
             gsap.killTweensOf(els.copyToast);
             gsap.set(els.copyToast, { autoAlpha: 1, y: 12 });
@@ -7558,6 +7857,11 @@
             gsap.to(els.copyToast, { autoAlpha: 0, duration: 0.25, delay: 2, ease: "power2.in" });
           }
         } catch (error) {
+          clearTimeout(copiedTimer);
+          els.copyPrompt.textContent = "Copy failed";
+          copiedTimer = setTimeout(() => {
+            els.copyPrompt.textContent = "Copy prompt";
+          }, 2000);
           if (window.gsap) {
             els.copyToast.textContent = "Copy failed";
             gsap.killTweensOf(els.copyToast);
@@ -7576,6 +7880,10 @@
 
       els.resetButton.addEventListener("click", () => {
         animateToPreset("harbor", { elastic: true });
+      });
+
+      els.exportPdf.addEventListener("click", () => {
+        window.print();
       });
 
       els.addZoom.addEventListener("click", (event) => addExtraRow("zoom", event));
@@ -7735,14 +8043,6 @@
           scrollTrigger: { trigger: container, start: "top 82%", once: true },
           onComplete: () => gsap.set(rows, { clearProps: "all" })
         });
-      });
-
-      ScrollTrigger.create({
-        trigger: "#sfdc-to-marketo",
-        start: "top top",
-        end: "+=400",
-        pin: true,
-        scrub: false
       });
 
       ScrollTrigger.create({
