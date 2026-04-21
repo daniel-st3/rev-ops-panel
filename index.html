@@ -6048,7 +6048,7 @@
     .sync-field-pill {
       position: absolute;
       top: 50%;
-      left: -140px;
+      left: 8px;
       transform: translateY(-50%);
       padding: 4px 8px;
       border-radius: 999px;
@@ -6114,11 +6114,10 @@
     }
 
     @keyframes syncpill {
-      0% { transform: translate(-24px, -50%); opacity: 0; }
-      10% { opacity: 0; }
-      18% { opacity: 1; }
-      74% { opacity: 1; }
-      100% { transform: translate(322px, -50%); opacity: 0; }
+      0% { transform: translate(0, -50%); opacity: 0; }
+      12% { transform: translate(0, -50%); opacity: 1; }
+      76% { opacity: 1; }
+      100% { transform: translate(238px, -50%); opacity: 0; }
     }
 
     .marketo-grid {
@@ -7739,7 +7738,7 @@
     <section class="section dark" id="tableau">
       <div class="section-inner">
         <div class="section-head animate-on-scroll">
-          <p class="step-label">Step 7 - Tableau</p>
+          <p class="step-label">Step 8 - Tableau</p>
           <div class="head-row">
             <div class="head-copy">
               <h2>Exec reporting closes the loop.</h2>
