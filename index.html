@@ -632,6 +632,7 @@
       scrollbar-width: none;
       white-space: normal;
       padding-bottom: 4px;
+      max-width: 100%;
     }
 
     .pipeline-flow::-webkit-scrollbar {
@@ -6039,7 +6040,7 @@
 
     .sync-pill-lane {
       position: relative;
-      width: 220px;
+      width: 280px;
       height: 34px;
       overflow: hidden;
     }
@@ -6047,9 +6048,9 @@
     .sync-field-pill {
       position: absolute;
       top: 50%;
-      left: -120px;
+      left: -140px;
       transform: translateY(-50%);
-      padding: 5px 10px;
+      padding: 4px 8px;
       border-radius: 999px;
       background: rgba(12, 18, 28, 0.72);
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -6059,13 +6060,16 @@
       font-family: "JetBrains Mono", "Fira Code", monospace;
       letter-spacing: 0.02em;
       white-space: nowrap;
-      animation: syncpill 4.8s linear infinite;
+      animation: syncpill 7.2s linear infinite;
       opacity: 0;
+      max-width: 110px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .sync-field-pill.pill-2 { animation-delay: 1.1s; }
-    .sync-field-pill.pill-3 { animation-delay: 2.2s; }
-    .sync-field-pill.pill-4 { animation-delay: 3.3s; }
+    .sync-field-pill.pill-2 { animation-delay: 1.8s; }
+    .sync-field-pill.pill-3 { animation-delay: 3.6s; }
+    .sync-field-pill.pill-4 { animation-delay: 5.4s; }
 
     .handoff-pills span {
       background: rgba(255, 255, 255, 0.1) !important;
@@ -6110,10 +6114,11 @@
     }
 
     @keyframes syncpill {
-      0% { transform: translate(-20px, -50%); opacity: 0; }
-      15% { opacity: 1; }
-      80% { opacity: 1; }
-      100% { transform: translate(270px, -50%); opacity: 0; }
+      0% { transform: translate(-24px, -50%); opacity: 0; }
+      10% { opacity: 0; }
+      18% { opacity: 1; }
+      74% { opacity: 1; }
+      100% { transform: translate(322px, -50%); opacity: 0; }
     }
 
     .marketo-grid {
@@ -6287,6 +6292,122 @@
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .tableau-charts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      padding: 18px;
+    }
+
+    .chart-card {
+      border-radius: 18px;
+      background: rgba(8, 14, 22, 0.58);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 16px;
+      min-height: 320px;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+    }
+
+    .chart-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.02em;
+    }
+
+    .chart-subtitle {
+      font-size: 11px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .chart-svg {
+      width: 100%;
+      height: 220px;
+      overflow: visible;
+    }
+
+    .chart-axis,
+    .chart-gridline {
+      stroke: rgba(255, 255, 255, 0.12);
+      stroke-width: 1;
+    }
+
+    .chart-gridline {
+      stroke-dasharray: 3 4;
+    }
+
+    .chart-label {
+      fill: rgba(255, 255, 255, 0.84);
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .chart-tick {
+      fill: rgba(255, 255, 255, 0.58);
+      font-size: 9px;
+    }
+
+    .chart-muted-bar {
+      fill: rgba(255, 255, 255, 0.16);
+    }
+
+    .chart-live-bar {
+      fill: #22c55e;
+      filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.32));
+    }
+
+    .chart-live-bar.pulse {
+      animation: barPulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes barPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.72; }
+    }
+
+    .chart-segment-fit {
+      fill: rgba(34, 197, 94, 0.95);
+    }
+
+    .chart-segment-timing {
+      fill: rgba(56, 189, 248, 0.92);
+    }
+
+    .chart-threshold-line {
+      stroke: rgba(250, 204, 21, 0.9);
+      stroke-width: 1.5;
+      stroke-dasharray: 4 4;
+    }
+
+    .chart-threshold-label {
+      fill: #fde68a;
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .chart-step-line {
+      fill: none;
+      stroke: rgba(34, 197, 94, 0.92);
+      stroke-width: 3;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+
+    .chart-live-dot {
+      fill: #22c55e;
+      stroke: rgba(12, 18, 28, 0.9);
+      stroke-width: 2;
+    }
+
+    .chart-live-label {
+      fill: #dcfce7;
+      font-size: 10px;
+      font-weight: 700;
     }
 
     .tableau-table td {
@@ -6488,6 +6609,10 @@
       .tier-thresholds {
         grid-template-columns: 1fr !important;
       }
+
+      .tableau-charts {
+        grid-template-columns: 1fr !important;
+      }
     }
   </style>
 </head>
@@ -6537,6 +6662,11 @@
         <a class="nav-step" data-nav-link data-step-index="6" href="#marketo">
           <span class="nav-step-dot">7</span>
           <span class="nav-step-text">Marketo</span>
+        </a>
+        <span class="nav-step-connector" data-step-connector></span>
+        <a class="nav-step" data-nav-link data-step-index="7" href="#tableau">
+          <span class="nav-step-dot">8</span>
+          <span class="nav-step-text">Tableau</span>
         </a>
       </nav>
 
@@ -7490,8 +7620,8 @@
           </div>
           <div class="sync-pill-lane" aria-hidden="true">
             <span class="sync-field-pill pill-1">Tier__c</span>
-            <span class="sync-field-pill pill-2">Composite_Score__c</span>
-            <span class="sync-field-pill pill-3">Fit_Score__c</span>
+            <span class="sync-field-pill pill-2">Composite__c</span>
+            <span class="sync-field-pill pill-3">Fit__c</span>
             <span class="sync-field-pill pill-4">Routing__c</span>
           </div>
           <span class="stream-lock">🔒</span>
@@ -7630,25 +7760,22 @@
               <div class="mock-badge inline">Mock UI</div>
             </div>
           </div>
-          <div class="table-wrap">
-            <table class="clay-table tableau-table">
-              <thead>
-                <tr>
-                  <th>Tier</th>
-                  <th>MQA Volume</th>
-                  <th>MQA→Opp Rate</th>
-                  <th>Win Rate</th>
-                  <th>ACV</th>
-                  <th>Cycle Length</th>
-                </tr>
-              </thead>
-              <tbody id="tableauBody">
-                <tr><td>A</td><td>48</td><td>42%</td><td>31%</td><td>$182k</td><td>41 days</td></tr>
-                <tr><td>B</td><td>76</td><td>24%</td><td>18%</td><td>$121k</td><td>58 days</td></tr>
-                <tr><td>C</td><td>134</td><td>9%</td><td>7%</td><td>$74k</td><td>73 days</td></tr>
-                <tr><td>D</td><td>210</td><td>2%</td><td>1%</td><td>$38k</td><td>96 days</td></tr>
-              </tbody>
-            </table>
+          <div class="tableau-charts">
+            <div class="chart-card">
+              <div class="chart-title">Tier Conversion Funnel</div>
+              <div class="chart-subtitle">MQA→Opp rate by tier. The live tier bar is highlighted.</div>
+              <svg class="chart-svg" id="funnelChart" viewBox="0 0 320 220" aria-label="Tier conversion funnel chart"></svg>
+            </div>
+            <div class="chart-card">
+              <div class="chart-title">Score Composition</div>
+              <div class="chart-subtitle">Live Fit and Timing contribution against the 150-point model ceiling.</div>
+              <svg class="chart-svg" id="compositionChart" viewBox="0 0 320 220" aria-label="Score composition chart"></svg>
+            </div>
+            <div class="chart-card">
+              <div class="chart-title">Signal Confidence over Coverage</div>
+              <div class="chart-subtitle">Confidence thresholds by ZoomInfo coverage with the current account plotted live.</div>
+              <svg class="chart-svg" id="confidenceChart" viewBox="0 0 320 220" aria-label="Confidence over coverage chart"></svg>
+            </div>
           </div>
         </div>
       </div>
@@ -8109,7 +8236,6 @@
       promptCode: document.getElementById("promptCode"),
       copyPrompt: document.getElementById("copyPrompt"),
       copyToast: document.getElementById("copyToast"),
-      rolloutTimeline: document.getElementById("rolloutTimeline"),
       promptMetaModel: document.getElementById("promptMetaModel"),
       promptMetaTemp: document.getElementById("promptMetaTemp"),
       promptMetaMaxTokens: document.getElementById("promptMetaMaxTokens"),
@@ -8180,7 +8306,9 @@
       summaryFilterList: document.getElementById("summaryFilterList"),
       holdoutToggle: document.getElementById("holdoutToggle"),
       holdoutBanner: document.getElementById("holdoutBanner"),
-      tableauBody: document.getElementById("tableauBody"),
+      funnelChart: document.getElementById("funnelChart"),
+      compositionChart: document.getElementById("compositionChart"),
+      confidenceChart: document.getElementById("confidenceChart"),
       resetButton: document.getElementById("resetButton"),
       exportPdf: document.getElementById("exportPdf"),
       addZoom: document.getElementById("addZoom"),
@@ -9128,60 +9256,31 @@
       els.flowSenseTopics.textContent = `${discrete.topics}`;
       els.flowFirstPartyPackets.textContent = `${discrete.packets}`;
 
-      const reviewConflict = getClayConflictReview(discrete);
-      if (reviewConflict) {
-        els.reviewQueueCard.hidden = false;
-        els.reviewQueueCard.innerHTML = `
-          <strong>RevOps Review Queue</strong>
-          <p>Fields with >20% delta route to RevOps queue instead of silently overwriting.</p>
-          <div class="review-queue-grid">
-            <div class="review-queue-item">
-              <div class="review-queue-line">
-                <strong>Employee Count</strong>
-                <span>ZoomInfo 420</span>
-                <span>Clearbit 425</span>
-                <span>1.2%</span>
-                <span class="review-status-badge auto">Auto-resolved</span>
-              </div>
-            </div>
-            <div class="review-queue-item">
-              <div class="review-queue-line">
-                <strong>Engagement Score</strong>
-                <span>Source A 61</span>
-                <span>Source B 46</span>
-                <span>24.5%</span>
-                <span class="review-status-badge route">Routed to review</span>
-              </div>
+      els.reviewQueueCard.hidden = false;
+      els.reviewQueueCard.innerHTML = `
+        <strong>RevOps Review Queue</strong>
+        <p>Fields with >20% delta route to RevOps queue instead of silently overwriting.</p>
+        <div class="review-queue-grid">
+          <div class="review-queue-item">
+            <div class="review-queue-line">
+              <strong>Employee Count</strong>
+              <span>ZoomInfo 420</span>
+              <span>Clearbit 425</span>
+              <span>1.2%</span>
+              <span class="review-status-badge auto">Auto-resolved</span>
             </div>
           </div>
-        `;
-      } else {
-        els.reviewQueueCard.hidden = false;
-        els.reviewQueueCard.innerHTML = `
-          <strong>RevOps Review Queue</strong>
-          <p>Fields with >20% delta route to RevOps queue instead of silently overwriting.</p>
-          <div class="review-queue-grid">
-            <div class="review-queue-item">
-              <div class="review-queue-line">
-                <strong>Employee Count</strong>
-                <span>ZoomInfo 420</span>
-                <span>Clearbit 425</span>
-                <span>1.2%</span>
-                <span class="review-status-badge auto">Auto-resolved</span>
-              </div>
-            </div>
-            <div class="review-queue-item">
-              <div class="review-queue-line">
-                <strong>Engagement Score</strong>
-                <span>Source A 61</span>
-                <span>Source B 46</span>
-                <span>24.5%</span>
-                <span class="review-status-badge route">Routed to review</span>
-              </div>
+          <div class="review-queue-item">
+            <div class="review-queue-line">
+              <strong>Engagement Score</strong>
+              <span>Source A 61</span>
+              <span>Source B 46</span>
+              <span>24.5%</span>
+              <span class="review-status-badge route">Routed to review</span>
             </div>
           </div>
-        `;
-      }
+        </div>
+      `;
 
       els.jsonCode.innerHTML = syntaxHighlightJSON({
         account_name: state.accountName,
@@ -9440,26 +9539,93 @@
       `).join("");
     }
 
-    function renderTableau(scores) {
-      if (!els.tableauBody) return;
-      const activeTier = getCompositeTier(scores.composite);
-      const rows = [
-        ["A", "48", "42%", "31%", "$182k", "41 days"],
-        ["B", "76", "24%", "18%", "$121k", "58 days"],
-        ["C", "134", "9%", "7%", "$74k", "73 days"],
-        ["D", "210", "2%", "1%", "$38k", "96 days"]
-      ];
+    function renderTableau(discrete, scores) {
+      const funnelSvg = els.funnelChart;
+      const compositionSvg = els.compositionChart;
+      const confidenceSvg = els.confidenceChart;
+      if (!funnelSvg || !compositionSvg || !confidenceSvg) return;
 
-      els.tableauBody.innerHTML = rows.map((row) => `
-        <tr class="${row[0] === activeTier ? "is-active" : ""}">
-          <td>${row[0]}</td>
-          <td>${row[1]}</td>
-          <td>${row[2]}</td>
-          <td>${row[3]}</td>
-          <td>${row[4]}</td>
-          <td>${row[5]}</td>
-        </tr>
-      `).join("");
+      const activeTier = getCompositeTier(scores.composite);
+      const tierRates = { A: 42, B: 24, C: 9, D: 2 };
+      const tiers = ["A", "B", "C", "D"];
+      const chartHeight = 220;
+      const chartWidth = 320;
+
+      const funnelBars = tiers.map((tier, index) => {
+        const value = tierRates[tier];
+        const x = 40 + index * 62;
+        const y = 176 - (value / 50) * 128;
+        const height = 176 - y;
+        const barClass = tier === activeTier ? "chart-live-bar pulse" : "chart-muted-bar";
+        return `
+          <line class="chart-gridline" x1="${x + 18}" y1="32" x2="${x + 18}" y2="176"></line>
+          <rect class="${barClass}" x="${x}" y="${y}" width="36" height="${height}" rx="10"></rect>
+          <text class="chart-label" x="${x + 18}" y="${y - 8}" text-anchor="middle">${value}%</text>
+          <text class="chart-tick" x="${x + 18}" y="196" text-anchor="middle">${tier}</text>
+        `;
+      }).join("");
+
+      funnelSvg.innerHTML = `
+        <line class="chart-axis" x1="30" y1="176" x2="292" y2="176"></line>
+        <line class="chart-axis" x1="30" y1="24" x2="30" y2="176"></line>
+        <text class="chart-tick" x="18" y="176" text-anchor="end">0</text>
+        <text class="chart-tick" x="18" y="114" text-anchor="end">25</text>
+        <text class="chart-tick" x="18" y="52" text-anchor="end">50</text>
+        <line class="chart-gridline" x1="30" y1="114" x2="292" y2="114"></line>
+        <line class="chart-gridline" x1="30" y1="52" x2="292" y2="52"></line>
+        ${funnelBars}
+      `;
+
+      const maxScore = 150;
+      const fitWidth = (scores.fit / maxScore) * 236;
+      const timingWidth = (scores.timing / maxScore) * 236;
+      const thresholdX = 44 + (130 / maxScore) * 236;
+      compositionSvg.innerHTML = `
+        <line class="chart-axis" x1="44" y1="148" x2="280" y2="148"></line>
+        <rect x="44" y="84" width="236" height="36" rx="18" fill="rgba(255,255,255,0.08)"></rect>
+        <rect class="chart-segment-fit" x="44" y="84" width="${fitWidth}" height="36" rx="18"></rect>
+        <rect class="chart-segment-timing" x="${44 + fitWidth}" y="84" width="${timingWidth}" height="36" rx="18"></rect>
+        <line class="chart-threshold-line" x1="${thresholdX}" y1="62" x2="${thresholdX}" y2="156"></line>
+        <text class="chart-threshold-label" x="${thresholdX}" y="54" text-anchor="middle">Tier A threshold</text>
+        <text class="chart-label" x="${44 + Math.max(18, fitWidth / 2)}" y="106" text-anchor="middle">Fit ${scores.fit}</text>
+        <text class="chart-label" x="${44 + fitWidth + Math.max(18, timingWidth / 2)}" y="106" text-anchor="middle">Timing ${scores.timing}</text>
+        <text class="chart-tick" x="44" y="170" text-anchor="middle">0</text>
+        <text class="chart-tick" x="${thresholdX}" y="170" text-anchor="middle">130</text>
+        <text class="chart-tick" x="280" y="170" text-anchor="middle">150</text>
+      `;
+
+      const coverage = discrete.coverage;
+      const confidence = getConfidence(discrete);
+      const mapX = (value) => 46 + ((value - 30) / 70) * 228;
+      const mapY = (level) => ({ 1: 152, 2: 104, 3: 56 }[level]);
+      const confidenceLevel = confidence.key === "high" ? 3 : confidence.key === "medium" ? 2 : 1;
+      const stepPath = [
+        `M ${mapX(30)} ${mapY(1)}`,
+        `L ${mapX(50)} ${mapY(1)}`,
+        `L ${mapX(50)} ${mapY(2)}`,
+        `L ${mapX(75)} ${mapY(2)}`,
+        `L ${mapX(75)} ${mapY(3)}`,
+        `L ${mapX(100)} ${mapY(3)}`
+      ].join(" ");
+      const dotX = mapX(coverage);
+      const dotY = mapY(confidenceLevel);
+      confidenceSvg.innerHTML = `
+        <line class="chart-axis" x1="36" y1="168" x2="292" y2="168"></line>
+        <line class="chart-axis" x1="46" y1="36" x2="46" y2="168"></line>
+        <line class="chart-gridline" x1="46" y1="${mapY(1)}" x2="292" y2="${mapY(1)}"></line>
+        <line class="chart-gridline" x1="46" y1="${mapY(2)}" x2="292" y2="${mapY(2)}"></line>
+        <line class="chart-gridline" x1="46" y1="${mapY(3)}" x2="292" y2="${mapY(3)}"></line>
+        <text class="chart-tick" x="36" y="${mapY(3) + 4}" text-anchor="end">High</text>
+        <text class="chart-tick" x="36" y="${mapY(2) + 4}" text-anchor="end">Medium</text>
+        <text class="chart-tick" x="36" y="${mapY(1) + 4}" text-anchor="end">Low</text>
+        <text class="chart-tick" x="${mapX(30)}" y="186" text-anchor="middle">30</text>
+        <text class="chart-tick" x="${mapX(50)}" y="186" text-anchor="middle">50</text>
+        <text class="chart-tick" x="${mapX(75)}" y="186" text-anchor="middle">75</text>
+        <text class="chart-tick" x="${mapX(100)}" y="186" text-anchor="middle">100</text>
+        <path class="chart-step-line" d="${stepPath}"></path>
+        <circle class="chart-live-dot" cx="${dotX}" cy="${dotY}" r="6"></circle>
+        <text class="chart-live-label" x="${Math.min(chartWidth - 10, dotX + 10)}" y="${Math.max(18, dotY - 10)}">${coverage}% · ${confidence.label}</text>
+      `;
     }
 
     function renderSummary(scores) {
@@ -9477,7 +9643,7 @@
 
       els.summaryTier.textContent = `Tier ${tierView.displayTier}`;
       els.summaryTier.className = `tier-badge-lg ${getTierClass(tierView.displayTier)}`;
-      els.summaryTierWarning.hidden = !tierView.warning;
+      els.summaryTierWarning.style.display = discrete.coverage < 50 ? "inline-flex" : "none";
       [els.summaryTierBadge, els.summaryRoutingTier].forEach((el) => {
         el.textContent = `Tier ${tierView.displayTier}`;
         applyTierClass(el, tierView.displayTier, "tier-pill");
@@ -9491,7 +9657,7 @@
       els.summarySla.textContent = outputPackage.sla;
       els.summaryChili.textContent = outputPackage.chili;
       if (els.holdoutToggle) els.holdoutToggle.checked = state.holdoutControl;
-      els.holdoutBanner.hidden = !state.holdoutControl;
+      els.holdoutBanner.style.display = state.holdoutControl ? "block" : "none";
 
       const allFitSignals = [
         { label: "Enterprise scale", points: fitMeta.scale.points[getDiscrete().scale], active: fitMeta.scale.points[getDiscrete().scale] !== 0 },
@@ -9611,7 +9777,7 @@
       renderClaude(discrete, scores, !triggerThinking);
       renderSalesforce(discrete, scores);
       renderMarketo(scores);
-      renderTableau(scores);
+      renderTableau(discrete, scores);
       renderSummary(scores);
       renderMetaLabels(discrete);
 
@@ -9701,7 +9867,7 @@
       if (els.holdoutToggle) {
         els.holdoutToggle.addEventListener("change", () => {
           state.holdoutControl = els.holdoutToggle.checked;
-          renderSummary(computeScores(getDiscrete()));
+          renderAll(false);
         });
       }
 
@@ -9993,25 +10159,26 @@
         clay: "clay",
         claude: "claude",
         salesforce: "salesforce",
-        marketo: "marketo"
+        marketo: "marketo",
+        tableau: "tableau"
       };
 
       els.navLinks.forEach((link) => {
         const target = link.getAttribute("href").replace("#", "");
         const index = Number(link.dataset.stepIndex || -1);
-        const activeMap = { setup: 0, fit: 1, timing: 2, clay: 3, claude: 4, salesforce: 5, marketo: 6 };
+        const activeMap = { setup: 0, fit: 1, timing: 2, clay: 3, claude: 4, salesforce: 5, marketo: 6, tableau: 7 };
         const activeStep = activeMap[sectionId] ?? -1;
         link.classList.toggle("is-active", target === navLinks[sectionId]);
         link.classList.toggle("is-complete", activeStep !== -1 && index < activeStep);
       });
 
-      const activeMap = { setup: 0, fit: 1, timing: 2, clay: 3, claude: 4, salesforce: 5, marketo: 6 };
+      const activeMap = { setup: 0, fit: 1, timing: 2, clay: 3, claude: 4, salesforce: 5, marketo: 6, tableau: 7 };
       const activeStep = activeMap[sectionId] ?? -1;
       els.navStepConnectors.forEach((connector, index) => {
         connector.classList.toggle("is-complete", activeStep !== -1 && index < activeStep);
       });
 
-      const groupOrder = ["setup", "fit", "timing", "clay", "claude", "activate"];
+      const groupOrder = ["setup", "fit", "timing", "clay", "claude", "activate", "tableau"];
       const activeGroup = sectionId === "salesforce" || sectionId === "marketo" ? "activate" : navLinks[sectionId] || "";
       const activeIndex = groupOrder.indexOf(activeGroup);
 
@@ -10030,7 +10197,7 @@
       });
 
       if (activeIndex !== -1) {
-        const progressSteps = [0, 20, 40, 60, 80, 100];
+        const progressSteps = [0, 16, 32, 48, 64, 80, 100];
         els.pipelineProgress.style.setProperty("--progress", `${progressSteps[activeIndex]}%`);
         const activeNode = els.progressNodes[activeIndex];
         const label = document.getElementById("progressActiveLabel");
@@ -10044,7 +10211,7 @@
     }
 
     function initSectionTracking() {
-      const sections = ["setup", "fit", "timing", "clay", "claude", "salesforce", "marketo", "summary"];
+      const sections = ["setup", "fit", "timing", "clay", "claude", "salesforce", "marketo", "tableau", "summary"];
       const visibleSections = new Map();
 
       const observer = new IntersectionObserver((entries) => {
