@@ -6036,6 +6036,34 @@
       text-align: center;
     }
 
+    .sync-pill-lane {
+      position: relative;
+      width: 220px;
+      height: 34px;
+      overflow: hidden;
+    }
+
+    .sync-field-pill {
+      position: absolute;
+      top: 50%;
+      left: -120px;
+      transform: translateY(-50%);
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(12, 18, 28, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 10px;
+      font-weight: 700;
+      white-space: nowrap;
+      animation: syncpill 4.8s linear infinite;
+      opacity: 0;
+    }
+
+    .sync-field-pill.pill-2 { animation-delay: 1.1s; }
+    .sync-field-pill.pill-3 { animation-delay: 2.2s; }
+    .sync-field-pill.pill-4 { animation-delay: 3.3s; }
+
     .handoff-pills span {
       background: rgba(255, 255, 255, 0.1) !important;
       border-color: rgba(255, 255, 255, 0.12) !important;
@@ -6076,6 +6104,13 @@
     @keyframes syncslide {
       from { transform: translateX(-150%); }
       to { transform: translateX(450%); }
+    }
+
+    @keyframes syncpill {
+      0% { transform: translate(-20px, -50%); opacity: 0; }
+      15% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: translate(270px, -50%); opacity: 0; }
     }
 
     .marketo-grid {
@@ -6121,6 +6156,111 @@
     .marketo-status-row strong {
       color: #111827;
       text-align: right;
+    }
+
+    .override-banner {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(250, 204, 21, 0.14);
+      border: 1px solid rgba(250, 204, 21, 0.26);
+      color: #854d0e;
+      font-size: 13px;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    .review-queue-card {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.24);
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .review-queue-card strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 10px;
+      color: #fde68a;
+    }
+
+    .review-queue-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .review-queue-item {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .review-queue-item span {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.48);
+      margin-bottom: 4px;
+    }
+
+    .review-route-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(250, 204, 21, 0.18);
+      border: 1px solid rgba(250, 204, 21, 0.3);
+      color: #fde68a;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .lead-mirror-note {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.76);
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .lead-mirror-note strong {
+      color: #ffffff;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .tableau-shell {
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .tableau-table td {
+      color: rgba(255, 255, 255, 0.88);
+      font-weight: 500;
+    }
+
+    .tableau-table tr.is-active td {
+      background: rgba(34, 197, 94, 0.08);
+      color: #dcfce7;
     }
 
     .report-routing-card,
@@ -6194,6 +6334,48 @@
       font-size: 12px;
       line-height: 1.6;
       color: rgba(255,255,255,0.42);
+    }
+
+    .summary-tier-warning {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.16);
+      border: 1px solid rgba(245, 158, 11, 0.28);
+      color: #fde68a;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .holdout-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 2px 0 14px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.82);
+      cursor: pointer;
+    }
+
+    .holdout-toggle input {
+      accent-color: #22c55e;
+      width: 16px;
+      height: 16px;
+    }
+
+    .holdout-banner {
+      margin-bottom: 16px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.24);
+      color: #fde68a;
+      font-size: 13px;
+      line-height: 1.55;
     }
 
     @media print {
@@ -6400,36 +6582,11 @@
             <div class="feature-pill">Clay + Claude pipeline</div>
             <div class="feature-pill">SFDC + Marketo activation</div>
           </div>
-          <div class="rollout-timeline animate-on-scroll" style="--delay: 210ms;" id="rolloutTimeline">
-            <div class="rollout-step" data-rollout-step="1">
-              <span class="rollout-node">V1</span>
-              <div class="rollout-copy">
-                <strong>0–30 days</strong>
-                <span>Firmographic Fit + LeanData routing</span>
-              </div>
-            </div>
-            <span class="rollout-connector"></span>
-            <div class="rollout-step" data-rollout-step="2">
-              <span class="rollout-node">V2</span>
-              <div class="rollout-copy">
-                <strong>31–60 days</strong>
-                <span>Timing signals + Marketo activation</span>
-              </div>
-            </div>
-            <span class="rollout-connector"></span>
-            <div class="rollout-step" data-rollout-step="3">
-              <span class="rollout-node">V3</span>
-              <div class="rollout-copy">
-                <strong>61–90 days</strong>
-                <span>Claude rationale + Tableau + holdout test</span>
-              </div>
-            </div>
-          </div>
           <div class="cta-row hero-ctas animate-on-scroll" style="--delay: 240ms;">
             <a class="action-btn" href="#setup">Begin walkthrough</a>
             <a class="ghost-btn" href="#summary">Jump to summary</a>
           </div>
-          <div class="pipeline-flow hero-pipeline animate-on-scroll" style="--delay: 300ms;">
+          <div class="pipeline-flow hero-pipeline animate-on-scroll" style="--delay: 300ms; margin-bottom:3rem;">
             <div class="pipeline-pill" style="--delay: 340ms;">ZoomInfo / Clearbit</div>
             <div class="pipeline-arrow" style="--delay: 460ms;">→</div>
             <div class="pipeline-pill" style="--delay: 580ms;">6sense / FP</div>
@@ -6844,6 +7001,9 @@
               <strong id="timingCapLabel">Raw 60 → Capped 50</strong>
               <div class="cap-track"><div class="cap-fill" id="timingCapFill"></div></div>
             </div>
+            <div class="override-banner" id="timingOverrideBanner" hidden>
+              Immediate outreach trigger — VP/CX hire + Decision-stage surge active. Routing overrides composite threshold.
+            </div>
           </div>
 
           <div class="ui-card sense-ui animate-on-scroll" style="--delay: 120ms;">
@@ -7063,6 +7223,7 @@
                 </tbody>
               </table>
             </div>
+            <div class="review-queue-card" id="reviewQueueCard" hidden></div>
             <div class="json-panel" id="jsonPanel">
               <div class="json-head">
                 <strong>JSON preview</strong>
@@ -7193,7 +7354,7 @@
               </div>
               <div class="sf-field" id="sfFieldTier">
                 <div class="sf-label">Tier__c
-                  <div class="sf-info">i<span class="sf-tooltip">Tier A requires composite 130+, fit 70+, and High confidence. Tier D also applies when confidence falls Low.</span></div>
+                  <div class="sf-info">i<span class="sf-tooltip">Tier A requires composite 130+, fit 70+, and High confidence. Low confidence visually demotes the output tier by one level.</span></div>
                 </div>
                 <div class="sf-value" id="sfTier">Tier A</div>
               </div>
@@ -7215,6 +7376,12 @@
                 </div>
                 <div class="sf-value"><span class="sf-badge sf-badge-high" id="sfConfidence">High</span></div>
               </div>
+              <div class="sf-field" id="sfFieldModelVersion">
+                <div class="sf-label">ScoringModelVersion__c
+                  <div class="sf-info">i<span class="sf-tooltip">Scoring model version stored for auditability across scoring history and reporting.</span></div>
+                </div>
+                <div class="sf-value" id="sfModelVersion">v1.0</div>
+              </div>
               <div class="sf-field sf-field-wide" id="sfFieldRationale">
                 <div class="sf-label">Score_Rationale__c
                   <div class="sf-info">i<span class="sf-tooltip">Plain-language rationale the AE sees on the account record.</span></div>
@@ -7226,6 +7393,10 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="lead-mirror-note animate-on-scroll" style="--delay: 90ms;">
+          <strong>Lead object mirror</strong>
+          <span>All score fields are mirrored on the Lead object (Fit_Score__c, Timing_Score__c, Composite_Score__c, Tier__c) so scores survive Lead-to-Account conversion.</span>
         </div>
         </div>
 
@@ -7256,6 +7427,7 @@
                   <tr><td>Routing__c</td><td>Text(50)</td><td>Motion selected by the scoring model</td><td>Today</td></tr>
                   <tr><td>Sync_Health__c</td><td>Percent(5,2)</td><td>Confidence proxy for downstream-safe syncs</td><td>Today</td></tr>
                   <tr><td>Confidence_Flag__c</td><td>Text(12)</td><td>Coverage-derived trust flag for routing discipline</td><td>Today</td></tr>
+                  <tr><td>ScoringModelVersion__c</td><td>Text(10)</td><td>Scoring model version for auditability</td><td>Today</td></tr>
                   <tr><td>Score_Rationale__c</td><td>Long Text Area</td><td>Plain-language score explanation written for the AE</td><td>Today</td></tr>
                 </tbody>
               </table>
@@ -7283,6 +7455,12 @@
           <span class="stream-caption">Read-only sync</span>
           <div class="stream-track">
             <div class="stream-highlight"></div>
+          </div>
+          <div class="sync-pill-lane" aria-hidden="true">
+            <span class="sync-field-pill pill-1">Tier__c</span>
+            <span class="sync-field-pill pill-2">Composite_Score__c</span>
+            <span class="sync-field-pill pill-3">Fit_Score__c</span>
+            <span class="sync-field-pill pill-4">Routing__c</span>
           </div>
           <span class="stream-lock">🔒</span>
         </div>
@@ -7396,6 +7574,54 @@
       </div>
     </section>
 
+    <section class="section dark" id="tableau">
+      <div class="section-inner">
+        <div class="section-head animate-on-scroll">
+          <p class="step-label">Step 7 - Tableau</p>
+          <div class="head-row">
+            <div class="head-copy">
+              <h2>Exec reporting closes the loop.</h2>
+              <div class="subhead-row">
+                <p class="section-subheading">Refreshed weekly. Sales leadership and demand gen see the same number.</p>
+                <div class="tool-badges">
+                  <div class="tool-badge" style="background:rgba(96,165,250,0.14); border-color:rgba(96,165,250,0.22); color:#93c5fd;">Tableau</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tableau-shell animate-on-scroll" style="--delay: 60ms;">
+          <div class="mini-card-head table-head">
+            <strong>Executive scorecard</strong>
+            <div class="mock-head-badges">
+              <div class="mock-badge inline">Mock UI</div>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="clay-table tableau-table">
+              <thead>
+                <tr>
+                  <th>Tier</th>
+                  <th>MQA Volume</th>
+                  <th>MQA→Opp Rate</th>
+                  <th>Win Rate</th>
+                  <th>ACV</th>
+                  <th>Cycle Length</th>
+                </tr>
+              </thead>
+              <tbody id="tableauBody">
+                <tr><td>A</td><td>48</td><td>42%</td><td>31%</td><td>$182k</td><td>41 days</td></tr>
+                <tr><td>B</td><td>76</td><td>24%</td><td>18%</td><td>$121k</td><td>58 days</td></tr>
+                <tr><td>C</td><td>134</td><td>9%</td><td>7%</td><td>$74k</td><td>73 days</td></tr>
+                <tr><td>D</td><td>210</td><td>2%</td><td>1%</td><td>$38k</td><td>96 days</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="pipeline-complete-scene section dark" id="pipeline-complete">
       <div class="pipeline-complete-inner">
         <svg class="complete-ring" width="80" height="80" viewBox="0 0 80 80" aria-hidden="true">
@@ -7484,6 +7710,7 @@
                 <span class="score-label-sm">Composite</span>
                 <span class="score-number-xl" id="summaryComposite">145</span>
                 <span class="tier-badge-lg tier-a" id="summaryTier">Tier A</span>
+                <span class="summary-tier-warning" id="summaryTierWarning" hidden>Low confidence — tier demoted</span>
               </div>
             </div>
           </div>
@@ -7531,6 +7758,11 @@
 
           <div class="report-block report-marketo">
             <div class="report-block-label">Marketo activation state</div>
+            <label class="holdout-toggle">
+              <input id="holdoutToggle" type="checkbox" />
+              <span>Holdout control (5%)</span>
+            </label>
+            <div class="holdout-banner" id="holdoutBanner" hidden>This account is in the holdout group — score calculated but routing suppressed. Score-influenced activity tracked as adoption baseline.</div>
             <div class="marketo-timeline" id="summaryFlowTimeline"></div>
             <div class="report-filter-list" id="summaryFilterList"></div>
             <div class="holdout-callout">5% of Tier A accounts routed to holdout control — score-influenced activity tracked as leading adoption indicator.</div>
@@ -7572,7 +7804,7 @@
       <div class="footer-divider"></div>
 
       <div class="footer-row footer-bottom">
-        <div class="footer-meta">Daniel Rodriguez · Revenue Operations Analyst Assessment, April 2025</div>
+        <div class="footer-meta">Daniel Rodriguez · Revenue Operations Analyst Assessment, April 2026</div>
         <div class="footer-note">Built as a playable prototype for the Gladly assessment.</div>
         <a class="github-link" href="https://github.com/daniel-st3/rev-ops-panel.git" target="_blank" rel="noreferrer">
           View source on GitHub
@@ -7750,6 +7982,7 @@
       jsonOpen: false,
       metaOpen: false,
       thinking: false,
+      holdoutControl: false,
       sfRationaleExpanded: false,
       summaryRationaleExpanded: false
     };
@@ -7822,6 +8055,7 @@
       timingCapCard: document.getElementById("timingCapCard"),
       timingCapLabel: document.getElementById("timingCapLabel"),
       timingCapFill: document.getElementById("timingCapFill"),
+      timingOverrideBanner: document.getElementById("timingOverrideBanner"),
       senseStage: document.getElementById("senseStage"),
       topicKeywords: document.getElementById("topicKeywords"),
       engagementScore: document.getElementById("engagementScore"),
@@ -7832,6 +8066,7 @@
       enrichedCount: document.getElementById("enrichedCount"),
       conflictCount: document.getElementById("conflictCount"),
       safeCount: document.getElementById("safeCount"),
+      reviewQueueCard: document.getElementById("reviewQueueCard"),
       flowZoomFields: document.getElementById("flowZoomFields"),
       flowSenseTopics: document.getElementById("flowSenseTopics"),
       flowFirstPartyPackets: document.getElementById("flowFirstPartyPackets"),
@@ -7859,6 +8094,7 @@
       sfRouting: document.getElementById("sfRouting"),
       sfSync: document.getElementById("sfSync"),
       sfConfidence: document.getElementById("sfConfidence"),
+      sfModelVersion: document.getElementById("sfModelVersion"),
       sfRationale: document.getElementById("sfRationale"),
       sfRationaleToggle: document.getElementById("sfRationaleToggle"),
       sfFieldFit: document.getElementById("sfFieldFit"),
@@ -7868,6 +8104,7 @@
       sfFieldRouting: document.getElementById("sfFieldRouting"),
       sfFieldSync: document.getElementById("sfFieldSync"),
       sfFieldConfidence: document.getElementById("sfFieldConfidence"),
+      sfFieldModelVersion: document.getElementById("sfFieldModelVersion"),
       sfFieldRationale: document.getElementById("sfFieldRationale"),
       sfHistoryRows: document.getElementById("sfHistoryRows"),
       metaToggle: document.getElementById("metaToggle"),
@@ -7893,6 +8130,7 @@
       summaryTiming: document.getElementById("summaryTiming"),
       summaryComposite: document.getElementById("summaryComposite"),
       summaryTier: document.getElementById("summaryTier"),
+      summaryTierWarning: document.getElementById("summaryTierWarning"),
       summaryTierBadge: document.getElementById("summaryTierBadge"),
       summaryRoutingTier: document.getElementById("summaryRoutingTier"),
       summaryMotion: document.getElementById("summaryMotion"),
@@ -7907,6 +8145,9 @@
       summarySalesforceRows: document.getElementById("summarySalesforceRows"),
       summaryFlowTimeline: document.getElementById("summaryFlowTimeline"),
       summaryFilterList: document.getElementById("summaryFilterList"),
+      holdoutToggle: document.getElementById("holdoutToggle"),
+      holdoutBanner: document.getElementById("holdoutBanner"),
+      tableauBody: document.getElementById("tableauBody"),
       resetButton: document.getElementById("resetButton"),
       exportPdf: document.getElementById("exportPdf"),
       addZoom: document.getElementById("addZoom"),
@@ -7976,7 +8217,7 @@
       let sla = "No SLA";
       let action = "Marketing nurture only, no outbound";
 
-      if (confidence.key === "low" || composite < 50) {
+      if (composite < 50) {
         tier = "D";
         motion = "Marketo nurture only";
         sla = "No SLA";
@@ -8021,6 +8262,99 @@
       if (discrete.coverage > 75) return { label: "High", key: "high" };
       if (discrete.coverage >= 50) return { label: "Medium", key: "medium" };
       return { label: "Low", key: "low" };
+    }
+
+    function getCompositeTier(composite) {
+      if (composite >= 130) return "A";
+      if (composite >= 90) return "B";
+      if (composite >= 50) return "C";
+      return "D";
+    }
+
+    function demoteTier(tier) {
+      return tier === "A" ? "B" : tier === "B" ? "C" : tier === "C" ? "D" : "D";
+    }
+
+    function getTierPackage(tier, holdout = false) {
+      if (holdout) {
+        return {
+          tier,
+          motion: "Holdout control",
+          action: "Routing suppressed while score-influenced activity is tracked",
+          sla: "No SLA",
+          chili: "Holdout accounts are withheld from score-driven routing."
+        };
+      }
+
+      if (tier === "A") {
+        return {
+          tier,
+          motion: "1:1 ABM with AE and SDR paired",
+          action: "Named Account program and MQA alert via Sales Insight",
+          sla: "Sub-5-minute SLA via Chili Piper",
+          chili: "Chili Piper acceleration is active for Tier A routing."
+        };
+      }
+
+      if (tier === "B") {
+        return {
+          tier,
+          motion: "Scaled SDR pod",
+          action: "Scaled SDR sequence and targeted nurture",
+          sla: "24h SLA",
+          chili: "Chili Piper acceleration is inactive outside Tier A."
+        };
+      }
+
+      if (tier === "C") {
+        return {
+          tier,
+          motion: "Marketo nurture only",
+          action: "Automated nurture sequence only",
+          sla: "No SLA",
+          chili: "Chili Piper acceleration is inactive outside Tier A."
+        };
+      }
+
+      return {
+        tier,
+        motion: "Marketo nurture only",
+        action: "Marketing nurture only, no outbound",
+        sla: "No SLA",
+        chili: "Chili Piper acceleration is inactive outside Tier A."
+      };
+    }
+
+    function getOutputTierView(discrete, scores) {
+      const lowConfidence = scores.confidence.key === "low";
+      const compositeTier = getCompositeTier(scores.composite);
+      const displayTier = lowConfidence ? demoteTier(compositeTier) : scores.tier;
+      return {
+        displayTier,
+        warning: lowConfidence
+      };
+    }
+
+    function getClayConflictReview(discrete) {
+      if (discrete.coverage < 50) {
+        return {
+          field: "Employee Count",
+          oldValue: discrete.scale ? "420" : "90",
+          newValue: discrete.scale ? "548" : "128",
+          delta: "30%"
+        };
+      }
+
+      if (discrete.industry === 0) {
+        return {
+          field: "Industry",
+          oldValue: "Industrial Software",
+          newValue: "Retail / DTC",
+          delta: "25%"
+        };
+      }
+
+      return null;
     }
 
     function getRolloutPhase(discrete, scores) {
@@ -8562,7 +8896,10 @@
       state.owner = preset.owner;
       state.lane = preset.lane;
       state.extraRows = [];
+      state.holdoutControl = false;
       state.sfRationaleExpanded = false;
+      state.summaryRationaleExpanded = false;
+      if (els.holdoutToggle) els.holdoutToggle.checked = false;
       els.scenarioDescription.textContent = preset.description;
       renderPresets();
 
@@ -8627,11 +8964,6 @@
 
     function renderSetup(scores) {
       els.scenarioDescription.textContent = state.activePreset ? presets[state.activePreset].description : "Custom account values are active. Every section below is now driven by live controls.";
-      const discrete = getDiscrete();
-      const phase = getRolloutPhase(discrete, scores);
-      els.rolloutSteps.forEach((step, index) => {
-        step.classList.toggle("is-active", index + 1 === phase);
-      });
     }
 
     function renderFit(discrete) {
@@ -8731,6 +9063,8 @@
       } else {
         els.eventWrap.innerHTML = activeEvents.map((event) => `<span class="event-pill active">${event}</span>`).join("");
       }
+
+      els.timingOverrideBanner.hidden = !(discrete.intent && discrete.hiring);
     }
 
     function renderClay(discrete, scores) {
@@ -8760,6 +9094,25 @@
       els.flowZoomFields.textContent = `${discrete.zoomPoints}`;
       els.flowSenseTopics.textContent = `${discrete.topics}`;
       els.flowFirstPartyPackets.textContent = `${discrete.packets}`;
+
+      const reviewConflict = getClayConflictReview(discrete);
+      if (reviewConflict) {
+        els.reviewQueueCard.hidden = false;
+        els.reviewQueueCard.innerHTML = `
+          <strong>RevOps Review Queue</strong>
+          <p>Conflict routed because the field delta is above 20% and requires manual review before sync.</p>
+          <div class="review-queue-grid">
+            <div class="review-queue-item"><span>Conflicting field</span><strong>${reviewConflict.field}</strong></div>
+            <div class="review-queue-item"><span>Old value</span><strong>${reviewConflict.oldValue}</strong></div>
+            <div class="review-queue-item"><span>New value</span><strong>${reviewConflict.newValue}</strong></div>
+            <div class="review-queue-item"><span>Delta</span><strong>${reviewConflict.delta}</strong></div>
+          </div>
+          <span class="review-route-badge">Route to review</span>
+        `;
+      } else {
+        els.reviewQueueCard.hidden = true;
+        els.reviewQueueCard.innerHTML = "";
+      }
 
       els.jsonCode.innerHTML = syntaxHighlightJSON({
         account_name: state.accountName,
@@ -8849,7 +9202,8 @@
         sfTier: `Tier ${scores.tier}`,
         sfRouting: scores.motion,
         sfSync: `${stats.syncHealth}%`,
-        sfConfidence: scores.confidence.label
+        sfConfidence: scores.confidence.label,
+        sfModelVersion: "v1.0"
       };
 
       Object.entries(fieldValues).forEach(([id, value]) => {
@@ -8863,7 +9217,8 @@
             sfTier: els.sfFieldTier,
             sfRouting: els.sfFieldRouting,
             sfSync: els.sfFieldSync,
-            sfConfidence: els.sfFieldConfidence
+            sfConfidence: els.sfFieldConfidence,
+            sfModelVersion: els.sfFieldModelVersion
           }[id];
           flashSF(fieldWrapper);
         }
@@ -9016,8 +9371,33 @@
       `).join("");
     }
 
+    function renderTableau(scores) {
+      if (!els.tableauBody) return;
+      const activeTier = getCompositeTier(scores.composite);
+      const rows = [
+        ["A", "48", "42%", "31%", "$182k", "41 days"],
+        ["B", "76", "24%", "18%", "$121k", "58 days"],
+        ["C", "134", "9%", "7%", "$74k", "73 days"],
+        ["D", "210", "2%", "1%", "$38k", "96 days"]
+      ];
+
+      els.tableauBody.innerHTML = rows.map((row) => `
+        <tr class="${row[0] === activeTier ? "is-active" : ""}">
+          <td>${row[0]}</td>
+          <td>${row[1]}</td>
+          <td>${row[2]}</td>
+          <td>${row[3]}</td>
+          <td>${row[4]}</td>
+          <td>${row[5]}</td>
+        </tr>
+      `).join("");
+    }
+
     function renderSummary(scores) {
-      const rationale = buildScoreRationale(getDiscrete(), scores);
+      const discrete = getDiscrete();
+      const rationale = buildScoreRationale(discrete, scores);
+      const tierView = getOutputTierView(discrete, scores);
+      const outputPackage = getTierPackage(tierView.displayTier, state.holdoutControl);
       animateNumber(els.summaryFit, scores.fit);
       animateNumber(els.summaryTiming, scores.timing);
       animateNumber(els.summaryComposite, scores.composite);
@@ -9026,22 +9406,23 @@
       els.reportOwner.textContent = state.owner;
       els.reportLane.textContent = state.lane;
 
-      els.summaryTier.textContent = `Tier ${scores.tier}`;
-      els.summaryTier.className = `tier-badge-lg ${getTierClass(scores.tier)}`;
+      els.summaryTier.textContent = `Tier ${tierView.displayTier}`;
+      els.summaryTier.className = `tier-badge-lg ${getTierClass(tierView.displayTier)}`;
+      els.summaryTierWarning.hidden = !tierView.warning;
       [els.summaryTierBadge, els.summaryRoutingTier].forEach((el) => {
-        el.textContent = `Tier ${scores.tier}`;
-        applyTierClass(el, scores.tier, "tier-pill");
+        el.textContent = `Tier ${tierView.displayTier}`;
+        applyTierClass(el, tierView.displayTier, "tier-pill");
       });
 
       els.summaryFitTotal.textContent = `${scores.fit}`;
       els.summaryTimingTotal.textContent = `${scores.timing}`;
       els.summaryTimingRawNote.textContent = `(capped from ${scores.rawTiming} raw)`;
-      els.summaryMotion.textContent = scores.motion;
-      els.summaryAction.textContent = scores.action;
-      els.summarySla.textContent = scores.sla;
-      els.summaryChili.textContent = scores.tier === "A"
-        ? "Chili Piper acceleration is active for Tier A routing."
-        : "Chili Piper acceleration is inactive outside Tier A.";
+      els.summaryMotion.textContent = outputPackage.motion;
+      els.summaryAction.textContent = outputPackage.action;
+      els.summarySla.textContent = outputPackage.sla;
+      els.summaryChili.textContent = outputPackage.chili;
+      if (els.holdoutToggle) els.holdoutToggle.checked = state.holdoutControl;
+      els.holdoutBanner.hidden = !state.holdoutControl;
 
       const allFitSignals = [
         { label: "Enterprise scale", points: fitMeta.scale.points[getDiscrete().scale], active: fitMeta.scale.points[getDiscrete().scale] !== 0 },
@@ -9071,10 +9452,11 @@
         ["Fit_Score__c", `${scores.fit}`],
         ["Timing_Score__c", `${scores.timing}`],
         ["Composite_Score__c", `${scores.composite}`],
-        ["Tier__c", `Tier ${scores.tier}`],
-        ["Routing__c", scores.motion],
+        ["Tier__c", `Tier ${tierView.displayTier}`],
+        ["Routing__c", outputPackage.motion],
         ["Sync_Health__c", `${stats.syncHealth}%`],
         ["Confidence_Flag__c", scores.confidence.label],
+        ["ScoringModelVersion__c", "v1.0"],
         ["Score_Rationale__c", rationale]
       ];
       els.summarySalesforceRows.innerHTML = sfRows.map(([name, value]) => {
@@ -9110,16 +9492,16 @@
         });
       }
 
-      const stepStates = {
+      const stepStates = state.holdoutControl ? [false, false, false, false] : {
         A: [true, true, true, true],
         B: [false, true, true, true],
         C: [false, false, true, true],
         D: [false, false, false, false]
-      }[scores.tier];
+      }[tierView.displayTier];
 
       const stepNames = ["Send Alert", "Add to Program", "Change Score", "Interesting Moment"];
       els.summaryFlowTimeline.innerHTML = stepNames.map((name, index) => `
-        <div class="mt-node ${stepStates[index] ? "active" : scores.tier === "D" ? "inactive-red" : ""}">
+        <div class="mt-node ${stepStates[index] ? "active" : state.holdoutControl || tierView.displayTier === "D" ? "inactive-red" : ""}">
           <div class="mt-dot"></div>
           <span class="mt-name">${name}</span>
         </div>
@@ -9127,9 +9509,9 @@
       `).join("");
 
       const filters = [
-        { label: "Tier__c is Tier A", match: scores.tier === "A" },
-        { label: "Composite_Score__c greater than 130", match: scores.composite >= 130 },
-        { label: "Routing__c is 1:1 ABM with AE and SDR paired", match: scores.motion === "1:1 ABM with AE and SDR paired" }
+        { label: "Tier__c is Tier A", match: !state.holdoutControl && tierView.displayTier === "A" },
+        { label: "Composite_Score__c greater than 130", match: !state.holdoutControl && scores.composite >= 130 },
+        { label: "Routing__c is 1:1 ABM with AE and SDR paired", match: !state.holdoutControl && outputPackage.motion === "1:1 ABM with AE and SDR paired" }
       ];
 
       els.summaryFilterList.innerHTML = filters.map((filter) => `
@@ -9160,6 +9542,7 @@
       renderClaude(discrete, scores, !triggerThinking);
       renderSalesforce(discrete, scores);
       renderMarketo(scores);
+      renderTableau(scores);
       renderSummary(scores);
       renderMetaLabels(discrete);
 
@@ -9246,6 +9629,13 @@
         els.sfRationaleToggle.textContent = state.sfRationaleExpanded ? "Collapse" : "Expand";
       });
 
+      if (els.holdoutToggle) {
+        els.holdoutToggle.addEventListener("change", () => {
+          state.holdoutControl = els.holdoutToggle.checked;
+          renderSummary(computeScores(getDiscrete()));
+        });
+      }
+
       els.copyPrompt.addEventListener("click", async () => {
         try {
           const copied = await copyText(els.promptCode.textContent.replace(/\s+/g, " ").trim());
@@ -9284,6 +9674,8 @@
       });
 
       els.resetButton.addEventListener("click", () => {
+        state.holdoutControl = false;
+        if (els.holdoutToggle) els.holdoutToggle.checked = false;
         animateToPreset("harbor", { elastic: true });
       });
 
