@@ -8,6 +8,7 @@
     name="description"
     content="Gladly Account Scoring Engine prototype for Daniel Rodriguez's RevOps assessment."
   />
+  <link rel="icon" type="image/png" href="./assets/gladly-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -6012,64 +6013,55 @@
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: rgba(255, 255, 255, 0.3);
-    }
-
-    .stream-track {
-      position: relative;
-      width: 80px;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.1);
-      overflow: hidden;
-      border-radius: 999px;
-    }
-
-    .stream-highlight {
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 32px;
-      background: #4ade80;
-      animation: syncslide 1.4s linear infinite;
-      border-radius: 999px;
-    }
-
-    .stream-lock {
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.2);
       text-align: center;
     }
 
-    .sync-pill-lane {
+    .sync-pill-track {
       position: relative;
-      width: 280px;
-      height: 34px;
+      width: min(332px, 100%);
+      max-width: 332px;
+      height: 40px;
       overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .sync-pill-track::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      top: 50%;
+      height: 2px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, rgba(255,255,255,0.12) 0%, rgba(34,197,94,0.32) 50%, rgba(255,255,255,0.12) 100%);
+      border-radius: 999px;
     }
 
     .sync-field-pill {
       position: absolute;
       top: 50%;
-      left: 8px;
+      left: 18px;
       transform: translateY(-50%);
       padding: 4px 8px;
       border-radius: 999px;
-      background: rgba(12, 18, 28, 0.72);
+      background: rgba(12, 18, 28, 0.92);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      color: rgba(255, 255, 255, 0.86);
+      color: rgba(255, 255, 255, 0.9);
       font-size: 10px;
       font-weight: 700;
       font-family: "JetBrains Mono", "Fira Code", monospace;
       letter-spacing: 0.02em;
       white-space: nowrap;
-      animation: syncpill 7.2s linear infinite;
+      animation: syncpill 8s linear infinite;
       opacity: 0;
-      max-width: 110px;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
     }
 
-    .sync-field-pill.pill-2 { animation-delay: 1.8s; }
-    .sync-field-pill.pill-3 { animation-delay: 3.6s; }
-    .sync-field-pill.pill-4 { animation-delay: 5.4s; }
+    .sync-field-pill.pill-2 { animation-delay: 2s; }
+    .sync-field-pill.pill-3 { animation-delay: 4s; }
+    .sync-field-pill.pill-4 { animation-delay: 6s; }
 
     .handoff-pills span {
       background: rgba(255, 255, 255, 0.1) !important;
@@ -6108,16 +6100,13 @@
       font-weight: 800 !important;
     }
 
-    @keyframes syncslide {
-      from { transform: translateX(-150%); }
-      to { transform: translateX(450%); }
-    }
-
     @keyframes syncpill {
       0% { transform: translate(0, -50%); opacity: 0; }
-      12% { transform: translate(0, -50%); opacity: 1; }
-      76% { opacity: 1; }
-      100% { transform: translate(238px, -50%); opacity: 0; }
+      8% { transform: translate(0, -50%); opacity: 0; }
+      14% { transform: translate(0, -50%); opacity: 1; }
+      68% { transform: translate(172px, -50%); opacity: 1; }
+      82% { transform: translate(206px, -50%); opacity: 0; }
+      100% { transform: translate(206px, -50%); opacity: 0; }
     }
 
     .marketo-grid {
@@ -6295,7 +6284,7 @@
 
     .tableau-charts {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
       padding: 18px;
     }
@@ -6305,7 +6294,7 @@
       background: rgba(8, 14, 22, 0.58);
       border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 16px;
-      min-height: 320px;
+      min-height: 336px;
       display: grid;
       align-content: start;
       gap: 12px;
@@ -6326,7 +6315,7 @@
 
     .chart-svg {
       width: 100%;
-      height: 220px;
+      height: 236px;
       overflow: visible;
     }
 
@@ -6407,6 +6396,52 @@
       fill: #dcfce7;
       font-size: 10px;
       font-weight: 700;
+    }
+
+    .chart-reference {
+      stroke: rgba(255, 255, 255, 0.22);
+      stroke-width: 1;
+      stroke-dasharray: 4 4;
+    }
+
+    .chart-reference-label {
+      fill: rgba(255, 255, 255, 0.48);
+      font-size: 9px;
+      font-weight: 600;
+    }
+
+    .chart-muted-line {
+      stroke: rgba(255, 255, 255, 0.28);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .chart-live-line {
+      stroke: #22c55e;
+      stroke-width: 2.5;
+      fill: none;
+      filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.28));
+    }
+
+    .chart-line-dot {
+      fill: #ffffff;
+      stroke: #22c55e;
+      stroke-width: 2;
+    }
+
+    .chart-gauge-track {
+      fill: rgba(255, 255, 255, 0.08);
+    }
+
+    .chart-gauge-fill {
+      fill: #22c55e;
+      filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.22));
+    }
+
+    .chart-gauge-marker {
+      stroke: rgba(255, 255, 255, 0.4);
+      stroke-width: 1.5;
+      stroke-dasharray: 3 3;
     }
 
     .tableau-table td {
@@ -7613,17 +7648,13 @@
         </div>
 
         <div class="handoff-stream">
-          <span class="stream-caption">Read-only sync</span>
-          <div class="stream-track">
-            <div class="stream-highlight"></div>
-          </div>
-          <div class="sync-pill-lane" aria-hidden="true">
+          <span class="stream-caption">READ-ONLY SYNC 🔒</span>
+          <div class="sync-pill-track" aria-hidden="true">
             <span class="sync-field-pill pill-1">Tier__c</span>
-            <span class="sync-field-pill pill-2">Composite__c</span>
-            <span class="sync-field-pill pill-3">Fit__c</span>
+            <span class="sync-field-pill pill-2">Fit__c</span>
+            <span class="sync-field-pill pill-3">Composite__c</span>
             <span class="sync-field-pill pill-4">Routing__c</span>
           </div>
-          <span class="stream-lock">🔒</span>
         </div>
 
         <div class="handoff-node handoff-marketo">
@@ -7761,19 +7792,24 @@
           </div>
           <div class="tableau-charts">
             <div class="chart-card">
-              <div class="chart-title">Tier Conversion Funnel</div>
-              <div class="chart-subtitle">MQA→Opp rate by tier. The live tier bar is highlighted.</div>
-              <svg class="chart-svg" id="funnelChart" viewBox="0 0 320 220" aria-label="Tier conversion funnel chart"></svg>
+              <div class="chart-title">MQA Volume by Tier</div>
+              <div class="chart-subtitle">Exec reporting rolls up weekly MQA volume by routing tier. The live tier is highlighted.</div>
+              <svg class="chart-svg" id="mqaVolumeChart" viewBox="0 0 360 240" aria-label="MQA volume by tier chart"></svg>
             </div>
             <div class="chart-card">
-              <div class="chart-title">Score Composition</div>
-              <div class="chart-subtitle">Live Fit and Timing contribution against the 150-point model ceiling.</div>
-              <svg class="chart-svg" id="compositionChart" viewBox="0 0 320 220" aria-label="Score composition chart"></svg>
+              <div class="chart-title">Conversion Funnel by Tier</div>
+              <div class="chart-subtitle">MQA→Opp, Win Rate, and cycle pressure normalized to one exec view with a Tier A target reference.</div>
+              <svg class="chart-svg" id="conversionFunnelChart" viewBox="0 0 360 240" aria-label="Conversion funnel by tier chart"></svg>
             </div>
             <div class="chart-card">
-              <div class="chart-title">Signal Confidence over Coverage</div>
-              <div class="chart-subtitle">Confidence thresholds by ZoomInfo coverage with the current account plotted live.</div>
-              <svg class="chart-svg" id="confidenceChart" viewBox="0 0 320 220" aria-label="Confidence over coverage chart"></svg>
+              <div class="chart-title">ACV &amp; Cycle Length by Tier</div>
+              <div class="chart-subtitle">Expected deal size and cycle length pull from the warehouse mirror of Salesforce routing outcomes.</div>
+              <svg class="chart-svg" id="acvCycleChart" viewBox="0 0 360 240" aria-label="ACV and cycle length by tier chart"></svg>
+            </div>
+            <div class="chart-card">
+              <div class="chart-title">Score-Influenced Activity Rate</div>
+              <div class="chart-subtitle">Score adoption rate — leading indicator of model trust. Updates from the live routed tier.</div>
+              <svg class="chart-svg" id="adoptionRateChart" viewBox="0 0 360 240" aria-label="Score-influenced activity rate chart"></svg>
             </div>
           </div>
         </div>
@@ -8281,6 +8317,10 @@
       perfEmailsBar: document.getElementById("perfEmailsBar"),
       perfAlertsBar: document.getElementById("perfAlertsBar"),
       handoffMarketoStatus: document.getElementById("handoffMarketoStatus"),
+      mqaVolumeChart: document.getElementById("mqaVolumeChart"),
+      conversionFunnelChart: document.getElementById("conversionFunnelChart"),
+      acvCycleChart: document.getElementById("acvCycleChart"),
+      adoptionRateChart: document.getElementById("adoptionRateChart"),
       reportAccountName: document.getElementById("reportAccountName"),
       reportOwner: document.getElementById("reportOwner"),
       reportLane: document.getElementById("reportLane"),
@@ -8305,9 +8345,6 @@
       summaryFilterList: document.getElementById("summaryFilterList"),
       holdoutToggle: document.getElementById("holdoutToggle"),
       holdoutBanner: document.getElementById("holdoutBanner"),
-      funnelChart: document.getElementById("funnelChart"),
-      compositionChart: document.getElementById("compositionChart"),
-      confidenceChart: document.getElementById("confidenceChart"),
       resetButton: document.getElementById("resetButton"),
       exportPdf: document.getElementById("exportPdf"),
       addZoom: document.getElementById("addZoom"),
@@ -9539,91 +9576,176 @@
     }
 
     function renderTableau(discrete, scores) {
-      const funnelSvg = els.funnelChart;
-      const compositionSvg = els.compositionChart;
-      const confidenceSvg = els.confidenceChart;
-      if (!funnelSvg || !compositionSvg || !confidenceSvg) return;
+      const mqaSvg = els.mqaVolumeChart;
+      const conversionSvg = els.conversionFunnelChart;
+      const acvSvg = els.acvCycleChart;
+      const adoptionSvg = els.adoptionRateChart;
+      if (!mqaSvg || !conversionSvg || !acvSvg || !adoptionSvg) return;
 
-      const activeTier = getCompositeTier(scores.composite);
-      const tierRates = { A: 42, B: 24, C: 9, D: 2 };
+      const activeTier = scores.tier;
       const tiers = ["A", "B", "C", "D"];
-      const chartHeight = 220;
-      const chartWidth = 320;
+      const mqaVolume = { A: 48, B: 76, C: 134, D: 210 };
+      const funnel = {
+        A: { opp: 42, win: 31, cycle: 41 },
+        B: { opp: 24, win: 18, cycle: 58 },
+        C: { opp: 9, win: 7, cycle: 73 },
+        D: { opp: 2, win: 1, cycle: 96 }
+      };
+      const acvCycle = {
+        A: { acv: 182, cycle: 41 },
+        B: { acv: 121, cycle: 58 },
+        C: { acv: 74, cycle: 73 },
+        D: { acv: 38, cycle: 96 }
+      };
+      const adoptionRate = { A: 78, B: 54, C: 31, D: 12 };
 
-      const funnelBars = tiers.map((tier, index) => {
-        const value = tierRates[tier];
-        const x = 40 + index * 62;
-        const y = 176 - (value / 50) * 128;
-        const height = 176 - y;
-        const barClass = tier === activeTier ? "chart-live-bar pulse" : "chart-muted-bar";
-        return `
-          <line class="chart-gridline" x1="${x + 18}" y1="32" x2="${x + 18}" y2="176"></line>
-          <rect class="${barClass}" x="${x}" y="${y}" width="36" height="${height}" rx="10"></rect>
-          <text class="chart-label" x="${x + 18}" y="${y - 8}" text-anchor="middle">${value}%</text>
-          <text class="chart-tick" x="${x + 18}" y="196" text-anchor="middle">${tier}</text>
-        `;
-      }).join("");
+      const mutedFill = "rgba(255,255,255,0.18)";
+      const mutedStrong = "rgba(255,255,255,0.58)";
+      const winFill = "rgba(134, 239, 172, 0.78)";
+      const cycleFill = "rgba(96, 165, 250, 0.72)";
 
-      funnelSvg.innerHTML = `
-        <line class="chart-axis" x1="30" y1="176" x2="292" y2="176"></line>
-        <line class="chart-axis" x1="30" y1="24" x2="30" y2="176"></line>
-        <text class="chart-tick" x="18" y="176" text-anchor="end">0</text>
-        <text class="chart-tick" x="18" y="114" text-anchor="end">25</text>
-        <text class="chart-tick" x="18" y="52" text-anchor="end">50</text>
-        <line class="chart-gridline" x1="30" y1="114" x2="292" y2="114"></line>
-        <line class="chart-gridline" x1="30" y1="52" x2="292" y2="52"></line>
-        ${funnelBars}
+      const mapLinear = (value, inMin, inMax, outMin, outMax) => outMin + ((value - inMin) / (inMax - inMin)) * (outMax - outMin);
+
+      // Chart A: MQA Volume by Tier
+      const a = { left: 42, right: 20, top: 20, bottom: 38, width: 298, height: 162 };
+      const mqaMax = 250;
+      const mqaTicks = [0, 50, 100, 150, 200, 250];
+      mqaSvg.innerHTML = `
+        ${mqaTicks.slice(1).map((tick) => {
+          const y = a.top + a.height - (tick / mqaMax) * a.height;
+          return `
+            <line class="chart-gridline" x1="${a.left}" y1="${y}" x2="${a.left + a.width}" y2="${y}"></line>
+            <text class="chart-tick" x="${a.left - 8}" y="${y + 3}" text-anchor="end">${tick}</text>
+          `;
+        }).join("")}
+        <line class="chart-axis" x1="${a.left}" y1="${a.top}" x2="${a.left}" y2="${a.top + a.height}"></line>
+        <line class="chart-axis" x1="${a.left}" y1="${a.top + a.height}" x2="${a.left + a.width}" y2="${a.top + a.height}"></line>
+        <text class="chart-tick" x="${a.left - 10}" y="${a.top - 2}" text-anchor="end">MQAs</text>
+        ${tiers.map((tier, index) => {
+          const value = mqaVolume[tier];
+          const barWidth = 40;
+          const gap = 28;
+          const x = a.left + 24 + index * (barWidth + gap);
+          const h = (value / mqaMax) * a.height;
+          const y = a.top + a.height - h;
+          const isActive = tier === activeTier;
+          return `
+            <rect class="${isActive ? "chart-live-bar pulse" : "chart-muted-bar"}" x="${x}" y="${y}" width="${barWidth}" height="${h}" rx="12"></rect>
+            <text class="chart-label" x="${x + barWidth / 2}" y="${y - 8}" text-anchor="middle">${value}</text>
+            <text class="chart-tick" x="${x + barWidth / 2}" y="${a.top + a.height + 18}" text-anchor="middle">Tier ${tier}</text>
+          `;
+        }).join("")}
       `;
 
-      const maxScore = 150;
-      const fitWidth = (scores.fit / maxScore) * 236;
-      const timingWidth = (scores.timing / maxScore) * 236;
-      const thresholdX = 44 + (130 / maxScore) * 236;
-      compositionSvg.innerHTML = `
-        <line class="chart-axis" x1="44" y1="148" x2="280" y2="148"></line>
-        <rect x="44" y="84" width="236" height="36" rx="18" fill="rgba(255,255,255,0.08)"></rect>
-        <rect class="chart-segment-fit" x="44" y="84" width="${fitWidth}" height="36" rx="18"></rect>
-        <rect class="chart-segment-timing" x="${44 + fitWidth}" y="84" width="${timingWidth}" height="36" rx="18"></rect>
-        <line class="chart-threshold-line" x1="${thresholdX}" y1="62" x2="${thresholdX}" y2="156"></line>
-        <text class="chart-threshold-label" x="${thresholdX}" y="54" text-anchor="middle">Tier A threshold</text>
-        <text class="chart-label" x="${44 + Math.max(18, fitWidth / 2)}" y="106" text-anchor="middle">Fit ${scores.fit}</text>
-        <text class="chart-label" x="${44 + fitWidth + Math.max(18, timingWidth / 2)}" y="106" text-anchor="middle">Timing ${scores.timing}</text>
-        <text class="chart-tick" x="44" y="170" text-anchor="middle">0</text>
-        <text class="chart-tick" x="${thresholdX}" y="170" text-anchor="middle">130</text>
-        <text class="chart-tick" x="280" y="170" text-anchor="middle">150</text>
+      // Chart B: Conversion Funnel by Tier
+      const b = { left: 88, right: 22, top: 24, bottom: 22, width: 250, height: 178 };
+      const percentTicks = [0, 25, 50, 75, 100];
+      const refX = b.left + (30 / 100) * b.width;
+      const rowGap = 42;
+      const rowStart = b.top + 8;
+      conversionSvg.innerHTML = `
+        ${percentTicks.map((tick) => {
+          const x = b.left + (tick / 100) * b.width;
+          return `
+            <line class="chart-gridline" x1="${x}" y1="${b.top}" x2="${x}" y2="${b.top + b.height}"></line>
+            <text class="chart-tick" x="${x}" y="${b.top + b.height + 18}" text-anchor="middle">${tick}%</text>
+          `;
+        }).join("")}
+        <line class="chart-reference" x1="${refX}" y1="${b.top}" x2="${refX}" y2="${b.top + b.height}"></line>
+        <text class="chart-reference-label" x="${refX}" y="${b.top - 8}" text-anchor="middle">Tier A target</text>
+        <line class="chart-axis" x1="${b.left}" y1="${b.top}" x2="${b.left}" y2="${b.top + b.height}"></line>
+        <line class="chart-axis" x1="${b.left}" y1="${b.top + b.height}" x2="${b.left + b.width}" y2="${b.top + b.height}"></line>
+        ${tiers.map((tier, index) => {
+          const yBase = rowStart + index * rowGap;
+          const row = funnel[tier];
+          const isActive = tier === activeTier;
+          const oppWidth = (row.opp / 100) * b.width;
+          const winWidth = (row.win / 100) * b.width;
+          const cycleWidth = (row.cycle / 100) * b.width;
+          return `
+            <text class="chart-label" x="${b.left - 16}" y="${yBase + 8}" text-anchor="end">Tier ${tier}</text>
+            <rect x="${b.left}" y="${yBase - 12}" width="${oppWidth}" height="8" rx="4" fill="${isActive ? "#22c55e" : mutedFill}"></rect>
+            <rect x="${b.left}" y="${yBase + 2}" width="${winWidth}" height="8" rx="4" fill="${isActive ? winFill : "rgba(255,255,255,0.22)"}"></rect>
+            <rect x="${b.left}" y="${yBase + 16}" width="${cycleWidth}" height="8" rx="4" fill="${isActive ? cycleFill : "rgba(255,255,255,0.16)"}"></rect>
+            <text class="chart-tick" x="${Math.min(b.left + oppWidth + 8, b.left + b.width - 4)}" y="${yBase - 5}">${row.opp}%</text>
+            <text class="chart-tick" x="${Math.min(b.left + winWidth + 8, b.left + b.width - 4)}" y="${yBase + 9}">${row.win}%</text>
+            <text class="chart-tick" x="${Math.min(b.left + cycleWidth + 8, b.left + b.width - 4)}" y="${yBase + 23}">${row.cycle}d</text>
+          `;
+        }).join("")}
+        <text class="chart-reference-label" x="${b.left}" y="${b.top + b.height + 34}">MQA→Opp</text>
+        <text class="chart-reference-label" x="${b.left + 86}" y="${b.top + b.height + 34}">Win rate</text>
+        <text class="chart-reference-label" x="${b.left + 150}" y="${b.top + b.height + 34}">Cycle length</text>
       `;
 
-      const coverage = discrete.coverage;
-      const confidence = getConfidence(discrete);
-      const mapX = (value) => 46 + ((value - 30) / 70) * 228;
-      const mapY = (level) => ({ 1: 152, 2: 104, 3: 56 }[level]);
-      const confidenceLevel = confidence.key === "high" ? 3 : confidence.key === "medium" ? 2 : 1;
-      const stepPath = [
-        `M ${mapX(30)} ${mapY(1)}`,
-        `L ${mapX(50)} ${mapY(1)}`,
-        `L ${mapX(50)} ${mapY(2)}`,
-        `L ${mapX(75)} ${mapY(2)}`,
-        `L ${mapX(75)} ${mapY(3)}`,
-        `L ${mapX(100)} ${mapY(3)}`
-      ].join(" ");
-      const dotX = mapX(coverage);
-      const dotY = mapY(confidenceLevel);
-      confidenceSvg.innerHTML = `
-        <line class="chart-axis" x1="36" y1="168" x2="292" y2="168"></line>
-        <line class="chart-axis" x1="46" y1="36" x2="46" y2="168"></line>
-        <line class="chart-gridline" x1="46" y1="${mapY(1)}" x2="292" y2="${mapY(1)}"></line>
-        <line class="chart-gridline" x1="46" y1="${mapY(2)}" x2="292" y2="${mapY(2)}"></line>
-        <line class="chart-gridline" x1="46" y1="${mapY(3)}" x2="292" y2="${mapY(3)}"></line>
-        <text class="chart-tick" x="36" y="${mapY(3) + 4}" text-anchor="end">High</text>
-        <text class="chart-tick" x="36" y="${mapY(2) + 4}" text-anchor="end">Medium</text>
-        <text class="chart-tick" x="36" y="${mapY(1) + 4}" text-anchor="end">Low</text>
-        <text class="chart-tick" x="${mapX(30)}" y="186" text-anchor="middle">30</text>
-        <text class="chart-tick" x="${mapX(50)}" y="186" text-anchor="middle">50</text>
-        <text class="chart-tick" x="${mapX(75)}" y="186" text-anchor="middle">75</text>
-        <text class="chart-tick" x="${mapX(100)}" y="186" text-anchor="middle">100</text>
-        <path class="chart-step-line" d="${stepPath}"></path>
-        <circle class="chart-live-dot" cx="${dotX}" cy="${dotY}" r="6"></circle>
-        <text class="chart-live-label" x="${Math.min(chartWidth - 10, dotX + 10)}" y="${Math.max(18, dotY - 10)}">${coverage}% · ${confidence.label}</text>
+      // Chart C: ACV & Cycle Length by Tier
+      const c = { left: 42, right: 42, top: 20, bottom: 38, width: 276, height: 164 };
+      const acvMax = 200;
+      const cycleMax = 100;
+      const acvTicks = [0, 50, 100, 150, 200];
+      const cycleTicks = [0, 25, 50, 75, 100];
+      const linePoints = tiers.map((tier, index) => {
+        const x = c.left + 32 + index * 62;
+        const y = c.top + c.height - (acvCycle[tier].cycle / cycleMax) * c.height;
+        return { tier, x, y };
+      });
+      const linePath = linePoints.map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`).join(" ");
+      acvSvg.innerHTML = `
+        ${acvTicks.slice(1).map((tick) => {
+          const y = c.top + c.height - (tick / acvMax) * c.height;
+          return `
+            <line class="chart-gridline" x1="${c.left}" y1="${y}" x2="${c.left + c.width}" y2="${y}"></line>
+            <text class="chart-tick" x="${c.left - 8}" y="${y + 3}" text-anchor="end">$${tick}k</text>
+          `;
+        }).join("")}
+        ${cycleTicks.slice(1).map((tick) => {
+          const y = c.top + c.height - (tick / cycleMax) * c.height;
+          return `<text class="chart-tick" x="${c.left + c.width + 8}" y="${y + 3}" text-anchor="start">${tick}d</text>`;
+        }).join("")}
+        <line class="chart-axis" x1="${c.left}" y1="${c.top}" x2="${c.left}" y2="${c.top + c.height}"></line>
+        <line class="chart-axis" x1="${c.left + c.width}" y1="${c.top}" x2="${c.left + c.width}" y2="${c.top + c.height}"></line>
+        <line class="chart-axis" x1="${c.left}" y1="${c.top + c.height}" x2="${c.left + c.width}" y2="${c.top + c.height}"></line>
+        <text class="chart-reference-label" x="${c.left - 8}" y="${c.top - 4}" text-anchor="end">ACV</text>
+        <text class="chart-reference-label" x="${c.left + c.width + 8}" y="${c.top - 4}" text-anchor="start">Cycle</text>
+        ${tiers.map((tier, index) => {
+          const value = acvCycle[tier].acv;
+          const x = c.left + 16 + index * 62;
+          const width = 32;
+          const h = (value / acvMax) * c.height;
+          const y = c.top + c.height - h;
+          const isActive = tier === activeTier;
+          return `
+            <rect x="${x}" y="${y}" width="${width}" height="${h}" rx="10" fill="${isActive ? "#22c55e" : mutedFill}"></rect>
+            <text class="chart-label" x="${x + width / 2}" y="${y - 8}" text-anchor="middle">$${value}k</text>
+            <text class="chart-tick" x="${x + width / 2}" y="${c.top + c.height + 18}" text-anchor="middle">${tier}</text>
+          `;
+        }).join("")}
+        <path class="${activeTier ? "chart-live-line" : "chart-muted-line"}" d="${linePath}"></path>
+        ${linePoints.map((point) => `
+          <circle class="chart-line-dot" cx="${point.x}" cy="${point.y}" r="${point.tier === activeTier ? 6 : 5}"></circle>
+          <text class="chart-tick" x="${point.x}" y="${point.y - 10}" text-anchor="middle">${acvCycle[point.tier].cycle}d</text>
+        `).join("")}
+      `;
+
+      // Chart D: Score-Influenced Activity Rate
+      const d = { left: 34, right: 20, top: 62, width: 286, trackY: 118, trackHeight: 20 };
+      const liveRate = adoptionRate[activeTier];
+      const markerX = d.left + (50 / 100) * d.width;
+      const fillWidth = (liveRate / 100) * d.width;
+      adoptionSvg.innerHTML = `
+        <text class="chart-live-label" x="${d.left}" y="42">Tier ${activeTier} adoption</text>
+        <text class="chart-label" x="${d.left}" y="76" text-anchor="start" style="font-size:34px;">${liveRate}%</text>
+        <text class="chart-tick" x="${d.left}" y="94" text-anchor="start">Score adoption rate — leading indicator of model trust.</text>
+        <rect class="chart-gauge-track" x="${d.left}" y="${d.trackY}" width="${d.width}" height="${d.trackHeight}" rx="10"></rect>
+        <rect class="chart-gauge-fill" x="${d.left}" y="${d.trackY}" width="${fillWidth}" height="${d.trackHeight}" rx="10"></rect>
+        <line class="chart-gauge-marker" x1="${markerX}" y1="${d.trackY - 14}" x2="${markerX}" y2="${d.trackY + d.trackHeight + 14}"></line>
+        <text class="chart-reference-label" x="${markerX}" y="${d.trackY - 18}" text-anchor="middle">adoption target</text>
+        ${[0, 25, 50, 75, 100].map((tick) => {
+          const x = d.left + (tick / 100) * d.width;
+          return `
+            <line class="chart-gridline" x1="${x}" y1="${d.trackY + d.trackHeight + 6}" x2="${x}" y2="${d.trackY + d.trackHeight + 12}"></line>
+            <text class="chart-tick" x="${x}" y="${d.trackY + d.trackHeight + 26}" text-anchor="middle">${tick}%</text>
+          `;
+        }).join("")}
       `;
     }
 
