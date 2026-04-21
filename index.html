@@ -9244,7 +9244,8 @@
           text.includes("6sense") ? `<span class="pipeline-tool-logo logo-sense">6</span>` :
           text.includes("Clay") ? `<span class="pipeline-tool-logo logo-clay">Cl</span>` :
           text.includes("Claude") ? `<span class="pipeline-tool-logo logo-anthropic">A</span>` :
-          text.includes("SFDC") ? `<span class="pipeline-tool-logo logo-salesforce"><img src="./assets/salesforce-logo.png" alt="" aria-hidden="true" /></span><span class="pipeline-tool-logo logo-marketo"><img src="./assets/marketo-logo.webp" alt="" aria-hidden="true" /></span>` : "";
+          text.includes("SFDC") ? `<span class="pipeline-tool-logo logo-salesforce"><img src="./assets/salesforce-logo.png" alt="" aria-hidden="true" /></span>` :
+          text.includes("Marketo") ? `<span class="pipeline-tool-logo logo-marketo"><img src="./assets/marketo-logo.webp" alt="" aria-hidden="true" /></span>` : "";
         pill.innerHTML = `${icon}<span>${text}</span>`;
         pill.dataset.decorated = "true";
       });
