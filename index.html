@@ -5297,6 +5297,285 @@
       justify-content: center;
     }
 
+    @keyframes slide {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(400%); }
+    }
+
+    .hero,
+    .section.dark:not(#summary),
+    .section.light,
+    .handoff-scene,
+    .pipeline-complete-scene {
+      clip-path: none !important;
+      margin: 0 !important;
+    }
+
+    .hero {
+      min-height: auto !important;
+      padding-bottom: 0 !important;
+    }
+
+    .hero::after,
+    .section.dark:not(#summary)::after,
+    .section.light::before {
+      display: none !important;
+    }
+
+    .section-inner {
+      padding: 48px 0 !important;
+    }
+
+    .section-head {
+      margin-bottom: 24px !important;
+    }
+
+    .hero-inner {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px !important;
+      padding-top: 64px !important;
+      padding-bottom: 0 !important;
+      min-height: auto !important;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      width: min(100%, 820px);
+    }
+
+    .hero-score-card {
+      position: relative !important;
+      top: auto !important;
+      bottom: auto !important;
+      left: auto !important;
+      right: auto !important;
+      margin-top: 32px !important;
+      margin-bottom: 0 !important;
+      align-self: flex-start;
+      width: min(100%, 760px);
+    }
+
+    .hero-card-note {
+      color: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    .setup-grid {
+      gap: 24px !important;
+    }
+
+    .setup-strip {
+      margin-top: 16px !important;
+    }
+
+    #setup .section-inner,
+    #clay .section-inner,
+    #claude .section-inner,
+    #salesforce .section-inner {
+      padding-bottom: 0 !important;
+    }
+
+    #timing .section-inner {
+      padding-bottom: 48px !important;
+    }
+
+    #marketo .section-inner {
+      padding-top: 32px !important;
+      padding-bottom: 48px !important;
+    }
+
+    .section.light .section-subheading {
+      color: #4b5563 !important;
+    }
+
+    #fit .section-subheading,
+    #timing .section-subheading,
+    #clay .section-subheading {
+      color: rgba(255, 255, 255, 0.7) !important;
+    }
+
+    #salesforce .section-subheading {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    .track-labels {
+      color: rgba(255, 255, 255, 0.7) !important;
+      font-size: 9px !important;
+    }
+
+    .section.light .track-labels {
+      color: rgba(55, 65, 81, 0.7) !important;
+    }
+
+    .fit-ui-stack,
+    .marketo-right-stack {
+      gap: 16px !important;
+    }
+
+    .clearbit-card {
+      margin-top: 16px !important;
+    }
+
+    .flow-summary-row,
+    .flow-source,
+    .flow-summary-row strong {
+      color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    #claude .mini-card-head strong,
+    #claude .response-card strong,
+    #claude .reason-total {
+      color: #1f2937 !important;
+    }
+
+    .prompt-meta-row,
+    .prompt-meta-row span {
+      color: #4b5563 !important;
+    }
+
+    .routing-note,
+    .flow-step-copy {
+      color: #4b5563 !important;
+    }
+
+    .cap-note {
+      color: #facc15 !important;
+      font-weight: 500 !important;
+    }
+
+    .sf-label {
+      color: #6b7280 !important;
+      font-size: 12px !important;
+      letter-spacing: 0.08em !important;
+    }
+
+    .history-card p {
+      color: #6b7280 !important;
+      font-size: 14px !important;
+    }
+
+    .history-shell {
+      margin-top: 16px !important;
+    }
+
+    #salesforce .section-head {
+      margin-bottom: 16px !important;
+    }
+
+    .salesforce-shell-wrap {
+      gap: 4px !important;
+    }
+
+    .handoff-scene {
+      min-height: auto !important;
+      padding: 16px 0 24px !important;
+      background: var(--dark) !important;
+    }
+
+    .handoff-inner {
+      width: min(calc(100% - 40px), 980px);
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      gap: 32px !important;
+      padding: 40px 32px !important;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+    }
+
+    .handoff-node {
+      gap: 8px !important;
+    }
+
+    .handoff-stream {
+      width: auto !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 0 !important;
+    }
+
+    .stream-caption {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .stream-track {
+      position: relative;
+      width: 96px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .stream-highlight {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 32px;
+      background: #4ade80;
+      animation: slide 1.5s linear infinite;
+    }
+
+    .stream-lock {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .handoff-pills span {
+      background: rgba(255, 255, 255, 0.1) !important;
+      border-color: rgba(255, 255, 255, 0.12) !important;
+      color: rgba(255, 255, 255, 0.7) !important;
+    }
+
+    .handoff-marketo-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #5C4DFF;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .handoff-label,
+    .handoff-sublabel {
+      color: #ffffff !important;
+    }
+
+    .handoff-sublabel {
+      opacity: 0.5;
+    }
+
+    .handoff-status-badge {
+      font-weight: 800 !important;
+    }
+
+    .marketo-grid {
+      gap: 16px !important;
+    }
+
+    #marketo .section-head {
+      margin-bottom: 16px !important;
+    }
+
+    .smart-list,
+    .flow-stack,
+    .metrics-grid {
+      margin-top: 0 !important;
+    }
+
     @media print {
       body * {
         visibility: hidden !important;
@@ -5459,7 +5738,7 @@
           </div>
         </div>
 
-        <div class="floating-score hero-score-card animate-on-scroll" style="--delay: 220ms;" id="heroScoreCard" data-speed="0.85" data-lag="0.15">
+        <div class="floating-score hero-score-card animate-on-scroll" style="--delay: 220ms;" id="heroScoreCard">
           <div class="score-top">
             <span>Live score preview</span>
             <div class="pulse-mini"></div>
@@ -6228,26 +6507,17 @@
             <span>Sync_Health__c</span>
           </div>
         </div>
+
         <div class="handoff-stream">
-          <svg class="stream-svg" viewBox="0 0 300 40" width="300" height="40" aria-hidden="true">
-            <defs>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="3" result="blur"></feGaussianBlur>
-                <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
-              </filter>
-            </defs>
-            <line x1="0" y1="20" x2="300" y2="20" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"></line>
-            <line class="stream-flow-line" x1="0" y1="20" x2="300" y2="20" stroke="#22C55E" stroke-width="1.5" stroke-dasharray="8 6"></line>
-            <circle class="data-packet" cx="0" cy="20" r="4" fill="#22C55E" filter="url(#glow)"></circle>
-            <circle class="data-packet" cx="0" cy="20" r="4" fill="#22C55E" filter="url(#glow)"></circle>
-            <circle class="data-packet" cx="0" cy="20" r="4" fill="#22C55E" filter="url(#glow)"></circle>
-          </svg>
-          <div class="stream-badge">READ-ONLY SYNC</div>
-        </div>
-        <div class="handoff-node handoff-marketo">
-          <div class="handoff-marketo-logo-pill">
-            <img class="handoff-logo handoff-logo-marketo" src="./assets/marketo-logo.webp" alt="Marketo logo" />
+          <span class="stream-caption">Read-only sync</span>
+          <div class="stream-track">
+            <div class="stream-highlight"></div>
           </div>
+          <span class="stream-lock">🔒</span>
+        </div>
+
+        <div class="handoff-node handoff-marketo">
+          <div class="handoff-marketo-icon">M</div>
           <span class="handoff-label">Marketo</span>
           <span class="handoff-sublabel">Activation triggered</span>
           <span class="handoff-status-badge" id="handoffMarketoStatus">MQA Alert Fired</span>
