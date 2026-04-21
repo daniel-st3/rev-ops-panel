@@ -5348,7 +5348,7 @@
 
     .pipeline-complete-scene {
       min-height: auto;
-      padding: 56px 0;
+      padding: 64px 0;
     }
 
     .clay-grid {
@@ -6841,7 +6841,7 @@
     <section class="section light" id="setup">
       <div class="section-inner">
         <div class="section-head animate-on-scroll">
-          <p class="step-label">Setup</p>
+          <p class="step-label">Step 1 - Setup</p>
           <div class="head-row">
             <div class="head-copy">
               <h2>Start with the account context.</h2>
@@ -6900,7 +6900,7 @@
     <section class="section dark" id="fit">
       <div class="section-inner">
         <div class="section-head animate-on-scroll">
-          <p class="step-label">Step 1 - Fit Signals</p>
+          <p class="step-label">Step 2 - Fit Signals</p>
           <div class="head-row">
             <div class="head-copy">
               <h2>Fit decides who belongs.</h2>
@@ -7090,7 +7090,7 @@
     <section class="section light" id="timing">
       <div class="section-inner">
         <div class="section-head animate-on-scroll">
-          <p class="step-label">Step 2 - Timing Signals</p>
+          <p class="step-label">Step 3 - Timing Signals</p>
           <div class="head-row">
             <div class="head-copy">
               <h2>Timing decides when to act.</h2>
@@ -7249,7 +7249,7 @@
     <section class="section dark" id="clay">
       <div class="section-inner">
         <div class="section-head animate-on-scroll">
-          <p class="step-label">Step 3 - Clay Enrichment</p>
+          <p class="step-label">Step 4 - Clay Enrichment</p>
           <div class="head-row">
             <div class="head-copy">
               <h2>Clay normalizes the record before Claude sees it.</h2>
@@ -7444,7 +7444,7 @@
     <section class="section light" id="claude">
       <div class="section-inner">
         <div class="section-head animate-on-scroll">
-          <p class="step-label">Step 4 - Claude API</p>
+          <p class="step-label">Step 5 - Claude API</p>
           <div class="head-row">
             <div class="head-copy">
               <h2>Claude turns the record into a routing decision.</h2>
@@ -7498,7 +7498,7 @@
     <section class="section dark" id="salesforce">
       <div class="section-inner">
         <div class="section-head animate-on-scroll">
-          <p class="step-label">Step 5 - Salesforce</p>
+          <p class="step-label">Step 6 - Salesforce</p>
           <div class="head-row">
             <div class="head-copy">
               <h2>Salesforce remains the master record.</h2>
@@ -7675,7 +7675,7 @@
     <section class="section light" id="marketo">
       <div class="section-inner">
         <div class="section-head animate-on-scroll">
-          <p class="step-label">Step 6 - Marketo</p>
+          <p class="step-label">Step 7 - Marketo</p>
           <div class="head-row">
             <div class="head-copy">
               <h2>Marketo activates the right motion.</h2>
@@ -7808,7 +7808,7 @@
             </div>
             <div class="chart-card">
               <div class="chart-title">Score-Influenced Activity Rate</div>
-              <div class="chart-subtitle">Score adoption rate — leading indicator of model trust. Updates from the live routed tier.</div>
+              <div class="chart-subtitle">Score-influenced activity rate by routing tier vs. 50% adoption target.</div>
               <svg class="chart-svg" id="adoptionRateChart" viewBox="0 0 360 240" aria-label="Score-influenced activity rate chart"></svg>
             </div>
           </div>
@@ -9716,7 +9716,7 @@
           return `
             <rect x="${x}" y="${y}" width="${width}" height="${h}" rx="10" fill="${isActive ? "#22c55e" : mutedFill}"></rect>
             <text class="chart-label" x="${x + width / 2}" y="${y - 8}" text-anchor="middle">$${value}k</text>
-            <text class="chart-tick" x="${x + width / 2}" y="${c.top + c.height + 18}" text-anchor="middle">${tier}</text>
+            <text class="chart-tick" x="${x + width / 2}" y="${c.top + c.height + 18}" text-anchor="middle">Tier ${tier}</text>
           `;
         }).join("")}
         <path class="${activeTier ? "chart-live-line" : "chart-muted-line"}" d="${linePath}"></path>
@@ -9727,23 +9727,35 @@
       `;
 
       // Chart D: Score-Influenced Activity Rate
-      const d = { left: 34, right: 20, top: 62, width: 286, trackY: 118, trackHeight: 20 };
-      const liveRate = adoptionRate[activeTier];
-      const markerX = d.left + (50 / 100) * d.width;
-      const fillWidth = (liveRate / 100) * d.width;
+      const d = { left: 44, right: 24, top: 20, bottom: 42, width: 292, height: 162 };
+      const adoptionTicks = [0, 25, 50, 75, 100];
+      const adoptionTargetY = d.top + d.height - (50 / 100) * d.height;
       adoptionSvg.innerHTML = `
-        <text class="chart-live-label" x="${d.left}" y="42">Tier ${activeTier} adoption</text>
-        <text class="chart-label" x="${d.left}" y="76" text-anchor="start" style="font-size:34px;">${liveRate}%</text>
-        <text class="chart-tick" x="${d.left}" y="94" text-anchor="start">Score adoption rate — leading indicator of model trust.</text>
-        <rect class="chart-gauge-track" x="${d.left}" y="${d.trackY}" width="${d.width}" height="${d.trackHeight}" rx="10"></rect>
-        <rect class="chart-gauge-fill" x="${d.left}" y="${d.trackY}" width="${fillWidth}" height="${d.trackHeight}" rx="10"></rect>
-        <line class="chart-gauge-marker" x1="${markerX}" y1="${d.trackY - 14}" x2="${markerX}" y2="${d.trackY + d.trackHeight + 14}"></line>
-        <text class="chart-reference-label" x="${markerX}" y="${d.trackY - 18}" text-anchor="middle">adoption target</text>
-        ${[0, 25, 50, 75, 100].map((tick) => {
-          const x = d.left + (tick / 100) * d.width;
+        ${adoptionTicks.slice(1).map((tick) => {
+          const y = d.top + d.height - (tick / 100) * d.height;
           return `
-            <line class="chart-gridline" x1="${x}" y1="${d.trackY + d.trackHeight + 6}" x2="${x}" y2="${d.trackY + d.trackHeight + 12}"></line>
-            <text class="chart-tick" x="${x}" y="${d.trackY + d.trackHeight + 26}" text-anchor="middle">${tick}%</text>
+            <line class="chart-gridline" x1="${d.left}" y1="${y}" x2="${d.left + d.width}" y2="${y}"></line>
+            <text class="chart-tick" x="${d.left - 8}" y="${y + 3}" text-anchor="end">${tick}%</text>
+          `;
+        }).join("")}
+        <line class="chart-axis" x1="${d.left}" y1="${d.top}" x2="${d.left}" y2="${d.top + d.height}"></line>
+        <line class="chart-axis" x1="${d.left}" y1="${d.top + d.height}" x2="${d.left + d.width}" y2="${d.top + d.height}"></line>
+        <line class="chart-reference" x1="${d.left}" y1="${adoptionTargetY}" x2="${d.left + d.width}" y2="${adoptionTargetY}"></line>
+        <text class="chart-reference-label" x="${d.left + d.width}" y="${adoptionTargetY - 8}" text-anchor="end">50% adoption target</text>
+        <text class="chart-reference-label" x="${d.left - 14}" y="${d.top - 4}" text-anchor="end">Adoption %</text>
+        <text class="chart-reference-label" x="${d.left + d.width / 2}" y="${d.top + d.height + 32}" text-anchor="middle">Tier</text>
+        ${tiers.map((tier, index) => {
+          const value = adoptionRate[tier];
+          const barWidth = 40;
+          const gap = 28;
+          const x = d.left + 18 + index * (barWidth + gap);
+          const h = (value / 100) * d.height;
+          const y = d.top + d.height - h;
+          const isActive = tier === activeTier;
+          return `
+            <rect class="${isActive ? "chart-live-bar pulse" : "chart-muted-bar"}" x="${x}" y="${y}" width="${barWidth}" height="${h}" rx="12"></rect>
+            <text class="chart-label" x="${x + barWidth / 2}" y="${y - 8}" text-anchor="middle">${value}%</text>
+            <text class="chart-tick" x="${x + barWidth / 2}" y="${d.top + d.height + 18}" text-anchor="middle">Tier ${tier}</text>
           `;
         }).join("")}
       `;
@@ -10332,7 +10344,7 @@
     }
 
     function initSectionTracking() {
-      const sections = ["setup", "fit", "timing", "clay", "claude", "salesforce", "marketo", "tableau", "summary"];
+      const sections = ["setup", "fit", "timing", "clay", "claude", "salesforce", "marketo", "tableau"];
       const visibleSections = new Map();
 
       const observer = new IntersectionObserver((entries) => {
@@ -10344,15 +10356,25 @@
         let bestRatio = 0;
         sections.forEach((id) => {
           const ratio = visibleSections.get(id) || 0;
-          if (ratio >= 0.3 && ratio > bestRatio) {
+          if (ratio >= 0.25 && ratio > bestRatio) {
             bestRatio = ratio;
             nextActive = id;
           }
         });
 
+        if (!nextActive) {
+          sections.forEach((id) => {
+            const ratio = visibleSections.get(id) || 0;
+            if (ratio > bestRatio) {
+              bestRatio = ratio;
+              nextActive = id;
+            }
+          });
+        }
+
         updateActiveChrome(nextActive);
       }, {
-        threshold: [0, 0.3, 0.55, 0.8]
+        threshold: [0, 0.25, 0.5, 0.75]
       });
 
       sections.forEach((id) => {
