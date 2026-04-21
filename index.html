@@ -655,6 +655,33 @@
       animation-delay: var(--delay, 0ms);
     }
 
+    .pipeline-chip-stack {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex: 0 0 auto;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: heroFlowIn 0.5s var(--ease-out) forwards;
+      animation-delay: var(--delay, 0ms);
+    }
+
+    .pipeline-chip-stack .pipeline-pill {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    .pipeline-chip-note {
+      font-size: 10px;
+      line-height: 1.2;
+      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.44);
+      text-align: center;
+      white-space: nowrap;
+    }
+
     .pipeline-pill {
       flex: 0 0 auto;
       min-height: 34px;
@@ -5095,6 +5122,9 @@
     .pipeline-complete-inner {
       text-align: center;
       padding: 0;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
     }
 
     .complete-label {
@@ -5103,6 +5133,9 @@
       color: #fff;
       margin-top: 20px;
       margin-bottom: 0;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
     }
 
     .complete-sub {
@@ -5111,6 +5144,9 @@
       max-width: 400px;
       margin: 8px auto 0;
       line-height: 1.6;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
     }
 
     .copy-toast {
@@ -5447,7 +5483,7 @@
 
     .pipeline-complete-scene {
       min-height: auto;
-      padding: 48px 0;
+      padding: 40px 0;
     }
 
     .clay-grid {
@@ -7004,7 +7040,10 @@
             <div class="pipeline-arrow" style="--delay: 1040ms;">→</div>
             <div class="pipeline-pill" style="--delay: 1120ms;">Census / Hightouch</div>
             <div class="pipeline-arrow" style="--delay: 1200ms;">→</div>
-            <div class="pipeline-pill" style="--delay: 1280ms;">SFDC</div>
+            <div class="pipeline-chip-stack" style="--delay: 1280ms;">
+              <div class="pipeline-pill">SFDC</div>
+              <div class="pipeline-chip-note">LeanData + Chili Piper</div>
+            </div>
             <div class="pipeline-arrow" style="--delay: 1360ms;">→</div>
             <div class="pipeline-pill" style="--delay: 1440ms;">Marketo</div>
           </div>
@@ -8115,6 +8154,7 @@
           <circle class="ring-progress" cx="40" cy="40" r="36" fill="none" stroke="#22C55E" stroke-width="2" stroke-dasharray="226" stroke-dashoffset="226" stroke-linecap="round" transform="rotate(-90 40 40)"></circle>
           <polyline class="check-mark" points="25,40 35,52 55,28" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="50" stroke-dashoffset="50"></polyline>
         </svg>
+        <div class="stream-badge" style="margin-top:16px;">Pipeline status · complete</div>
         <p class="complete-label">Pipeline complete.</p>
         <p class="complete-sub">All signals processed. Score written to Salesforce. Marketo motion activated.</p>
       </div>
@@ -10733,9 +10773,7 @@
         onEnter: () => {
           const tl = gsap.timeline();
           tl.to(".ring-progress", { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" })
-            .to(".check-mark", { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, "-=0.1")
-            .from(".complete-label", { y: 16, opacity: 0, duration: 0.5, ease: "power2.out" }, "-=0.1")
-            .from(".complete-sub", { y: 12, opacity: 0, duration: 0.4, ease: "power2.out" }, "-=0.25");
+            .to(".check-mark", { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, "-=0.1");
         }
       });
     }
