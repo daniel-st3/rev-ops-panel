@@ -2690,6 +2690,101 @@
       display: none !important;
     }
 
+    .pipeline-progress {
+      display: none !important;
+    }
+
+    .nav-stepper {
+      display: flex;
+      align-items: flex-start;
+      gap: 4px;
+      flex: 1 1 auto;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .nav-step {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      min-width: 42px;
+    }
+
+    .nav-step-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.3);
+      font-size: 10px;
+      font-weight: 800;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .nav-step-text {
+      font-size: 8px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.22);
+      transition: color 0.3s ease;
+    }
+
+    .nav-step.is-complete .nav-step-dot {
+      background: #22c55e;
+      color: #ffffff;
+    }
+
+    .nav-step.is-complete .nav-step-text {
+      color: rgba(74,222,128,0.72);
+    }
+
+    .nav-step.is-active .nav-step-dot {
+      background: #4ade80;
+      color: #ffffff;
+      box-shadow: 0 0 0 2px rgba(74,222,128,0.16), 0 0 16px rgba(34,197,94,0.35);
+      transform: scale(1.1);
+      animation: stepPulse 1.6s ease-in-out infinite;
+    }
+
+    .nav-step.is-active .nav-step-text {
+      color: #4ade80;
+    }
+
+    .nav-step-connector {
+      width: 16px;
+      height: 1px;
+      margin-top: 12px;
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,255,255,0.1);
+      border-radius: 999px;
+      flex: 0 0 auto;
+    }
+
+    .nav-step-connector::after {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0;
+      background: #22c55e;
+      transition: width 0.45s ease;
+    }
+
+    .nav-step-connector.is-complete::after {
+      width: 100%;
+    }
+
+    @keyframes stepPulse {
+      0%,100% { transform: scale(1.08); }
+      50% { transform: scale(1.14); }
+    }
+
     .site-nav {
       height: var(--nav-h);
       background: rgba(13, 43, 43, 0.92);
@@ -2777,7 +2872,7 @@
 
     .header-score-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(82px, auto));
+      grid-template-columns: repeat(5, minmax(76px, auto));
       align-items: stretch;
       justify-content: end;
       height: 100%;
@@ -3532,13 +3627,13 @@
       border-color: #22c55e;
     }
 
-    .header-score-grid .score-quadrant:last-child {
+    .header-score-grid .score-quadrant.confidence-quadrant {
       align-content: center;
       justify-items: center;
       text-align: center;
     }
 
-    .header-score-grid .score-quadrant:last-child .score-value {
+    .header-score-grid .score-quadrant.confidence-quadrant .score-value {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -4021,6 +4116,7 @@
     .report-table-row strong {
       font-size: 13px;
       color: rgba(255, 255, 255, 0.82);
+      overflow-wrap: anywhere;
     }
 
     .report-pill-status {
@@ -4914,7 +5010,7 @@
       }
 
       .header-score-grid {
-        grid-template-columns: repeat(4, minmax(72px, auto));
+        grid-template-columns: repeat(5, minmax(64px, auto));
       }
 
       .section-inner,
@@ -4975,7 +5071,7 @@
         justify-content: space-between;
       }
 
-      .nav-links {
+      .nav-stepper {
         display: none;
       }
 
@@ -4985,7 +5081,7 @@
       }
 
       .header-score-grid {
-        grid-template-columns: repeat(2, minmax(76px, auto));
+        grid-template-columns: repeat(3, minmax(68px, auto));
       }
 
       .header-score-grid .score-quadrant.hide-mobile {
@@ -5357,6 +5453,75 @@
       margin-bottom: 0 !important;
     }
 
+    .rollout-timeline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0 26px;
+      flex-wrap: wrap;
+    }
+
+    .rollout-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      min-width: 0;
+      transition: all 0.3s ease;
+    }
+
+    .rollout-step.is-active {
+      background: rgba(34,197,94,0.1);
+      border-color: rgba(34,197,94,0.28);
+      box-shadow: inset 0 0 0 1px rgba(34,197,94,0.12);
+    }
+
+    .rollout-node {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.12);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      flex: 0 0 auto;
+    }
+
+    .rollout-step.is-active .rollout-node {
+      background: #22c55e;
+      color: #04130f;
+    }
+
+    .rollout-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .rollout-copy strong {
+      font-size: 11px;
+      color: #ffffff;
+    }
+
+    .rollout-copy span {
+      font-size: 11px;
+      line-height: 1.35;
+      color: rgba(255,255,255,0.62);
+    }
+
+    .rollout-connector {
+      width: 18px;
+      height: 1px;
+      background: rgba(255,255,255,0.16);
+    }
+
     .hero-score-card {
       position: relative !important;
       top: auto !important;
@@ -5537,6 +5702,35 @@
       color: rgba(255,255,255,0.35);
     }
 
+    .score-confidence {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      min-height: 20px;
+    }
+
+    .conf-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      display: inline-flex;
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
+    }
+
+    .conf-dot.conf-high { background: #22c55e; box-shadow: 0 0 10px rgba(34,197,94,0.45); }
+    .conf-dot.conf-medium { background: #eab308; box-shadow: 0 0 10px rgba(234,179,8,0.35); }
+    .conf-dot.conf-low { background: #ef4444; box-shadow: 0 0 10px rgba(239,68,68,0.35); }
+
+    .score-conf-text {
+      font-size: 10px;
+      line-height: 1;
+      color: rgba(255,255,255,0.76);
+      font-weight: 700;
+    }
+
     .flow-summary-row,
     .flow-source,
     .flow-summary-row strong {
@@ -5552,6 +5746,39 @@
 
     .clay-right .table-shell {
       height: 100%;
+    }
+
+    .trust-rules-card {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .trust-rules-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .trust-rules-table thead tr {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .trust-rules-table th,
+    .trust-rules-table td {
+      padding: 9px 10px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      vertical-align: top;
+    }
+
+    .trust-rules-table th {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.58);
     }
 
     #claude .mini-card-head strong,
@@ -5582,6 +5809,38 @@
       border-color: rgba(255,255,255,0.08) !important;
     }
 
+    .rationale-card {
+      background: rgba(34,197,94,0.06) !important;
+      border-color: rgba(34,197,94,0.24) !important;
+    }
+
+    .rationale-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .rationale-head .micro-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #22c55e;
+      font-weight: 700;
+    }
+
+    .rationale-head .micro-subtle {
+      font-size: 10px;
+      color: rgba(31,41,55,0.45);
+    }
+
+    .rationale-body {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #374151;
+    }
+
     #timing .sense-ui .ui-card-copy,
     #timing .sense-ui .sense-panel p,
     #timing .sense-ui .sense-panel .data-label,
@@ -5602,6 +5861,55 @@
       color: #6b7280 !important;
       font-size: 12px !important;
       letter-spacing: 0.08em !important;
+    }
+
+    .sf-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 0 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .sf-badge-high { background: rgba(34,197,94,0.14); color: #166534; }
+    .sf-badge-medium { background: rgba(234,179,8,0.16); color: #854d0e; }
+    .sf-badge-low { background: rgba(239,68,68,0.14); color: #991b1b; }
+
+    .sf-field-wide {
+      grid-column: 1 / -1;
+    }
+
+    .sf-rationale-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .sf-rationale-text {
+      flex: 1 1 auto;
+      min-width: 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .sf-rationale-text.is-truncated {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sf-inline-toggle {
+      border: none;
+      background: transparent;
+      color: #0070d2;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 2px 0;
+      flex: 0 0 auto;
     }
 
     .history-card p {
@@ -5807,6 +6115,66 @@
       background: rgba(34,197,94,0.08) !important;
     }
 
+    .tier-thresholds {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .threshold-card {
+      display: flex;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
+      align-items: flex-start;
+    }
+
+    .threshold-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 13px;
+      flex: 0 0 auto;
+    }
+
+    .threshold-copy {
+      display: grid;
+      gap: 6px;
+    }
+
+    .threshold-copy strong {
+      font-size: 12px;
+      line-height: 1.45;
+      color: #ffffff;
+    }
+
+    .threshold-copy span {
+      font-size: 12px;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.68);
+    }
+
+    .tier-a-card .threshold-badge { background: #22c55e; color: #04130f; }
+    .tier-b-card .threshold-badge { background: #38bdf8; color: #082f49; }
+    .tier-c-card .threshold-badge { background: #eab308; color: #422006; }
+    .tier-d-card .threshold-badge { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.82); }
+
+    .holdout-callout {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.42);
+    }
+
     @media print {
       body * {
         visibility: hidden !important;
@@ -5859,6 +6227,10 @@
     }
 
     @media (max-width: 980px) {
+      .nav-stepper {
+        display: none !important;
+      }
+
       .hero-inner {
         grid-template-columns: 1fr !important;
         min-height: auto !important;
@@ -5871,6 +6243,10 @@
       }
 
       .marketo-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .tier-thresholds {
         grid-template-columns: 1fr !important;
       }
     }
@@ -5888,14 +6264,41 @@
         <span class="brand-blueprint">Account Scoring Blueprint</span>
       </a>
 
-      <nav class="nav-links" aria-label="Section navigation">
-        <a class="nav-link" data-nav-link href="#setup">Setup</a>
-        <a class="nav-link" data-nav-link href="#fit">Fit</a>
-        <a class="nav-link" data-nav-link href="#timing">Timing</a>
-        <a class="nav-link" data-nav-link href="#clay">Clay</a>
-        <a class="nav-link" data-nav-link href="#claude">Claude</a>
-        <a class="nav-link" data-nav-link href="#salesforce">Salesforce</a>
-        <a class="nav-link" data-nav-link href="#marketo">Marketo</a>
+      <nav class="nav-stepper" aria-label="Section progress">
+        <a class="nav-step" data-nav-link data-step-index="0" href="#setup">
+          <span class="nav-step-dot">1</span>
+          <span class="nav-step-text">Setup</span>
+        </a>
+        <span class="nav-step-connector" data-step-connector></span>
+        <a class="nav-step" data-nav-link data-step-index="1" href="#fit">
+          <span class="nav-step-dot">2</span>
+          <span class="nav-step-text">Fit</span>
+        </a>
+        <span class="nav-step-connector" data-step-connector></span>
+        <a class="nav-step" data-nav-link data-step-index="2" href="#timing">
+          <span class="nav-step-dot">3</span>
+          <span class="nav-step-text">Timing</span>
+        </a>
+        <span class="nav-step-connector" data-step-connector></span>
+        <a class="nav-step" data-nav-link data-step-index="3" href="#clay">
+          <span class="nav-step-dot">4</span>
+          <span class="nav-step-text">Clay</span>
+        </a>
+        <span class="nav-step-connector" data-step-connector></span>
+        <a class="nav-step" data-nav-link data-step-index="4" href="#claude">
+          <span class="nav-step-dot">5</span>
+          <span class="nav-step-text">Claude</span>
+        </a>
+        <span class="nav-step-connector" data-step-connector></span>
+        <a class="nav-step" data-nav-link data-step-index="5" href="#salesforce">
+          <span class="nav-step-dot">6</span>
+          <span class="nav-step-text">SFDC</span>
+        </a>
+        <span class="nav-step-connector" data-step-connector></span>
+        <a class="nav-step" data-nav-link data-step-index="6" href="#marketo">
+          <span class="nav-step-dot">7</span>
+          <span class="nav-step-text">Marketo</span>
+        </a>
       </nav>
 
       <div class="header-score-grid" aria-live="polite">
@@ -5914,6 +6317,13 @@
         <div class="score-quadrant">
           <div class="score-label">Tier</div>
           <div class="score-value bright tier-a" id="stickyTier">A</div>
+        </div>
+        <div class="score-quadrant confidence-quadrant">
+          <div class="score-label">Conf</div>
+          <div class="score-confidence">
+            <span class="conf-dot conf-high" id="stickyConfDot"></span>
+            <span class="score-conf-text" id="stickyConfText">High</span>
+          </div>
         </div>
       </div>
     </div>
@@ -5968,6 +6378,31 @@
             <div class="feature-pill">Fit + Timing model</div>
             <div class="feature-pill">Clay + Claude pipeline</div>
             <div class="feature-pill">SFDC + Marketo activation</div>
+          </div>
+          <div class="rollout-timeline animate-on-scroll" style="--delay: 210ms;" id="rolloutTimeline">
+            <div class="rollout-step" data-rollout-step="1">
+              <span class="rollout-node">V1</span>
+              <div class="rollout-copy">
+                <strong>0–30 days</strong>
+                <span>Firmographic Fit + LeanData routing</span>
+              </div>
+            </div>
+            <span class="rollout-connector"></span>
+            <div class="rollout-step" data-rollout-step="2">
+              <span class="rollout-node">V2</span>
+              <div class="rollout-copy">
+                <strong>31–60 days</strong>
+                <span>Timing signals + Marketo activation</span>
+              </div>
+            </div>
+            <span class="rollout-connector"></span>
+            <div class="rollout-step" data-rollout-step="3">
+              <span class="rollout-node">V3</span>
+              <div class="rollout-copy">
+                <strong>61–90 days</strong>
+                <span>Claude rationale + Tableau + holdout test</span>
+              </div>
+            </div>
           </div>
           <div class="cta-row hero-ctas animate-on-scroll" style="--delay: 240ms;">
             <a class="action-btn" href="#setup">Begin walkthrough</a>
@@ -6542,15 +6977,6 @@
                 <span class="text">downstream-safe fields ready for Claude</span>
               </div>
             </div>
-            <div class="json-panel" id="jsonPanel">
-              <div class="json-head">
-                <strong>JSON preview</strong>
-                <button class="toggle-btn" id="jsonToggle" type="button">Expand</button>
-              </div>
-              <div class="json-body">
-                <div class="code-wrap" id="jsonCode"></div>
-              </div>
-            </div>
           </div>
 
           <div class="clay-right animate-on-scroll" style="--delay: 120ms;">
@@ -6575,6 +7001,50 @@
                   </thead>
                   <tbody id="clayBody"></tbody>
                 </table>
+              </div>
+            </div>
+            <div class="trust-rules-card">
+              <div class="mini-card-head" style="margin-bottom:12px;">
+                <strong>Field Trust Rules</strong>
+              </div>
+              <table class="trust-rules-table">
+                <thead>
+                  <tr>
+                    <th>Field Type</th>
+                    <th>Primary</th>
+                    <th>Fallback</th>
+                    <th>Rule</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Firmographics</td>
+                    <td>ZoomInfo</td>
+                    <td>Clearbit</td>
+                    <td>Most recent verified_at wins</td>
+                  </tr>
+                  <tr>
+                    <td>Technographics</td>
+                    <td>BuiltWith</td>
+                    <td>HG Insights</td>
+                    <td>Additive — Shopify + Zendesk coexist</td>
+                  </tr>
+                  <tr>
+                    <td>Buying Stage</td>
+                    <td>6sense</td>
+                    <td>Bombora</td>
+                    <td>6sense authoritative, no double-count</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="json-panel" id="jsonPanel">
+              <div class="json-head">
+                <strong>JSON preview</strong>
+                <button class="toggle-btn" id="jsonToggle" type="button">Expand</button>
+              </div>
+              <div class="json-body">
+                <div class="code-wrap" id="jsonCode"></div>
               </div>
             </div>
           </div>
@@ -6631,6 +7101,7 @@
                 <div class="response-card" id="fitReasoningCard"></div>
                 <div class="response-card" id="timingReasoningCard"></div>
                 <div class="response-card routing-card" id="routingCard"></div>
+                <div class="response-card rationale-card" id="rationaleCard"></div>
               </div>
             </div>
           </div>
@@ -6697,7 +7168,7 @@
               </div>
               <div class="sf-field" id="sfFieldTier">
                 <div class="sf-label">Tier__c
-                  <div class="sf-info">i<span class="sf-tooltip">Tier A is 130 or above. Tier B is 90 to 129. Tier C is 50 to 89. Tier D is below 50.</span></div>
+                  <div class="sf-info">i<span class="sf-tooltip">Tier A requires composite 130+, fit 70+, and High confidence. Tier D also applies when confidence falls Low.</span></div>
                 </div>
                 <div class="sf-value" id="sfTier">Tier A</div>
               </div>
@@ -6712,6 +7183,21 @@
                   <div class="sf-info">i<span class="sf-tooltip">Upstream source health before activation flows read from the account.</span></div>
                 </div>
                 <div class="sf-value" id="sfSync">72.00%</div>
+              </div>
+              <div class="sf-field" id="sfFieldConfidence">
+                <div class="sf-label">Confidence_Flag__c
+                  <div class="sf-info">i<span class="sf-tooltip">Coverage-derived trust flag. High above 75%, Medium from 50% to 75%, Low below 50%.</span></div>
+                </div>
+                <div class="sf-value"><span class="sf-badge sf-badge-high" id="sfConfidence">High</span></div>
+              </div>
+              <div class="sf-field sf-field-wide" id="sfFieldRationale">
+                <div class="sf-label">Score_Rationale__c
+                  <div class="sf-info">i<span class="sf-tooltip">Plain-language rationale the AE sees on the account record.</span></div>
+                </div>
+                <div class="sf-rationale-wrap">
+                  <div class="sf-value sf-rationale-text is-truncated" id="sfRationale">Harbor &amp; Pine Goods scores 145 with strong fit and timing.</div>
+                  <button class="sf-inline-toggle" id="sfRationaleToggle" type="button">Expand</button>
+                </div>
               </div>
             </div>
           </div>
@@ -6744,6 +7230,8 @@
                   <tr><td>Tier__c</td><td>Text(20)</td><td>Sales-ready tier that drives activation</td><td>Today</td></tr>
                   <tr><td>Routing__c</td><td>Text(50)</td><td>Motion selected by the scoring model</td><td>Today</td></tr>
                   <tr><td>Sync_Health__c</td><td>Percent(5,2)</td><td>Confidence proxy for downstream-safe syncs</td><td>Today</td></tr>
+                  <tr><td>Confidence_Flag__c</td><td>Text(12)</td><td>Coverage-derived trust flag for routing discipline</td><td>Today</td></tr>
+                  <tr><td>Score_Rationale__c</td><td>Long Text Area</td><td>Plain-language score explanation written for the AE</td><td>Today</td></tr>
                 </tbody>
               </table>
             </div>
@@ -6908,6 +7396,38 @@
           </div>
         </div>
 
+        <div class="report-block-label" style="margin-bottom:10px;">Tier thresholds</div>
+        <div class="tier-thresholds animate-on-scroll" style="--delay: 40ms;">
+          <div class="threshold-card tier-a-card">
+            <div class="threshold-badge">A</div>
+            <div class="threshold-copy">
+              <strong>Composite ≥ 130 · Fit ≥ 70 · Confidence High</strong>
+              <span>1:1 ABM, AE+SDR, sub-5min SLA</span>
+            </div>
+          </div>
+          <div class="threshold-card tier-b-card">
+            <div class="threshold-badge">B</div>
+            <div class="threshold-copy">
+              <strong>Composite 90–129 · strong on 2 of 3</strong>
+              <span>1:few, 30min SLA, personalized cadence</span>
+            </div>
+          </div>
+          <div class="threshold-card tier-c-card">
+            <div class="threshold-badge">C</div>
+            <div class="threshold-copy">
+              <strong>Composite 50–89 · Fit present, Timing cold</strong>
+              <span>Programmatic nurture, quarterly rescore</span>
+            </div>
+          </div>
+          <div class="threshold-card tier-d-card">
+            <div class="threshold-badge">D</div>
+            <div class="threshold-copy">
+              <strong>Composite &lt; 50 · or Low Confidence</strong>
+              <span>Marketing nurture only, no outbound</span>
+            </div>
+          </div>
+        </div>
+
         <div class="summary-shell report-shell animate-on-scroll" style="--delay: 60ms;">
           <div class="report-top-strip">
             <div class="report-live-row">
@@ -6989,6 +7509,7 @@
             <div class="report-block-label">Marketo activation state</div>
             <div class="marketo-timeline" id="summaryFlowTimeline"></div>
             <div class="report-filter-list" id="summaryFilterList"></div>
+            <div class="holdout-callout">5% of Tier A accounts routed to holdout control — score-influenced activity tracked as leading adoption indicator.</div>
           </div>
 
           <div class="summary-actions">
@@ -7204,7 +7725,8 @@
       extraRows: [],
       jsonOpen: false,
       metaOpen: false,
-      thinking: false
+      thinking: false,
+      sfRationaleExpanded: false
     };
 
     const els = {
@@ -7218,6 +7740,8 @@
       stickyTiming: document.getElementById("stickyTiming"),
       stickyComposite: document.getElementById("stickyComposite"),
       stickyTier: document.getElementById("stickyTier"),
+      stickyConfDot: document.getElementById("stickyConfDot"),
+      stickyConfText: document.getElementById("stickyConfText"),
       heroScoreCard: document.getElementById("heroScoreCard"),
       heroFit: document.getElementById("heroFit"),
       heroTiming: document.getElementById("heroTiming"),
@@ -7292,6 +7816,7 @@
       promptCode: document.getElementById("promptCode"),
       copyPrompt: document.getElementById("copyPrompt"),
       copyToast: document.getElementById("copyToast"),
+      rolloutTimeline: document.getElementById("rolloutTimeline"),
       promptMetaModel: document.getElementById("promptMetaModel"),
       promptMetaTemp: document.getElementById("promptMetaTemp"),
       promptMetaMaxTokens: document.getElementById("promptMetaMaxTokens"),
@@ -7300,6 +7825,7 @@
       fitReasoningCard: document.getElementById("fitReasoningCard"),
       timingReasoningCard: document.getElementById("timingReasoningCard"),
       routingCard: document.getElementById("routingCard"),
+      rationaleCard: document.getElementById("rationaleCard"),
       sfAccountName: document.getElementById("sfAccountName"),
       sfFit: document.getElementById("sfFit"),
       sfTiming: document.getElementById("sfTiming"),
@@ -7307,12 +7833,17 @@
       sfTier: document.getElementById("sfTier"),
       sfRouting: document.getElementById("sfRouting"),
       sfSync: document.getElementById("sfSync"),
+      sfConfidence: document.getElementById("sfConfidence"),
+      sfRationale: document.getElementById("sfRationale"),
+      sfRationaleToggle: document.getElementById("sfRationaleToggle"),
       sfFieldFit: document.getElementById("sfFieldFit"),
       sfFieldTiming: document.getElementById("sfFieldTiming"),
       sfFieldComposite: document.getElementById("sfFieldComposite"),
       sfFieldTier: document.getElementById("sfFieldTier"),
       sfFieldRouting: document.getElementById("sfFieldRouting"),
       sfFieldSync: document.getElementById("sfFieldSync"),
+      sfFieldConfidence: document.getElementById("sfFieldConfidence"),
+      sfFieldRationale: document.getElementById("sfFieldRationale"),
       sfHistoryRows: document.getElementById("sfHistoryRows"),
       metaToggle: document.getElementById("metaToggle"),
       metaShell: document.getElementById("metaShell"),
@@ -7359,6 +7890,8 @@
     };
 
     els.navLinks = [...document.querySelectorAll("[data-nav-link]")];
+    els.navStepConnectors = [...document.querySelectorAll("[data-step-connector]")];
+    els.rolloutSteps = [...document.querySelectorAll("[data-rollout-step]")];
     els.progressNodes = [...document.querySelectorAll("[data-progress-node]")];
     els.heroMiniNodes = [...document.querySelectorAll("[data-mini-node]")];
 
@@ -7394,6 +7927,7 @@
     }
 
     function computeScores(discrete) {
+      const confidence = getConfidence(discrete);
       const fitSignals = [
         { name: "Enterprise scale", points: fitMeta.scale.points[discrete.scale] },
         { name: fitMeta.industry.labels[discrete.industry], points: fitMeta.industry.points[discrete.industry] },
@@ -7415,9 +7949,14 @@
       let tier = "D";
       let motion = "Marketo nurture only";
       let sla = "No SLA";
-      let action = "Suppressed from all outbound";
+      let action = "Marketing nurture only, no outbound";
 
-      if (composite >= 130) {
+      if (confidence.key === "low" || composite < 50) {
+        tier = "D";
+        motion = "Marketo nurture only";
+        sla = "No SLA";
+        action = "Marketing nurture only, no outbound";
+      } else if (composite >= 130 && fit >= 70 && confidence.key === "high") {
         tier = "A";
         motion = "1:1 ABM with AE and SDR paired";
         sla = "Sub-5-minute SLA via Chili Piper";
@@ -7427,7 +7966,7 @@
         motion = "Scaled SDR pod";
         sla = "24h SLA";
         action = "Scaled SDR sequence and targeted nurture";
-      } else if (composite >= 50) {
+      } else {
         tier = "C";
         motion = "Marketo nurture only";
         sla = "No SLA";
@@ -7440,6 +7979,7 @@
         rawTiming,
         composite,
         tier,
+        confidence,
         motion,
         sla,
         action,
@@ -7450,6 +7990,39 @@
 
     function getTierClass(tier) {
       return tier === "A" ? "tier-a" : tier === "B" ? "tier-b" : tier === "C" ? "tier-c" : "tier-d";
+    }
+
+    function getConfidence(discrete) {
+      if (discrete.coverage > 75) return { label: "High", key: "high" };
+      if (discrete.coverage >= 50) return { label: "Medium", key: "medium" };
+      return { label: "Low", key: "low" };
+    }
+
+    function getRolloutPhase(discrete, scores) {
+      const hasTiming = discrete.intent || discrete.hiring || discrete.pricing;
+      if (!hasTiming) return 1;
+      if (scores.composite >= 130 && getConfidence(discrete).key === "high") return 3;
+      return 2;
+    }
+
+    function buildScoreRationale(discrete, scores) {
+      const rationaleParts = [
+        `${state.accountName} scores ${scores.composite} (Fit ${scores.fit}, Timing ${scores.timing}).`
+      ];
+
+      if (discrete.scale) rationaleParts.push("Enterprise scale confirmed at 400+ employees.");
+      if (discrete.industry === 2) rationaleParts.push("Retail/DTC vertical aligns with Gladly core ICP.");
+      if (discrete.industry === 0) rationaleParts.push("The account sits outside the Gladly ICP and takes the fit penalty.");
+      if (discrete.commerce) rationaleParts.push("Commerce stack indicates Shopify Plus and Klaviyo are in play.");
+      if (discrete.helpdesk) rationaleParts.push("Zendesk incumbent signals an active displacement opportunity.");
+      if (discrete.intent) rationaleParts.push("6sense shows Decision-stage surge, indicating active evaluation.");
+      if (discrete.hiring) rationaleParts.push("VP/CX hiring detected, suggesting a stack review within 90 days.");
+      if (discrete.pricing) rationaleParts.push("Pricing page and webinar activity add first-party buying pressure.");
+
+      const confidence = getConfidence(discrete);
+      rationaleParts.push(`Confidence is ${confidence.label.toLowerCase()} based on ${discrete.coverage}% ZoomInfo coverage.`);
+      rationaleParts.push(`Routing: ${scores.motion}.`);
+      return rationaleParts.join(" ");
     }
 
     function formatPercent(value) {
@@ -7964,6 +8537,7 @@
       state.owner = preset.owner;
       state.lane = preset.lane;
       state.extraRows = [];
+      state.sfRationaleExpanded = false;
       els.scenarioDescription.textContent = preset.description;
       renderPresets();
 
@@ -8009,6 +8583,8 @@
       }
 
       els.stickyTier.className = `score-value bright ${getTierClass(scores.tier)}`;
+      els.stickyConfText.textContent = scores.confidence.label;
+      els.stickyConfDot.className = `conf-dot conf-${scores.confidence.key}`;
     }
 
     function renderHero(scores) {
@@ -8024,8 +8600,13 @@
       });
     }
 
-    function renderSetup() {
+    function renderSetup(scores) {
       els.scenarioDescription.textContent = state.activePreset ? presets[state.activePreset].description : "Custom account values are active. Every section below is now driven by live controls.";
+      const discrete = getDiscrete();
+      const phase = getRolloutPhase(discrete, scores);
+      els.rolloutSteps.forEach((step, index) => {
+        step.classList.toggle("is-active", index + 1 === phase);
+      });
     }
 
     function renderFit(discrete) {
@@ -8197,6 +8778,7 @@
 
     function renderClaude(discrete, scores, forceImmediate = false) {
       const updateOutput = () => {
+        const rationale = buildScoreRationale(discrete, scores);
         els.fitReasoningCard.innerHTML = buildReasonCard("Fit reasoning", scores.fitSignals, scores.fit);
         const note = scores.rawTiming > 50 ? `Raw ${scores.rawTiming} saturated to 50.` : "";
         els.timingReasoningCard.innerHTML = buildReasonCard("Timing reasoning", scores.timingSignals, scores.timing, note);
@@ -8206,6 +8788,13 @@
             <strong style="font-size:16px; color:var(--ink);">Routing decision</strong>
           </div>
           <p class="routing-note"><strong style="display:block; margin-bottom:8px; color:var(--ink);">${scores.motion}</strong>${scores.sla}. ${scores.action}.</p>
+        `;
+        els.rationaleCard.innerHTML = `
+          <div class="rationale-head">
+            <span class="micro-label">Score_Rationale__c</span>
+            <span class="micro-subtle">Written to Account record</span>
+          </div>
+          <p class="rationale-body">${rationale}</p>
         `;
         els.responsePanel.classList.remove("thinking");
       };
@@ -8225,6 +8814,7 @@
 
     function renderSalesforce(discrete, scores) {
       const stats = getEnrichmentStats(discrete);
+      const rationale = buildScoreRationale(discrete, scores);
       els.sfAccountName.textContent = state.accountName;
 
       const fieldValues = {
@@ -8233,7 +8823,8 @@
         sfComposite: `${scores.composite}`,
         sfTier: `Tier ${scores.tier}`,
         sfRouting: scores.motion,
-        sfSync: `${stats.syncHealth}%`
+        sfSync: `${stats.syncHealth}%`,
+        sfConfidence: scores.confidence.label
       };
 
       Object.entries(fieldValues).forEach(([id, value]) => {
@@ -8246,11 +8837,21 @@
             sfComposite: els.sfFieldComposite,
             sfTier: els.sfFieldTier,
             sfRouting: els.sfFieldRouting,
-            sfSync: els.sfFieldSync
+            sfSync: els.sfFieldSync,
+            sfConfidence: els.sfFieldConfidence
           }[id];
           flashSF(fieldWrapper);
         }
       });
+
+      els.sfConfidence.className = `sf-badge sf-badge-${scores.confidence.key}`;
+
+      if (els.sfRationale.textContent !== rationale) {
+        els.sfRationale.textContent = rationale;
+        flashSF(els.sfFieldRationale);
+      }
+      els.sfRationale.classList.toggle("is-truncated", !state.sfRationaleExpanded);
+      els.sfRationaleToggle.textContent = state.sfRationaleExpanded ? "Collapse" : "Expand";
 
       const historyEntries = [
         {
@@ -8391,6 +8992,7 @@
     }
 
     function renderSummary(scores) {
+      const rationale = buildScoreRationale(getDiscrete(), scores);
       animateNumber(els.summaryFit, scores.fit);
       animateNumber(els.summaryTiming, scores.timing);
       animateNumber(els.summaryComposite, scores.composite);
@@ -8446,7 +9048,9 @@
         ["Composite_Score__c", `${scores.composite}`],
         ["Tier__c", `Tier ${scores.tier}`],
         ["Routing__c", scores.motion],
-        ["Sync_Health__c", `${stats.syncHealth}%`]
+        ["Sync_Health__c", `${stats.syncHealth}%`],
+        ["Confidence_Flag__c", scores.confidence.label],
+        ["Score_Rationale__c", rationale]
       ];
       els.summarySalesforceRows.innerHTML = sfRows.map(([name, value]) => `
         <div class="report-table-row">
@@ -8487,8 +9091,8 @@
     }
 
     function renderMetaLabels(discrete) {
-      const coverage = discrete.coverage >= 70 ? "High confidence" : discrete.coverage >= 50 ? "Medium confidence" : "Low confidence";
-      els.clearbitStatus.textContent = coverage;
+      const confidence = getConfidence(discrete);
+      els.clearbitStatus.textContent = `${confidence.label} confidence`;
     }
 
     function renderAll(triggerThinking = false) {
@@ -8497,7 +9101,7 @@
       const fitContext = getFitContext(discrete);
       const timingContext = getTimingContext(discrete);
 
-      renderSetup();
+      renderSetup(scores);
       renderSticky(scores);
       renderHero(scores);
       renderFit(discrete);
@@ -8584,6 +9188,12 @@
       els.metaToggle.addEventListener("click", () => {
         state.metaOpen = !state.metaOpen;
         els.metaShell.classList.toggle("open", state.metaOpen);
+      });
+
+      els.sfRationaleToggle.addEventListener("click", () => {
+        state.sfRationaleExpanded = !state.sfRationaleExpanded;
+        els.sfRationale.classList.toggle("is-truncated", !state.sfRationaleExpanded);
+        els.sfRationaleToggle.textContent = state.sfRationaleExpanded ? "Collapse" : "Expand";
       });
 
       els.copyPrompt.addEventListener("click", async () => {
@@ -8877,7 +9487,17 @@
 
       els.navLinks.forEach((link) => {
         const target = link.getAttribute("href").replace("#", "");
+        const index = Number(link.dataset.stepIndex || -1);
+        const activeMap = { setup: 0, fit: 1, timing: 2, clay: 3, claude: 4, salesforce: 5, marketo: 6 };
+        const activeStep = activeMap[sectionId] ?? -1;
         link.classList.toggle("is-active", target === navLinks[sectionId]);
+        link.classList.toggle("is-complete", activeStep !== -1 && index < activeStep);
+      });
+
+      const activeMap = { setup: 0, fit: 1, timing: 2, clay: 3, claude: 4, salesforce: 5, marketo: 6 };
+      const activeStep = activeMap[sectionId] ?? -1;
+      els.navStepConnectors.forEach((connector, index) => {
+        connector.classList.toggle("is-complete", activeStep !== -1 && index < activeStep);
       });
 
       const groupOrder = ["setup", "fit", "timing", "clay", "claude", "activate"];
