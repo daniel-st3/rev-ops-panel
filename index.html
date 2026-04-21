@@ -14,6 +14,9 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
     rel="stylesheet"
   />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollSmoother.min.js"></script>
   <style>
     :root {
       --dark: #0d2b2b;
@@ -4129,6 +4132,772 @@
       }
     }
 
+    /* V7 precision overhaul */
+    ::selection {
+      background: rgba(34, 197, 94, 0.25);
+      color: #ffffff;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(34, 197, 94, 0.3);
+      border-radius: 2px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(34, 197, 94, 0.6);
+    }
+
+    #smooth-wrapper {
+      overflow: hidden;
+    }
+
+    #smooth-content {
+      overflow: visible;
+    }
+
+    .score-value,
+    .composite-big,
+    .mini-stat strong,
+    .score-number-lg,
+    .score-number-xl,
+    .sf-value,
+    .value-large,
+    .value,
+    .number {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .action-btn:focus-visible,
+    .ghost-btn:focus-visible,
+    .copy-btn:focus-visible,
+    .toggle-btn:focus-visible,
+    .meta-toggle:focus-visible,
+    .add-btn:focus-visible,
+    .preset-chip:focus-visible,
+    .slider-input:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.4);
+    }
+
+    .zoominfo-ui,
+    .sense-ui,
+    .salesforce-shell,
+    .marketo-card,
+    .prompt-panel,
+    .response-panel,
+    .clearbit-card,
+    .table-shell {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .zoominfo-ui:hover,
+    .sense-ui:hover,
+    .salesforce-shell:hover,
+    .marketo-card:hover,
+    .prompt-panel:hover,
+    .response-panel:hover,
+    .clearbit-card:hover,
+    .table-shell:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+    }
+
+    .pulse-dot,
+    .hero-eyebrow .dot,
+    .report-live-dot,
+    .pulse-mini {
+      animation: pulse-ring 2s ease-out infinite;
+    }
+
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
+      70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    }
+
+    .app-shell {
+      padding-top: var(--nav-h);
+    }
+
+    .hero,
+    .section {
+      position: relative;
+      z-index: 1;
+      overflow: visible;
+      clip-path: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .section-inner {
+      padding-top: 88px;
+      padding-bottom: 88px;
+    }
+
+    .section-head {
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .subhead-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .section-subheading {
+      flex: 1;
+      margin: 0;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .tool-badges {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-shrink: 0;
+      justify-content: flex-end;
+    }
+
+    .tool-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px 4px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .section.light .tool-badge {
+      border-color: rgba(0,0,0,0.08);
+    }
+
+    .tool-badge-logo,
+    .pipeline-tool-logo {
+      width: 16px;
+      height: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      flex: 0 0 auto;
+      overflow: hidden;
+      font-size: 9px;
+      font-weight: 800;
+      line-height: 1;
+      color: #fff;
+    }
+
+    .tool-badge-logo img,
+    .pipeline-tool-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .logo-zoom { background: rgba(255, 107, 43, 0.18); color: #ff6b2b; border: 1px solid rgba(255,107,43,0.26); }
+    .logo-clearbit { background: rgba(28, 110, 242, 0.18); color: #1c6ef2; border: 1px solid rgba(28,110,242,0.26); }
+    .logo-sense { background: rgba(255, 107, 43, 0.18); color: #ff6b2b; border: 1px solid rgba(255,107,43,0.26); }
+    .logo-clay { background: rgba(124, 58, 237, 0.18); color: #7c3aed; border: 1px solid rgba(124,58,237,0.26); }
+    .logo-anthropic { background: rgba(201, 169, 110, 0.18); color: #c9a96e; border: 1px solid rgba(201,169,110,0.26); }
+    .logo-salesforce { background: rgba(0, 112, 210, 0.12); }
+    .logo-marketo { background: rgba(92, 78, 229, 0.12); }
+
+    .pipeline-flow .pipeline-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero,
+    #fit,
+    #clay,
+    #salesforce,
+    #pipeline-complete,
+    #summary {
+      background: var(--dark);
+    }
+
+    .hero::after,
+    #fit::after,
+    #clay::after,
+    #salesforce::after,
+    #marketo::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 -1px 0;
+      height: 60px;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 60' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cpath d='M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z' fill='%23F6F9F6'/%3E%3C/svg%3E") center bottom / 100% 100% no-repeat;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    #timing::before,
+    #claude::before,
+    #marketo::before,
+    #summary::before {
+      content: "";
+      position: absolute;
+      inset: -1px 0 auto 0;
+      height: 60px;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 60' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cpath d='M0,30 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,0 L0,0 Z' fill='%230D2B2B'/%3E%3C/svg%3E") center top / 100% 100% no-repeat;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .section.light::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22C55E;
+      box-shadow: 0 0 10px rgba(34,197,94,0.7);
+      transform: translateX(-50%);
+      animation: flowPulse 2s ease-in-out infinite;
+      z-index: 3;
+    }
+
+    .pipeline-progress {
+      position: fixed;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 200px;
+      display: none;
+      place-items: center;
+      z-index: 80;
+      --progress: 0%;
+    }
+
+    .pipeline-progress.sidebar-visible {
+      display: grid;
+    }
+
+    .progress-line {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 1px;
+      height: 200px;
+      background: linear-gradient(to bottom, rgba(34,197,94,0.5) 0%, rgba(34,197,94,0.5) var(--progress), rgba(34,197,94,0.12) var(--progress), rgba(34,197,94,0.12) 100%);
+    }
+
+    .progress-node {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+    }
+
+    .progress-node:nth-of-type(2) { top: 0; }
+    .progress-node:nth-of-type(3) { top: 40px; }
+    .progress-node:nth-of-type(4) { top: 80px; }
+    .progress-node:nth-of-type(5) { top: 120px; }
+    .progress-node:nth-of-type(6) { top: 160px; }
+    .progress-node:nth-of-type(7) { top: 200px; transform: translate(-50%, -50%); }
+
+    .progress-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(34,197,94,0.4);
+      background: transparent;
+      transition: all 0.25s ease;
+    }
+
+    .progress-node.is-complete .progress-dot {
+      background: rgba(34,197,94,0.35);
+    }
+
+    .progress-node.is-active .progress-dot {
+      background: #22C55E;
+      border-color: #22C55E;
+      transform: scale(1.4);
+      box-shadow: 0 0 8px rgba(34,197,94,0.5);
+    }
+
+    .progress-active-label {
+      position: absolute;
+      right: 18px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgba(13,43,43,0.92);
+      color: #fff;
+      font-size: 11px;
+      opacity: 0;
+      transform: translateX(8px);
+      transition: opacity 0.15s ease, transform 0.15s ease, top 0.2s ease;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .progress-tooltip {
+      display: none !important;
+    }
+
+    .pipeline-progress:hover .progress-active-label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .zi-card {
+      display: flex;
+      flex-direction: row;
+      border-radius: 20px;
+      overflow: hidden;
+      background: linear-gradient(145deg, #0f3030 0%, #0a2020 100%);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .zi-sidebar {
+      width: 44px;
+      min-width: 44px;
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .zi-label {
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+      white-space: nowrap;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: block;
+      margin: auto;
+      user-select: none;
+    }
+
+    .zi-main {
+      flex: 1;
+      padding: 20px;
+      min-width: 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .zi-header h3,
+    .zi-header p {
+      margin: 0;
+    }
+
+    .zi-header h3 {
+      font-size: 17px;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .zi-header p {
+      margin-top: 4px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .zi-fields-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .field-cell {
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 12px 14px;
+      min-width: 0;
+    }
+
+    .field-cell .field-label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .field-cell .field-value {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .zi-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 0;
+    }
+
+    .zi-pills .tag-pill {
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 11px;
+      color: #22C55E;
+      white-space: nowrap;
+    }
+
+    .zi-footer-row {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 10px;
+      margin-top: 0;
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .green-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22C55E;
+      flex: 0 0 auto;
+    }
+
+    .flow-summary-card,
+    .prompt-metadata {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+    }
+
+    .flow-summary-list,
+    .prompt-metadata {
+      display: grid;
+      gap: 12px;
+    }
+
+    .flow-summary-row,
+    .prompt-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .prompt-metadata {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .prompt-meta-row strong {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: right;
+      max-width: 58%;
+    }
+
+    .flow-source {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tool-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .tool-dot.zoom { background: #FF6B2B; }
+    .tool-dot.sense { background: #FF6B2B; }
+    .tool-dot.firstparty { background: #22C55E; }
+
+    .summary-stats {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .summary-stat .text {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .marketo-smart {
+      min-height: 0 !important;
+      height: auto !important;
+    }
+
+    .smart-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .score-breakdown-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .score-part {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .score-label-sm {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 4px;
+    }
+
+    .score-number-lg {
+      font-size: 48px;
+      font-weight: 800;
+      color: white;
+      line-height: 1;
+    }
+
+    .score-number-xl {
+      font-size: 72px;
+      font-weight: 800;
+      color: #22C55E;
+      line-height: 1;
+    }
+
+    .score-operator {
+      font-size: 28px;
+      color: rgba(255,255,255,0.2);
+      font-weight: 300;
+      padding-bottom: 16px;
+    }
+
+    .score-part.composite {
+      margin-left: 8px;
+    }
+
+    .tier-badge-lg {
+      background: #22C55E;
+      color: black;
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    .marketo-timeline {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 14px;
+      gap: 8px;
+    }
+
+    .mt-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mt-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      box-shadow: none;
+    }
+
+    .mt-node.active .mt-dot {
+      background: #22C55E;
+      box-shadow: 0 0 8px rgba(34,197,94,0.5);
+    }
+
+    .mt-node.inactive-red .mt-dot {
+      background: rgba(239,68,68,0.22);
+      box-shadow: 0 0 8px rgba(239,68,68,0.35);
+    }
+
+    .mt-connector {
+      flex: 1;
+      height: 2px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .mt-connector.active {
+      background: rgba(34,197,94,0.5);
+    }
+
+    .mt-name {
+      font-size: 10px;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      max-width: 70px;
+      line-height: 1.3;
+    }
+
+    .handoff-scene,
+    .pipeline-complete-scene {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0D2B2B;
+    }
+
+    .handoff-inner {
+      width: min(calc(100% - 40px), 980px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .handoff-node {
+      width: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .handoff-logo {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .handoff-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .handoff-sublabel {
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .handoff-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      justify-content: center;
+      max-width: 160px;
+    }
+
+    .handoff-pills span {
+      background: rgba(0,112,210,0.15);
+      border: 1px solid rgba(0,112,210,0.3);
+      color: #60a5fa;
+      border-radius: 999px;
+      font-size: 11px;
+      padding: 3px 10px;
+    }
+
+    .handoff-stream {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 340px;
+    }
+
+    .stream-badge {
+      margin-top: 12px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.75);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .handoff-status-badge {
+      min-height: 34px;
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #000;
+      background: #22C55E;
+    }
+
+    .pipeline-complete-inner {
+      text-align: center;
+      padding: 80px 0;
+    }
+
+    .complete-label {
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+      margin-top: 20px;
+      margin-bottom: 0;
+    }
+
+    .complete-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      max-width: 400px;
+      margin: 8px auto 0;
+      line-height: 1.6;
+    }
+
+    .copy-toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(13,43,43,0.94);
+      color: #fff;
+      font-size: 12px;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+    }
+
     @media (max-width: 1180px) {
       .nav-inner {
         grid-template-columns: auto minmax(0, 1fr) auto;
@@ -4298,6 +5067,25 @@
         flex-wrap: wrap;
       }
 
+      .handoff-inner {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .handoff-stream {
+        width: 100%;
+      }
+
+      .stream-svg {
+        width: 100%;
+      }
+
+      .score-breakdown-row,
+      .marketo-timeline {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
       .cta-row {
         flex-direction: column;
         align-items: stretch;
@@ -4312,6 +5100,8 @@
   </style>
 </head>
 <body>
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
   <header class="site-nav">
     <div class="nav-inner">
       <a class="brand-lockup" href="#top" aria-label="Gladly Account Scoring Blueprint">
@@ -4354,6 +5144,7 @@
 
   <aside class="pipeline-progress" id="pipelineProgress" aria-label="Pipeline progress">
     <div class="progress-line" aria-hidden="true"></div>
+    <div class="progress-active-label" id="progressActiveLabel">Setup</div>
     <a class="progress-node" data-progress-node data-progress-group="setup" href="#setup">
       <span class="progress-dot"></span>
       <span class="progress-tooltip">Setup</span>
@@ -4382,7 +5173,7 @@
 
   <div class="app-shell" id="top">
     <section class="hero">
-      <canvas class="hero-particles" id="heroCanvas" aria-hidden="true"></canvas>
+      <canvas class="hero-particles" id="heroCanvas" data-speed="0.6" aria-hidden="true"></canvas>
       <div class="hero-inner">
         <div class="hero-copy">
           <div class="hero-eyebrow animate-on-scroll">
@@ -4418,7 +5209,7 @@
           </div>
         </div>
 
-        <div class="floating-score hero-score-card animate-on-scroll" style="--delay: 220ms;" id="heroScoreCard">
+        <div class="floating-score hero-score-card animate-on-scroll" style="--delay: 220ms;" id="heroScoreCard" data-speed="0.85" data-lag="0.15">
           <div class="score-top">
             <span>Live score preview</span>
             <div class="pulse-mini"></div>
@@ -4626,35 +5417,40 @@
                   <div class="mock-badge inline">Mock UI</div>
                 </div>
               </div>
-              <div class="zoominfo-card">
-                <div class="zoom-side">
-                  <div class="zoom-word">ZoomInfo</div>
-                  <small id="zoomSidebarCopy">Primary source<br />Coverage healthy</small>
+              <div class="zi-card">
+                <div class="zi-sidebar">
+                  <span class="zi-label">ZOOMINFO</span>
                 </div>
-                <div class="zoom-body">
-                  <div>
+                <div class="zi-main">
+                  <div class="zi-header">
                     <h3 class="record-name" id="zoomCompany">Harbor &amp; Pine Goods</h3>
-                    <p class="record-sub">Live fit source record feeding the scoring engine.</p>
+                    <p class="record-sub">Live fit source record</p>
                   </div>
-                  <div class="field-grid">
-                    <div class="data-card" id="fieldEmployees">
-                      <div class="data-label">Employee Count</div>
-                      <div class="data-value" id="zoomEmployees">420 employees</div>
+                  <div class="zi-fields-grid">
+                    <div class="field-cell data-card" id="fieldEmployees">
+                      <span class="field-label">Employee Count</span>
+                      <span class="field-value data-value" id="zoomEmployees">420 employees</span>
                     </div>
-                    <div class="data-card" id="fieldIndustry">
-                      <div class="data-label">Industry</div>
-                      <div class="data-value" id="zoomIndustry">Retail / DTC</div>
+                    <div class="field-cell data-card" id="fieldIndustry">
+                      <span class="field-label">Industry</span>
+                      <span class="field-value data-value" id="zoomIndustry">Retail / DTC</span>
                     </div>
-                    <div class="data-card" id="fieldTech">
-                      <div class="data-label">Tech Stack</div>
-                      <div class="data-value" id="zoomTech">Shopify Plus · Klaviyo</div>
+                    <div class="field-cell data-card" id="fieldTech">
+                      <span class="field-label">Tech Stack</span>
+                      <span class="field-value data-value" id="zoomTech">Shopify Plus · Klaviyo</span>
                     </div>
-                    <div class="data-card" id="fieldIncumbent">
-                      <div class="data-label">Incumbent</div>
-                      <div class="data-value" id="zoomIncumbent">Zendesk</div>
+                    <div class="field-cell data-card" id="fieldIncumbent">
+                      <span class="field-label">Incumbent</span>
+                      <span class="field-value data-value" id="zoomIncumbent">Zendesk</span>
                     </div>
                   </div>
-                  <div class="tag-row" id="fitTags"></div>
+                  <div class="zi-pills tag-row" id="fitTags"></div>
+                  <div class="zi-footer-row">
+                    <span class="green-dot pulse-dot"></span>
+                    <span id="zoomSourceLabel">Primary source</span>
+                    <span class="separator">·</span>
+                    <span id="zoomCoverageHealth">Coverage healthy</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -4926,6 +5722,25 @@
                 <button class="add-btn" id="addFirstParty" type="button">Add data point - First-Party</button>
               </div>
             </div>
+            <div class="control-card flow-summary-card">
+              <div class="mini-card-head">
+                <strong>Ready to enrich</strong>
+              </div>
+              <div class="flow-summary-list">
+                <div class="flow-summary-row">
+                  <span class="flow-source"><span class="tool-dot zoom"></span>ZoomInfo firmographic fields</span>
+                  <strong id="flowZoomFields">16</strong>
+                </div>
+                <div class="flow-summary-row">
+                  <span class="flow-source"><span class="tool-dot sense"></span>6sense intent topics</span>
+                  <strong id="flowSenseTopics">6</strong>
+                </div>
+                <div class="flow-summary-row">
+                  <span class="flow-source"><span class="tool-dot firstparty"></span>First-party engagement packets</span>
+                  <strong id="flowFirstPartyPackets">8</strong>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="clay-right animate-on-scroll" style="--delay: 120ms;">
@@ -5013,6 +5828,12 @@
               <button class="copy-btn" id="copyPrompt" type="button" style="border-color:rgba(255,255,255,0.12); color:#ffffff;">Copy prompt</button>
             </div>
             <div class="prompt-body" id="promptCode"></div>
+            <div class="prompt-metadata">
+              <div class="prompt-meta-row"><span>Model</span><strong id="promptMetaModel">claude-scoring-engine</strong></div>
+              <div class="prompt-meta-row"><span>Temperature</span><strong id="promptMetaTemp">0.2</strong></div>
+              <div class="prompt-meta-row"><span>Max tokens</span><strong id="promptMetaMaxTokens">450</strong></div>
+              <div class="prompt-meta-row"><span>System prompt summary</span><strong id="promptMetaSummary">Reason over fit, timing, and enriched coverage.</strong></div>
+            </div>
           </div>
 
           <div class="response-panel animate-on-scroll" style="--delay: 120ms;" id="responsePanel">
@@ -5162,9 +5983,43 @@
       </div>
     </section>
 
-    <div class="connector">
-      <div class="connector-inner"><div class="connector-dot"></div></div>
-    </div>
+    <section class="handoff-scene section dark" id="sfdc-to-marketo">
+      <div class="handoff-inner">
+        <div class="handoff-node handoff-sfdc">
+          <img class="handoff-logo handoff-logo-salesforce" src="./assets/salesforce-logo.png" alt="Salesforce logo" />
+          <span class="handoff-label">Salesforce</span>
+          <span class="handoff-sublabel">Master record written</span>
+          <div class="handoff-pills">
+            <span>Fit_Score__c</span>
+            <span>Tier__c</span>
+            <span>Routing__c</span>
+            <span>Sync_Health__c</span>
+          </div>
+        </div>
+        <div class="handoff-stream">
+          <svg class="stream-svg" viewBox="0 0 300 40" width="300" height="40" aria-hidden="true">
+            <defs>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="blur"></feGaussianBlur>
+                <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+              </filter>
+            </defs>
+            <line x1="0" y1="20" x2="300" y2="20" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"></line>
+            <line class="stream-flow-line" x1="0" y1="20" x2="300" y2="20" stroke="#22C55E" stroke-width="1.5" stroke-dasharray="8 6"></line>
+            <circle class="data-packet" cx="0" cy="20" r="4" fill="#22C55E" filter="url(#glow)"></circle>
+            <circle class="data-packet" cx="0" cy="20" r="4" fill="#22C55E" filter="url(#glow)"></circle>
+            <circle class="data-packet" cx="0" cy="20" r="4" fill="#22C55E" filter="url(#glow)"></circle>
+          </svg>
+          <div class="stream-badge">READ-ONLY SYNC</div>
+        </div>
+        <div class="handoff-node handoff-marketo">
+          <img class="handoff-logo handoff-logo-marketo" src="./assets/marketo-logo.webp" alt="Marketo logo" />
+          <span class="handoff-label">Marketo</span>
+          <span class="handoff-sublabel">Activation triggered</span>
+          <span class="handoff-status-badge" id="handoffMarketoStatus">MQA Alert Fired</span>
+        </div>
+      </div>
+    </section>
 
     <section class="section light" id="marketo">
       <div class="section-inner">
@@ -5248,9 +6103,17 @@
       </div>
     </section>
 
-    <div class="connector">
-      <div class="connector-inner"><div class="connector-dot"></div></div>
-    </div>
+    <section class="pipeline-complete-scene section dark" id="pipeline-complete">
+      <div class="pipeline-complete-inner">
+        <svg class="complete-ring" width="80" height="80" viewBox="0 0 80 80" aria-hidden="true">
+          <circle cx="40" cy="40" r="36" fill="none" stroke="rgba(34,197,94,0.15)" stroke-width="2"></circle>
+          <circle class="ring-progress" cx="40" cy="40" r="36" fill="none" stroke="#22C55E" stroke-width="2" stroke-dasharray="226" stroke-dashoffset="226" stroke-linecap="round" transform="rotate(-90 40 40)"></circle>
+          <polyline class="check-mark" points="25,40 35,52 55,28" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="50" stroke-dashoffset="50"></polyline>
+        </svg>
+        <p class="complete-label">Pipeline complete.</p>
+        <p class="complete-sub">All signals processed. Score written to Salesforce. Marketo motion activated.</p>
+      </div>
+    </section>
 
     <section class="section dark" id="summary">
       <div class="section-inner">
@@ -5281,20 +6144,21 @@
               <div class="report-meta-line"><span>Account owner</span><strong id="reportOwner">AE + SDR paired</strong></div>
               <div class="report-meta-line"><span>RevOps lane</span><strong id="reportLane">Named account motion</strong></div>
             </div>
-            <div class="report-score-breakdown">
-              <div class="score-mini-card">
-                <span>Fit</span>
-                <strong id="summaryFit">95</strong>
+            <div class="score-breakdown-row">
+              <div class="score-part">
+                <span class="score-label-sm">Fit</span>
+                <span class="score-number-lg" id="summaryFit">95</span>
               </div>
-              <div class="score-mini-card">
-                <span>Timing</span>
-                <strong id="summaryTiming">50</strong>
+              <div class="score-operator">+</div>
+              <div class="score-part">
+                <span class="score-label-sm">Timing</span>
+                <span class="score-number-lg" id="summaryTiming">50</span>
               </div>
-              <div class="score-arrow">→</div>
-              <div class="score-composite-card">
-                <span>Composite</span>
-                <strong id="summaryComposite">145</strong>
-                <div class="tier-pill tier-a" id="summaryTier">Tier A</div>
+              <div class="score-operator">=</div>
+              <div class="score-part composite">
+                <span class="score-label-sm">Composite</span>
+                <span class="score-number-xl" id="summaryComposite">145</span>
+                <span class="tier-badge-lg tier-a" id="summaryTier">Tier A</span>
               </div>
             </div>
           </div>
@@ -5342,7 +6206,7 @@
 
           <div class="report-block report-marketo">
             <div class="report-block-label">Marketo activation state</div>
-            <div class="report-flow-timeline" id="summaryFlowTimeline"></div>
+            <div class="marketo-timeline" id="summaryFlowTimeline"></div>
             <div class="report-filter-list" id="summaryFilterList"></div>
           </div>
 
@@ -5394,9 +6258,9 @@
       </div>
     </div>
   </footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <div class="copy-toast" id="copyToast">Copied to clipboard</div>
+    </div>
+  </div>
 
   <script>
     const presets = {
@@ -5599,7 +6463,8 @@
       zoomPointsMeta: document.getElementById("zoomPointsMeta"),
       topicsMeta: document.getElementById("topicsMeta"),
       packetsMeta: document.getElementById("packetsMeta"),
-      zoomSidebarCopy: document.getElementById("zoomSidebarCopy"),
+      zoomSourceLabel: document.getElementById("zoomSourceLabel"),
+      zoomCoverageHealth: document.getElementById("zoomCoverageHealth"),
       zoomCompany: document.getElementById("zoomCompany"),
       zoomEmployees: document.getElementById("zoomEmployees"),
       zoomIndustry: document.getElementById("zoomIndustry"),
@@ -5627,11 +6492,19 @@
       enrichedCount: document.getElementById("enrichedCount"),
       conflictCount: document.getElementById("conflictCount"),
       safeCount: document.getElementById("safeCount"),
+      flowZoomFields: document.getElementById("flowZoomFields"),
+      flowSenseTopics: document.getElementById("flowSenseTopics"),
+      flowFirstPartyPackets: document.getElementById("flowFirstPartyPackets"),
       jsonPanel: document.getElementById("jsonPanel"),
       jsonToggle: document.getElementById("jsonToggle"),
       jsonCode: document.getElementById("jsonCode"),
       promptCode: document.getElementById("promptCode"),
       copyPrompt: document.getElementById("copyPrompt"),
+      copyToast: document.getElementById("copyToast"),
+      promptMetaModel: document.getElementById("promptMetaModel"),
+      promptMetaTemp: document.getElementById("promptMetaTemp"),
+      promptMetaMaxTokens: document.getElementById("promptMetaMaxTokens"),
+      promptMetaSummary: document.getElementById("promptMetaSummary"),
       responsePanel: document.getElementById("responsePanel"),
       fitReasoningCard: document.getElementById("fitReasoningCard"),
       timingReasoningCard: document.getElementById("timingReasoningCard"),
@@ -5663,6 +6536,7 @@
       perfMembersBar: document.getElementById("perfMembersBar"),
       perfEmailsBar: document.getElementById("perfEmailsBar"),
       perfAlertsBar: document.getElementById("perfAlertsBar"),
+      handoffMarketoStatus: document.getElementById("handoffMarketoStatus"),
       reportAccountName: document.getElementById("reportAccountName"),
       reportOwner: document.getElementById("reportOwner"),
       reportLane: document.getElementById("reportLane"),
@@ -5904,6 +6778,47 @@
       }
     }
 
+    function decorateToolBadges() {
+      const badgeMarkup = {
+        zoom: `<span class="tool-badge-logo logo-zoom">Z</span><span>ZoomInfo</span>`,
+        clearbit: `<span class="tool-badge-logo logo-clearbit">C</span><span>Clearbit</span>`,
+        sense: `<span class="tool-badge-logo logo-sense">6</span><span>6sense</span>`,
+        clay: `<span class="tool-badge-logo logo-clay">Cl</span><span>Clay</span>`,
+        claude: `<span class="tool-badge-logo logo-anthropic">A</span><span>Anthropic</span>`,
+        salesforce: `<span class="tool-badge-logo logo-salesforce"><img src="./assets/salesforce-logo.png" alt="" aria-hidden="true" /></span><span>Salesforce</span>`,
+        marketo: `<span class="tool-badge-logo logo-marketo"><img src="./assets/marketo-logo.webp" alt="" aria-hidden="true" /></span><span>Marketo</span>`
+      };
+
+      document.querySelectorAll(".tool-badge").forEach((badge) => {
+        const key =
+          badge.classList.contains("badge-zoom") ? "zoom" :
+          badge.classList.contains("badge-clearbit") ? "clearbit" :
+          badge.classList.contains("badge-sense") ? "sense" :
+          badge.classList.contains("badge-clay") ? "clay" :
+          badge.classList.contains("badge-claude") ? "claude" :
+          badge.classList.contains("badge-salesforce") ? "salesforce" :
+          badge.classList.contains("badge-marketo") ? "marketo" : "";
+
+        if (key && !badge.dataset.decorated) {
+          badge.innerHTML = badgeMarkup[key];
+          badge.dataset.decorated = "true";
+        }
+      });
+
+      document.querySelectorAll(".pipeline-pill").forEach((pill) => {
+        if (pill.dataset.decorated) return;
+        const text = pill.textContent.trim();
+        const icon =
+          text.includes("ZoomInfo") ? `<span class="pipeline-tool-logo logo-zoom">Z</span>` :
+          text.includes("6sense") ? `<span class="pipeline-tool-logo logo-sense">6</span>` :
+          text.includes("Clay") ? `<span class="pipeline-tool-logo logo-clay">Cl</span>` :
+          text.includes("Claude") ? `<span class="pipeline-tool-logo logo-anthropic">A</span>` :
+          text.includes("SFDC") ? `<span class="pipeline-tool-logo logo-salesforce"><img src="./assets/salesforce-logo.png" alt="" aria-hidden="true" /></span>` : "";
+        pill.innerHTML = `${icon}<span>${text}</span>`;
+        pill.dataset.decorated = "true";
+      });
+    }
+
     function getFitContext(discrete) {
       const employees = discrete.scale ? "420 employees" : "90 employees";
       const industry = discrete.industry === 2 ? "Retail / DTC" : discrete.industry === 1 ? "General B2C" : "Industrial / B2B";
@@ -6051,7 +6966,7 @@
       });
     }
 
-    function animateToPreset(key) {
+    function animateToPreset(key, options = {}) {
       const preset = presets[key];
       if (!preset) return;
 
@@ -6070,7 +6985,7 @@
 
       if (window.gsap) {
         resetAnimation = gsap.timeline({
-          defaults: { ease: "power2.inOut", duration: 0.6 },
+          defaults: { ease: options.elastic ? "elastic.out(1, 0.75)" : "power2.inOut", duration: options.elastic ? 0.8 : 0.6 },
           onUpdate: () => {
             syncInputs();
             renderAll(false);
@@ -6137,7 +7052,8 @@
       setMetaText(els.coverageMeta, `${discrete.coverage}%`);
 
       const fitContext = getFitContext(discrete);
-      els.zoomSidebarCopy.innerHTML = `${discrete.coverage >= 70 ? "Primary source" : "Partial source"}<br />${discrete.coverage >= 70 ? "Coverage healthy" : discrete.coverage >= 50 ? "Coverage mixed" : "Coverage weak"}`;
+      els.zoomSourceLabel.textContent = discrete.coverage >= 70 ? "Primary source" : "Partial source";
+      els.zoomCoverageHealth.textContent = discrete.coverage >= 70 ? "Coverage healthy" : discrete.coverage >= 50 ? "Coverage mixed" : "Coverage weak";
       els.zoomCompany.textContent = state.accountName;
 
       const fieldMap = {
@@ -6241,6 +7157,9 @@
       els.enrichedCount.textContent = `${stats.enriched}`;
       els.conflictCount.textContent = `${stats.conflicts}`;
       els.safeCount.textContent = `${stats.safe}`;
+      els.flowZoomFields.textContent = `${discrete.zoomPoints}`;
+      els.flowSenseTopics.textContent = `${discrete.topics}`;
+      els.flowFirstPartyPackets.textContent = `${discrete.packets}`;
 
       els.jsonCode.innerHTML = syntaxHighlightJSON({
         account_name: state.accountName,
@@ -6256,6 +7175,10 @@
     function renderPrompt(discrete) {
       const stats = getEnrichmentStats(discrete);
       els.promptCode.innerHTML = buildPromptMarkup(discrete, stats);
+      els.promptMetaModel.textContent = "claude-scoring-engine";
+      els.promptMetaTemp.textContent = "0.2";
+      els.promptMetaMaxTokens.textContent = "450";
+      els.promptMetaSummary.textContent = `${stats.enriched} enriched fields, fit and timing signals, and sync health included.`;
     }
 
     function buildReasonCard(title, signals, total, note = "") {
@@ -6418,6 +7341,17 @@
       els.perfMembersBar.style.width = `${Math.min(100, tierMetrics.members)}%`;
       els.perfEmailsBar.style.width = `${Math.min(100, tierMetrics.emails * 2.2)}%`;
       els.perfAlertsBar.style.width = `${Math.min(100, tierMetrics.alerts * 7.5)}%`;
+
+      const handoffStates = {
+        A: ["MQA Alert Fired", "#22C55E", "#000000"],
+        B: ["SDR Sequence Live", "#F59E0B", "#000000"],
+        C: ["Nurture Active", "#EAB308", "#000000"],
+        D: ["Suppressed", "#EF4444", "#ffffff"]
+      };
+      const [label, bg, color] = handoffStates[tier];
+      els.handoffMarketoStatus.textContent = label;
+      els.handoffMarketoStatus.style.background = bg;
+      els.handoffMarketoStatus.style.color = color;
     }
 
     function renderSummary(scores) {
@@ -6429,7 +7363,9 @@
       els.reportOwner.textContent = state.owner;
       els.reportLane.textContent = state.lane;
 
-      [els.summaryTier, els.summaryTierBadge, els.summaryRoutingTier].forEach((el) => {
+      els.summaryTier.textContent = `Tier ${scores.tier}`;
+      els.summaryTier.className = `tier-badge-lg ${getTierClass(scores.tier)}`;
+      [els.summaryTierBadge, els.summaryRoutingTier].forEach((el) => {
         el.textContent = `Tier ${scores.tier}`;
         applyTierClass(el, scores.tier, "tier-pill");
       });
@@ -6491,8 +7427,13 @@
         D: [false, false, false, false]
       }[scores.tier];
 
-      els.summaryFlowTimeline.innerHTML = stepStates.map((active, index) => `
-        <span class="report-flow-node ${active ? "active" : ""}">Step ${index + 1}</span>${index < stepStates.length - 1 ? '<span class="report-flow-arrow">→</span>' : ''}
+      const stepNames = ["Send Alert", "Add to Program", "Change Score", "Interesting Moment"];
+      els.summaryFlowTimeline.innerHTML = stepNames.map((name, index) => `
+        <div class="mt-node ${stepStates[index] ? "active" : scores.tier === "D" ? "inactive-red" : ""}">
+          <div class="mt-dot"></div>
+          <span class="mt-name">${name}</span>
+        </div>
+        ${index < stepNames.length - 1 ? `<div class="mt-connector ${stepStates[index] && stepStates[index + 1] ? "active" : ""}"></div>` : ""}
       `).join("");
 
       const filters = [
@@ -6565,6 +7506,8 @@
     }
 
     function initBindings() {
+      decorateToolBadges();
+
       els.accountName.addEventListener("input", (event) => {
         state.activePreset = "";
         state.accountName = event.target.value || "Untitled account";
@@ -6608,22 +7551,31 @@
       els.copyPrompt.addEventListener("click", async () => {
         try {
           await navigator.clipboard.writeText(els.promptCode.textContent.replace(/\s+/g, " ").trim());
-          const previous = els.copyPrompt.textContent;
-          els.copyPrompt.textContent = "Copied";
-          setTimeout(() => {
-            els.copyPrompt.textContent = previous;
-          }, 1000);
+          if (window.gsap) {
+            gsap.killTweensOf(els.copyToast);
+            gsap.set(els.copyToast, { autoAlpha: 1, y: 12 });
+            gsap.to(els.copyToast, { autoAlpha: 1, y: 0, duration: 0.3, ease: "power2.out" });
+            gsap.to(els.copyToast, { autoAlpha: 0, duration: 0.25, delay: 2, ease: "power2.in" });
+          }
         } catch (error) {
-          const previous = els.copyPrompt.textContent;
-          els.copyPrompt.textContent = "Copy failed";
-          setTimeout(() => {
-            els.copyPrompt.textContent = previous;
-          }, 1000);
+          if (window.gsap) {
+            els.copyToast.textContent = "Copy failed";
+            gsap.killTweensOf(els.copyToast);
+            gsap.set(els.copyToast, { autoAlpha: 1, y: 12 });
+            gsap.to(els.copyToast, { autoAlpha: 1, y: 0, duration: 0.3, ease: "power2.out" });
+            gsap.to(els.copyToast, {
+              autoAlpha: 0,
+              duration: 0.25,
+              delay: 2,
+              ease: "power2.in",
+              onComplete: () => { els.copyToast.textContent = "Copied to clipboard"; }
+            });
+          }
         }
       });
 
       els.resetButton.addEventListener("click", () => {
-        animateToPreset("harbor");
+        animateToPreset("harbor", { elastic: true });
       });
 
       els.addZoom.addEventListener("click", (event) => addExtraRow("zoom", event));
@@ -6657,18 +7609,59 @@
     function initGsap() {
       if (!window.gsap || !window.ScrollTrigger) return;
 
-      gsap.registerPlugin(ScrollTrigger);
+      const smootherPlugin = window.ScrollSmoother;
+      if (smootherPlugin) {
+        gsap.registerPlugin(ScrollTrigger, smootherPlugin);
+      } else {
+        gsap.registerPlugin(ScrollTrigger);
+      }
+
+      if (smootherPlugin && !smootherPlugin.get()) {
+        smootherPlugin.create({
+          wrapper: "#smooth-wrapper",
+          content: "#smooth-content",
+          smooth: 1.4,
+          effects: true
+        });
+      }
       ScrollTrigger.defaults({ once: true });
 
       const runHeroIntro = () => {
-        const tl = gsap.timeline({ delay: 0.15 });
-        tl.from(".hero-eyebrow", { y: 16, opacity: 0, duration: 0.5, ease: "power2.out", onComplete: () => gsap.set(".hero-eyebrow", { clearProps: "all" }) })
-          .from(".hero-title", { y: 28, opacity: 0, duration: 0.7, ease: "power3.out", onComplete: () => gsap.set(".hero-title", { clearProps: "all" }) }, "-=0.3")
-          .from(".hero-subtext", { y: 20, opacity: 0, duration: 0.5, ease: "power2.out", onComplete: () => gsap.set(".hero-subtext", { clearProps: "all" }) }, "-=0.4")
-          .from(".hero-pills", { y: 16, opacity: 0, duration: 0.45, ease: "power2.out", onComplete: () => gsap.set(".hero-pills", { clearProps: "all" }) }, "-=0.35")
-          .from(".hero-ctas", { y: 16, opacity: 0, duration: 0.45, ease: "power2.out", onComplete: () => gsap.set(".hero-ctas", { clearProps: "all" }) }, "-=0.3")
-          .from(".hero-pipeline", { y: 12, opacity: 0, duration: 0.4, ease: "power2.out", onComplete: () => gsap.set(".hero-pipeline", { clearProps: "all" }) }, "-=0.25")
-          .from(".hero-score-card", { y: 32, scale: 0.94, opacity: 0, rotation: -1.5, duration: 0.85, ease: "back.out(1.4)", onComplete: () => gsap.set(".hero-score-card", { clearProps: "all" }) }, "-=0.5");
+        const heroEls = [".hero-eyebrow",".hero-title",".hero-subtext",".hero-pills",".hero-ctas",".hero-pipeline"];
+        gsap.set(heroEls, { autoAlpha: 0, y: 24 });
+        gsap.set(".hero-score-card", { autoAlpha: 0, y: 24, scale: 0.94, rotation: -3 });
+        const tl = gsap.timeline({ delay: 0.1 });
+        tl.to(".hero-eyebrow", { autoAlpha: 1, y: 0, duration: 0.5, ease:"power2.out" })
+          .to(".hero-title", { autoAlpha: 1, y: 0, duration: 0.65, ease:"power3.out" }, "-=0.3")
+          .to(".hero-subtext", { autoAlpha: 1, y: 0, duration: 0.5, ease:"power2.out" }, "-=0.35")
+          .to(".hero-pills", { autoAlpha: 1, y: 0, duration: 0.4, ease:"power2.out" }, "-=0.3")
+          .to(".hero-ctas", { autoAlpha: 1, y: 0, duration: 0.4, ease:"power2.out" }, "-=0.25")
+          .to(".hero-pipeline", { autoAlpha: 1, y: 0, duration: 0.4, ease:"power2.out" }, "-=0.2");
+
+        if (els.heroScoreCard) {
+          gsap.killTweensOf(els.heroScoreCard);
+          gsap.to(els.heroScoreCard, {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            rotation: -1.5,
+            duration: 0.8,
+            delay: 0.65,
+            ease: "back.out(1.3)"
+          });
+
+          gsap.delayedCall(1.8, () => {
+            const styles = getComputedStyle(els.heroScoreCard);
+            if (styles.visibility === "hidden" || Number(styles.opacity) === 0) {
+              gsap.set(els.heroScoreCard, {
+                autoAlpha: 1,
+                y: 0,
+                scale: 1,
+                rotation: -1.5
+              });
+            }
+          });
+        }
       };
 
       if (document.readyState === "loading") {
@@ -6743,6 +7736,56 @@
           onComplete: () => gsap.set(rows, { clearProps: "all" })
         });
       });
+
+      ScrollTrigger.create({
+        trigger: "#sfdc-to-marketo",
+        start: "top top",
+        end: "+=400",
+        pin: true,
+        scrub: false
+      });
+
+      ScrollTrigger.create({
+        trigger: "#sfdc-to-marketo",
+        start: "top 80%",
+        once: true,
+        onEnter: () => {
+          const tl = gsap.timeline();
+          tl.from(".handoff-sfdc", { x: -60, opacity: 0, duration: 0.7, ease:"power3.out" })
+            .from(".handoff-stream", { scaleX: 0, opacity: 0, duration: 0.6, ease:"power2.inOut", transformOrigin:"left center" }, "-=0.3")
+            .from(".handoff-marketo", { x: 60, opacity: 0, duration: 0.7, ease:"power3.out" }, "-=0.4")
+            .from(".stream-badge", { y: 10, opacity: 0, duration: 0.4, ease:"back.out(2)" }, "-=0.2");
+        }
+      });
+
+      gsap.to(".stream-flow-line", {
+        strokeDashoffset: -300,
+        duration: 3,
+        ease: "none",
+        repeat: -1
+      });
+
+      document.querySelectorAll(".data-packet").forEach((packet, i) => {
+        gsap.fromTo(packet,
+          { attr: { cx: -10 }, opacity: 0 },
+          { attr: { cx: 310 }, opacity: 1, duration: 1.8, ease: "power1.inOut", delay: i * 0.6, repeat: -1, repeatDelay: 0.8,
+            onStart: () => gsap.to(packet, { opacity: 1, duration: 0.2 }),
+            onRepeat: () => gsap.set(packet, { opacity: 0 }) }
+        );
+      });
+
+      ScrollTrigger.create({
+        trigger: ".pipeline-complete-scene",
+        start: "top 75%",
+        once: true,
+        onEnter: () => {
+          const tl = gsap.timeline();
+          tl.to(".ring-progress", { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" })
+            .to(".check-mark", { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, "-=0.1")
+            .from(".complete-label", { y: 16, opacity: 0, duration: 0.5, ease: "power2.out" }, "-=0.1")
+            .from(".complete-sub", { y: 12, opacity: 0, duration: 0.4, ease: "power2.out" }, "-=0.25");
+        }
+      });
     }
 
     function updateActiveChrome(sectionId) {
@@ -6765,9 +7808,7 @@
       const activeGroup = sectionId === "salesforce" || sectionId === "marketo" ? "activate" : navLinks[sectionId] || "";
       const activeIndex = groupOrder.indexOf(activeGroup);
 
-      els.pipelineProgress.classList.toggle("is-visible", activeIndex !== -1);
-      const activeSectionEl = document.getElementById(sectionId);
-      els.pipelineProgress.classList.toggle("on-light", !!activeSectionEl && activeSectionEl.classList.contains("light"));
+      els.pipelineProgress.classList.toggle("sidebar-visible", activeIndex !== -1);
 
       els.progressNodes.forEach((node, index) => {
         const group = node.dataset.progressGroup;
@@ -6780,6 +7821,17 @@
           setActivePipelineDot(index);
         }
       });
+
+      if (activeIndex !== -1) {
+        const progressSteps = [0, 20, 40, 60, 80, 100];
+        els.pipelineProgress.style.setProperty("--progress", `${progressSteps[activeIndex]}%`);
+        const activeNode = els.progressNodes[activeIndex];
+        const label = document.getElementById("progressActiveLabel");
+        if (activeNode && label) {
+          label.textContent = activeNode.querySelector(".progress-tooltip").textContent;
+          label.style.top = `${activeNode.offsetTop - 6}px`;
+        }
+      }
 
       activeSectionGroup = activeGroup;
     }
