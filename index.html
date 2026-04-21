@@ -3237,6 +3237,12 @@
       color: inherit;
     }
 
+    .tableau-shell .table-head {
+      padding: 18px 18px 0;
+      margin-bottom: 0;
+      align-items: center;
+    }
+
     .mock-head-badges {
       display: inline-flex;
       align-items: center;
@@ -4995,7 +5001,7 @@
 
     .pipeline-complete-inner {
       text-align: center;
-      padding: 80px 0;
+      padding: 0;
     }
 
     .complete-label {
@@ -5348,7 +5354,7 @@
 
     .pipeline-complete-scene {
       min-height: auto;
-      padding: 64px 0;
+      padding: 48px 0;
     }
 
     .clay-grid {
@@ -6331,13 +6337,13 @@
 
     .chart-label {
       fill: rgba(255, 255, 255, 0.84);
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 600;
     }
 
     .chart-tick {
       fill: rgba(255, 255, 255, 0.58);
-      font-size: 9px;
+      font-size: 10px;
     }
 
     .chart-muted-bar {
@@ -9607,7 +9613,7 @@
       const mapLinear = (value, inMin, inMax, outMin, outMax) => outMin + ((value - inMin) / (inMax - inMin)) * (outMax - outMin);
 
       // Chart A: MQA Volume by Tier
-      const a = { left: 42, right: 20, top: 20, bottom: 38, width: 298, height: 162 };
+      const a = { left: 60, right: 28, top: 24, bottom: 44, width: 260, height: 148 };
       const mqaMax = 250;
       const mqaTicks = [0, 50, 100, 150, 200, 250];
       mqaSvg.innerHTML = `
@@ -9615,17 +9621,18 @@
           const y = a.top + a.height - (tick / mqaMax) * a.height;
           return `
             <line class="chart-gridline" x1="${a.left}" y1="${y}" x2="${a.left + a.width}" y2="${y}"></line>
-            <text class="chart-tick" x="${a.left - 8}" y="${y + 3}" text-anchor="end">${tick}</text>
+            <text class="chart-tick" x="${a.left - 10}" y="${y + 4}" text-anchor="end">${tick}</text>
           `;
         }).join("")}
         <line class="chart-axis" x1="${a.left}" y1="${a.top}" x2="${a.left}" y2="${a.top + a.height}"></line>
         <line class="chart-axis" x1="${a.left}" y1="${a.top + a.height}" x2="${a.left + a.width}" y2="${a.top + a.height}"></line>
-        <text class="chart-tick" x="${a.left - 10}" y="${a.top - 2}" text-anchor="end">MQAs</text>
+        <text class="chart-tick" x="${a.left - 12}" y="${a.top - 6}" text-anchor="end">MQAs</text>
+        <text class="chart-tick" x="${a.left + a.width / 2}" y="${a.top + a.height + 34}" text-anchor="middle">Tier</text>
         ${tiers.map((tier, index) => {
           const value = mqaVolume[tier];
-          const barWidth = 40;
+          const barWidth = 36;
           const gap = 28;
-          const x = a.left + 24 + index * (barWidth + gap);
+          const x = a.left + 14 + index * (barWidth + gap);
           const h = (value / mqaMax) * a.height;
           const y = a.top + a.height - h;
           const isActive = tier === activeTier;
@@ -9638,11 +9645,11 @@
       `;
 
       // Chart B: Conversion Funnel by Tier
-      const b = { left: 88, right: 22, top: 24, bottom: 22, width: 250, height: 178 };
+      const b = { left: 92, right: 22, top: 24, bottom: 44, width: 244, height: 164 };
       const percentTicks = [0, 25, 50, 75, 100];
       const refX = b.left + (30 / 100) * b.width;
-      const rowGap = 42;
-      const rowStart = b.top + 8;
+      const rowGap = 38;
+      const rowStart = b.top + 10;
       conversionSvg.innerHTML = `
         ${percentTicks.map((tick) => {
           const x = b.left + (tick / 100) * b.width;
@@ -9655,6 +9662,7 @@
         <text class="chart-reference-label" x="${refX}" y="${b.top - 8}" text-anchor="middle">Tier A target</text>
         <line class="chart-axis" x1="${b.left}" y1="${b.top}" x2="${b.left}" y2="${b.top + b.height}"></line>
         <line class="chart-axis" x1="${b.left}" y1="${b.top + b.height}" x2="${b.left + b.width}" y2="${b.top + b.height}"></line>
+        <text class="chart-reference-label" x="${b.left + b.width / 2}" y="${b.top + b.height + 34}" text-anchor="middle">Normalized outcome rate</text>
         ${tiers.map((tier, index) => {
           const yBase = rowStart + index * rowGap;
           const row = funnel[tier];
@@ -9663,22 +9671,22 @@
           const winWidth = (row.win / 100) * b.width;
           const cycleWidth = (row.cycle / 100) * b.width;
           return `
-            <text class="chart-label" x="${b.left - 16}" y="${yBase + 8}" text-anchor="end">Tier ${tier}</text>
+            <text class="chart-label" x="${b.left - 14}" y="${yBase + 8}" text-anchor="end">Tier ${tier}</text>
             <rect x="${b.left}" y="${yBase - 12}" width="${oppWidth}" height="8" rx="4" fill="${isActive ? "#22c55e" : mutedFill}"></rect>
             <rect x="${b.left}" y="${yBase + 2}" width="${winWidth}" height="8" rx="4" fill="${isActive ? winFill : "rgba(255,255,255,0.22)"}"></rect>
             <rect x="${b.left}" y="${yBase + 16}" width="${cycleWidth}" height="8" rx="4" fill="${isActive ? cycleFill : "rgba(255,255,255,0.16)"}"></rect>
-            <text class="chart-tick" x="${Math.min(b.left + oppWidth + 8, b.left + b.width - 4)}" y="${yBase - 5}">${row.opp}%</text>
-            <text class="chart-tick" x="${Math.min(b.left + winWidth + 8, b.left + b.width - 4)}" y="${yBase + 9}">${row.win}%</text>
-            <text class="chart-tick" x="${Math.min(b.left + cycleWidth + 8, b.left + b.width - 4)}" y="${yBase + 23}">${row.cycle}d</text>
+            <text class="chart-tick" x="${Math.min(b.left + oppWidth + 8, b.left + b.width - 16)}" y="${yBase - 5}">${row.opp}%</text>
+            <text class="chart-tick" x="${Math.min(b.left + winWidth + 8, b.left + b.width - 16)}" y="${yBase + 9}">${row.win}%</text>
+            <text class="chart-tick" x="${Math.min(b.left + cycleWidth + 8, b.left + b.width - 16)}" y="${yBase + 23}">${row.cycle}d</text>
           `;
         }).join("")}
-        <text class="chart-reference-label" x="${b.left}" y="${b.top + b.height + 34}">MQA→Opp</text>
-        <text class="chart-reference-label" x="${b.left + 86}" y="${b.top + b.height + 34}">Win rate</text>
-        <text class="chart-reference-label" x="${b.left + 150}" y="${b.top + b.height + 34}">Cycle length</text>
+        <text class="chart-reference-label" x="${b.left}" y="${b.top + b.height + 48}">MQA→Opp</text>
+        <text class="chart-reference-label" x="${b.left + 88}" y="${b.top + b.height + 48}">Win rate</text>
+        <text class="chart-reference-label" x="${b.left + 164}" y="${b.top + b.height + 48}">Cycle length</text>
       `;
 
       // Chart C: ACV & Cycle Length by Tier
-      const c = { left: 42, right: 42, top: 20, bottom: 38, width: 276, height: 164 };
+      const c = { left: 60, right: 56, top: 24, bottom: 44, width: 240, height: 148 };
       const acvMax = 200;
       const cycleMax = 100;
       const acvTicks = [0, 50, 100, 150, 200];
@@ -9694,22 +9702,23 @@
           const y = c.top + c.height - (tick / acvMax) * c.height;
           return `
             <line class="chart-gridline" x1="${c.left}" y1="${y}" x2="${c.left + c.width}" y2="${y}"></line>
-            <text class="chart-tick" x="${c.left - 8}" y="${y + 3}" text-anchor="end">$${tick}k</text>
+            <text class="chart-tick" x="${c.left - 10}" y="${y + 4}" text-anchor="end">$${tick}k</text>
           `;
         }).join("")}
         ${cycleTicks.slice(1).map((tick) => {
           const y = c.top + c.height - (tick / cycleMax) * c.height;
-          return `<text class="chart-tick" x="${c.left + c.width + 8}" y="${y + 3}" text-anchor="start">${tick}d</text>`;
+          return `<text class="chart-tick" x="${c.left + c.width + 10}" y="${y + 4}" text-anchor="start">${tick}d</text>`;
         }).join("")}
         <line class="chart-axis" x1="${c.left}" y1="${c.top}" x2="${c.left}" y2="${c.top + c.height}"></line>
         <line class="chart-axis" x1="${c.left + c.width}" y1="${c.top}" x2="${c.left + c.width}" y2="${c.top + c.height}"></line>
         <line class="chart-axis" x1="${c.left}" y1="${c.top + c.height}" x2="${c.left + c.width}" y2="${c.top + c.height}"></line>
-        <text class="chart-reference-label" x="${c.left - 8}" y="${c.top - 4}" text-anchor="end">ACV</text>
-        <text class="chart-reference-label" x="${c.left + c.width + 8}" y="${c.top - 4}" text-anchor="start">Cycle</text>
+        <text class="chart-reference-label" x="${c.left - 10}" y="${c.top - 6}" text-anchor="end">ACV</text>
+        <text class="chart-reference-label" x="${c.left + c.width + 10}" y="${c.top - 6}" text-anchor="start">Cycle</text>
+        <text class="chart-reference-label" x="${c.left + c.width / 2}" y="${c.top + c.height + 34}" text-anchor="middle">Tier</text>
         ${tiers.map((tier, index) => {
           const value = acvCycle[tier].acv;
-          const x = c.left + 16 + index * 62;
-          const width = 32;
+          const x = c.left + 10 + index * 56;
+          const width = 30;
           const h = (value / acvMax) * c.height;
           const y = c.top + c.height - h;
           const isActive = tier === activeTier;
@@ -9722,12 +9731,12 @@
         <path class="${activeTier ? "chart-live-line" : "chart-muted-line"}" d="${linePath}"></path>
         ${linePoints.map((point) => `
           <circle class="chart-line-dot" cx="${point.x}" cy="${point.y}" r="${point.tier === activeTier ? 6 : 5}"></circle>
-          <text class="chart-tick" x="${point.x}" y="${point.y - 10}" text-anchor="middle">${acvCycle[point.tier].cycle}d</text>
+          <text class="chart-tick" x="${point.x}" y="${Math.max(c.top + 10, point.y - 10)}" text-anchor="middle">${acvCycle[point.tier].cycle}d</text>
         `).join("")}
       `;
 
       // Chart D: Score-Influenced Activity Rate
-      const d = { left: 44, right: 24, top: 20, bottom: 42, width: 292, height: 162 };
+      const d = { left: 60, right: 28, top: 24, bottom: 44, width: 260, height: 148 };
       const adoptionTicks = [0, 25, 50, 75, 100];
       const adoptionTargetY = d.top + d.height - (50 / 100) * d.height;
       adoptionSvg.innerHTML = `
@@ -9735,20 +9744,20 @@
           const y = d.top + d.height - (tick / 100) * d.height;
           return `
             <line class="chart-gridline" x1="${d.left}" y1="${y}" x2="${d.left + d.width}" y2="${y}"></line>
-            <text class="chart-tick" x="${d.left - 8}" y="${y + 3}" text-anchor="end">${tick}%</text>
+            <text class="chart-tick" x="${d.left - 10}" y="${y + 4}" text-anchor="end">${tick}%</text>
           `;
         }).join("")}
         <line class="chart-axis" x1="${d.left}" y1="${d.top}" x2="${d.left}" y2="${d.top + d.height}"></line>
         <line class="chart-axis" x1="${d.left}" y1="${d.top + d.height}" x2="${d.left + d.width}" y2="${d.top + d.height}"></line>
         <line class="chart-reference" x1="${d.left}" y1="${adoptionTargetY}" x2="${d.left + d.width}" y2="${adoptionTargetY}"></line>
         <text class="chart-reference-label" x="${d.left + d.width}" y="${adoptionTargetY - 8}" text-anchor="end">50% adoption target</text>
-        <text class="chart-reference-label" x="${d.left - 14}" y="${d.top - 4}" text-anchor="end">Adoption %</text>
+        <text class="chart-reference-label" x="${d.left - 14}" y="${d.top - 6}" text-anchor="end">Adoption %</text>
         <text class="chart-reference-label" x="${d.left + d.width / 2}" y="${d.top + d.height + 32}" text-anchor="middle">Tier</text>
         ${tiers.map((tier, index) => {
           const value = adoptionRate[tier];
-          const barWidth = 40;
+          const barWidth = 36;
           const gap = 28;
-          const x = d.left + 18 + index * (barWidth + gap);
+          const x = d.left + 14 + index * (barWidth + gap);
           const h = (value / 100) * d.height;
           const y = d.top + d.height - h;
           const isActive = tier === activeTier;
