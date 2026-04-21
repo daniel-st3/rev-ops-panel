@@ -4119,6 +4119,38 @@
       overflow-wrap: anywhere;
     }
 
+    .report-rationale-cell {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .report-rationale-text {
+      display: block;
+      min-width: 0;
+      flex: 1 1 auto;
+      color: rgba(255, 255, 255, 0.9) !important;
+      font-weight: 600;
+    }
+
+    .report-rationale-text.is-truncated {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .report-inline-toggle {
+      border: none;
+      background: transparent;
+      color: #60a5fa;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 0;
+      flex: 0 0 auto;
+    }
+
     .report-pill-status {
       min-height: 24px;
       padding: 0 10px;
@@ -5598,11 +5630,21 @@
       margin-top: 16px !important;
     }
 
-    #setup .section-inner,
-    #clay .section-inner,
-    #claude .section-inner,
-    #salesforce .section-inner {
+    #setup .section-inner {
       padding-bottom: 24px !important;
+    }
+
+    #clay .section-inner {
+      padding-bottom: 12px !important;
+    }
+
+    #claude .section-inner {
+      padding-top: 12px !important;
+      padding-bottom: 24px !important;
+    }
+
+    #salesforce .section-inner {
+      padding-bottom: 0 !important;
     }
 
     #timing .section-inner {
@@ -5610,7 +5652,7 @@
     }
 
     #marketo .section-inner {
-      padding-top: 40px !important;
+      padding-top: 12px !important;
       padding-bottom: 60px !important;
     }
 
@@ -5940,45 +5982,40 @@
       display: flex !important;
       align-items: center;
       justify-content: center;
-      gap: 48px !important;
-      padding: 52px 40px !important;
+      gap: 40px !important;
+      padding: 32px 32px !important;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 24px;
     }
 
     .handoff-node {
-      gap: 8px !important;
-    }
-
-    .handoff-stream {
-      width: min(100%, 420px) !important;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 14px;
+      gap: 8px !important;
+      text-align: center;
+    }
+
+    .handoff-stream {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
       padding: 0 !important;
     }
 
-    .stream-visual {
-      position: relative;
-      width: 100%;
-      min-height: 96px;
-      display: grid;
-      place-items: center;
-    }
-
     .stream-caption {
-      font-size: 10px;
+      font-size: 9px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.3);
     }
 
     .stream-track {
       position: relative;
-      width: 100%;
-      height: 4px;
+      width: 80px;
+      height: 2px;
       background: rgba(255, 255, 255, 0.1);
       overflow: hidden;
       border-radius: 999px;
@@ -5987,42 +6024,16 @@
     .stream-highlight {
       position: absolute;
       inset: 0 auto 0 0;
-      width: 84px;
+      width: 32px;
       background: #4ade80;
-      animation: slide 1.5s linear infinite;
+      animation: syncslide 1.4s linear infinite;
       border-radius: 999px;
     }
 
     .stream-lock {
       font-size: 12px;
-      color: rgba(255, 255, 255, 0.56);
+      color: rgba(255, 255, 255, 0.2);
       text-align: center;
-    }
-
-    .stream-packet {
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: rgba(34,197,94,0.12);
-      border: 1px solid rgba(34,197,94,0.32);
-      color: #bdf6cf;
-      font-size: 11px;
-      font-weight: 700;
-      white-space: nowrap;
-      animation: packetFlow 3s linear infinite;
-    }
-
-    .stream-packet.packet-a { animation-delay: 0s; }
-    .stream-packet.packet-b { animation-delay: 1s; }
-    .stream-packet.packet-c { animation-delay: 2s; }
-
-    @keyframes packetFlow {
-      0% { left: 0%; opacity: 0; }
-      8% { opacity: 1; }
-      65% { opacity: 1; }
-      100% { left: 100%; opacity: 0; }
     }
 
     .handoff-pills span {
@@ -6032,16 +6043,21 @@
     }
 
     .handoff-marketo-icon {
-      width: 76px;
-      min-height: 64px;
-      padding: 10px 12px;
-      border-radius: 18px;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border-radius: 12px;
       background: #5C4DFF;
       color: #ffffff;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 16px 30px rgba(92,77,255,0.26);
+    }
+
+    .handoff-marketo-icon svg {
+      width: 20px;
+      height: 20px;
     }
 
     .handoff-label,
@@ -6055,6 +6071,11 @@
 
     .handoff-status-badge {
       font-weight: 800 !important;
+    }
+
+    @keyframes syncslide {
+      from { transform: translateX(-150%); }
+      to { transform: translateX(450%); }
     }
 
     .marketo-grid {
@@ -6226,7 +6247,7 @@
       }
     }
 
-    @media (max-width: 980px) {
+    @media (max-width: 1023px) {
       .nav-stepper {
         display: none !important;
       }
@@ -6507,6 +6528,10 @@
 
         <div class="setup-strip animate-on-scroll" style="--delay: 180ms;">
           <p id="scenarioDescription">Harbor &amp; Pine Goods is a Tier A retail brand with enterprise scale, a modern commerce stack, legacy helpdesk pain, and full timing pressure.</p>
+          <div class="setup-v0-callout" style="margin-top:16px; display:flex; align-items:flex-start; gap:12px; font-size:12px; color:rgba(15,23,42,0.68); border:1px solid rgba(15,23,42,0.08); border-radius:16px; padding:12px 16px; background:rgba(34,197,94,0.06);">
+            <span style="color:#4ade80; font-weight:800; flex:0 0 auto;">V0</span>
+            <span>Signal weights calibrated from 12 months of closed-won data and 8 to 10 AE/CS win-loss interviews, not from a model.</span>
+          </div>
         </div>
       </div>
       <div class="section-transition transition-to-dark">
@@ -7243,7 +7268,7 @@
     <section class="handoff-scene section dark" id="sfdc-to-marketo">
       <div class="handoff-inner">
         <div class="handoff-node handoff-sfdc">
-          <img class="handoff-logo handoff-logo-salesforce" src="./assets/salesforce-logo.png" alt="Salesforce logo" />
+          <img class="handoff-logo handoff-logo-salesforce" src="./assets/salesforce-logo.png" alt="Salesforce logo" style="width:40px; height:40px; object-fit:contain;" />
           <span class="handoff-label">Salesforce</span>
           <span class="handoff-sublabel">Master record written</span>
           <div class="handoff-pills">
@@ -7256,20 +7281,19 @@
 
         <div class="handoff-stream">
           <span class="stream-caption">Read-only sync</span>
-          <div class="stream-visual">
-            <div class="stream-track">
-              <div class="stream-highlight"></div>
-            </div>
-            <span class="stream-packet packet-a">Fit_Score__c</span>
-            <span class="stream-packet packet-b">Tier__c</span>
-            <span class="stream-packet packet-c">Routing__c</span>
+          <div class="stream-track">
+            <div class="stream-highlight"></div>
           </div>
-          <span class="stream-lock">Activation payload moving downstream</span>
+          <span class="stream-lock">🔒</span>
         </div>
 
         <div class="handoff-node handoff-marketo">
           <div class="handoff-marketo-icon">
-            <img class="handoff-logo handoff-logo-marketo" src="./assets/marketo-logo.webp" alt="Marketo logo" />
+            <svg viewBox="0 0 24 24" fill="white" aria-hidden="true">
+              <rect x="3" y="8" width="4" height="13" rx="1"></rect>
+              <rect x="10" y="4" width="4" height="17" rx="1"></rect>
+              <rect x="17" y="11" width="4" height="10" rx="1"></rect>
+            </svg>
           </div>
           <span class="handoff-label">Marketo</span>
           <span class="handoff-sublabel">Activation triggered</span>
@@ -7726,7 +7750,8 @@
       jsonOpen: false,
       metaOpen: false,
       thinking: false,
-      sfRationaleExpanded: false
+      sfRationaleExpanded: false,
+      summaryRationaleExpanded: false
     };
 
     const els = {
@@ -8967,10 +8992,10 @@
       els.perfAlertsBar.style.width = `${Math.min(100, tierMetrics.alerts * 7.5)}%`;
 
       const handoffStates = {
-        A: ["MQA Alert Fired", "#22C55E", "#000000"],
-        B: ["SDR Sequence Live", "#F59E0B", "#000000"],
-        C: ["Nurture Active", "#EAB308", "#000000"],
-        D: ["Suppressed", "#EF4444", "#ffffff"]
+        A: ["MQA ALERT FIRED", "#22C55E", "#000000"],
+        B: ["SDR SEQUENCE LIVE", "#F59E0B", "#000000"],
+        C: ["NURTURE ACTIVE", "#EAB308", "#000000"],
+        D: ["SUPPRESSED", "#EF4444", "#ffffff"]
       };
       const [label, bg, color] = handoffStates[tier];
       els.handoffMarketoStatus.textContent = label;
@@ -9052,13 +9077,38 @@
         ["Confidence_Flag__c", scores.confidence.label],
         ["Score_Rationale__c", rationale]
       ];
-      els.summarySalesforceRows.innerHTML = sfRows.map(([name, value]) => `
-        <div class="report-table-row">
-          <span>${name}</span>
-          <strong>${value}</strong>
-          <span class="report-pill-status">Synced</span>
-        </div>
-      `).join("");
+      els.summarySalesforceRows.innerHTML = sfRows.map(([name, value]) => {
+        if (name === "Score_Rationale__c") {
+          return `
+            <div class="report-table-row">
+              <span>${name}</span>
+              <div class="report-rationale-cell">
+                <strong class="report-rationale-text ${state.summaryRationaleExpanded ? "" : "is-truncated"}" id="summaryRationaleText">${value}</strong>
+                <button class="report-inline-toggle" id="summaryRationaleToggle" type="button">${state.summaryRationaleExpanded ? "Collapse" : "Expand"}</button>
+              </div>
+              <span class="report-pill-status">Synced</span>
+            </div>
+          `;
+        }
+
+        return `
+          <div class="report-table-row">
+            <span>${name}</span>
+            <strong>${value}</strong>
+            <span class="report-pill-status">Synced</span>
+          </div>
+        `;
+      }).join("");
+
+      const summaryToggle = document.getElementById("summaryRationaleToggle");
+      const summaryText = document.getElementById("summaryRationaleText");
+      if (summaryToggle && summaryText) {
+        summaryToggle.addEventListener("click", () => {
+          state.summaryRationaleExpanded = !state.summaryRationaleExpanded;
+          summaryText.classList.toggle("is-truncated", !state.summaryRationaleExpanded);
+          summaryToggle.textContent = state.summaryRationaleExpanded ? "Collapse" : "Expand";
+        });
+      }
 
       const stepStates = {
         A: [true, true, true, true],
