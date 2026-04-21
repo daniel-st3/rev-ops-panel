@@ -5323,22 +5323,25 @@
     }
 
     .section-inner {
-      padding: 48px 0 !important;
+      padding: 60px 0 68px !important;
     }
 
     .section-head {
-      margin-bottom: 24px !important;
+      margin-bottom: 28px !important;
+    }
+
+    .connector {
+      display: none !important;
     }
 
     .hero-inner {
-      display: flex !important;
-      flex-direction: column !important;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 24px !important;
+      display: grid !important;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      align-items: center;
+      gap: 32px !important;
       padding-top: 64px !important;
       padding-bottom: 0 !important;
-      min-height: auto !important;
+      min-height: calc(100vh - 64px) !important;
     }
 
     .hero-copy {
@@ -5346,7 +5349,12 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 0;
-      width: min(100%, 820px);
+      width: 100%;
+      max-width: 680px;
+    }
+
+    .hero-pipeline {
+      margin-bottom: 0 !important;
     }
 
     .hero-score-card {
@@ -5355,10 +5363,10 @@
       bottom: auto !important;
       left: auto !important;
       right: auto !important;
-      margin-top: 32px !important;
-      margin-bottom: 0 !important;
-      align-self: flex-start;
-      width: min(100%, 760px);
+      margin: 0 !important;
+      align-self: center;
+      justify-self: end;
+      width: min(100%, 430px);
     }
 
     .hero-card-note {
@@ -5369,6 +5377,58 @@
       gap: 24px !important;
     }
 
+    .preset-chip {
+      display: flex !important;
+      align-items: center;
+      gap: 12px;
+      min-height: 68px;
+      padding: 12px 14px !important;
+      text-align: left;
+    }
+
+    .preset-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      flex: 0 0 auto;
+      color: #ffffff;
+    }
+
+    .preset-logo.tone-retail { background: linear-gradient(135deg, #22c55e, #15803d); }
+    .preset-logo.tone-home { background: linear-gradient(135deg, #0ea5e9, #0369a1); }
+    .preset-logo.tone-travel { background: linear-gradient(135deg, #f59e0b, #b45309); }
+    .preset-logo.tone-industrial { background: linear-gradient(135deg, #64748b, #334155); }
+
+    .preset-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .preset-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: inherit;
+      line-height: 1.25;
+    }
+
+    .preset-meta {
+      font-size: 11px;
+      color: rgba(15, 23, 42, 0.58);
+      line-height: 1.2;
+    }
+
+    .preset-chip.active .preset-meta {
+      color: rgba(0, 0, 0, 0.66);
+    }
+
     .setup-strip {
       margin-top: 16px !important;
     }
@@ -5377,16 +5437,21 @@
     #clay .section-inner,
     #claude .section-inner,
     #salesforce .section-inner {
-      padding-bottom: 0 !important;
+      padding-bottom: 24px !important;
     }
 
     #timing .section-inner {
-      padding-bottom: 48px !important;
+      padding-bottom: 56px !important;
     }
 
     #marketo .section-inner {
-      padding-top: 32px !important;
-      padding-bottom: 48px !important;
+      padding-top: 40px !important;
+      padding-bottom: 60px !important;
+    }
+
+    #summary .section-inner {
+      padding-top: 72px !important;
+      padding-bottom: 88px !important;
     }
 
     .section.light .section-subheading {
@@ -5421,10 +5486,72 @@
       margin-top: 16px !important;
     }
 
+    .fit-live-panel {
+      margin-top: 16px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: grid;
+      gap: 14px;
+    }
+
+    .fit-profile-score {
+      font-size: 56px;
+      line-height: 0.95;
+      font-weight: 800;
+      color: #ffffff;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .fit-profile-copy {
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.68);
+    }
+
+    .fit-profile-signals {
+      display: grid;
+      gap: 10px;
+    }
+
+    .fit-profile-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.76);
+      font-size: 13px;
+    }
+
+    .fit-profile-row strong {
+      color: #22C55E;
+      font-size: 13px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .fit-profile-row.inactive strong {
+      color: rgba(255,255,255,0.35);
+    }
+
     .flow-summary-row,
     .flow-source,
     .flow-summary-row strong {
       color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    .clay-left,
+    .clay-right {
+      display: grid;
+      align-content: start;
+      gap: 16px;
+    }
+
+    .clay-right .table-shell {
+      height: 100%;
     }
 
     #claude .mini-card-head strong,
@@ -5441,6 +5568,29 @@
     .routing-note,
     .flow-step-copy {
       color: #4b5563 !important;
+    }
+
+    #claude .prompt-panel .mini-card-head strong,
+    #claude .prompt-meta-row,
+    #claude .prompt-meta-row span,
+    #claude .prompt-meta-row strong {
+      color: rgba(255,255,255,0.84) !important;
+    }
+
+    #claude .prompt-metadata {
+      background: rgba(255,255,255,0.04) !important;
+      border-color: rgba(255,255,255,0.08) !important;
+    }
+
+    #timing .sense-ui .ui-card-copy,
+    #timing .sense-ui .sense-panel p,
+    #timing .sense-ui .sense-panel .data-label,
+    #timing .sense-ui .sense-panel .value-large {
+      color: rgba(255,255,255,0.88) !important;
+    }
+
+    #timing .sense-ui .sense-panel .data-label {
+      opacity: 0.72;
     }
 
     .cap-note {
@@ -5478,12 +5628,12 @@
     }
 
     .handoff-inner {
-      width: min(calc(100% - 40px), 980px);
+      width: min(calc(100% - 40px), 1180px);
       display: flex !important;
       align-items: center;
       justify-content: center;
-      gap: 32px !important;
-      padding: 40px 32px !important;
+      gap: 48px !important;
+      padding: 52px 40px !important;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 24px;
@@ -5494,12 +5644,20 @@
     }
 
     .handoff-stream {
-      width: auto !important;
+      width: min(100%, 420px) !important;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 14px;
       padding: 0 !important;
+    }
+
+    .stream-visual {
+      position: relative;
+      width: 100%;
+      min-height: 96px;
+      display: grid;
+      place-items: center;
     }
 
     .stream-caption {
@@ -5511,23 +5669,52 @@
 
     .stream-track {
       position: relative;
-      width: 96px;
-      height: 2px;
+      width: 100%;
+      height: 4px;
       background: rgba(255, 255, 255, 0.1);
       overflow: hidden;
+      border-radius: 999px;
     }
 
     .stream-highlight {
       position: absolute;
       inset: 0 auto 0 0;
-      width: 32px;
+      width: 84px;
       background: #4ade80;
       animation: slide 1.5s linear infinite;
+      border-radius: 999px;
     }
 
     .stream-lock {
-      font-size: 10px;
-      color: rgba(255, 255, 255, 0.3);
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.56);
+      text-align: center;
+    }
+
+    .stream-packet {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.32);
+      color: #bdf6cf;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+      animation: packetFlow 3s linear infinite;
+    }
+
+    .stream-packet.packet-a { animation-delay: 0s; }
+    .stream-packet.packet-b { animation-delay: 1s; }
+    .stream-packet.packet-c { animation-delay: 2s; }
+
+    @keyframes packetFlow {
+      0% { left: 0%; opacity: 0; }
+      8% { opacity: 1; }
+      65% { opacity: 1; }
+      100% { left: 100%; opacity: 0; }
     }
 
     .handoff-pills span {
@@ -5537,16 +5724,16 @@
     }
 
     .handoff-marketo-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
+      width: 76px;
+      min-height: 64px;
+      padding: 10px 12px;
+      border-radius: 18px;
       background: #5C4DFF;
       color: #ffffff;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
-      font-weight: 800;
+      box-shadow: 0 16px 30px rgba(92,77,255,0.26);
     }
 
     .handoff-label,
@@ -5564,16 +5751,60 @@
 
     .marketo-grid {
       gap: 16px !important;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) !important;
+      align-items: start;
     }
 
     #marketo .section-head {
       margin-bottom: 16px !important;
     }
 
+    .marketo-left-stack,
+    .marketo-right-stack {
+      display: grid;
+      align-content: start;
+      gap: 16px;
+    }
+
     .smart-list,
     .flow-stack,
     .metrics-grid {
       margin-top: 0 !important;
+    }
+
+    .marketo-status-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .marketo-status-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(15,23,42,0.03);
+      border: 1px solid rgba(15,23,42,0.06);
+      color: #4b5563;
+      font-size: 13px;
+    }
+
+    .marketo-status-row strong {
+      color: #111827;
+      text-align: right;
+    }
+
+    .report-routing-card,
+    .routing-summary-copy strong,
+    .routing-summary-copy p,
+    #summaryAction,
+    #summarySla,
+    #summaryChili {
+      color: rgba(255,255,255,0.9) !important;
+    }
+
+    .report-routing-card {
+      background: rgba(34,197,94,0.08) !important;
     }
 
     @media print {
@@ -5624,6 +5855,23 @@
       .footer,
       .copy-toast {
         display: none !important;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-inner {
+        grid-template-columns: 1fr !important;
+        min-height: auto !important;
+      }
+
+      .hero-score-card {
+        justify-self: stretch;
+        width: 100%;
+        margin-top: 8px !important;
+      }
+
+      .marketo-grid {
+        grid-template-columns: 1fr !important;
       }
     }
   </style>
@@ -5935,6 +6183,16 @@
                   <div class="track-labels"><span>30%</span><span>100%</span></div>
                 </div>
               </div>
+            </div>
+
+            <div class="fit-live-panel">
+              <div class="mini-card-head">
+                <strong>Live fit profile</strong>
+                <div class="status-pill" id="fitProfileTier">Fit 95</div>
+              </div>
+              <div class="fit-profile-score" id="fitProfileScore">95</div>
+              <div class="fit-profile-copy">Active fit signals collapse into one view so the lower-left side carries actual scoring context, not empty space.</div>
+              <div class="fit-profile-signals" id="fitProfileSignals"></div>
             </div>
           </div>
 
@@ -6510,14 +6768,21 @@
 
         <div class="handoff-stream">
           <span class="stream-caption">Read-only sync</span>
-          <div class="stream-track">
-            <div class="stream-highlight"></div>
+          <div class="stream-visual">
+            <div class="stream-track">
+              <div class="stream-highlight"></div>
+            </div>
+            <span class="stream-packet packet-a">Fit_Score__c</span>
+            <span class="stream-packet packet-b">Tier__c</span>
+            <span class="stream-packet packet-c">Routing__c</span>
           </div>
-          <span class="stream-lock">🔒</span>
+          <span class="stream-lock">Activation payload moving downstream</span>
         </div>
 
         <div class="handoff-node handoff-marketo">
-          <div class="handoff-marketo-icon">M</div>
+          <div class="handoff-marketo-icon">
+            <img class="handoff-logo handoff-logo-marketo" src="./assets/marketo-logo.webp" alt="Marketo logo" />
+          </div>
           <span class="handoff-label">Marketo</span>
           <span class="handoff-sublabel">Activation triggered</span>
           <span class="handoff-status-badge" id="handoffMarketoStatus">MQA Alert Fired</span>
@@ -6543,14 +6808,26 @@
         </div>
 
         <div class="marketo-grid">
-          <div class="marketo-card marketo-smart animate-on-scroll" style="--delay: 60ms;">
-            <div class="card-head mock-head">
-              <strong>Smart List</strong>
-              <div class="mock-head-badges">
-                <div class="mock-badge inline">Mock UI</div>
+          <div class="marketo-left-stack animate-on-scroll" style="--delay: 60ms;">
+            <div class="marketo-card marketo-smart">
+              <div class="card-head mock-head">
+                <strong>Smart List</strong>
+                <div class="mock-head-badges">
+                  <div class="mock-badge inline">Mock UI</div>
+                </div>
               </div>
+              <div class="smart-list" id="smartList"></div>
             </div>
-            <div class="smart-list" id="smartList"></div>
+
+            <div class="marketo-card marketo-status">
+              <div class="card-head mock-head">
+                <strong>Activation state</strong>
+                <div class="mock-head-badges">
+                  <div class="mock-badge inline">Live</div>
+                </div>
+              </div>
+              <div class="marketo-status-grid" id="marketoActivationSummary"></div>
+            </div>
           </div>
 
           <div class="marketo-right-stack animate-on-scroll" style="--delay: 120ms;">
@@ -6898,17 +7175,24 @@
 
     const extraRowCatalog = {
       zoom: [
-        { field: "HQ Country", zoom: "United States", clearbit: "—", sixsense: "—", firstparty: "—", final: "United States" },
-        { field: "Support Org Size", zoom: "186 agents", clearbit: "—", sixsense: "—", firstparty: "—", final: "186 agents" }
+        { field: "HQ Country", zoom: "United States", clearbit: "—", sense: "—", firstparty: "—", final: "United States" },
+        { field: "Support Org Size", zoom: "186 agents", clearbit: "—", sense: "—", firstparty: "—", final: "186 agents" }
       ],
       sense: [
-        { field: "Surge Topic", zoom: "—", clearbit: "—", sixsense: "enterprise helpdesk", firstparty: "—", final: "enterprise helpdesk" },
-        { field: "Decision Committee", zoom: "—", clearbit: "—", sixsense: "3 personas engaged", firstparty: "—", final: "3 personas engaged" }
+        { field: "Surge Topic", zoom: "—", clearbit: "—", sense: "enterprise helpdesk", firstparty: "—", final: "enterprise helpdesk" },
+        { field: "Decision Committee", zoom: "—", clearbit: "—", sense: "3 personas engaged", firstparty: "—", final: "3 personas engaged" }
       ],
       firstparty: [
-        { field: "Page Visit", zoom: "—", clearbit: "—", sixsense: "—", firstparty: "ROI calculator", final: "ROI calculator" },
-        { field: "Content Packet", zoom: "—", clearbit: "—", sixsense: "—", firstparty: "Webinar follow-up", final: "Webinar follow-up" }
+        { field: "Page Visit", zoom: "—", clearbit: "—", sense: "—", firstparty: "ROI calculator", final: "ROI calculator" },
+        { field: "Content Packet", zoom: "—", clearbit: "—", sense: "—", firstparty: "Webinar follow-up", final: "Webinar follow-up" }
       ]
+    };
+
+    const presetVisuals = {
+      harbor: { initials: "HP", tone: "retail", meta: "Retail Tier A" },
+      atlas: { initials: "AH", tone: "home", meta: "Home Tier B" },
+      cedar: { initials: "CT", tone: "travel", meta: "Travel Tier C" },
+      northpeak: { initials: "NP", tone: "industrial", meta: "Industrial Tier D" }
     };
 
     const state = {
@@ -6983,6 +7267,9 @@
       addedFieldsValue: document.getElementById("addedFieldsValue"),
       conflictsValue: document.getElementById("conflictsValue"),
       clearbitStatus: document.getElementById("clearbitStatus"),
+      fitProfileTier: document.getElementById("fitProfileTier"),
+      fitProfileScore: document.getElementById("fitProfileScore"),
+      fitProfileSignals: document.getElementById("fitProfileSignals"),
       timingCapCard: document.getElementById("timingCapCard"),
       timingCapLabel: document.getElementById("timingCapLabel"),
       timingCapFill: document.getElementById("timingCapFill"),
@@ -7035,6 +7322,7 @@
       flow3: document.getElementById("flow3"),
       flow4: document.getElementById("flow4"),
       suppressionBanner: document.getElementById("suppressionBanner"),
+      marketoActivationSummary: document.getElementById("marketoActivationSummary"),
       perfMembers: document.getElementById("perfMembers"),
       perfEmails: document.getElementById("perfEmails"),
       perfAlerts: document.getElementById("perfAlerts"),
@@ -7080,6 +7368,7 @@
     let resetAnimation = null;
     let particleFrame = null;
     let activeSectionGroup = "";
+    let smootherInstance = null;
 
     function roundDiscrete(value, max) {
       const rounded = Math.round(Number(value));
@@ -7277,6 +7566,138 @@
       animateCounter(el, current, target, duration, suffix);
     }
 
+    function exportSummaryDocument() {
+      const summaryShell = document.querySelector("#summary .summary-shell");
+      if (!summaryShell) return;
+
+      const printWindow = window.open("", "_blank", "width=1100,height=850");
+      if (!printWindow) return;
+
+      const printStyles = `
+        <style>
+          :root { color-scheme: light; }
+          * { box-sizing: border-box; }
+          body {
+            margin: 0;
+            padding: 28px;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: #0f172a;
+            background: #ffffff;
+          }
+          .print-sheet {
+            max-width: 960px;
+            margin: 0 auto;
+            border: 1px solid rgba(15,23,42,0.08);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 20px 40px rgba(15,23,42,0.08);
+          }
+          .print-sheet * { color: inherit !important; }
+          .report-top-strip, .summary-actions { display: none !important; }
+          .report-block + .report-block { margin-top: 20px; }
+          .report-block {
+            border: 1px solid rgba(15,23,42,0.08);
+            border-radius: 18px;
+            padding: 18px;
+            page-break-inside: avoid;
+          }
+          .report-block-label, .score-label-sm, .signal-total span, .report-live-time {
+            color: rgba(15,23,42,0.55) !important;
+          }
+          .score-breakdown-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: nowrap;
+          }
+          .score-number-xl { color: #16a34a !important; }
+          .tier-pill, .tier-badge-lg, .report-pill-status {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-weight: 700;
+          }
+          .tier-a, .report-pill-status { background: rgba(34,197,94,0.18) !important; color: #166534 !important; }
+          .tier-b { background: rgba(245,158,11,0.18) !important; color: #92400e !important; }
+          .tier-c { background: rgba(234,179,8,0.18) !important; color: #854d0e !important; }
+          .tier-d { background: rgba(239,68,68,0.18) !important; color: #991b1b !important; }
+          .report-table-head, .report-table-row, .report-signal-grid, .report-routing-card, .report-filter-item, .marketo-timeline {
+            display: grid !important;
+          }
+          .report-table-head, .report-table-row {
+            grid-template-columns: 1.2fr 1.5fr 0.7fr;
+            gap: 12px;
+            align-items: center;
+          }
+          .report-table-row + .report-table-row,
+          .signal-row + .signal-row,
+          .report-filter-item + .report-filter-item {
+            border-top: 1px solid rgba(15,23,42,0.08);
+          }
+          .signal-row, .report-filter-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 0;
+          }
+          .report-routing-card {
+            gap: 14px;
+            padding: 16px;
+            border-radius: 16px;
+            background: rgba(34,197,94,0.08);
+          }
+          .marketo-timeline {
+            display: flex !important;
+            align-items: center;
+            gap: 10px;
+          }
+          .mt-connector {
+            flex: 1;
+            height: 2px;
+            background: rgba(15,23,42,0.14);
+          }
+          .mt-connector.active { background: rgba(34,197,94,0.5); }
+          .mt-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            min-width: 88px;
+          }
+          .mt-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(15,23,42,0.18);
+          }
+          .mt-node.active .mt-dot { background: #22c55e; }
+          .mt-node.inactive-red .mt-dot { background: #ef4444; }
+          @page { size: letter portrait; margin: 10mm; }
+        </style>
+      `;
+
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>Gladly Account Scoring Report</title>
+            ${printStyles}
+          </head>
+          <body>
+            <div class="print-sheet">${summaryShell.outerHTML}</div>
+          </body>
+        </html>
+      `);
+      printWindow.document.close();
+      printWindow.focus();
+      printWindow.onload = () => {
+        printWindow.print();
+        printWindow.close();
+      };
+    }
+
     function highlightField(el) {
       el.classList.remove("glow");
       void el.offsetWidth;
@@ -7348,7 +7769,7 @@
           text.includes("6sense") ? `<span class="pipeline-tool-logo logo-sense">6</span>` :
           text.includes("Clay") ? `<span class="pipeline-tool-logo logo-clay">Cl</span>` :
           text.includes("Claude") ? `<span class="pipeline-tool-logo logo-anthropic">A</span>` :
-          text.includes("SFDC") ? `<span class="pipeline-tool-logo logo-salesforce"><img src="./assets/salesforce-logo.png" alt="" aria-hidden="true" /></span>` : "";
+          text.includes("SFDC") ? `<span class="pipeline-tool-logo logo-salesforce"><img src="./assets/salesforce-logo.png" alt="" aria-hidden="true" /></span><span class="pipeline-tool-logo logo-marketo"><img src="./assets/marketo-logo.webp" alt="" aria-hidden="true" /></span>` : "";
         pill.innerHTML = `${icon}<span>${text}</span>`;
         pill.dataset.decorated = "true";
       });
@@ -7435,6 +7856,9 @@
     }
 
     function buildPromptMarkup(discrete, stats) {
+      const scores = computeScores(discrete);
+      const fitContext = getFitContext(discrete);
+      const timingContext = getTimingContext(discrete);
       const payload = {
         account_name: state.accountName,
         fit_signals: {
@@ -7447,6 +7871,26 @@
           intent: timingMeta.intent.points[discrete.intent],
           hiring: timingMeta.hiring.points[discrete.hiring],
           pricing_webinar: timingMeta.pricing.points[discrete.pricing]
+        },
+        coverage: discrete.coverage,
+        intent_depth: discrete.intentDepth,
+        first_party_depth: discrete.firstPartyDepth,
+        fit_context: {
+          employee_count: fitContext.employees,
+          industry: fitContext.industry,
+          tech_stack: fitContext.tech,
+          incumbent: fitContext.incumbent
+        },
+        timing_context: {
+          stage: timingContext.stage,
+          engagement_score: timingContext.engagement,
+          visible_topics: timingContext.topics
+        },
+        computed_scores: {
+          fit: scores.fit,
+          timing: scores.timing,
+          composite: scores.composite,
+          tier: scores.tier
         },
         enriched_fields_count: stats.enriched
       };
@@ -7462,7 +7906,13 @@
 
     function renderPresets() {
       els.presetGrid.innerHTML = Object.values(presets).map((preset) => `
-        <button class="preset-chip${state.activePreset === preset.key ? " active" : ""}" data-preset="${preset.key}" type="button">${preset.label}</button>
+        <button class="preset-chip${state.activePreset === preset.key ? " active" : ""}" data-preset="${preset.key}" type="button">
+          <span class="preset-logo tone-${presetVisuals[preset.key].tone}">${presetVisuals[preset.key].initials}</span>
+          <span class="preset-copy">
+            <span class="preset-title">${preset.label}</span>
+            <span class="preset-meta">${presetVisuals[preset.key].meta}</span>
+          </span>
+        </button>
       `).join("");
 
       els.presetGrid.querySelectorAll("[data-preset]").forEach((btn) => {
@@ -7579,6 +8029,7 @@
     }
 
     function renderFit(discrete) {
+      const scores = computeScores(discrete);
       setMetaText(els.scaleMeta, `${fitMeta.scale.labels[discrete.scale]} · ${fitMeta.scale.points[discrete.scale] >= 0 ? "+" : ""}${fitMeta.scale.points[discrete.scale]} pts`);
       setMetaText(els.industryMeta, `${fitMeta.industry.labels[discrete.industry]} · ${fitMeta.industry.points[discrete.industry] >= 0 ? "+" : ""}${fitMeta.industry.points[discrete.industry]} pts`);
       setMetaText(els.commerceMeta, `${fitMeta.commerce.labels[discrete.commerce]} · ${fitMeta.commerce.points[discrete.commerce] >= 0 ? "+" : ""}${fitMeta.commerce.points[discrete.commerce]} pts`);
@@ -7623,6 +8074,15 @@
       els.addedFieldsValue.textContent = `${addedFields}`;
       els.conflictsValue.textContent = `${conflicts}`;
       els.clearbitStatus.textContent = discrete.coverage >= 70 ? "High confidence" : discrete.coverage >= 50 ? "Medium confidence" : "Low confidence";
+
+      els.fitProfileTier.textContent = `Fit ${scores.fit}`;
+      els.fitProfileScore.textContent = `${scores.fit}`;
+      els.fitProfileSignals.innerHTML = scores.fitSignals.map((signal) => `
+        <div class="fit-profile-row ${signal.points !== 0 ? "active" : "inactive"}">
+          <span>${signal.name}</span>
+          <strong>${signal.points > 0 ? "+" : ""}${signal.points}</strong>
+        </div>
+      `).join("");
     }
 
     function renderTiming(discrete, scores) {
@@ -7709,11 +8169,13 @@
 
     function renderPrompt(discrete) {
       const stats = getEnrichmentStats(discrete);
+      const timingContext = getTimingContext(discrete);
+      const scores = computeScores(discrete);
       els.promptCode.innerHTML = buildPromptMarkup(discrete, stats);
       els.promptMetaModel.textContent = "claude-scoring-engine";
       els.promptMetaTemp.textContent = "0.2";
       els.promptMetaMaxTokens.textContent = "450";
-      els.promptMetaSummary.textContent = `${stats.enriched} enriched fields, fit and timing signals, and sync health included.`;
+      els.promptMetaSummary.textContent = `${stats.enriched} enriched fields, ${timingContext.topics.length} live topics, composite ${scores.composite}, tier ${scores.tier}.`;
     }
 
     function buildReasonCard(title, signals, total, note = "") {
@@ -7913,6 +8375,19 @@
       els.handoffMarketoStatus.textContent = label;
       els.handoffMarketoStatus.style.background = bg;
       els.handoffMarketoStatus.style.color = color;
+
+      const activationRows = [
+        ["Tier", `Tier ${scores.tier}`],
+        ["Motion", scores.motion],
+        ["SLA", scores.sla],
+        ["Action", scores.action]
+      ];
+      els.marketoActivationSummary.innerHTML = activationRows.map(([labelText, value]) => `
+        <div class="marketo-status-row">
+          <span>${labelText}</span>
+          <strong>${value}</strong>
+        </div>
+      `).join("");
     }
 
     function renderSummary(scores) {
@@ -8153,7 +8628,7 @@
       });
 
       els.exportPdf.addEventListener("click", () => {
-        window.print();
+        exportSummaryDocument();
       });
 
       els.addZoom.addEventListener("click", (event) => addExtraRow("zoom", event));
@@ -8184,6 +8659,34 @@
       }
     }
 
+    function initSmoothAnchors() {
+      const anchorLinks = [...document.querySelectorAll('a[href^="#"]')];
+      if (!anchorLinks.length) return;
+
+      anchorLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const href = link.getAttribute("href");
+          if (!href || href === "#") return;
+          const target = document.querySelector(href);
+          if (!target) return;
+
+          event.preventDefault();
+          const navOffset = 84;
+          const targetY = Math.max(0, window.scrollY + target.getBoundingClientRect().top - navOffset);
+
+          if (smootherInstance?.scrollTo) {
+            smootherInstance.scrollTo(targetY, true);
+          } else {
+            window.scrollTo({ top: targetY, behavior: "smooth" });
+          }
+
+          if (history.replaceState) {
+            history.replaceState(null, "", href);
+          }
+        });
+      });
+    }
+
     function initGsap() {
       if (!window.gsap || !window.ScrollTrigger) return;
 
@@ -8195,12 +8698,15 @@
       }
 
       if (smootherPlugin && !smootherPlugin.get()) {
-        smootherPlugin.create({
+        smootherInstance = smootherPlugin.create({
           wrapper: "#smooth-wrapper",
           content: "#smooth-content",
-          smooth: 1.4,
+          smooth: 1.7,
+          smoothTouch: 0.08,
           effects: true
         });
+      } else if (smootherPlugin) {
+        smootherInstance = smootherPlugin.get();
       }
       ScrollTrigger.defaults({ once: true });
 
@@ -8534,6 +9040,7 @@
       renderAll(false);
       initParticles();
       initGsap();
+      initSmoothAnchors();
       initSectionTracking();
     }
 
